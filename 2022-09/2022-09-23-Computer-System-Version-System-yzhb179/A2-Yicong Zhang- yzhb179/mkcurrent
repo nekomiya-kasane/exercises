@@ -1,0 +1,71 @@
+#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
+
+#Yicong Zhang 
+#yzhb179
+
+import os, sys
+import re, shutil
+
+root = os.path.join(os.getcwd(), '.versiondir')
+
+versioned_re = re.compile(r'\.(\d+)$')
+nonversioned_re = re.compile(r'^(.*?)(\.\d+)?$')
+
+MAX_VERSIONS = 6
+
+def full_path(partial, version=None):
+    partial = (partial[1:] if partial.startswith("/") else partial) \
+        + (('.' + str(version)) if version else '')
+    path = os.path.join(root, partial)
+    return path
+
+def is_versioned(path):
+    res = versioned_re.search(path)
+    return -1 if not res else int(res[1])
+
+def get_versioned_path(filename, version):
+    return full_path(filename, 
+            str(version)
+            )
+
+def get_nonversioned_filename(filename):
+    match = nonversioned_re.match(filename)
+    return match[1] if match else ''
+
+def get_all_version(path):
+    dirents = []
+    if os.path.isdir(root):
+        dirents.extend(os.listdir(root))
+
+    filename = os.path.basename(path)
+
+    dirents = list(filter(lambda x: get_nonversioned_filename(x) == filename, dirents))
+    return list(filter(lambda x: x > -1, map(is_versioned, dirents)))
+
+def append_version(filename, src_version):
+    arr = get_all_version(filename)
+    if src_version > len(arr) or src_version < 1:
+        print('source version {} not exist.'.format(src_version))
+        exit(0)
+    shutil.copy2(get_versioned_path(filename, src_version), full_path(filename))
+    shift_version(filename, arr)
+    shutil.copy2(full_path(filename), get_versioned_path(filename, 1))
+
+def shift_version(filename, versions):
+    versions.sort(reverse=True)
+    if len(versions) == MAX_VERSIONS:
+        os.remove(get_versioned_path(filename, MAX_VERSIONS))
+        del versions[0]
+    for version in versions:
+        old_path = get_versioned_path(filename, version)
+        os.rename(old_path, get_versioned_path(filename, version + 1))
+
+def mkcurrent(filename, version):
+    append_version(filename, version)
+
+if __name__ == '__main__':
+    if len(sys.argv) < 3:
+        print("Usage: ./mkcurrent [file] [version]")
+        exit(0)
+    mkcurrent(sys.argv[1], int(sys.argv[2]))
