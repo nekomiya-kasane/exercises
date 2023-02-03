@@ -1,0 +1,176 @@
+Copy the output in terminal one into a file called A2.txt. Make it clear to the markers which 
+output relates to which section following. 
+>---------------------------------- Original Output
+Creating version directory.
+** create: /one.txt **
+** flush /one.txt **
+** write: /one.txt **
+** flush /one.txt **
+** release /one.txt **
+** open: /one.txt **
+** create: /two.txt **
+** read: /one.txt **
+** write: /two.txt **
+** flush /two.txt **
+** release /two.txt **
+** flush /one.txt **
+** release /one.txt **
+** open: /two.txt **
+** read: /two.txt **
+** flush /two.txt **
+** release /two.txt **
+** create: /three.txt **
+** flush /three.txt **
+** open: /one.txt **
+** read: /one.txt **
+** write: /three.txt **
+** flush /one.txt **
+** release /one.txt **
+** open: /two.txt **
+** read: /two.txt **
+** write: /three.txt **
+** flush /two.txt **
+** release /two.txt **
+** flush /three.txt **
+** release /three.txt **
+** create: /.three.txt.swp **
+** write: /.three.txt.swp **
+** flush /.three.txt.swp **
+** release /.three.txt.swp **
+** open: /three.txt **
+** read: /three.txt **
+** flush /three.txt **
+** release /three.txt **
+** create: /.three.txt.swp **
+** write: /.three.txt.swp **
+** flush /.three.txt.swp **
+** release /.three.txt.swp **
+** open: /three.txt **
+** truncate: /three.txt **
+** write: /three.txt **
+** fsync: /three.txt **
+** flush /three.txt **
+** flush /three.txt **
+** release /three.txt **
+<---------------------------------------
+>--------------------------------------- Output with command comments
+// python versionfs.py mount
+Creating version directory.
+
+// echo "one1" > mount/one.txt
+** create: /one.txt **
+** flush /one.txt **
+** write: /one.txt **
+** flush /one.txt **
+** release /one.txt **
+
+// cp mount/one.txt mount/two.txt
+** open: /one.txt **
+** create: /two.txt **
+** read: /one.txt **
+** write: /two.txt **
+** flush /two.txt **
+** release /two.txt **
+** flush /one.txt **
+** release /one.txt **
+
+// cat mount/two.txt
+** open: /two.txt **
+** read: /two.txt **
+** flush /two.txt **
+** release /two.txt **
+
+// cat mount/one.txt mount/two.txt > mount/three.txt
+** create: /three.txt **
+** flush /three.txt **
+** open: /one.txt **
+** read: /one.txt **
+** write: /three.txt **
+** flush /one.txt **
+** release /one.txt **
+** open: /two.txt **
+** read: /two.txt **
+** write: /three.txt **
+** flush /two.txt **
+** release /two.txt **
+** flush /three.txt **
+** release /three.txt **
+
+// nano mount/three.txt
+** create: /.three.txt.swp **
+** write: /.three.txt.swp **
+** flush /.three.txt.swp **
+** release /.three.txt.swp **
+** open: /three.txt **
+** read: /three.txt **
+** flush /three.txt **
+** release /three.txt **
+
+// delete some text
+** create: /.three.txt.swp **
+** write: /.three.txt.swp **
+** flush /.three.txt.swp **
+** release /.three.txt.swp **
+
+// append some text, save file and exit
+** open: /three.txt **
+** truncate: /three.txt **
+** write: /three.txt **
+** fsync: /three.txt **
+** flush /three.txt **
+** flush /three.txt **
+** release /three.txt **
+<---------------------------------------
+See stdout1.png stdout2.png
+
+
+/***************************************
+*  Creating a new file makes a single version of the file. 
+****************************************/
+See create_new.png
+
+/***************************************
+*  Modifying  that file makes another version. (This can be done up to 6 versions.) 
+****************************************/
+See two_modification.png, 9_modification.png
+
+/***************************************
+*  Any previous version can be made the current version. Commands in the mount directory 
+*  now work on the new current version. 
+****************************************/
+See mkcurrent.png
+
+/***************************************
+*  The contents of any version can be displayed on the screen. And the contents are correct. 
+****************************************/
+See catversion.png
+
+/***************************************
+*  The contents of any version can be displayed on the screen. And the contents are correct. 
+****************************************/
+See listversions.png
+
+/***************************************
+*  All versions but the current version can be removed from the system. 
+****************************************/
+See rmversions.png
+
+/***************************************
+*  shutdownversions works as specified. 
+****************************************/
+See shutdownversions.png
+
+/***************************************
+*   Your answer to the question. 
+****************************************/
+pros: 
+1/ prevent caches from accumulation and occupying too much space
+2/ prevent the existence of untrackable caches
+3/ no extra history records are needed for caches
+
+cons:
+1/ deleting is also a modification, the existence of such modification 
+   that produces no version logs may confuse users
+2/ users may delete their files by mistake, and applications may be implemented to read and 
+   delete files temporarily to do some special modifications. Removing caches under such 
+   situations may cause irretrievable consequences

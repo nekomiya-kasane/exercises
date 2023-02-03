@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<head><meta charset="utf-8">
+    <style>
+        td {
+            padding: 0.5rem;
+            border: pink 1pt dashed;
+        }
+
+        th {
+            padding: 0.5rem;
+            border: pink 1pt dashed;
+        }
+    </style>
+</head>
+<body>
+<h3>城市收益</h3>
+<table class="responsive-table-input-matrix">
+    <thead>
+        <tr>
+            <th></th>
+            <th>城市A</th>
+            <th>城市B</th>
+            <th>城市C</th>
+            <th>城市D</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>森林收益</td>
+            <td><input class="yes" type="number" value="2"/></td>
+            <td><input class="yes" type="number" value="1"/></td>
+            <td><input class="yes" type="number" value="2"/></td>
+            <td><input class="yes" type="number" value="3"/></td>
+        </tr>
+        <tr>
+            <td>非森林收益</td>
+            <td><input class="no" type="number" value="3"/></td>
+            <td><input class="no" type="number" value="2"/></td>
+            <td><input class="no" type="number" value="4"/></td>
+            <td><input class="no" type="number" value="7"/></td>
+        </tr>
+    </tbody>
+</table>
+
+<hr/>
+<h3>影响矩阵</h3>
+<table class="responsive-table-input-matrix">
+    <thead>
+        <tr>
+            <th></th>
+            <th>城市A</th>
+            <th>城市B</th>
+            <th>城市C</th>
+            <th>城市D</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>城市A</td>
+            <td><input class="mat" type="number" value="0"/></td>
+            <td><input class="mat" type="number" value="0"/></td>
+            <td><input class="mat" type="number" value="3"/></td>
+            <td><input class="mat" type="number" value="1"/></td>
+        </tr>
+        <tr>
+            <td>城市B</td>
+            <td><input class="mat" type="number" value="0"/></td>
+            <td><input class="mat" type="number" value="0"/></td>
+            <td><input class="mat" type="number" value="1"/></td>
+            <td><input class="mat" type="number" value="1"/></td>
+        </tr>
+        <tr>
+            <td>城市C</td>
+            <td><input class="mat" type="number" value="0"/></td>
+            <td><input class="mat" type="number" value="0"/></td>
+            <td><input class="mat" type="number" value="0"/></td>
+            <td><input class="mat" type="number" value="4"/></td>
+        </tr>
+        <tr>
+            <td>城市D</td>
+            <td><input class="mat" type="number" value="0"/></td>
+            <td><input class="mat" type="number" value="0"/></td>
+            <td><input class="mat" type="number" value="0"/></td>
+            <td><input class="mat" type="number" value="0"/></td>
+        </tr>
+    </tbody>
+</table>
+
+<hr/>
+<input type="button" title="生成表格" value="生成表格" onclick="exec()"></input>
+
+<hr/>
+<h3>结果</h3>
+<table class="responsive-table-input-matrix">
+    <thead>
+        <tr id="subset">
+            <th>联盟S</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr id="value">
+            <td>V(S)</td>
+        </tr>
+        <tr id="incre">
+            <td>最大增益</td>
+        </tr>
+        <tr id="forest">
+            <td>森林城市</td>
+        </tr>
+    </tbody>
+</table>
+<p id="sh"></p>
+
+<script type="text/javascript">
+
+yes = [];
+no = [];
+mat = [];
+
+dict = {0: 'A', 1: 'B', 2: 'C', 3: 'D'};
+pika = e => dict[e];
+
+sets = document.getElementById("subset");
+values = document.getElementById("value");
+incres = document.getElementById("incre");
+fores = document.getElementById("forest");
+
+function update() {
+    yes = [];
+    Array.from(document.getElementsByClassName("yes")).forEach(e => {
+        yes.push(Number(e.value));
+    });
+    no = [];
+    Array.from(document.getElementsByClassName("no")).forEach(e => {
+        no.push(Number(e.value));
+    });
+    mat = [];
+    tmp = [];
+    Array.from(document.getElementsByClassName("mat")).forEach(e => {
+        if (tmp.length == 4) {
+            mat.push(tmp);
+            tmp = [];
+        }
+        tmp.push(Number(e.value));
+    });
+    mat.push(tmp);
+}
+
+function clear() {
+    yes = [];
+    no = [];
+    mat = [];
+
+    let f = sets.firstElementChild;
+    sets.innerHTML = '';
+    sets.appendChild(f);
+
+    f = values.firstElementChild;
+    values.innerHTML = '';
+    values.appendChild(f);
+
+    f = incres.firstElementChild;
+    incres.innerHTML = '';
+    incres.appendChild(f);
+
+    f = fores.firstElementChild;
+    fores.innerHTML = '';
+    fores.appendChild(f);
+}
+
+function append(res) {
+    let uni = document.createElement("td");
+    uni.innerText = res["renmei"].join(" ");
+    sets.appendChild(uni);
+
+    let mv = document.createElement("td");
+    mv.innerText = res["maxval"];
+    values.appendChild(mv);
+
+    let inc = document.createElement("td");
+    inc.innerText = res["boost"];
+    incres.appendChild(inc);
+
+    let set = document.createElement("td");
+    set.innerText = res["set"].join(" ");
+    fores.appendChild(set);
+}
+
+function exec() {
+    clear()
+
+    update();
+
+    ress = [];
+
+    for (let i = 0; i < 16; i ++) {
+        let renmei = [];
+        for (let j = 0; j < 4; j ++) {
+            if ((i >> j) & 0b1) {
+                renmei.push(j);
+            }
+        }
+        if (renmei.length < 1) {
+            continue;
+        }
+        let res = maximize(renmei);
+        res["key"] = i;
+        res["renmei"] = renmei.map(pika);
+        res["set"] = res["set"].map(pika);
+        ress.push(res);
+    }
+
+    ress.sort((a, b) => a["renmei"].length - b["renmei"].length);
+    Array.from(ress).forEach(e => append(e))
+
+    const N = 4;
+
+    let sumres = "";
+
+    // find sum
+    for (let i = 0; i < 4; i ++) {
+        const mask = 1 << i;
+        const cmask = 15 ^ mask;
+
+        //let pool = structuredClone(ress);
+        //pool.filter(e => !(e["key"] & mask)); // i not contained
+
+        let sum = 0;
+
+        let calced = [];
+        
+        for (let j = 0; j < 16; j ++) {
+            if (calced.includes(j & cmask)) {
+                continue;
+            }
+            let S = bits(j & cmask);
+
+            let vsi = ress.find(e => e["key"] == (j | mask))["maxval"];
+            let vs = (j & cmask) ? ress.find(e => e["key"] == (j & cmask))["maxval"] : 0;
+
+            sum += factorial(S) * factorial(N - S - 1) * (vsi - vs) / factorial(N);
+
+            calced.push(j & cmask);
+        }
+
+        sumres += "Sh" + (i + 1) + ": " + sum + "<br/>";
+    }
+
+    let p = document.getElementById("sh");
+    p.innerHTML = sumres;
+}
+
+const subsets = array =>
+    array.reduceRight(
+        (accumulator, a) => [...accumulator, ...accumulator.map(b => [a, ...b])],
+        [[]]
+    );
+
+function maximize(renmei) {
+    ps = subsets(renmei);
+
+    maxset = [];
+    maxval = -1;
+    boost = -1;
+
+    for (let i = 0; i < ps.length; i++) {
+        let val = 0
+
+        let res = [0, 0, 0, 0]
+        for (let s of ps[i]) {
+            res = add(res, mat[s])
+        }
+
+        let fore = add(res, yes);
+        let nonfore = add(res, no);
+
+        for (let j of renmei) { // total income
+            val += ps[i].includes(j) ? fore[j] : nonfore[j];
+        }
+        if (ps[i].length == 0) {
+            boost = val;
+        }
+
+        if (val >= maxval) {
+            maxset = ps[i];
+            maxval = val;
+        }
+    }
+    boost = maxval - boost;
+
+    return {
+        "maxval" : maxval,
+        "boost" : boost,
+        "set" : maxset
+    };
+}
+
+function add(a,b){
+    return a.map((e,i) => e + b[i]);
+}
+
+function bits(a) {
+    let res = 0;
+    while (a != 0) {
+        res += a & 0b1;
+        a >>= 1;
+    }
+    return res;
+}
+
+function factorial(n) {
+   let p = 1
+   for (let i = n; i > 0; i--) 
+    p *= i
+   return p
+}
+
+</script>
+
+</body>

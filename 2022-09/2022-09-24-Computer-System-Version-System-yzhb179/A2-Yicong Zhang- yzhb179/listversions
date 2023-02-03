@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
+import os, sys
+import re
+
+root = os.path.join(os.getcwd(), '.versiondir')
+
+def list_versions(filename):
+    full_filename = full_path(filename)
+    base_filename = os.path.basename(full_filename)  # type: ignore
+
+    versioned_re = re.compile('^' + base_filename + '\\.(\\d+)$')
+
+    res = os.listdir(root) if os.path.isdir(root) else []
+    res = list(filter(lambda x: versioned_re.search(x), res))
+    res.sort(key=lambda x: int(versioned_re.search(x)[1]))
+
+    for e in res:
+        print(os.path.basename(e))
+
+def full_path(partial):
+    partial = (partial[1:] if partial.startswith("/") else partial)
+    path = os.path.join(root, partial)
+    return path
+
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        print("Usage: ./listversions [file]")
+        exit(0)
+    list_versions(sys.argv[1])

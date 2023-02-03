@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.rmd": "markdown",
+        "float.h": "c",
+        "numbers": "c"
+    }
+}

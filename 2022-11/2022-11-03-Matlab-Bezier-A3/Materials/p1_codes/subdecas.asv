@@ -1,0 +1,24 @@
+function [ud, ld] = subdecas(cpoly)
+total = length(cpoly(0,:)) + 1;
+ud = zeros(2, total);
+ld = zeros(2, total);
+matrix_x = zeros(4, 4);
+matrix_y = zeros(4, 4);
+    for k = 1: 4
+        matrix_x(1, k) = cpoly(1, k);
+        matrix_y(1, k) = cpoly(2, k);
+    end
+    for i = 2: 4
+        for j = 1: 5-i
+            matrix_x(i, j) = (matrix_x(i-1, j) / 2.0) + (matrix_x(i-1, j+1) / 2.0);
+            matrix_y(i, j) = (matrix_y(i-1, j) / 2.0) + (matrix_y(i-1, j+1) / 2.0);
+        end
+    end
+    for k = 1: 4
+        ud(1, k) = matrix_x(k, 1);
+        ud(2, k) = matrix_y(k, 1);
+        ld(1, k) = matrix_x(5-k, k);
+        ld(2, k) = matrix_y(5-k, k);
+    end
+end
+

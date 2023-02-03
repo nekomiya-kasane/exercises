@@ -1,0 +1,65 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url('https://img2.goodfon.com/wallpaper/nbig/1/64/anime-art-fon-tekstura-kotyata.jpg');
+    background-repeat: repeat;
+}
+
+#plot {
+    box-sizing: border-box;
+    background-color: #fffffff1;
+    box-shadow: 0.5em 0.5em 0.5em #bbb;
+    border-radius: 16px;
+    padding: 1rem;
+    
+    position: fixed;
+    width: fit-content;
+    height: fit-content;
+    left: 10px;
+    top: 10px;
+    transform-origin: 0% 0% 0;
+}
+
+line {
+    stroke: black;
+    stroke-width: 1.5;
+}
+
+polyline {
+    fill: none;
+    stroke-width: 1.5;
+}
+
+.completed, #info-completed {
+    stroke: forestgreen;
+    color: forestgreen;
+}
+
+.played, #info-played {
+    stroke: orange;
+    color: orange;
+}
+
+#x-label, #y-label {
+    font-size: 1.5rem;
+}
+
+.x-tick {
+    writing-mode: vertical-lr;
+}
+
+span {
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.logo {
+    stroke: black;
+    stroke-width: 0.4rem;
+    stroke-linecap: "round";
+}
