@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "storage_mgr.h": "c",
+        "dberror.h": "c",
+        "stdio.h": "c"
+    }
+}
