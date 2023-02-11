@@ -1,3 +1,4 @@
-2022-11/2022-11-18-Python-Mercury/mercury/outputs/Newton-orbits-anime-0-1.gif filter=lfs diff=lfs merge=lfs -text
-2022-09/2022-09-24-Computer-System-Version-System-fs340-yzhb179/A2-Yicong[[:space:]]Zhang-[[:space:]]yzhb179/fs340/description/2022-09-22[[:space:]]11-39-34.mkv filter=lfs diff=lfs merge=lfs -text
-2022-09/2022-09-24-Computer-System-Version-System-fs340-yzhb179/A2-Yicong[[:space:]]Zhang-[[:space:]]yzhb179/fs340/fs340.7z filter=lfs diff=lfs merge=lfs -text
+*.mkv filter=lfs diff=lfs merge=lfs -text
+*.obj filter=lfs diff=lfs merge=lfs -text
+*.pack filter=lfs diff=lfs merge=lfs -text
+*.gif filter=lfs diff=lfs merge=lfs -text
