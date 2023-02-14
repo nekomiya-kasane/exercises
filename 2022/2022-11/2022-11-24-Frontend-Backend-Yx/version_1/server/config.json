@@ -1,0 +1,9 @@
+{
+    "rds_host": "localhost",
+    "rds_port": "3306",
+    "rds_user": "root",
+    "rds_password" : "qhda2036",
+    "rds_db": "fifa",
+    "server_host": "127.0.0.1",
+    "server_port":"11112"
+}

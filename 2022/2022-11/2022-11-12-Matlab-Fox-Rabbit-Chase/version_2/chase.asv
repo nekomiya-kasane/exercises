@@ -1,0 +1,439 @@
+clear all;
+clf reset;
+close all;
+
+% parameters:
+%   method:         method used to solve ODE
+%       ode23, ode45, ode78, ode89, ode113, ode15s supported
+%   tolerance:      tolerance passed to ODE solver, low tolerance will cause
+%       unexpected results since the equation is defined piecewise
+%   north_east:     north east coordinate of the rectangle obstacle
+%   sorth_east:     south east coordinate of the rectangle obstacle
+%   fox_init:       initial coordinate of the fox
+%   rabbit_init:    initial coordinate of the rabbit
+%   fox_velocity:   function for fox's velocity with respect to time
+%   rabbit_velocity:
+%                   function for rabbit's velocity with respect to time
+%   arrow_factor:   scaling factor for velocity visualization
+%   time_anime_factor:
+%                   gif time scaling factor. Play 2 second's simulation
+%       per second in gif if it's set 2 for example
+
+if ~exist('output', 'dir') %= create output directory
+    mkdir('output')
+end
+file_name = @(name) "output" + filesep + name;
+
+config = struct( ...
+    "method", "euler", ... % use double quotation mark!
+    "tolerance", 1e-6, ...
+    "north_east", [-200; 0], ...
+    "sorth_east", [-200; -400], ...
+    "rabbit_dest", [-600; 600], ...
+    "fox_velocity", @(state) 16, ...
+    "rabbit_velocity", @(state) 13, ...
+    "arrow_factor", 10, ...
+    "time_anime_factor", 3 ...
+);
+
+% part 1: constant velocity using different methods
+config.rabbit_velocity = @(state) 13;
+config.fox_velocity = @(state) 16;
+
+method_pool = ["euler", "sseuler"];
+
+% hint:
+%   euler method need dt < 0.05 for better performance
+
+
+disp("part 1");
+for method = method_pool
+    disp(strcat("\nmethod: ", method));
+    config.method = method;
+    
+    fig = figure;
+    
+    hold on
+    name = strcat("part-1-", method);
+    title(name);
+    [caught, state] = simulate(config, fig, 100, 0.1, file_name(name));
+    hold off
+    
+    disp("Caught: " + caught);
+    disp_state(state);
+    
+    pause(2);
+end
+
+% part 2: constant velocity using different methods
+config.rabbit_velocity = @(state) 13 * exp(-0.0008 .* state.rabbit_distance);
+config.fox_velocity = @(state) 16 * exp(-0.0002 .* state.fox_distance);
+
+disp("part 2");
+for method = method_pool
+    config.method = method;
+    
+    fig = figure;
+    
+    hold on
+    name = strcat("part-22-", method);
+    title(name);
+    [caught, state] = simulate(config, fig, 100, 0.1, file_name(name));
+    hold off
+    
+    disp("Caught: " + caught);
+    disp_state(state);
+
+    pause(2);
+end
+
+
+%% Functions
+function [caught, state] = simulate(config, fig, time, dt, path)
+    arguments
+        config
+        fig
+        time
+        dt
+        path = []
+    end
+    path = path + ".gif";
+    
+    state = struct( ...
+        "time", -1, ...
+        "fox_pos", [-250; -550], ...
+        "rabbit_pos", [0; 0], ...
+        "fox_velocity", [0; 0], ...
+        "rabbit_velocity", [0; 0], ...
+        "fox_distance", 0, ...
+        "rabbit_distance", 0 ...
+    );
+    
+    caught = false;
+
+    % prepare initial config
+
+    set(gca, 'XLim', [-700, 100], 'YLim', [-700, 700]);
+    
+    %= initialization of animation
+    addframe(config, state, fig);
+    
+    state.time = 0;
+
+    %= create gif
+    if ~isempty(path)
+        [A, map] = rgb2ind(frame2im(getframe(fig)), 256);
+        imwrite(A, map, path, "gif", "LoopCount", Inf, "DelayTime", dt);
+    end
+    
+    % manully calculate
+    % ignore this
+    for i = 0: dt: time
+        if config.method == "sseuler"
+            state = sseuler_step(config, state, dt);
+        else
+            state = euler_step(config, state, dt);
+        end
+
+        % check caught
+        if norm(state.rabbit_pos - state.fox_pos) < 0.1 ...
+            || state.fox_pos(2) > state.rabbit_pos(2) ...
+            || state.fox_velocity(2) < 0
+            state.caught = true;
+            break;   
+        end
+        
+        % check rabbit returned home
+        if norm(state.rabbit_pos - config.rabbit_dest) < 0.1 ...
+            || state.rabbit_pos(2) > config.rabbit_dest(2)
+            break;
+        end
+
+        % add frame to animation
+        addframe(config, state, fig);
+
+        if ~isempty(path)
+            [A, map] = rgb2ind(frame2im(getframe(fig)), 256);
+            imwrite(A, map, path, "gif", ...
+                "WriteMode", "append", ...
+                "DelayTime", dt / config.time_anime_factor ...
+            );
+        end
+    end
+end
+
+%% Add frame to animation
+function img = addframe(config, state, handle)
+    arguments
+        config
+        state
+        handle
+    end
+
+    persistent colors
+    persistent ani_rabi
+    persistent ani_rabi_head
+    persistent ani_fox
+    persistent ani_fox_head
+    persistent timer
+    persistent ruler
+    persistent rabi_dest
+    persistent fox_dir
+    persistent rabi_dir
+
+    %= for clearing, trigger initialization
+    if state.time < 0
+        colors = [];
+    end
+        
+    %= initialization
+    if isempty(colors)
+        colors = zeros(6, 3);
+        colors(1:6, :) = [
+            [255, 131, 123] / 255;
+            [160, 231, 103] / 255;
+            [116, 203, 241] / 255;
+            [201, 141, 233] / 255;
+            [255, 169, 123] / 255;
+            [253, 244, 152] / 255
+        ];
+        ani_rabi = animatedline(...
+            'color', colors(1, :), ...
+            'LineStyle','-' ...
+        );
+        ani_rabi_head = animatedline(...
+            'color', colors(1, :), ...
+            'LineStyle','none', ...
+            'Marker', '.', ...
+            'MarkerSize', 20 ...
+        );
+        ani_fox = animatedline(...
+            'color', colors(2, :), ...
+            'LineStyle','-' ...
+        );
+        ani_fox_head = animatedline(...
+            'color', colors(2, :), ...
+            'LineStyle','none', ...
+            'Marker', '.', ...
+            'MarkerSize', 20 ...
+        );
+
+        timer = annotation(handle, ...
+            'textbox', [.8 .55 .2 .4], ...
+            'String', '', ...
+            'EdgeColor', 'none', ...
+            'FontSize', 14, ...
+            'Color', '#FF9400' ...
+        );
+
+        ruler = animatedline(...
+            'color', colors(3, :), ...
+            'LineStyle','--' ...
+        );
+
+        rabi_dest = animatedline(...
+            'color', colors(5, :), ...
+            'LineStyle','--', ...
+            'Marker', 'o', ...
+            'MarkerSize', 5 ...
+        );
+
+        fox_dir = annotation(handle, "arrow", "Color", colors(2, :));
+        rabi_dir = annotation(handle, "arrow", "Color", colors(1, :));
+
+    end
+
+    %= for clearing only
+    if state.time < 0
+        img = [];
+        return;
+    end
+
+    %= draw rabbit and its trajectory
+    addpoints(ani_rabi, state.rabbit_pos(1), state.rabbit_pos(2))
+    clearpoints(ani_rabi_head)
+    addpoints(ani_rabi_head, state.rabbit_pos(1), state.rabbit_pos(2))
+
+    %= draw fox and its trajectory
+    addpoints(ani_fox, state.fox_pos(1), state.fox_pos(2))
+    clearpoints(ani_fox_head)
+    addpoints(ani_fox_head, state.fox_pos(1), state.fox_pos(2))
+
+    %= draw line segment connecting rabbit and fox
+    clearpoints(ruler)
+    addpoints(ruler, state.fox_pos(1), state.fox_pos(2))
+    addpoints(ruler, state.rabbit_pos(1), state.rabbit_pos(2))
+
+    %= draw line segment connecting rabbit and its destination
+    clearpoints(rabi_dest)
+    addpoints(rabi_dest, config.rabbit_dest(1), config.rabbit_dest(2))
+    addpoints(rabi_dest, state.rabbit_pos(1), state.rabbit_pos(2))
+
+    %= draw rabbit's velocity vector
+    if ~isnan(state.rabbit_velocity(1)) && ~isnan(state.rabbit_velocity(2))% && ~isnan(state.rabbit_pos(1)) && ~isnan
+        set(rabi_dir, 'parent', gca)
+        set(rabi_dir, 'X', [state.rabbit_pos(1), state.rabbit_pos(1) ...
+            + config.arrow_factor * state.rabbit_velocity(1)])
+        set(rabi_dir, 'Y', [state.rabbit_pos(2), state.rabbit_pos(2) ...
+            + config.arrow_factor * state.rabbit_velocity(2)])
+    end
+
+    %= draw fox's velocity vector
+    if ~isnan(state.fox_velocity(1)) && ~isnan(state.fox_velocity(2))
+        set(fox_dir, 'parent', gca)
+        set(fox_dir, 'X', [state.fox_pos(1), state.fox_pos(1) ...
+            + config.arrow_factor * state.fox_velocity(1)])
+        set(fox_dir, 'Y', [state.fox_pos(2), state.fox_pos(2) ...
+            + config.arrow_factor * state.fox_velocity(2)])
+    end
+
+    %= draw timer
+    text = sprintf('Time: \n%.2f', state.time);
+    set(timer, 'String', text)
+
+    %= redraw obstacle
+    delete(findobj('type', 'patch'));
+    draw_house(config, colors(6, :));
+
+    drawnow;
+
+    %img = getframe(handle);
+end
+
+%% Next state
+function res_state = euler_step(config, state, dt)
+    res_state = state;
+
+    % get velocities
+    [~, dir_fox] = check_block(state.fox_pos, state.rabbit_pos, config);
+    dir_rabi = (config.rabbit_dest - state.rabbit_pos);
+    dir_rabi = dir_rabi / norm(dir_rabi);
+    res_state.rabbit_velocity = config.rabbit_velocity(state) * dir_rabi; % update velocity
+    res_state.fox_velocity = config.fox_velocity(state) * dir_fox;
+    
+    dt = min(dt, norm(config.rabbit_dest - state.rabbit_pos) / config.rabbit_velocity(state));
+    dt = min(dt, norm(state.rabbit_pos - state.fox_pos) / config.fox_velocity(state));
+
+    % update rabbit
+    rabbit_delta = dt * res_state.rabbit_velocity;
+    res_state.rabbit_pos = state.rabbit_pos + rabbit_delta;
+    res_state.rabbit_distance = state.rabbit_distance + norm(rabbit_delta);
+
+    % update fox
+    fox_delta = dt * res_state.fox_velocity;
+    res_state.fox_pos = state.fox_pos + fox_delta;
+    res_state.fox_distance = state.fox_distance + norm(fox_delta);
+
+    % update time
+    res_state.time = state.time + dt;
+end
+
+function res_state = sseuler_step(config, state, dt)
+    res_state = state;
+    next_state = state;
+
+    % next_state
+    [~, dir_fox] = check_block(state.fox_pos, state.rabbit_pos, config);
+    dir_rabi = (config.rabbit_dest - state.rabbit_pos);
+    dir_rabi = dir_rabi / norm(dir_rabi);
+    next_state.rabbit_velocity = config.rabbit_velocity(state) * dir_rabi;
+    next_state.fox_velocity = config.fox_velocity(state) * dir_fox;
+    
+    dt = min(dt, norm(config.rabbit_dest - state.rabbit_pos) / config.rabbit_velocity(state));
+    dt = min(dt, norm(state.rabbit_pos - state.fox_pos) / config.fox_velocity(state));
+
+    rabbit_delta_1 = dt * next_state.rabbit_velocity;
+    next_state.rabbit_pos = state.rabbit_pos + rabbit_delta_1;
+
+    fox_delta_1 = dt * next_state.fox_velocity;
+    next_state.fox_pos = state.fox_pos + fox_delta_1;
+    
+    next_state.time = next_state.time + dt;
+    
+    if norm(config.rabbit_dest - state.rabbit_pos) < config.tolerance
+    
+    % next_state2
+    [~, dir_fox] = check_block(next_state.fox_pos, next_state.rabbit_pos, config);
+    dir_rabi = (config.rabbit_dest - next_state.rabbit_pos);
+    dir_rabi = dir_rabi / norm(dir_rabi);
+    rabbit_velocity = config.rabbit_velocity(next_state) * dir_rabi;
+    fox_velocity = config.fox_velocity(next_state) * dir_fox;
+    
+    dt = min(dt, norm(config.rabbit_dest - state.rabbit_pos) / config.rabbit_velocity(state));
+    dt = min(dt, norm(state.rabbit_pos - state.fox_pos) / config.fox_velocity(state));
+    
+    rabbit_delta_2 = dt * rabbit_velocity;
+    fox_delta_2 = dt * fox_velocity;
+    
+    % update
+    res_state.rabbit_velocity = next_state.rabbit_velocity;
+    res_state.fox_velocity = next_state.fox_velocity;
+    res_state.rabbit_pos = res_state.rabbit_pos + 0.5 * (rabbit_delta_1 + rabbit_delta_2);
+    res_state.fox_pos = res_state.fox_pos + 0.5 * (fox_delta_1 + fox_delta_2);
+    res_state.rabbit_distance = res_state.rabbit_distance + norm(0.5 * (rabbit_delta_1 + rabbit_delta_2));
+    res_state.fox_distance = res_state.fox_distance + norm(0.5 * (fox_delta_1 + fox_delta_2));
+
+    % update time
+    res_state.time = state.time + dt;
+end
+
+%% Check collision
+function [point, dir] = check_block(fox, rabbit, config)
+    ne = config.north_east;
+    se = config.sorth_east;
+
+    if fox(2) > se(2) % above bottom edge
+        if (fox(2) > ne(2)) || (rabbit(1) >= fox(1)) % above top edge or rabbit on the right
+            point = false;
+            dir = (rabbit - fox) / norm(rabbit - fox);
+            return; 
+        end
+        %= fox cannot see rabbit
+        crossy = (rabbit(2) - fox(2)) * (ne(1) - fox(1)) / (rabbit(1) - fox(1)) + fox(2);
+        if ~isinf(crossy) && crossy <= ne(2)
+            point = [ne(1), crossy]; 
+            dir = [0, 1]';
+            return;
+        end
+    else % below bottom edge 
+        %= fox cannot see rabbit
+        crossx = fox(1) + (rabbit(1) - fox(1)) * (se(2) - fox(2)) / (rabbit(2) - fox(2));
+        if ~isinf(crossx) && crossx <= se(1)
+            point = [crossx, se(2)];
+            dir = (se' - fox) / norm(se' - fox);
+            assert(length(dir(:, 1)) ~= length(dir(1, :)));
+            return;
+        end
+    end
+
+    %= fox can see rabbit
+    point = false;
+    dir = (rabbit - fox) / norm(rabbit - fox);
+end
+
+%% Draw obstacle
+function draw_house(config, color) 
+    arguments
+        config
+        color = [0.5, 0.5, 0.5]
+    end
+    ne = config.north_east;
+    se = config.sorth_east;
+    xs = [-1000, -1000, ne(1), se(1)];
+    ys = [se(2), ne(2), ne(2), se(2)];
+    patch(xs, ys, color, ...
+        "EdgeColor", color, "EdgeAlpha", 0.4, ...
+        "FaceColor", color, "FaceAlpha", 0.4 ...
+    );
+end
+
+%% Display state
+function disp_state(state)
+    disp("Fox coordinate: ");
+    disp(state.fox_pos);
+    disp("Rabbit coordinate: ");
+    disp(state.rabbit_pos);
+    disp("Fox distance: " + state.fox_distance);
+    disp("Rabbit distance: " + state.rabbit_distance);
+    disp("Total time: " + state.time);
+end

@@ -1,0 +1,66 @@
+% function [w1,w2,w3,w4] = reg3(X,y,K)
+function [w1,b1,xi1,w2,b2,xi2,alpha2,w3,b3,xi3,w4,b4,xi4] = reg3(X,y,K)
+    % Calls four regression methods
+    % Ridge regression minimizing w, b, not penalizing b
+    % Ridge regression minimizing w, b, not penalizing b, using the KKT eqs
+    % Ridge regression minimizing w, b, penalizing b
+    % Least squares, penalizing b
+    % X is an m x n matrix, y a m x 1 column vector
+    % weight vector w, intercept b
+    %
+    m = size(y,1); n = size(X,2);
+    
+    [w1,nw1,b1,xi1,~] = ridgeregv1(X,y,K);
+    [w2,b2,xi2,~,alpha2] = ridgeregb1(X,y,K);
+    [w3,nw3,b3,xi3,~] = ridgeregv2(X,y,K);
+    [w4,nw4,b4,xi4,~] = reglq(X,y);
+
+    fprintf('b1 = %.15f \n',b1)
+    fprintf('b2 = %.15f \n',b2)
+    fprintf('b3 = %.15f \n',b3)
+    fprintf('b4 = %.15f \n',b4)
+    
+    if n == 1
+        [ll,mm] = showgraph(X,y);
+        hold off
+        [ll,mm] = showgraph(X,y);
+        ww1 = [w1;-1]; ww3 = [w3;-1];
+        ww4 = [w4;-1];
+        n1 = sqrt(ww1'*ww1); n3 = sqrt(ww3'*ww3);
+        n4 = sqrt(ww4'*ww4);
+        l1 = makeline(ww1,-b1,ll,mm,n1);    % best fit, ridge 1
+        l2 = makeline(ww3,-b3,ll,mm,n3);    % best fit,
+                                            % ridge penalizing b
+        l3 = makeline(ww4,-b4,ll,mm,n4);    % best fit, least squares
+        plot(l1(1,:),l1(2,:),'-m','LineWidth',1.2) % magenta best
+        plot(l2(1,:),l2(2,:),'-r','LineWidth',1.2) % red
+        plot(l3(1,:),l3(2,:),'-b','LineWidth',1.2) % blue
+        hold off
+    else 
+        if n == 2
+            offset = 5;
+            [ll,mm] = showpoints(X,y,offset);
+            axis equal
+            axis([ll(1) mm(1) ll(2) mm(2)]);
+            view([-1 -1 1]);
+            xlabel('X','fontsize',14);ylabel('Y','fontsize',14);
+            zlabel('Z','fontsize',14);
+            hold off
+            [ll,mm] = showpoints(X,y,offset);
+            C3= [0 0 1]; % blue
+            C1 = [1 0 1]; % magenta
+            C2 = [1 0 0]; % red
+            plotplane(w1,b1,ll,mm,C1)    % best fit, ridge 1, magenta
+            plotplane(w3,b3,ll,mm,C2)    % best fit, ridge
+                                         % penalizinbg b, red
+            plotplane(w4,b4,ll,mm,C3)    % best fit, least squares, blue
+            axis equal
+            axis([ll(1) mm(1) ll(2) mm(2)]);
+            view([-1 -1 1]);
+            xlabel('X','fontsize',14);
+            ylabel('Y','fontsize',14);
+            zlabel('Z','fontsize',14);
+            hold off
+        end
+    end
+end
