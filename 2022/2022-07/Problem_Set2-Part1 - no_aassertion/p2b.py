@@ -1,0 +1,1 @@
+(a2 and b2) or ((((a1 ^ b1) and a0 and b0) or (a1 and b1)) and (a2 ^ b2)) 
