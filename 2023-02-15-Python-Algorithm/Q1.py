@@ -11,8 +11,12 @@ def solve(N: int) -> int:
     else: # r == 4
         return -1 if N < 9 else (N - 9) // 5 + 3
 
-assert(solve(18) == 4)
-assert(solve(4) == -1)
-assert(solve(6) == 2)
-assert(solve(9) == 3)
-assert(solve(11) == 3)
+if __name__ == "__main__":
+    N = int(input())
+    print(solve(N))
+
+# assert(solve(18) == 4)
+# assert(solve(4) == -1)
+# assert(solve(6) == 2)
+# assert(solve(9) == 3)
+# assert(solve(11) == 3)

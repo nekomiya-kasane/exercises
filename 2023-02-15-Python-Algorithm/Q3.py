@@ -1,24 +1,10 @@
 from collections import defaultdict
 
 def solve(arr: list[str]) -> bool:
-    tree = defaultdict(dict)
-    tree[0] = {}
-    pool = 1
-    for s in arr:
-        id = 0
-        for c in s:
-            if id and '\0' in tree[id]:
-                return False
-            if c in tree[id]:
-                id = tree[id][c]
-            else:
-                tree[id][c] = pool
-                id = pool
-                pool = pool + 1
-        if '\0' in tree[id]:
+    arr = sorted(arr)
+    for i in range(len(arr) - 1):
+        if arr[i] == arr[i + 1][:len(arr[i])]:
             return False
-        tree[id]['\0'] = pool
-        pool = pool + 1
     
     return True
 
