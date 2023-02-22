@@ -23,15 +23,26 @@ def sudoku_cells():
 
 def sudoku_arcs():
     row_arcs = {((i, j), (i, k))
-                for j in range(9) for k in range(9) if j != k for i in range(9)
+                for j in range(9)
+                for k in range(9) if j != k
+                for i in range(9)
                 }
     col_arcs = {((j, i), (k, i))
-                for j in range(9) for k in range(9) if j != k for i in range(9)
+                for j in range(9)
+                for k in range(9) if j != k
+                for i in range(9)
                 }
-    block_arcs = list(filter(lambda x: x[0][0] != x[1][0] and x[0][1] != x[1][1],
-                             [((i, j), (k, l)) for i in range(3) for j in range(3) for k in range(3) for l in range(3)]))
+    block_arcs = list(filter(
+        lambda x: x[0][0] != x[1][0] and x[0][1] != x[1][1],
+        [((i, j), (k, m))
+         for i in range(3)
+         for j in range(3)
+         for k in range(3)
+         for m in range(3)
+         ]))
     multi_block_arcs = {
-        ((x[0][0] + 3 * i, x[0][1] + 3 * j), (x[1][0] + 3 * i, x[1][1] + 3 * j))
+        ((x[0][0] + 3 * i, x[0][1] + 3 * j),
+         (x[1][0] + 3 * i, x[1][1] + 3 * j))
         for x in block_arcs for i in range(3) for j in range(3)
     }
     return row_arcs | col_arcs | multi_block_arcs
@@ -61,7 +72,9 @@ class Sudoku(object):
     def get_values(self, cell: tuple[int, int]) -> set[int]:
         return self.board[cell]
 
-    def remove_inconsistent_values(self, cell1: tuple[int, int], cell2: tuple[int, int]):
+    def remove_inconsistent_values(self,
+                                   cell1: tuple[int, int],
+                                   cell2: tuple[int, int]):
         removed = set()
 
         if (cell1, cell2) in self.ARCS and len(self.board[cell2]) == 1:
@@ -78,7 +91,8 @@ class Sudoku(object):
         while qu:
             fm, to = qu.pop()
             # find upstream
-            if len(self.board[fm]) > 1 and self.remove_inconsistent_values(fm, to):
+            if len(self.board[fm]) > 1 and \
+                    self.remove_inconsistent_values(fm, to):
                 for arc in self.ARCS:
                     if arc[0] == fm or arc[1] == fm and arc != (fm, to):
                         qu.append(arc)
@@ -174,12 +188,16 @@ class Sudoku(object):
 feedback_question_1 = 2.5
 
 feedback_question_2 = """
-It's challenging to consider all possible situations and correctly manipulate the indices and values.
-Also, as there're so many possibilities, it's also challenging to optimize the process and reduce memory 
+It's challenging to consider all possible situations and correctly
+manipulate the indices and values.
+Also, as there're so many possibilities, it's also challenging to
+optimize the process and reduce memory 
 costs.
-There's no special stumbling blocks for me, but debugging really takes a long time.
+There's no special stumbling blocks for me, but debugging really
+takes a long time.
 """
 
 feedback_question_3 = """
-The AC-3 algorithm to handle finite valued constrained system is great, I think I can also apply this algorithm to my graph constraints solver. 
+The AC-3 algorithm to handle finite valued constrained system is great,
+I think I can also apply this algorithm to my graph constraints solver.
 """
