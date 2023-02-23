@@ -563,101 +563,29 @@ therefore $M_p^T=\left(VC_{in},VC_{in}\right)$.
 
 Here, as we let $M_p$ be constant, the $\dfrac{dX}{dt}$ becomes $0$, hence the solution is also the one to the steady state.
 
-#### e)
+#### e) 
 
+By (a), our solution can be written as $M=M_h+M_p$, in which $\dfrac{dM_h}{dt}=AM_h$ and  $\dfrac{dM_p}{dt}=AM_p+b$.
+
+**Step 1:** to get $M_h$, we can diagonalize $A=PDP^{-1}$, where $D$ is a diagonal matrix, $P$ has eigenvectors of $A$ as columns, hence
+$$
+\dfrac{dM_h}{dt}=AM_h=(PDP^{-1})X_h
+$$
+Let $R=P^{-1}X_h$, then $\dfrac{dR}{dt}=DR$, i.e.
+$$
+\begin{bmatrix}\lambda_1&0\\0&\lambda_2\end{bmatrix}\begin{bmatrix}R_1\\R_2\end{bmatrix}=\dfrac{d}{dt}\begin{bmatrix}R_1\\R_2\end{bmatrix}
+$$
+hence
+$$
+R=\begin{bmatrix}R_1\\R_2\end{bmatrix}=\begin{bmatrix}c_1 \exp\lambda_1t\\c_2\exp\lambda_2t\end{bmatrix}
+$$
+therefore
+$$
+X_h=PR=a_1\exp(\lambda_1 t)X_1+a_2\exp(\lambda_2 t)X_2
+$$
+and finally
 $$
 X=a_1\exp(\lambda_1 t)X_1+a_2\exp(\lambda_2 t)X_2 +M_p^T
 $$
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## s
-
-The 2 order ODE that describes a damped spring-mass system with a mass $m$ kg, damping constant $c$ kg/s and spring constant $k$ N/m should be
-$$
-m \dfrac{d^2y}{dt^2}+c\dfrac{dy}{dt}+ky=f(t)
-$$
-where $f(t)$ is the external force.
-
-#### a) 
-
-The auxiliary homogenous to the equation above is $m \dfrac{d^2y}{dt^2}+c\dfrac{dy}{dt}+ky=0$
-
-Basic solution form: $y(t)=\exp(\lambda t)$, substitute it back into the equation, we have 
-$$
-\exp(\lambda t)(m\lambda^2+c\lambda+k)=0\quad \Rightarrow \quad m\lambda^2+c\lambda+k=m(\lambda+\dfrac{c}{2m})^2+k-\dfrac{c^2}{4m}\neq 0\qquad(*)
-$$
-If the system is critically damped, then $(*)$ has a unique solution, hence $k-\dfrac{c^2}{4m}=0$, i.e. $c=2\sqrt{mk}$. If $k=1/m$, then $c$ should be $2$.
-
-#### b)
-
-The ODE describing a critically damped model without external forcing is $m \dfrac{d^2y}{dt^2}+c\dfrac{dy}{dt}+ky=0$.
-
-Given $k=1/m, c=2\sqrt{mk}$, we'd have $m \dfrac{d^2y}{dt^2}+2\sqrt{mk}\dfrac{dy}{dt}+\dfrac{1}{m}y=0$.
-
+where $X_1,X_2$ are the eigenvectors w.r.t the eigenvalues of $A$: $\lambda_1,\lambda_2$.

@@ -281,7 +281,7 @@ Therefore $y(t)$ increases on $[0,3m]$ from $0$ and decreases on $(3m,+\infty)$ 
 
 <img src="ans.assets/image-20230210010845692.png" alt="image-20230210010845692" style="zoom:50%;" />
 
-## 3
+## Question 3
 
 By Hook's Law, the ODE of an undamped oscillation with spring constant $k$ can be written as 
 $$
@@ -391,8 +391,6 @@ $$
 **Step 4: Sketch. (Omitted)**
 
 ## Question 4
-
-Form from `Week4Class1Part2.pdf`
 
 **Equation:** 
 $$
