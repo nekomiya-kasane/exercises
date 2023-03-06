@@ -1,0 +1,259 @@
+\documentclass[11pt]{article}
+\usepackage{CJK}%中文所需package
+\usepackage{mathrsfs}
+\usepackage[centertags]{amsmath}
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{footnote}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cases}
+\usepackage{multirow}
+\usepackage{indentfirst}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{makeidx}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{subfigure}
+\usepackage{dsfont}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{threeparttable}
+\usepackage{listings}
+\usepackage{appendix}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage[Sonny]{fncychap}
+\usepackage{subfigure}
+\usepackage{placeins}
+\usepackage{amsmath,amssymb,amsfonts,mathrsfs,amsthm}
+\usepackage{setspace}
+\usepackage{pifont}
+\usepackage{footnote}
+\usepackage[hidelinks]{hyperref}
+\doublespacing
+\allowdisplaybreaks[4]
+\parskip 1ex
+\pagestyle{plain}
+\oddsidemargin 0in
+\evensidemargin 0in
+\topmargin 0.0in
+\headheight 0in
+\textwidth 6.5in
+\textheight 9.0in
+\numberwithin{equation}{section}
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+
+% %%%%%%%%%%%%%%%%%%%style: list typesetting%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{CJK*}{GBK}{kai}
+%=======================自定义命令==================================================%
+%新的命令环境
+\newtheorem{theorem}{\bf 定理\,}%删除[section],则编号不分节
+\newtheorem{lemma}{\bf 引理\,}
+\newtheorem{remark}{\bf 注\,}
+\newtheorem{example}{\bf 例\,}[section]
+\newtheorem{proposition}{\bf 命题\,}[section]
+\newtheorem{corollary}{\bf 推论\,}
+\newtheorem{definition}{\bf 定义 \,}[section]
+\renewcommand\refname{\large 参考文献}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\def\proofname{\bf 证明}
+
+%此处可以定义你需要的新命令
+\def\P{\operatorname*{\mathbb{P}}}
+\def\E{\operatorname*{\mathbf{E}}}
+\def\Var{\operatorname*{\mathbf{Var}}}
+\def\Corr{\operatorname*{\mathbf{Corr}}}
+\def\R{\operatorname*{\mathbb{R}}}
+\def\I{\operatorname*{\mathbb{I}}}
+\def\no{\nonumber}
+
+
+%========================= === ====================================================%
+%前面设计不改变
+%=======================正文开始=======================================================%
+%%%%%%%%%%%%%%%%%%
+\hfill 2023~{ 年}\,\,2月 \hfill {
+SUMaC \qquad 20223}\hfill 07:08,$8^{th}$February,2023 \qquad\qquad\qquad\qquad\qquad\qquad
+%%%%%%%%%%%%%正文%%%%%%%%%%%%%
+
+%---------------------------------------
+{\bf 1} 由费马小定理,有$2^{4}\equiv 1~\mathrm{mod}  ~5$,\\
+有$2^{1}\equiv 2,2^{2}\equiv 4,2^3\equiv 3,2^{4}\equiv 1~\mathrm{mod} ~5$,故$5|2^n-3\Longleftrightarrow 2^{n}~\mathrm{mod}~5 \Longleftrightarrow n\equiv 3~\mathrm{mod}~4$.
+
+同理$2^{12}\equiv 1~\mathrm{mod}~13$.
+
+由于 $2^1\equiv 2,2^2\equiv 4,2^3\equiv 8,2^4\equiv 3,2^5\equiv 6,2^6\equiv 12,2\equiv 11,2^8\equiv 9,2^9\equiv 5,2^{10} \equiv,2^{11} \equiv 7,2^{12}\equiv 1.$ 故 $13|2^n-3 ~\Longleftrightarrow 2^n~\equiv 3 ~\mathrm {mod}~13 \Longleftrightarrow n\equiv 4 ~\mathrm {mod}~12$. \\
+而由 $(5,13)=1$知$~65|2^n-3 \Longleftrightarrow 5|2^n-3$ 且$13 |2^n-3\Longleftrightarrow n\equiv 3 \mathrm{mod} ~4$ 且$n\equiv ~4 \mathrm{mod} ~12.$ 但 $n \equiv 4~\mathrm {mod} ~12 \Rightarrow n\equiv 0 \mathrm{mod} ~4,$故不可能.
+
+{\bf 2}  注意到 $121|10^{11}+1$ 取$k$ 为正奇数, 则 $10^{11}+1|({10^{11}})^k+1^k$ 从而 $121|10^{11k}+1$ 令 $a=\frac{10^{11k}+1}{121}\times 16$ . 则 $a>\frac{10^{11k}}{10}>10^{11k-1},a<\frac{10^{11k+1}}{2}<10^{11k}.$ 故 $a$ 为$11k$位数,从而$a$ 的$echo$为$(10^{11k}+1)a=\frac{\big(10^{11k}+1\big)^2}{11^2}\times 4^2$ 为完全平方数, 故有无穷多个.
+
+{\bf 3} 结论是肯定的. 考虑点$A(\sqrt{p}, \sqrt{q}),$其中$~p,q$为不同的素数. 对格点$(m,n)$ 和$(s,t)$而言,若它们距$A$ 的距离相等,则有$(m-\sqrt{p})^2+(n-\sqrt{q})^2=(s-\sqrt{p})^2+(t-\sqrt{q})^2,$即$m^2-2m\sqrt{p}+n^2-2n\sqrt{q}=s^2-2s\sqrt{p}+t^2-2t\sqrt{q}.$ 从而$m=s,n=t$. 即不同点到$A$的距离不同,将所有格点按照到$A$的距离从小到大排序为$B_1,B_2,\cdots ,B_n,\cdots $, 那么有$AB_1<AB_2<\cdots <AB_n<\cdots $. 取$r$,使$AB_n<r<AB_{n+1},$以$A$为圆心,$r$ 为半径作圆,则此圆恰含有$B_1,B_2,\cdots,B_n,n$个点.
+
+{\bf 4}~~ $\underbrace{1666\cdots 6}_{\mbox{$n$个6}}=10^n+\frac{6}{9}\boldsymbol{\cdot} \underbrace{999\cdots 9}_{\mbox{$n$个9}}=10^n+\frac{2}{3}(10^n-1)=\frac{5}{3}\boldsymbol{\cdot} 10^n-\frac{2}{3}$
+
+$5\underbrace{000\cdots 0}_{\mbox{$n$个0}}=5\times 10^n$
+
+
+$3\underbrace{33\cdots 3}_{\mbox{$n$个3}}=\frac{3}{9} \boldsymbol{\cdot} \underbrace{999\cdots 9}_{\mbox{$n+1$个9}}=\frac{1}{3}(10^{n+1}-1)$
+
+
+\begin{align}
+  &\big(\frac{5}{3}\boldsymbol{\cdot}10^n-\frac{2}{3}\Big)^3+(5\times 10^n)^3+\left(\frac{1}{3}(10^{n+1}-1)\right)^3\no\\
+  =&\frac{125}{27}\boldsymbol{\cdot} 10^{3n}-\frac{50}{9}\boldsymbol{\cdot} 10^{2n}
+  +\frac{20}{9}\boldsymbol{\cdot} 10^n-\frac{8}{27}+125\boldsymbol{\cdot} 10^{3n}\no\\
+  &+\frac{1}{27}\big(10^{3n+3}-3\boldsymbol {\cdot}10^{2n+2}+3\boldsymbol{\cdot}10^{n+1}-1\big)\no\\
+  =&\big(\frac{1125}{27}+125\big)\boldsymbol{\cdot} 10^{3n}-\frac{150}{9}\boldsymbol {\cdot} 10^{2n}+\frac{30}{9}\boldsymbol {\cdot} 10^n
+  -\frac{9}{27}\no\\
+  =&\frac{500}3\boldsymbol{\cdot}{10^{3n}}-\frac{50}3\boldsymbol{\cdot} 10^{2n}+\frac{10}3\boldsymbol {\cdot} 10^n-\frac{1}3\no\\
+  =&10^{2n+2}\Big(\frac{5}3\boldsymbol{\cdot}10^n-\frac{2}3 \Big)+10^{n+1}\boldsymbol{\cdot}(5\boldsymbol{\cdot} 10^n)+\frac{1}3(10^{n+1}-1)\no\\
+  =&1\underbrace{666\cdots 6}_{\mbox{$n$个6}}5\underbrace{000\cdots 0}_{\mbox{$n$个0}}3\underbrace{333\cdots 3}_{\mbox{$n$个3}}\no
+\end{align}
+{\bf 5} ~ $k<2^n \Longleftrightarrow k$的二进制表示不超过$n$位. 对$k<2^n$,设$k=(a_1a_2\cdots a_n)_2$为二进制表示, 设$2^n$以内以$0$结尾的$scattored$数有$f(n)$个,以$1$ 结尾的有$g(n)$个. 对$n\geq 2$,$(a_1\cdots a_n)_2$可由$(a_1\cdots a_{n-1})$添加上$a_n$得到.
+
+若$a_{n-1}=0$,则$a_n$可取$0$或$1$;若$a_{n-1}=1,$则$a_n=0$. 故有$f(n)=g(n-1)+f(n-1),g(n)=f(n-1).$
+
+易知,$f(1)=1,g(1)=1,$故$f(2)=f(1)+g(1)=2,g(2)=f(1)=1$. 对$n\geq 3$,有$$f(n)=g(n-1)+f(n-1)=f(n-2)+f(n-1),$$$$g(n)=f(n-1)=g(n-2)+f(n-2)=g(n-2)+g(n-1).$$故$f(n)+g(n)=\big(f(n-1)+g(n-1)\big)+\big(f(n-2)+g(n-2)\big)$. 由特征法易得
+$$f(n)+g(n)=\frac{5+3\sqrt{5}}{10}\boldsymbol{\cdot} \Big(\frac{1+\sqrt{5}}{2}\Big)^n+\frac{5-3\sqrt{5}}{10}\boldsymbol{\cdot}\Big(\frac{1-\sqrt{5}}2\Big)^n$$
+
+{\bf 6} 令$\varphi(a)$为$a$的二进制表示中$1$的个数. 则有$\varphi(m+n)\leq \varphi(m)+\varphi(n).$ 令$T=\{\frac{b}{a}|b\geq \varphi(a)\},$ 下证$S=T$.
+
+先证$S\supseteq T$.
+
+由$\frac{1}{1} \in S$及$(ii)$知$\frac{1}2\in S$,从而$\frac{1}{2\boldsymbol{\cdot}2}\in S$,用归纳法易知$\frac{1}{2^n}\in S,{\forall} n\in N$. 先对$n$归纳,$\frac{b}{2^n}\in S,1\leq b\leq 2^{k+1},$若$b=1$,则$\frac{1}{2^{k+1}}\in S$.否则$b\geq 2$. 令$m=\left [\frac{b}2\right],n=b-\left [\frac{b}2\right]$,则$1\leq m \leq 2^k,1\leq n\leq 2^k$. 由归假设,$\frac{m}{2^k}\in S,\frac {n}{2^k}\in S$,由$(iii)$知$\frac{m+n}{2^{k+1}}=\frac{b}{2^{k+1}}\in S$.
+
+由归纳原理,${\forall} n,{\forall} b :1\leq b\leq 2^n,\frac{b}{2^n}\in S$.
+
+再对$\varphi (a)$归纳,${\forall} a~{\forall} b:\varphi (a)\leq b\leq a,\frac{b}{a} \in S.$
+
+${\varphi (a)\leq k}$时 ,$a=2^n$,已证 .
+
+设 $\varphi (a) \leq k$ 时成立,$\varphi (a)=k+1$时，
+
+设 $a=2^{t_1}+2^{t_2}+\cdots +2^{t_m},t_1<t_2<\cdots <t_m,$ 则$m=\varphi(a)$.
+
+令$s=2^{t_1},r=2^{t_2}+2^{t_3}+\cdots +2^{t_m}$, 则$\varphi (u)=1,\varphi (v)=m-1=\varphi (a)-1$, 从而$\varphi(a)=\varphi(u)+\varphi(v),a=u+v$. 由$\varphi (a)\leq b \leq a$知${exists} x,y,x+y=b,\varphi(u)\leq x\leq u,\varphi(v)\leq y\leq v.$
+
+由归纳假设,$\frac{x}{u} \in S,\frac{y}{v}\in S.$ .由$(iii)$知
+$\frac{b}a=\frac{x+y}{u+v}\in S$.
+
+再证$T\supseteq T$. 即$T$满足$(i),(ii),(iii)$.
+
+$(i)$显然$\frac{1}1\in T$.
+
+
+$(ii)$ 设$\frac{b}{a}\in T,$ 则 $\varphi (a)\leq b\leq a,$ 由$\varphi (2a)=\varphi (a),$ 知$\varphi (2a)\leq b \leq 2a$,即$\frac{b}{2a}\in S$
+
+$(iii)$设$\frac{b}{a} \in T,\frac{d}{c}\in T$,则$\varphi (a)\leq b \leq a,\varphi (c)\leq d\leq c$.\\
+$\varphi (a+c)\leq \varphi (a)+\varphi (c)\leq b+d\leq a+c,$故$\frac{b+d}{a+c}\in T$. 从而 $T$ 满足$(i),(ii),(iii)$. \\故 $S=T$.
+
+
+{\bf 7} 先考虑$p,q$互素的情况,此时 直线不会经过格点. 直线每次与格点线相交时就会进入新的一格,故经过的格点数为与格点线交点数$+1$.~横向有$p-1$条格线,纵向有$q-1$条格线,故经过了$p+q-1$个方格。
+
+$p,q$不互素时,含$d=(p,q),p=dm,q=dn,$则$m,n$互素. 直线经过$(km,kn)(k=0,1,\cdots,d)$这些格点. 在每个格点之间为$m\times n$的情况,经过$m+n-1$个方格,共$d$段,故共经过$d(m+n-1)=p+q-(p,q)$格.
+
+综上,经过了$p+q-(p,q)$个方格.
+
+
+{\bf 8}~ 显然$P_n$为$3\boldsymbol {cdot} 2^n$边形,有$n$个角. 故$P_n$到$P_{n+1}$去掉了$3\boldsymbol {\cdot} 2^n$个三角形. 下面我们证明每一步去掉的三角形面积相等,且是上一步去掉的三角形面积的$\frac{1}9$倍. 用归纳法证明.
+
+
+显然第$1$步时$P_0\rightarrow P_1$去掉了个三角形是全等的，面积均为$\frac{10}9$.
+
+设第$k$步时$P_{k-1}\rightarrow P_k$去掉了$2^{k-1}$个三角形面积为$\Big(\frac{1}9\Big)^k\boldsymbol{cdot} 10.$
+
+第$k+1$步时,如图：$A,B,C$为$P_{k-1}$的顶点,$D,E，F$为$P_k$的顶点,$\Delta EHG$为第$k+1$ 步去掉的三角形
+\begin{figure}[H]
+\centering
+\includegraphics[width=6cm,height=3cm]{fig1}
+\end{figure}
+\begin{align}
+S_{\Delta EHG}=&\frac{1}{2}EH\boldsymbol {\cdot} EG\boldsymbol sin{\angle} HEG\no\\
+=&\frac{1}{2}\boldsymbol{\cdot} \frac{1}{3}ED\frac{1}{3}\boldsymbol{\cdot} EF\boldsymbol{\cdot} sin{\angle} DEB\no\\
+=&\frac{1}{9}\boldsymbol{\cdot}{1}{2}\boldsymbol {\cdot} ED\boldsymbol {\cdot} EB\boldsymbol{\cdot} sin \angle DEB=\frac{1}{9} S_{\Delta BDE}.\no
+\end{align}
+
+故由数学归纳法原理,$P_n\rightarrow P_{n+1}$去掉的$3\boldsymbol {\cdot} 2^n $个三角形面积均为$\Big(\frac{1}{9}\Big)^{k+1}\boldsymbol{\cdot} 10$.
+\begin{align}
+S_{P_n}=&S_{p_0}-\frac{1}{9}\boldsymbol{\cdot} 3\boldsymbol{\cdot}2^0\boldsymbol{\cdot} 10-\Big(\frac{1}{9}\Big)^2\boldsymbol{\cdot} 3\boldsymbol{\cdot} 2^1\boldsymbol {\cdot}10-\cdots
+-\Big(\frac{1}{9}\Big)^n\boldsymbol {\cdot} 3\boldsymbol{\cdot} 2^{n-1}\boldsymbol {\cdot}10\no\\
+=&10-15\left(\frac{2} {9}+\Big(\frac{2}{9}\Big)^2+\cdots+\Big(\frac{2}{9}\Big)^n\right)\no\\
+=&10-\frac{30}7\left(1-\Big(\frac{2}{9}\Big)^n\right).\no\\
+S_{P_{\infty}}=&{\lim_{n \to \infty}} S_{P_n}=\frac{40}7\no
+\end{align}
+
+{\bf 9} ~ 令 $\boldsymbol{A}=\{p|p\mbox{为素数,且}\frac{n^2}{2}<p<n^2\}$. 下证若$|\boldsymbol A|>n$, 则不存在填法.
+
+反设存在填法,则有: $\forall p\in \boldsymbol{A}$,$p$为素数,且$p<n^2<2p,|\boldsymbol A|>n.$
+
+由抽屉原理,$\exists p_1,p_2\in \boldsymbol{A}$在同一列. 由于交换两行或两列不影响结果,设第$i$行第$j$列的数为$a_{i,j}$,不妨$a_{1,1}=p_1,a_{1,2}=p_2$.
+
+设$\prod_{i=1}^{n}a_{i,j}=k=\prod_{i=1}^{n}a_{i,t}$(第一行的积与第$t$列的积相等)
+
+则$p_1|k.$ 故$\exists i,p_1|a_{i,t}$. 又 $a_{i,t}\leq n^2<2p_1$,故$a_{i,t}=p_1$\\
+从而$(i,t)=(1,1),t=1.$
+
+同理$p_2|k,$有$t=2$.矛盾！
+
+故此时无符合要求的填法.
+
+(由素数定理$n$充分大时,$|\boldsymbol A|>n$必成立,该条件说明了$n$足够大时必然不存在填法).\\
+括号中的内容是补充的,超纲了,你想不想写上去自己定.
+
+
+
+{\bf 10} ~当两列火车接触时,我们不妨认为后面的火车消失了. 这不会改变最后结果.
+
+ 先证一列火车不会消失$\Longleftrightarrow $这列火车前面没有比它更慢的车.
+
+“$\Rightarrow $"反设有更慢的车,则会追上,从而会消失,矛盾!
+
+“$\Leftarrow$"前面所有车都比它快,它不能追上任何一辆,故不会消失. 设 $n$列火车速度为$a_1<a_2<\cdots<a_n$. 共有$n!$种排法.
+
+ 令$x_i=\begin{cases}1,a_i \mbox{未消失}\\ 0,a_i \mbox{消失}\end{cases}$\qquad $Y=\sum_{k=1}^{n}x_i$\qquad $E(Y)=\sum_{k=1}^{n}E(x_i)$ \qquad($E$表示期望,即平均值).\\
+  对$a_i$而言,使$a_i$不消失的排法数可按一下步骤算出:
+
+ \ding{172} 给$a_i$选位置,设其在第$k$位,$1\leq k\leq n$
+
+ \ding{173} 排好$a_i$前面的车,有$n-i$辆比$a_i$慢的车,退出$k$辆排在$a_i$前面有$A_{n-i}^{k-1}$ 种,故 $k-1\leq n-i$.
+
+ \ding{174} $a_i$后面的车随意排,有$(n-k)!$种.\\
+ 由加法,乘法原理,共有
+ \begin{align}
+ \sum_{k=1}^{n+1-i}A_{n-i}^{k-1}\boldsymbol{\cdot} (n-k)!
+=&\sum_{k=1}^{n+1-i}\frac{(n-i)!}{(n-k-i+1)!}\boldsymbol {\cdot} (n-k)! \no\\
+=&(n-i)!(i-1)!\sum_{k=1}^{n+1-i}C_{n-k}^{i-1}\no
+\end{align}
+
+注意到$C_{n}^{k}+C_{n}^{k+1}=C_{n+1}^{k+1}$,即$C_n^k=C_{n+1}^{k+1}-C_n^{k+1}$.
+
+从而$\sum_{n=k}^{m}C_{n}^{k}=\sum_{n=k}^{m}C_{n+1}^{k+1}-C_n^{k+1}=C_{n+1}^{k+1}-C_{k}^{k-1}=C_{n+1}^{k+1}$
+
+从而$\sum_{k=1}^{n+1-i}C_{n-k}^{i-1}=\sum_{t=i-1}^{n-1}C_t^{i-1}=C_n^{i}$
+
+故$E(x_i)=\frac{1}{n!}\boldsymbol{\cdot} (n-i)!(i-1)!C_n^{i}=\frac{1}i$
+
+$E(Y)=\sum_{i=1}^{n}\frac{1}i$.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%附录%%%%%%%%%%%%%%%%%%
+
+
+\end{CJK*}
+\end{document}
