@@ -487,7 +487,6 @@ Since for any $A,B\in\mathbb{R}$, we have $A\cos at+B\sin at=\sqrt{A^2+B^2}\sin(
 ## Question 5
 
 #### a) Equations:
-
 $$
 \left\{\begin{array}{l}
 \dfrac{dM_1}{dt}=\underbrace{QC_{in}}_{\text{external input}}+\underbrace{a\dfrac{M_2}{V}}_{\text{from Tank 2}}-\underbrace{(Q+a)\dfrac{M_1}{V}}_{\text{to Tank2}}\\
