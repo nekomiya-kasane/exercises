@@ -355,7 +355,7 @@ $$
 $$
 Thus
 $$
-W(s)=\dfrac{1}{Ls^2+1/C}\left[e^{-s}(\dfrac{2}{s^2}+\dfrac{3}{s})-e^{-2s}(\dfrac{2}{s^2}+\dfrac{5}{s})+sQ_0+I_0\right]
+W(s)=\dfrac{1}{Ls^2+1/C}\left[e^{-s}(\dfrac{2}{s^2}+\dfrac{3}{s})-e^{-2s}(\dfrac{2}{s^2}+\dfrac{5}{s})+sLQ_0+I_0L\right]
 $$
 **Step 2: Formal Solution**
 $$
@@ -475,6 +475,47 @@ Note that $(s+\dfrac{Q+a}{V})^2-\dfrac{a(Q+a)}{V^2}=(s+\dfrac{Q+a}{V}-\dfrac{\sq
 
 - $F_1(s)=\dfrac{s+\alpha }{s(s-s_1)(s-s_2)}=\dfrac{\alpha }{s_1s_2}\dfrac{1}{s}+\dfrac{1}{2s_1}\dfrac{1}{s-s_1}+\dfrac{1}{2s_2}\dfrac{1}{s-s_2}$
 - $F_2(s)=\dfrac{\alpha }{s(s-s_1)(s-s_2)}=\dfrac{\alpha }{s_1s_2}\dfrac{1}{s}+\dfrac{\alpha }{2\beta s_1}\dfrac{1}{s-s_1}+\dfrac{\alpha }{2\beta s_2}\dfrac{1}{s-s_2}$
+
+> **Details (Cover Up Method):**
+> $$
+> \dfrac{s+\alpha }{s(s-s_1)(s-s_2)}=\dfrac{A}{s}+\dfrac{B}{s-s_1}+\dfrac{C}{s-s_2}=\dfrac{(A+B+C)s^2-(As_1+As_2+Bs_2+Cs_1)s+As_1s_2}{s(s-s_1)(s-s_2)}
+> $$
+> Let $s=s^*=0,s_1,s_2$ and multiply both sides with $s-s^*$ respectively, we have
+> $$
+> \left\{\begin{array}{l}
+> A=\dfrac{0+\alpha}{(0-s_1)(0-s_2)}\\
+> B=\dfrac{s_1+\alpha}{(s_1)(s_1-s_2)}\\
+> C=\dfrac{s_2+\alpha}{(s_2)(s_2-s_1)}\\
+> \end{array}\right.\qquad\Rightarrow\qquad \left\{\begin{array}{l}
+> A=\dfrac{\alpha}{s_1s_2}\\
+> B=\dfrac{1}{2s_1}\\
+> C=\dfrac{1}{2s_2}
+> \end{array}\right.
+> $$
+> Hence we have
+> $$
+> F_1(s)=\dfrac{\alpha }{s_1s_2}\dfrac{1}{s}+\dfrac{1}{2s_1}\dfrac{1}{s-s_1}+\dfrac{1}{2s_2}\dfrac{1}{s-s_2}
+> $$
+> Similarly, for the second function, 
+> $$
+> \dfrac{\alpha}{s(s-s_1)(s-s_2)}=\dfrac{A}{s}+\dfrac{B}{s-s_1}+\dfrac{C}{s-s_2}=\dfrac{(A+B+C)s^2-(As_1+As_2+Bs_2+Cs_1)s+As_1s_2}{s(s-s_1)(s-s_2)}
+> $$
+> Let $s=s^*=0,s_1,s_2$ and multiply both sides with $s-s^*$ respectively, we have
+> $$
+> \left\{\begin{array}{l}
+> A=\dfrac{0+\alpha}{(0-s_1)(0-s_2)}\\
+> B=\dfrac{\alpha}{(s_1)(s_1-s_2)}\\
+> C=\dfrac{\alpha}{(s_2)(s_2-s_1)}\\
+> \end{array}\right.\qquad\Rightarrow\qquad \left\{\begin{array}{l}
+> A=\dfrac{\alpha}{s_1s_2}\\
+> B=\dfrac{\alpha}{2\beta s_1}\\
+> C=\dfrac{\alpha}{2\beta s_2}
+> \end{array}\right.
+> $$
+> Hence we have
+> $$
+> F_2(s)=\dfrac{\alpha }{s(s-s_1)(s-s_2)}=\dfrac{\alpha }{s_1s_2}\dfrac{1}{s}+\dfrac{\alpha }{2\beta s_1}\dfrac{1}{s-s_1}+\dfrac{\alpha }{2\beta s_2}\dfrac{1}{s-s_2}
+> $$
 
 Hence,
 
