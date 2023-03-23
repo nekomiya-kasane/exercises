@@ -1,0 +1,601 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\hypertarget{q1}{%
+\subsection{Q1}\label{q1}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  By the given definition, a \emph{vector quadratic function} is a
+  function \(f\) that can be written
+
+  \[f:\mathbb{R}\to \mathbb{R},\text{ where } f(x)\equiv x^TAx+b^Tx+c\]
+
+  where \(A\) is an \(n\times n\) matrix, \(x\) and \(b\) are
+  \(n\times1\) vectors belong to \(\mathbb{R}\), and \(c\) is a scalar.
+
+  Note that the given function
+
+  \[f(x_1,x_2)\equiv x_1^2+2x_2^2+3x_1x_2+4x_1+5x_2+6\\=[x_1\ x_2]
+  \begin{bmatrix}1&\dfrac{3}{2}\\\dfrac{3}{2}&2\end{bmatrix}\begin{bmatrix}x_1\\x_2\end{bmatrix}+[4\ 5]\begin{bmatrix}x_1\\x_2\end{bmatrix}+6\]
+
+  hence let
+  \(A=\begin{bmatrix}1&\dfrac{3}{2}\\\dfrac{3}{2}&2\end{bmatrix},x=\begin{bmatrix}x_1\\x_2\end{bmatrix},b=\begin{bmatrix}4\\5\end{bmatrix}\),
+  we can write \(f(x)\equiv x^TAx+b^Tx+c\). Therefore \(f(x)\) is a
+  vector quadratic function.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Let \(a=(1,-1,3)^T,x=(u,v,w)^T\), then
+
+  \(g(u,v,w)=g(x)\equiv(u-v+3w-2)^2=(a^Tx-2)^2=(a^Tx-2)^T(a^Tx-2)\\=((a^Tx)^T-2^T)(a^Tx-2)=(x^Ta-2)(a^Tx-2)=x^T(aa^T)x-4a^Tx+4\)
+
+  note that if let
+
+  \[A=aa^T,b=-4a\]
+
+  then \(A\in\mathbb{R}^{3\times 3}\), and the equation can be written
+  as \(g(u,v,w)=g(x)=x^TAx+b^Tx+4\), hence \(g(u,v,w)\) is a vector
+  quadratic function.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Since \(f:\mathbb{R}^n\to\mathbb{R}\),
+  \(g:\mathbb{R}^m\to\mathbb{R}\), and \(g(y)\equiv f(Ry+s)\), as
+  \(y\in\mathbb{R}^m=\mathbb{R}^{m\times1}\), we can conclude that
+  \(R=\mathbb{R}^{n\times m}\) and
+  \(s\in\mathbb{R}^{n}=\mathbb{R}^{n\times 1}\).
+
+  As \(f\) is a vector quadratic function, by the definition, there
+  exists \(A\in\mathbb{R}^{n\times n}\), \(b\in\mathbb{R}^{n}\) and a
+  scalar \(c\in \mathbb{R}\), such that
+  \(\forall\ x\in\mathbb{R}^n, f(x)=x^TAx+b^Tx+c\). Therefore we have
+
+  \begin{array}{rl}
+  g(y)=f(Ry+s)&=(Ry+s)^TA(Ry+s)+b^T(Ry+s)+c\\
+  &=(y^TR^T+s^T)A(Ry+s)+b^TRy+b^Ts+c\\
+  &=(y^TR^TARy+s^TARy+y^TR^TAs+s^TAs)+b^TRy+b^Ts+c\\
+  &=y^T\underbrace{R^TAR}_{\in\mathbb{R}^{m\times m}}y+\underbrace{(R^TA^Ts+R^TAs+R^Tb)^T}_{\in\mathbb{R}^m}y+\underbrace{(s^TAs+b^Ts+c)}_{\text{scalar}}
+  \end{array}
+
+  hence we can find
+
+  \[B=R^TAR\in\mathbb{R}^{m\times m},d=R^TA^Ts+R^TAs+R^Tb\in\mathbb{R}^{m}, h=s^TAs+b^Ts+c\qquad(*)\]
+
+  such that \(\forall\ y\in\mathbb{R}^{m},g(y)=y^TBy+d^Ty+h\). This
+  implies that \(g\) is also a vector quadratic function.
+
+  \textbf{critical point: } Note that for any
+  \(i\in\mathbb{N},1\leqslant i\leqslant m\),
+
+  \[\dfrac{\partial g}{\partial y_i}=2B\begin{bmatrix}0&0&\cdots&0&y_i&0&\cdots\end{bmatrix}^T+d_i\]
+
+  we\textquotesingle d have
+
+  \[Dg(y)=2By+d\qquad\text{(FOC)}\]
+
+  hence solve the equation we know the critical point set is
+  \(\{y\in\mathbb{R}^m:2By=-d\}\), where \(B,d\) are defined above,
+  moreover, if \(B\) is invertible, then \(y=-\dfrac{1}{2}B^{-1}d\) is
+  the unique critical point.
+\end{enumerate}
+
+\hypertarget{question-2}{%
+\subsection{Question 2}\label{question-2}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Rewrite the given function we have
+
+  \begin{array}{rl}
+  f(x_1,x_2,x_3)&\equiv 12x_1+10x_2-x_1^2-2x_2^2-3x_3^2+2x_1x_2+2x_2x_3+100\\
+  &=\begin{bmatrix}x_1&x_2&x_3\end{bmatrix}
+  \begin{bmatrix}-1&1&0\\1&-2&1\\0&1&-3\end{bmatrix}
+  \begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix}
+  +\begin{bmatrix}12&10&0\end{bmatrix}
+  \begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix}+100\\
+  &=x^TAx+b^Tx+c
+  \end{array}
+
+  where
+  \(x=(x_1,x_2,x_3)^T,b=(12,10,0)^T,c=100,A=\begin{bmatrix}-1&1&0\\1&-2&1\\0&1&-3\end{bmatrix}\)
+  is symmetric. Thus we explained that \(f\) can be written as vector
+  quadratic function in the standard form.
+
+  To find its maximum, we come up with the FOC: \(2Ax+b=0_3\), note that
+  \(|A|=-2\neq 0\), hence
+
+  \[x^*=-\dfrac{1}{2}A^{-1}b=\dfrac{1}{4}
+  \begin{bmatrix}
+  5&3&1\\3&3&1\\1&1&1
+  \end{bmatrix}
+  \begin{bmatrix}
+  12\\10\\0
+  \end{bmatrix}=\begin{bmatrix}
+  \dfrac{45}{2}\\\dfrac{33}{2}\\\dfrac{11}{2}
+  \end{bmatrix}\]
+
+  which is the unique critical point. Then we check the 2nd order
+  condition, since \(A\) is symmetric, and
+
+  \[|A-\lambda I_3|=\begin{vmatrix}-1-\lambda&1&0\\1&-2-\lambda&1\\0&1&-3-\lambda\end{vmatrix}=-(\lambda+2)(\lambda^2+4\lambda+1)=0\]
+
+  \(A\)\textquotesingle s eigenvalues are
+  \(\lambda_1=-2<0,\lambda_2=-2-\sqrt{3}<0,\lambda_3=-2+\sqrt{3}<0\), we
+  know that \(A\) is negative definite. Therefore, \(x^*\) is a global
+  maximum point of \(f\),
+
+  \[\max_xf(x)=f(x^*)=f(\dfrac{45}{2},\dfrac{33}{2},\dfrac{11}{2})=\dfrac{635}{2}\]
+\item
+  Assume \(A\) is symmetric and positive definite, then
+
+  \[f(x)=x^TAx+b^Tx+c=(Ax+b)^Tx\]
+
+  note that the \(i\)-th item of \(f(x)\) is
+  \(\displaystyle(\sum_{j=1}^na_jx_j+b_i)x_i=a_ix_i^2+(\sum_{j=1,\\j\neq i}^na_jx_j+b_i)x_i\),
+  which is maximized when
+  \(x_i=-\dfrac{\displaystyle \sum_{j=1,j\neq i}^na_jx_j+b_i}{2a_i}\) by
+  the result given. Go through all \(i\) from \(1\) to \(n\),
+  we\textquotesingle d have \(n\) equations, and they can be written in
+  matrix form:
+
+  \[\forall\ 1\leqslant i\leqslant n,x_i=-\dfrac{\displaystyle \sum_{j=1,j\neq i}^na_jx_j+b_i}{2a_i}\quad\Rightarrow\quad 2Ax+b=0_n\]
+
+  since \(A\) is symmetric and positive definite, it is also invertible,
+  therefore the solution to the equation, \(x^*=-\dfrac{1}{2}A^{-1}b\).
+
+  Let \(x= x^*+\Delta x\), we have
+
+  \begin{array}{rl}
+  f(x^*+\Delta x)&=(Ax^*+A\Delta x+b)^T(x^*+\Delta x)\\
+  &=f(x^*)+\Delta x^T(2Ax^*+b)+\Delta x^T A\Delta x\\
+  &=f(x^*)+\Delta x^TA\Delta x
+  \end{array}
+
+  Since \(A\) is positive definite, for any \(\Delta x\in\mathbb{R}^n\),
+  there will be \(f(x^*+\Delta x)\geqslant  f(x^*)\), and the
+  \textquotesingle equality\textquotesingle{} hold iff. \(\Delta x=0\).
+  This implies that \(x^*\) is indeed a global minimum point for
+  \(f(x)\).
+
+  Therefore we generalized the result to the following theorem:
+
+  \begin{quote}
+  If \(A\) is positive definite, \(f(x)=x^T Ax+b^Tx+c\), then \(f(x)\)
+  has a unique global minimum point \(x^*=-\dfrac{1}{2}A^{-1}b\).
+
+  Similarly, we\textquotesingle d have: if \(A\) is negative definite,
+  \(f(x)=x^T Ax+b^Tx+c\), then \(f(x)\) has a unique global maximum
+  point \(x^*=-\dfrac{1}{2}A^{-1}b\).
+  \end{quote}
+\end{enumerate}
+
+\hypertarget{question-3}{%
+\subsection{Question 3}\label{question-3}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Let \(F(P)=Q^S(P)-Q^D(P)=3P-1000e^{-0.01P}\), then at the equilibrium
+  point, we have \(Q^S(P)=Q^D(P)\Leftrightarrow F(P)=0\). Let the
+  initial value \(P_0=1\), adopting Newton\textquotesingle s numerical
+  method, we\textquotesingle d come up with the recursion formula:
+
+  \[P_{n+1}=P_n-\dfrac{F(P_n)}{F'(P_n)}=P_n-\dfrac{3P_n-1000e^{-0.01P_n}}{3+10e^{-0.01P_n}}\]
+
+  Python code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+
+\NormalTok{p0 }\OperatorTok{=} \DecValTok{999999} \CommentTok{\# inf}
+\NormalTok{f }\OperatorTok{=} \KeywordTok{lambda}\NormalTok{ p: }\DecValTok{3} \OperatorTok{*}\NormalTok{ p }\OperatorTok{{-}} \DecValTok{1000} \OperatorTok{*}\NormalTok{ np.exp(}\OperatorTok{{-}}\FloatTok{0.01} \OperatorTok{*}\NormalTok{ p)}
+\NormalTok{fp }\OperatorTok{=} \KeywordTok{lambda}\NormalTok{ p: }\DecValTok{3} \OperatorTok{+} \DecValTok{10} \OperatorTok{*}\NormalTok{ np.exp(}\OperatorTok{{-}}\FloatTok{0.01} \OperatorTok{*}\NormalTok{ p)}
+
+\NormalTok{tol }\OperatorTok{=} \FloatTok{1e{-}13}\OperatorTok{;}\NormalTok{ n }\OperatorTok{=} \DecValTok{1000}\OperatorTok{;}\NormalTok{ i }\OperatorTok{=} \DecValTok{0}
+
+\NormalTok{p1 }\OperatorTok{=} \DecValTok{1} 
+\ControlFlowTok{while} \BuiltInTok{abs}\NormalTok{(p0 }\OperatorTok{{-}}\NormalTok{ p1) }\OperatorTok{\textgreater{}}\NormalTok{ tol }\KeywordTok{and}\NormalTok{ i }\OperatorTok{\textless{}}\NormalTok{ n:}
+\NormalTok{    i }\OperatorTok{+=} \DecValTok{1}
+\NormalTok{    p0 }\OperatorTok{=}\NormalTok{ p1}
+    \BuiltInTok{print}\NormalTok{(p0)}
+\NormalTok{    p1 }\OperatorTok{=}\NormalTok{ p0 }\OperatorTok{{-}}\NormalTok{ f(p0) }\OperatorTok{/}\NormalTok{ fp(p0)}
+
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Solution: p = "}\NormalTok{, p1)}
+\end{Highlighting}
+\end{Shaded}
+
+  Output: \texttt{Solution:\ p\ =\ 110.45420183245118}. Therefore the
+  approximate solution is \(p\approx 110.454\).
+\item
+  We\textquotesingle ll generate the spreedsheet using \texttt{pandas}
+  and adopting the Newton-Raphson Algorithm with initial guess
+  \(x=(0,0)^T\). First, we\textquotesingle d calculate some derivatives
+  of \(f(x_1,x_2)\):
+
+  \[f(x)=f(x_1,x_2)\equiv \exp(-3x_1)+\exp(-3x_2)+20x_1^2x_2^2\\
+  g(x)=\nabla f(x)=(-3\exp (-3x_1)+40x_1x_2^2,-3\exp(-3x_2)+40x_1^2x_2)\\
+  Hf(x)=\begin{bmatrix}
+  9\exp(-3x_1)+40x_2^2&80x_1x_2\\
+  80x_1x_2&9\exp(-3x_2)+40x_1^2
+  \end{bmatrix}\]
+
+  Python code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+
+\NormalTok{f }\OperatorTok{=} \KeywordTok{lambda}\NormalTok{ x: np.exp(}\OperatorTok{{-}}\DecValTok{3}\OperatorTok{*}\NormalTok{x[}\DecValTok{0}\NormalTok{])}\OperatorTok{+}\NormalTok{np.exp(}\OperatorTok{{-}}\DecValTok{3}\OperatorTok{*}\NormalTok{x[}\DecValTok{1}\NormalTok{])}\OperatorTok{+}\DecValTok{20}\OperatorTok{*}\NormalTok{(x[}\DecValTok{0}\NormalTok{]}\OperatorTok{*}\NormalTok{x[}\DecValTok{1}\NormalTok{])}\OperatorTok{**}\DecValTok{2}
+\NormalTok{fp }\OperatorTok{=} \KeywordTok{lambda}\NormalTok{ x: np.array([}
+    \OperatorTok{{-}}\DecValTok{3}\OperatorTok{*}\NormalTok{np.exp(}\OperatorTok{{-}}\DecValTok{3}\OperatorTok{*}\NormalTok{x[}\DecValTok{0}\NormalTok{])}\OperatorTok{+}\DecValTok{40}\OperatorTok{*}\NormalTok{x[}\DecValTok{0}\NormalTok{]}\OperatorTok{*}\NormalTok{x[}\DecValTok{1}\NormalTok{]}\OperatorTok{**}\DecValTok{2}\NormalTok{,}
+    \OperatorTok{{-}}\DecValTok{3}\OperatorTok{*}\NormalTok{np.exp(}\OperatorTok{{-}}\DecValTok{3}\OperatorTok{*}\NormalTok{x[}\DecValTok{1}\NormalTok{])}\OperatorTok{+}\DecValTok{40}\OperatorTok{*}\NormalTok{x[}\DecValTok{1}\NormalTok{]}\OperatorTok{*}\NormalTok{x[}\DecValTok{0}\NormalTok{]}\OperatorTok{**}\DecValTok{2}\NormalTok{,}
+\NormalTok{])}
+\NormalTok{fpp }\OperatorTok{=} \KeywordTok{lambda}\NormalTok{ x: np.array([}
+\NormalTok{    [}\DecValTok{9}\OperatorTok{*}\NormalTok{np.exp(}\OperatorTok{{-}}\DecValTok{3}\OperatorTok{*}\NormalTok{x[}\DecValTok{0}\NormalTok{])}\OperatorTok{+}\DecValTok{40}\OperatorTok{*}\NormalTok{x[}\DecValTok{1}\NormalTok{]}\OperatorTok{**}\DecValTok{2}\NormalTok{, }\DecValTok{80}\OperatorTok{*}\NormalTok{x[}\DecValTok{0}\NormalTok{]}\OperatorTok{*}\NormalTok{x[}\DecValTok{1}\NormalTok{]],}
+\NormalTok{    [}\DecValTok{80}\OperatorTok{*}\NormalTok{x[}\DecValTok{0}\NormalTok{]}\OperatorTok{*}\NormalTok{x[}\DecValTok{1}\NormalTok{], }\DecValTok{9}\OperatorTok{*}\NormalTok{np.exp(}\OperatorTok{{-}}\DecValTok{3}\OperatorTok{*}\NormalTok{x[}\DecValTok{1}\NormalTok{])}\OperatorTok{+}\DecValTok{40}\OperatorTok{*}\NormalTok{x[}\DecValTok{0}\NormalTok{]}\OperatorTok{**}\DecValTok{2}\NormalTok{]}
+\NormalTok{])}
+
+\NormalTok{x0 }\OperatorTok{=}\NormalTok{ np.array([np.inf,np.inf])}
+\NormalTok{x1 }\OperatorTok{=}\NormalTok{ np.array([}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{])}
+\NormalTok{j }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ n }\OperatorTok{=} \DecValTok{1000}
+\NormalTok{tol }\OperatorTok{=} \FloatTok{1e{-}13}
+
+\NormalTok{step }\OperatorTok{=} \OperatorTok{{-}}\NormalTok{np.linalg.inv(fpp(x1)) }\OperatorTok{@}\NormalTok{ fp(x1)}
+\NormalTok{row }\OperatorTok{=}\NormalTok{ \{}
+    \StringTok{"Iter"}\NormalTok{: [}\DecValTok{0}\NormalTok{], }
+    \StringTok{"x1"}\NormalTok{: [x1[}\DecValTok{0}\NormalTok{]], }
+    \StringTok{"x2"}\NormalTok{: [x1[}\DecValTok{1}\NormalTok{]],}
+    \StringTok{"f"}\NormalTok{: [f(x1)],}
+    \StringTok{"g1"}\NormalTok{: [fp(x1)[}\DecValTok{0}\NormalTok{]],}
+    \StringTok{"g2"}\NormalTok{: [fp(x1)[}\DecValTok{1}\NormalTok{]],}
+    \StringTok{"H11"}\NormalTok{: [fpp(x1)[}\DecValTok{0}\NormalTok{][}\DecValTok{0}\NormalTok{]],}
+    \StringTok{"H12"}\NormalTok{: [fpp(x1)[}\DecValTok{0}\NormalTok{][}\DecValTok{1}\NormalTok{]],}
+    \StringTok{"H21"}\NormalTok{: [fpp(x1)[}\DecValTok{1}\NormalTok{][}\DecValTok{0}\NormalTok{]],}
+    \StringTok{"H22"}\NormalTok{: [fpp(x1)[}\DecValTok{1}\NormalTok{][}\DecValTok{1}\NormalTok{]],}
+    \StringTok{"DET"}\NormalTok{: [np.linalg.det(fpp(x1))],}
+    \StringTok{"h1"}\NormalTok{: [step[}\DecValTok{0}\NormalTok{]],}
+    \StringTok{"h2"}\NormalTok{: [step[}\DecValTok{1}\NormalTok{]]}
+\NormalTok{\}}
+
+\NormalTok{data }\OperatorTok{=}\NormalTok{ pd.DataFrame(row)}
+
+\ControlFlowTok{while}\NormalTok{ np.linalg.norm(x0 }\OperatorTok{{-}}\NormalTok{ x1) }\OperatorTok{\textgreater{}}\NormalTok{ tol }\KeywordTok{and}\NormalTok{ j }\OperatorTok{\textless{}}\NormalTok{ n:}
+\NormalTok{    x0 }\OperatorTok{=}\NormalTok{ x1}
+\NormalTok{    p }\OperatorTok{=}\NormalTok{ fp(x0)}
+\NormalTok{    pp }\OperatorTok{=}\NormalTok{ fpp(x0)}
+\NormalTok{    h }\OperatorTok{=} \OperatorTok{{-}}\NormalTok{np.linalg.inv(pp) }\OperatorTok{@}\NormalTok{ p}
+\NormalTok{    x1 }\OperatorTok{=}\NormalTok{ x0 }\OperatorTok{+}\NormalTok{ h}
+\NormalTok{    j }\OperatorTok{+=} \DecValTok{1}
+    
+    \CommentTok{\# write row}
+\NormalTok{    step }\OperatorTok{=} \OperatorTok{{-}}\NormalTok{np.linalg.inv(fpp(x1)) }\OperatorTok{@}\NormalTok{ fp(x1)}
+\NormalTok{    row\_ }\OperatorTok{=}\NormalTok{ \{\}}
+\NormalTok{    row\_[}\StringTok{"Iter"}\NormalTok{] }\OperatorTok{=}\NormalTok{ j}
+\NormalTok{    row\_[}\StringTok{"x1"}\NormalTok{], row\_[}\StringTok{"x2"}\NormalTok{] }\OperatorTok{=}\NormalTok{ x1[}\DecValTok{0}\NormalTok{], x1[}\DecValTok{1}\NormalTok{]}
+\NormalTok{    row\_[}\StringTok{"f"}\NormalTok{] }\OperatorTok{=}\NormalTok{ f(x1)}
+\NormalTok{    row\_[}\StringTok{"g1"}\NormalTok{], row[}\StringTok{"g2"}\NormalTok{] }\OperatorTok{=}\NormalTok{ fp(x1)}
+\NormalTok{    row\_[}\StringTok{"H11"}\NormalTok{], row\_[}\StringTok{"H12"}\NormalTok{], row\_[}\StringTok{"H21"}\NormalTok{], row\_[}\StringTok{"H22"}\NormalTok{] }\OperatorTok{=}\NormalTok{ fpp(x1).flatten()}
+\NormalTok{    row\_[}\StringTok{"DET"}\NormalTok{] }\OperatorTok{=}\NormalTok{ np.linalg.det(fpp(x1))}
+\NormalTok{    row\_[}\StringTok{"h1"}\NormalTok{], row\_[}\StringTok{"h2"}\NormalTok{] }\OperatorTok{=}\NormalTok{ step }
+\NormalTok{    data.loc[}\BuiltInTok{len}\NormalTok{(data)] }\OperatorTok{=}\NormalTok{ row\_}
+    
+    \ControlFlowTok{if}\NormalTok{ np.linalg.norm(p) }\OperatorTok{\textless{}}\NormalTok{ tol:}
+\NormalTok{        break}
+        
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Solution: "}\NormalTok{, x1)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Spreadsheet: "}\NormalTok{)}
+\BuiltInTok{print}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+  See the attachment for the output. By giving initial values, we can
+  find 3 critical points:
+  \((0,93755,0.06931),(0,06931,0.93755),(0.30947,030947)\).
+
+  \includegraphics{D:/assignments/2023-03-18-MME/ans.assets/image-20230318175836934.png}
+
+  \includegraphics{D:/assignments/2023-03-18-MME/ans.assets/image-20230318175847550.png}
+
+  \includegraphics{D:/assignments/2023-03-18-MME/ans.assets/image-20230318175826370.png}
+\item
+  We have shown in the spreadsheet that at the 3 critical points, the
+  determinant of \(H\) is positive, positive, and negative respectively.
+  Hence the first 2 critical points, i.e.
+  \((0,93755,0.06931),(0,06931,0.93755)\) are global minimum of the
+  function.
+\end{enumerate}
+
+\hypertarget{question-4}{%
+\subsection{Question 4}\label{question-4}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Let \(r\) be the cost of each machine to rent per unit time, \(w\) be
+  the wage of each consultants per unit time as well. Denotations
+  \(K_1,K_2,L_1,L_2\) are used as given.
+
+  Then the optimization problem can be described as a maximization
+  problem of the profit function:
+
+  \begin{array}{rl} \displaystyle\max_{K_1,K_2,L_1,L_2}\Pi(K_1,K_2,L_1,L_2)&=F(K_1,L_1)+G(K_2,L_2)-rK-wL\\
+  &=(\sqrt{K_1}+2\sqrt{L_1})+(3\sqrt{K_2}+4\sqrt{L_2})-rK-wL\\
+  \text{s.t.}& L_1,L_2,K_1,K_2\geqslant 0\\
+  &L_1+L_2=L\geqslant 0\\
+  &K_1+K_2=K\geqslant 0
+  \end{array}
+
+  where \(r,w,L,K\) are all positive constants.
+\item
+  Lagrangean function (since \(-rK-wL\) is constant):
+
+  \[L(K_1,K_2,L_1,L_2;\lambda,\mu)=\Pi-\lambda(K_1+K_2-K)-\mu(L_1+L_2-L)\\
+  =(\sqrt{K_1}+2\sqrt{L_1})+(3\sqrt{K_2}+4\sqrt{L_2})-rK-wL-\lambda(K_1+K_2-K)-\mu(L_1+L_2-L)\]
+
+  First order conditions:
+
+  \[\left\{\begin{array}{l}
+  \dfrac{\partial L}{\partial K_1}=0\\
+  \dfrac{\partial L}{\partial K_2}=0\\
+  \dfrac{\partial L}{\partial L_1}=0\\
+  \dfrac{\partial L}{\partial L_2}=0\\
+  \dfrac{\partial L}{\partial \lambda}=0\\
+  \dfrac{\partial L}{\partial \mu}=0
+  \end{array}\right.\quad\Rightarrow\quad \left\{\begin{array}{l}
+  \dfrac{1}{2\sqrt{K_1}}-\lambda=0\\
+  \dfrac{3}{2\sqrt{K_2}}-\lambda=0\\
+  \dfrac{1}{\sqrt{L_1}}-\mu=0\\
+  \dfrac{2}{\sqrt{L_2}}-\mu=0\\
+  K_1+K_2-K=0\\
+  L_1+L_2-L=0
+  \end{array}\right.\]
+\item
+  Solve the equations above (especially the 1st, 2nd, and the 5th
+  equations), we have
+
+  \[K_1^*=\dfrac{K}{10}\]
+\item
+  Similarly, we have
+
+  \[K_2^*=\dfrac{9K}{10},\quad L_1^*=\dfrac{L}{5},\quad L_2^*=\dfrac{4L}{5}\]
+
+  at the same time,
+  \(\lambda = \dfrac{\sqrt{10}}{2\sqrt{K}},\mu=\dfrac{\sqrt{5}}{\sqrt{L}}\).
+\item
+  Using the definitions above,
+
+  \[M(K,L)=\Pi\left(\dfrac{K}{10},\dfrac{9K}{10},\dfrac{L}{5},\dfrac{4L}{5}\right)=\sqrt{10K}+2\sqrt{5L}-rK-wL\]
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(\lambda\) is the marginal product of capital while \(\mu\) is the
+  marginal product of labour.
+\end{enumerate}
+
+\hypertarget{question-5}{%
+\subsection{Question 5}\label{question-5}}
+
+Let \(g(x,y)=f(\lambda x+(1-\lambda)y)-\lambda f(x)-(1-\lambda)f(y)\),
+since \(f(x)\equiv 1-x^T x\), we have
+
+\begin{array}{rl}
+g(x,y)&=1-(\lambda x+(1-\lambda)y)^T(\lambda x+(1-\lambda)y)-\lambda (1-x^Tx)-(1-\lambda)(1-y^Ty)\\
+&=\lambda\bar\lambda( x^Tx-2 x^Ty+ y^Ty)=\lambda\bar\lambda(x-y)^T(x-y)\geqslant 0
+\end{array}
+
+where \(\bar\lambda =1-\lambda\), for any \(\lambda\in (0,1)\), and
+\textquotesingle=\textquotesingle{} holds iff. \(x=y\). hence
+\(\forall\ x,y\in\mathbb{R}^n,x\neq y,\lambda\in (0,1)\), we have
+\(g(x,y)>0\), i.e.
+
+\[f(\lambda x+(1-\lambda)y)>\lambda f(x)+(1-\lambda)f(y)\]
+
+this indicates that \(f(x)\) is strictly concave.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(C(K,L)=K+2L\), \(F(K,L)=3K+L\). According to the problem,
+  \(K,L\geqslant 0\). The minimum cost problem can be formulated to
+
+  \[\min_{K,L} K+2L\quad\text{subject to.}\quad F(K,L)=3K+L=Y=20, \quad K,L\geqslant 0\]
+\item
+  To standard Kuhn-Tucker format:
+
+  \[\max_{K,L} -K-2L\\
+  \text{subject to.  } -F(K,L)=-3K-L\leqslant -Y=-20,-K\leqslant 0,-L\leqslant 0\]
+
+  with
+
+  \begin{array}{l}
+  f(K,L)=-K-2L\\
+  g_1(K,L)=-F(K,L)=-3K-L,\ b_1=-Y=-20\\
+  g_2(K,L)=-K,\ b_2=0\\
+  g_3(K,L)=-L,\ b_3=0
+  \end{array}
+
+  Hence the Lagrangean function is
+
+  \[L(K,L)\equiv -K-2L-\lambda(-F(K,L)+Y)+\mu_1 K+\mu_2 L\]
+
+  i.e.
+
+  \[L(K,L)\equiv -K-2L-\lambda(-3K-L+20)+\mu_1K+\mu_2L\]
+\item
+  and the four sets of necessary conditions are (we suppress the
+  *\textquotesingle s on the parameters)
+
+  \begin{itemize}
+  \item
+    FOC1: \(-1+3\lambda +\mu_1=0\)
+  \item
+    FOC2: \(-2+\lambda +\mu_2=0\)
+  \item
+    CNSTR1: \(F(K,L)=3K+L\geqslant Y=20\), LM1: \(\lambda \geqslant 0\)
+  \item
+    CNSTR2: \(K\geqslant 0\), LM2: \(\mu_1\geqslant 0\)
+  \item
+    CNSTR3: \(L\geqslant 0\), LM3: \(\mu_2\geqslant0\)
+  \item
+    CS1: \(\lambda(F(K,L)-Y)=\lambda(3K+L-20)=0\)
+  \item
+    CS2: \(\mu_1K=0\)
+  \item
+    CS3: \(\mu_2L=0\)
+  \end{itemize}
+\item
+  Problem in primal-format:
+
+  \[\max_x c^Tx,\qquad c=(-1,-2)^T,x=(K,L)^T\\
+  \text{subject to.}\qquad Ax\leqslant b,\qquad A=(-3,1),b=-20\\
+  \qquad x\geqslant 0_2\]
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Dual format:
+
+  \[\min_x b^Ty=-20y_1\\
+  \text{subject to.}\qquad-3y_1\geqslant -1,y_1\geqslant  -2,y_1\geqslant 0\]
+
+  we have \(0\leqslant y_1\leqslant\dfrac{20}{3}\), hence when the
+  minimum is reached, \(y_1=\dfrac{20}{3}\).
+\item
+  For a primal-format linear programming problem
+
+  \[\max_x c^Tx,\quad \text{subject to.}\quad Ax\leqslant b,x\geqslant 0_n\]
+
+  if \(x_1,x_2\) are the 2 distinct solutions,
+  \(x_3=\lambda x_1+(1-\lambda)x_2\), \(\lambda \in (0,1)\), is a convex
+  combination of \(x_1,x_2\), then
+
+  \[c^Tx_3=c^T(\lambda x_1+(1-\lambda)x_2)=\lambda c^Tx_1+(1-\lambda)c^Tx_2=\lambda M+(1-\lambda)M=M\]
+
+  where \(M\) is the optimal value. And
+
+  \[Ax_3=\lambda Ax_1+(1-\lambda)Ax_2\leqslant \lambda b+(1-\lambda )b=b\\
+  x_3=\lambda x_1+(1-\lambda)x_2\geqslant 0\]
+
+  hence \(x_3\) lies in the feasible region and \(c^Tx_3\) also reaches
+  the optimal value. That is \(x_3\) is also an optimal solution of the
+  problem.
+\end{enumerate}
+
+\end{document}
