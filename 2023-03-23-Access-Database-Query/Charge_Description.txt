@@ -1,0 +1,6 @@
+"D1","Restaurant"
+"D2","Green Fee"
+"D3","Dinner Fee"
+"D4","Pro Shop"
+"D5","Valet Fee"
+"D6","Pro Lesson"
