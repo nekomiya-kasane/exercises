@@ -30,3 +30,5 @@ t0 = 3 # at t0=3
 p, q = eval(arr, t0)
 print("Value: ", p)
 print("Derivative: ", q)
+
+sys.pause(1)
