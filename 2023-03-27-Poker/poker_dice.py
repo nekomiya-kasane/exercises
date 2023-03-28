@@ -37,7 +37,7 @@ def roll_dice(held=[]):
     roll = [randint(0, 5) for _ in range(5 - len(held))]
     roll.extend(held)
     roll.sort()
-    return tuple(roll)
+    return (0, 1, 2, 4, 4)#tuple(roll)
 
 
 def catagorize(roll):
@@ -95,15 +95,15 @@ def simulate(times):
 
 
 def ask_held_cards(roll, turn=2):
-    tmp = list(roll)
-    held = []
     while True:
         try:
+            held = []
+            tmp = list(roll)
             a = f"Which dice do you want to keep for the {'second' if turn == 2 else 'third'} roll?"
             prompts = input(a).split(' ')
             if "all" in prompts or "All" in prompts:
                 return roll
-            if not len(prompts):
+            if prompts == ['']:
                 return held
             for card in prompts:
                 id = number_card[card]
