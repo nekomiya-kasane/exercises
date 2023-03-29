@@ -216,29 +216,34 @@ class Solution:
 
 def solve(f, tspan, y0, N):
     h = (tspan[1] - tspan[0]) / N
-    ts, sol = [tspan[0]], [y0]
+    ts, sol_4, sol_5 = [tspan[0]], [y0], [y0]
     err = []
     while ts[-1] < tspan[1]:
-        y_last = sol[-1].copy()
+        y_last_4 = sol_4[-1].copy()
+        y_last_5 = sol_5[-1].copy()
 
         t = ts[-1]
-        k1 = f(t, y_last)
-        k2 = f(t + h / 2, y_last + k1 * h / 2)
-        k3 = f(t + h / 2, y_last + k2 * h / 2)
-        k4 = f(t + h, y_last + k3 * h)
-        y_new = y_last + (k1 + 2 * k2 + 2 * k3 + k4) * h / 6
+        k0 = f(t, y_last_4)
+        k1 = f(t + h / 2, y_last_4 + k0 * h / 2.)
+        k2 = f(t + h / 2, y_last_4 + (k0 + k1) * h / 4.)
+        k3 = f(t + h, y_last_4 + (-k1 + 2 * k2) * h)
+        y_new_4 = y_last_4 + (k0 + 4 * k2 + k3) * h / 6
 
-        k1 = f(t, y_last)
-        k2 = f(t + h, y_last + k1 * h)
-        k3 = f(t + h, y_last + k2 * h)
-        k4 = f(t + 2 * h, y_last + k3 * 2 * h)
-        y_new_2 = y_last + (k1 + 2 * k2 + 2 * k3 + k4) * h / 3
-        sol.append(y_new)
+        k0 = f(t, y_last_5)
+        k1 = f(t + h / 2, y_last_5 + k0 * h / 2.)
+        k2 = f(t + h / 2, y_last_5 + (k0 + k1) * h / 4.)
+        k3 = f(t + h, y_last_5 + (-k1 + 2 * k2) * h)
+        k4 = f(t + 2 * h / 3, y_last_5 + (7 * k0 + 10 * k1 + k3) * h / 27.)
+        k5 = f(t + 2 * h / 10, y_last_5 + (28 * k0 - 125 * k1 + 546 * k2 + 54 * k3 - 378 * k4) * h / 625.)
+        y_new_5 = y_last_5 + (14 * k0 + 35 * k3 + 162 * k4 + 125 * k5) * h / 336
+
+        sol_4.append(y_new_4)
+        sol_5.append(y_new_5)
 
         ts.append(t + h)
-        err.append(max(abs(y_new_2 - y_last)))
+        err.append(np.linalg.norm(y_new_5 - y_new_4))
 
-    return Solution(np.array(ts), np.array(sol).T, np.array(err))
+    return Solution(np.array(ts), np.array(sol_4).T, np.array(err))
 
 
 def draw_orbits_anime(ts, xs, ys, zs, xlim, ylim, zlim):
@@ -256,7 +261,7 @@ y0 = np.concatenate((init_position.flatten(), init_velocity.flatten()))
 # plot error - time
 plt.figure(figsize=(9, 12))
 max_error = []
-Ns = np.array([1000, 2000, 5000, 10000, 15000, 20000, 40000, 80000])
+Ns = np.array([1000, 2000, 5000, 10000, 20000, 50000, 100000])
 for n in Ns:
     sol = solve(lambda t, state: adapter(
         t, state, arguments, "Newton"), t_span, y0, N=n)
@@ -265,6 +270,7 @@ for n in Ns:
 plt.legend()
 plt.xlabel("Time (Year)")
 plt.ylabel("Error")
+plt.yscale('log')
 plt.title("Time - Error")
 
 # plot error - stepsize
