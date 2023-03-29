@@ -1,0 +1,3 @@
+最后一题：settling time 和 error 定义（公式）？
+第9题：disturbance 输入是什么？（使用哪种扰动）
+Input使用什么？
