@@ -366,3 +366,127 @@ $$
 
 ## Question 5
 
+Given ODE:
+$$
+\dfrac{dM}{dt}+\gamma M=f(t), \gamma=\dfrac{Q}{V}
+$$
+
+1. **step 1: Get $M_h$**
+   $$
+   \dot {M}+\gamma M=0\quad \Rightarrow \quad M_h(t)=C\exp(-\gamma t)
+   $$
+   **Step 2: Get $M_p$**
+   $$
+   \begin{align*}
+   &\dot{M}+\gamma M=\dfrac{a_0}{2}+\sum_{n=1}^{\infty}a_n\cos\dfrac{n\pi t}{2}+b_n\sin\dfrac{n\pi t}{2}\\
+   &M_p=M_{P_0}+M_{C_1}+M_{S_1}+\cdots
+   \end{align*}
+   $$
+   whence
+   $$
+   \begin{align*}
+   &\dot M_{P_0}+\gamma M_{P_0}=\dfrac{a_0}{2}\\
+   &\dot M_{C_n}+\gamma M_{C_n}=a_n\cos\dfrac{n\pi t}{2}\\
+   &\dot M_{S_n}+\gamma M_{S_n}=b_n\sin\dfrac{n\pi t}{2}
+   \end{align*}
+   $$
+   hence $\dot{M}+\gamma M=1\exp(\dfrac{in\pi t}{2})$, we got the auxiliary problem:
+   $$
+   \dot Y_n+\gamma Y_n=1\exp(\alpha_n t),\quad \alpha_n=\dfrac{in\pi}{2}
+   $$
+   Let $Y_n=D_n\exp(\alpha_n t)$, then we have
+   $$
+   \exp(\alpha_n t)D_n(\alpha_n+\gamma)=1\exp(\alpha_n t)\quad \Rightarrow\quad D_n=\dfrac{1}{\alpha_n+\gamma}\quad \Rightarrow\quad Y_n=\dfrac{\exp(\alpha_n t)}{\alpha_n+\gamma}
+   $$
+
+2. Hence 
+   $$
+   y_{C_n}=a_n\text{Re}\dfrac{\exp(\dfrac{in\pi}{2})}{\gamma+i\dfrac{n\pi}{2}}=a_n\dfrac{4\gamma\cos\dfrac{n\pi t}{2}+2n\pi \sin\dfrac{n\pi t}{2}}{4\gamma^2+n^2\pi^2}\\
+   y_{S_n}=b _n\text{Im}\dfrac{\exp(\dfrac{in\pi}{2})}{\gamma+i\dfrac{n\pi}{2}}=b_n\dfrac{-2n\pi \cos\dfrac{n\pi t}{2}+4\gamma \sin\dfrac{n\pi t}{2}}{4\gamma^2+n^2\pi^2}\\
+   $$
+   Then
+   $$
+   M_p=\dfrac{1}{\gamma}\dfrac{a_0}{2}+\sum_{n=1}^\infty a_n\dfrac{2\gamma \cos\dfrac{n\pi t}{2}+2n\pi t\sin\dfrac{n\pi t}{2}}{4\gamma^2+n^2\pi^2t^2}+b_n\dfrac{-2n\pi t\cos\dfrac{n\pi t}{2}+4\gamma  \sin\dfrac{n\pi t}{2}}{\gamma^2L^2+n^2\pi^2t^2}\\
+   =\dfrac{1}{\gamma}\dfrac{a_0}{2}+\sum_{n=1}^\infty \dfrac{(4a_n\gamma-2b_nn\pi )\cos\dfrac{n\pi t}{2}+(2a_nn\pi +4b_n\gamma)\sin\dfrac{n\pi t}{2}}{4\gamma^2+n^2\pi^2}
+   $$
+
+3. Transfer function $H=\dfrac{1}{\alpha_n+\gamma}$, for input of frequency $\dfrac{n\pi}{{2}}$, we have $H=\dfrac{2}{n\pi + 2\gamma}$
+
+   Sketch:
+
+   <img src="ans.assets/image-20230401072036112.png" alt="image-20230401072036112" style="zoom:50%;" />
+
+   Which is a descending series.
+
+4. Plot:
+
+   <img src="ans.assets/image-20230401073651890.png" alt="image-20230401073651890" style="zoom:67%;" />
+
+## Question 6
+
+Given function:
+$$
+\ddot{y}+2c\dot{y}+y=\dfrac{f(t)}{m},k=m
+$$
+according to the description, $f(t)$ is periodic and $L=2$.
+
+1. **step 1: Get $y_h$**
+   $$
+   \ddot{y}+2c\dot {y}+y=0\quad \Rightarrow \quad \lambda_{1,2}={-c\pm\sqrt{c^2-1}}\text{ if $c\geq 1$ else} -c\pm i\sqrt{1-c^2}\\
+   y_h=C_1\exp(\lambda_1t)+C_2\exp(\lambda_2 t)
+   $$
+   **Step 2: Get $y_p$**
+   $$
+   \begin{align*}
+   &\ddot{y}+2c\dot{y}+y=(\dfrac{a_0}{2}+\sum_{n=1}^{\infty}a_n\cos\dfrac{n\pi t}{2}+b_n\sin\dfrac{n\pi t}{2})/m\\
+   &Y_p=Y_{P_0}+Y_{C_1}+Y_{S_1}+\cdots
+   \end{align*}
+   $$
+   whence
+   $$
+   \begin{align*}
+   &\ddot{Y}_{P_0}+2c\dot{Y}_{P_0}+Y_{P_0}=\dfrac{a_0}{2m}\\
+   &\ddot{Y}_{C_n}+2c\dot{Y}_{C_n}+Y_{C_n}=\dfrac{a_n}{m}\cos\dfrac{n\pi t}{2}\\
+   &\ddot{Y}_{S_n}+2c\dot{Y}_{S_n}+Y_{S_n}=\dfrac{b_n}{m}\sin\dfrac{n\pi t}{2}
+   \end{align*}
+   $$
+   hence $\ddot{Y}+2c\dot{Y}+Y=1\exp(\dfrac{in\pi t}{2})$, we got the auxiliary problem:
+   $$
+   \ddot{Y}+2c\dot{Y}+Y=1\exp(\alpha_n t),\quad \alpha_n=\dfrac{in\pi}{2}
+   $$
+   Let $Y_n=D_n\exp(\alpha_n t)$, then we have
+   $$
+   \exp(\alpha_n t)D_n(\alpha_n^2+2c\alpha_n+1)=1\exp(\alpha_n t)\quad \Rightarrow\quad D_n=\dfrac{1}{\alpha_n^2+2c\alpha_n+1}\quad \Rightarrow\quad Y_n=\dfrac{\exp(\alpha_n t)}{\alpha_n^2+2c\alpha_n+1}
+   $$
+
+2. Hence 
+   $$
+   y_{C_n}=\dfrac{a_n}{m}\text{Re}\dfrac{\exp(\dfrac{in\pi}{2} t)}{-(\dfrac{n\pi}{2})^2+ic{n\pi}+1}=\dfrac{a_n}{m}\dfrac{4(4-n^2\pi^2)\cos\dfrac{n\pi}{2}+16cn\pi\sin\dfrac{n\pi}{2}}{n^4\pi^4+8(2c^2-1)n^2\pi^2+16}\\
+   y_{S_n}=\dfrac{b_n}{m}\text{Im}\dfrac{\exp(\dfrac{in\pi}{2} t)}{-(\dfrac{n\pi}{2})^2+ic{n\pi}+1}=\dfrac{b_n}{m}\dfrac{16cn\pi\cos\dfrac{n\pi}{2}+(16-4n^2\pi^2)\sin\dfrac{n\pi}{2}}{n^4\pi^4+8(2c^2-1)n^2\pi^2+16}\\
+   $$
+   Then
+   $$
+   y_p=\dfrac{a_0}{2m}+\sum_{n=1}^\infty \dfrac{a_n}{m}\dfrac{4(4-n^2\pi^2)\cos\dfrac{n\pi}{2}+16cn\pi\sin\dfrac{n\pi}{2}}{n^4\pi^4+8(2c^2-1)n^2\pi^2+16}+\dfrac{b_n}{m}\dfrac{16cn\pi\cos\dfrac{n\pi}{2}+(16-4n^2\pi^2)\sin\dfrac{n\pi}{2}}{n^4\pi^4+8(2c^2-1)n^2\pi^2+16}\\
+   =\dfrac{a_0}{2m}+\sum_{n=1}^\infty\dfrac{4a_n(4-n^2\pi^2)/m+16cn\pi b_n/m}{n^4\pi^4+8(2c^2-1)n^2\pi^2+16}\cos\dfrac{n\pi}{2}+\dfrac{16cn\pi a_n/m+4(4-n^2\pi^2)b_n/m}{n^4\pi^4+8(2c^2-1)n^2\pi^2+16}\sin\dfrac{n\pi}{2}
+   $$
+
+3. Transfer function $H=\dfrac{1}{\alpha_n^2+2c\alpha_n+1}$, for input of frequency $\dfrac{n\pi}{{2}}$, we have $H=\dfrac{4}{n^2\pi^2+4cn\pi + 4}$
+
+   Sketch:
+
+   <img src="ans.assets/image-20230401080804369.png" alt="image-20230401080804369" style="zoom:50%;" />
+
+   Which may a descending series for $c>0$.
+
+4. Plot:
+
+   <img src="ans.assets/image-20230401081947003.png" alt="image-20230401081947003" style="zoom:67%;" />
+
+   when $|y|\approx0.1,c=0.94$, hence for $c>0.94, |y|<1$ as it descends when $c$ increases.
+
+
+
+
+
+
+
