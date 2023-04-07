@@ -101,45 +101,41 @@ $$
 The coefficient matrix of 5-point stencil is obtained by the following function:
 
 ```julia
-function GenerateCoeffMatrix5Point(N::Int64, h::Float64)
-    id = (i, j) -> (i - 1) * N + j;
-    nonzero_size = (N - 4) * (N - 4) * 5 + (N - 4) * 4 * 4 + 4 * 3
-    ids_row = zeros(Int32, nonzero_size);
-    ids_col = zeros(Int32, nonzero_size);
+function GenerateCoeffMatrix5Point(N::Int64, h::Float64, allocator::Function)
+    nonzero_size = (N - 2) * (N - 2) * 5 + 4 * N - 4
+    ids_row = zeros(Int64, nonzero_size);
+    ids_col = zeros(Int64, nonzero_size);
 
     values = zeros(Float64, nonzero_size);
 
     row = 1;
     count = 1;
-    for i = 2 : N - 1, j = 2 : N - 1
-        if i - 1 > 1 # up
+    for i = 1 : N, j = 1 : N
+        if i != 1 && i != N && j != 1 && j != N
             ids_row[count] = row;
-            ids_col[count] = id(i - 1, j);
+            ids_col[count] = allocator(i - 1, j);
             values[count] = 1 / h ^ 2;
             count += 1;
-        end
-        if i + 1 < N # down
+
             ids_row[count] = row;
-            ids_col[count] = id(i + 1, j);
+            ids_col[count] = allocator(i + 1, j);
             values[count] = 1 / h ^ 2;
             count += 1;
-        end
-        if j - 1 > 1 # left
+
             ids_row[count] = row;
-            ids_col[count] = id(i, j - 1);
+            ids_col[count] = allocator(i, j - 1);
             values[count] = 1 / h ^ 2;
             count += 1;
-        end
-        if j + 1 < N # right
+
             ids_row[count] = row;
-            ids_col[count] = id(i, j + 1);
+            ids_col[count] = allocator(i, j + 1);
             values[count] = 1 / h ^ 2;
             count += 1;
         end
 
         # center
         ids_row[count] = row;
-        ids_col[count] = id(i, j);
+        ids_col[count] = allocator(i, j);
         values[count] = -4 / h ^ 2; 
         count += 1;
 
@@ -155,7 +151,166 @@ The coefficient matrix of the 9-point stencil is obtained similarly in the funct
 
 Consider when ==$f(x,y)=\sin \pi x\sin\pi y$== and ==$g=0$==, the [analytical solution](https://math.stackexchange.com/questions/3630678/analytical-solution-to-poissons-equation-with-sinusoidal-source) is ==$u(x,y)=-\dfrac{\sin(\pi x)\sin(\pi y)}{2\pi^2} $==. 
 
+- The 5-Point Stencil together with the default backslash operator produces the follow result (Max absolute error $10^{-6}$ and elapsed time is $0.069$ second if using $200\times 200$ grid)
 
+  <img src="./report.assets/image-20230407112143688.png" alt="image-20230407112143688" style="zoom:50%;" />
+
+- The 9-Point Stencil together with the default backslash operator produces the follow result (Max absolute error $2.1\times10^{-6}$ and elapsed time is $0.115$ second if using $200\times 200$ grid)
+
+  <img src="./report.assets/image-20230407113534435.png" alt="image-20230407113534435" style="zoom:50%;" />
+
+Code to solve the equation:
+
+```julia
+N = 200;
+L = H = 1.0;
+h = L / (N - 1);
+
+A = GenerateCoeffMatrix5Point(N, h)
+
+# fill right
+f = (x, y) -> sin(pi * x) * sin(pi * y)
+f_ij = (i, j) -> f((i - 1) * h, (j - 1) * h)
+
+g = (x, y) -> 0
+g_ij = (i, j) -> g((i - 1) * h, (j - 1) * h)
+
+id = (i, j) -> (i - 1) * N + j
+
+rhs = zeros(Float64, size(A)[1]);
+
+for k = 1 : N
+    rhs[id(k, 1)] = -4 * g_ij(k, 1) / h ^ 2;
+    rhs[id(k, N)] = -4 * g_ij(k, N) / h ^ 2;
+    rhs[id(1, k)] = -4 * g_ij(1, k) / h ^ 2;
+    rhs[id(N, k)] = -4 * g_ij(N, k) / h ^ 2;
+end
+
+for i = 2 : N - 1, j = 2 : N - 1
+    rhs[id(i, j)] = f_ij(i, j);
+end
+
+# 5 points
+@time sol = reshape(A \ rhs, (N, N))
+```
+
+Codes to plot:
+
+```julia
+ana_sol_f(x, y) = -sin(pi * x) * sin(pi * y) / (2 * pi ^ 2);
+
+xs = 0:h:L;
+ys = 0:h:L;
+surface(xs, ys, reshape(sol, (N, N)), 
+    fill=:greens, fillalpha=0.5, 
+    legend=false
+)
+
+ana_sol = ana_sol_f.(xs', ys)
+
+plot(
+    surface!(xs, ys, ana_sol , fill=:orange, fillalpha=0.5, legend=false,
+        xlabel=L"$x$", ylabel=L"$y$", zlabel=L"$u(x,y)$",
+        title=L"Solution of -△u=f"
+    ),
+    surface(xs, ys, abs.(ana_sol - sol), fillalpha=0.7, title="Error")
+)
+
+maximum(vec(abs.(ana_sol - sol))) # max error
+```
+
+Taking different grid sizes, we measured that (the complexity depends on the implementation of the backslash operator in Julia)
+
+<img src="./report.assets/image-20230407141049336.png" alt="image-20230407141049336" style="zoom:50%;" />
+
+> ==**Remark:**==
+>
+> Solving $Ax=b$ will be of high cost when the size of $A$ is extremely large. So an iterative method is demanded. One choice is the SOR (Successive Over Relaxation) method.
+>
+> ```julia
+> function sor(A::Array{Float64,2}, b::Array{Float64,1}, x0::Array{Float64,1}, maxiter::Int64, tol::Float64, omega::Float64)
+>     n = size(A, 1)
+>     x = copy(x0)
+>     for k = 1:maxiter
+>         for i = 1:n
+>             sigma = 0.0
+>             for j = 1:i-1
+>                 sigma += A[i,j]*x[j]
+>             end
+>             for j = i+1:n
+>                 sigma += A[i,j]*x0[j]
+>             end
+>             x[i] = (1-omega)*x0[i] + omega*(b[i]-sigma)/A[i,i]
+>         end
+>         if norm(x-x0) < tol
+>             break
+>         end
+>         x0 = copy(x)
+>     end
+>     return x
+> end
+> ```
+>
+> But unfortunately, it performs bad in this problem, mostly probably due to that the matrix is extremely sparse, but this piece of code doesn't make use of this property.
+
+### Neumann Boundary Conditions
+
+Taking the same grid and consider the Poisson equation with mixed Dirichlet and Neumann boundary conditions:
+$$
+-\Delta u=f,\ (x,y)\in\Omega,\quad \dfrac{\partial u}{\partial n}=g,\ (x,y)\in\Gamma=\{0,1\}\times[0,1],\quad u=g,\ (x,y)\in\partial \Omega-\Gamma
+$$
+Where 
+$$
+\begin{align*}
+&g(0,y)=-5\sin(\pi y)\sin(-10y),\ \ g(1,y)=5\sin(\pi y)\sin(5-10y),\ \ g(x,0)=g(x,1)=0\\
+&f(x,y)=-\left(125+\pi ^2\right) \sin (\pi  y) \cos (5 (x-2 y))+20 \pi 
+   \cos (\pi  y) \sin (5 (x-2 y))
+\end{align*}
+$$
+The analytical solution for the problem is $u(x,y)=\sin(\pi(y-1))\cos(5x-10y)$.
+
+To make use the central difference, we introduce ghost nodes outside the simulation region, for example, if the boundary condition is applied on the left boundary (i.e. $x=0$), then we introduces $(x_{-1},y_i)$ where $x_{-1}=-h$, and have
+$$
+\begin{align*}
+\dfrac{u_{-1,j}-u_{1,j}}{2h}=g_{0,j},\quad \dfrac{4u_{0,j}-u_{-1,j}-u_{1,j}-u_{0,j-1}-u_{0,j+1}}{h^2}=f_{0,j}
+\end{align*}
+$$
+Eliminating $u_{-1,j}$, we get
+$$
+\dfrac{4u_{0,j}-2u_{1,j}-u_{0,j-1}-u_{0,j+1}}{h^2}=f_{0,j}+\dfrac{2g_{0,j}}{h},\ 1\leqslant j\leqslant n-1
+$$
+The following [graph](https://d3i71xaburhd42.cloudfront.net/ab7a34f4a8c382be06715f3fbef7e8ee4c3ca167/32-Figure1.2-1.png) shows the basic idea
+
+<img src="./report.assets/32-Figure1.2-1.png" alt="A Cartesian Cut-Stencil Method for the Finite Difference Solution of PDEs  in Complex Domains | Semantic Scholar" width="50%"/>
+
+Somehow our experiments shows that the convergence of this pattern is not so good, we divided each axis into as many as 1000 nodes to suppress the error to $10^{-2}$ and it costs $5.26$ seconds to solve. See `P2.jl` for the codes. To optimize the process, maybe higher order finite difference schema need to be applied. Since this report doesn't mean to focus on this issue, it is omitted.
+
+<img src="./report.assets/image-20230407170640477.png" alt="image-20230407170640477" style="zoom:80%;" />
+
+We can observe that for this method, curved boundary is hard to handle, one of workarounds is to interpolate the neighborhood nodes, but since the implementation is complex - we need to interpolate a lot of nodes and calculate the coefficients for them, we skipped the try.
+
+### Initial Value Problem on Time
+
+Consider the general heat equation consisting both space and time:
+$$
+\left\{
+\begin{align*}
+&u_t = a^2\Delta u,\ (x,y)\in\Omega=[0,1]^2\\
+&u(t,0,y)=\sin\pi y\cos t,\ u_x(t,1,y)=0\\
+&u(t,x,0)=u(t,x,1)=0
+\end{align*}
+\right.
+$$
+We put a heat source at the left, and constrain the temperature on the top and bottom edge, and let the right boundary be free. To solve this problem numerically, surely we can discretize both time and space, but this causes a problem: 
+
+- To make the grid finite, we must limit the upper bound of the time span, if we want to see further evolution, we must solve again
+- The heat distribution on the space region only depends on the previous distribution, but we don't make use of this.
+
+Hence naturally, we find discretizing the space and evolute along the time is a better choice. This gives:
+$$
+u_t=a^2(\dfrac{u_{i-1,j}+u_{i+1,j}+u_{i,j-1}+u_{i,j+1}-4u_{i,j}}{h^2})
+$$
+ with boundary conditions
 
 ### Analysis
 
@@ -166,4 +321,8 @@ The simplicity of implementation and analysis of this method has led to its wide
 Moreover, since the discretization is performed on a grid, boundary-shape-oriented adjustments can be complicated and may result in significant losses.
 
 #### Error
+
+From the calculation, ...., we're going to give a formal proof of the error of this method, taking 5-point stencil as an example.
+
+
 
