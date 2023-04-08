@@ -241,7 +241,7 @@ function RK4(f::Function, tspan, y0, h)
     ts = typeof(h)[]
     push!(ys, y0)
     push!(ts, t)
-    while t < tspan[2]
+    for i = tqdm(tspan[1] : h : tspan[2])
         k1 = f(t, ys[end])
         k2 = f(t + h / 2., ys[end] + h * k1 / 2)
         k3 = f(t + h / 2., ys[end] + h * k2 / 2)

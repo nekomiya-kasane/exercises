@@ -2,9 +2,10 @@ using Plots
 using LaTeXStrings
 using LinearSolve, SparseArrays, Random, LinearAlgebra
 using ProgressBars
+using Formatting
 
 # plotlyjs()
-default(fontfamily="JuliaMono")
+default(fontfamily="JuliaMono-LightItalic")
 
 u0(x, y, t) = cos(pi * x) * sin(pi * y) * cos(t)
 
@@ -19,9 +20,9 @@ dy = H / (Ny - 1)
 xs = 0:dx:L
 ys = 0:dy:H
 
-a = 1
+a = 1;
 
-u_init = u0.(xs', ys, 0)
+u_init = u0.(xs', ys, 0);
 
 function f(t, y)
     sz = size(y)
@@ -46,23 +47,25 @@ function f(t, y)
     return dy
 end
 
-tspan = [0, 0.02]
-Nt = 1000;
+tspan = [0, 2]
+Nt = 100000;
 dt = (tspan[2] - tspan[1]) / (Nt - 1);
-ts, us = RK4(f, tspan, u_init, dt)
+@elpased ts, us = RK4(f, tspan, u_init, dt);
 
 # surface(xs, ys, us[end], 
 #     opacity=0.9, 
-#     title=string("Time = ", repr(0)),
-#     xlabel=L"x", ylabel=L"y", zlabel=L"u(t;x,y)"
+#     title=LaTeXString(sprintf1("T = %.5f", 1.222)),
+#     xlabel=L"x", ylabel=L"y", zlabel=L"u(t;x,y)",
+#     xlims=[0,1], ylims=[0,1], zlims=[-1,1]
 # )
 
-anim = @animate for u = us
-    surface(xs, ys, us[end], 
-        opacity=0.9, 
-        title=string("Time = ", repr(0)),
-        xlabel=L"x", ylabel=L"y", zlabel=L"u(t;x,y)"
+anim = @animate for i = 1:200:length(us)
+    surface(xs, ys, us[i], 
+    opacity=0.9, 
+    title=LaTeXString(sprintf1("T = %.5f", ts[i])),
+    xlabel=L"x", ylabel=L"y", zlabel=L"u(t;x,y)",
+    xlims=[0,1], ylims=[0,1], zlims=[-1,1]
     )
 end
 
-gif(anim, "P3.gif", fps = 30)
+gif(anim, "P3.gif", fps = 50)
