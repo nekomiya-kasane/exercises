@@ -79,7 +79,7 @@ R_{ij}=f(x_i,y_j)+\Delta_h u(x_i,y_j)=-\Delta_h u(x_i,y_j)+(\Delta u)(x_i,y_j)=\
 $$
 To solve the discretized equations, we can use <u>sparse Matrix</u> to store all the coefficients.
 
-There's also 9-point stencil that can be seen as a linear combination of a 5-point stencil and a rotated 5-point stencil.
+There's also 9-point stencil that can be seen as a linear combination of a 5-point stencil and a <u>rotated</u> 5-point stencil.
 $$
 \begin{align*}
 \Delta_h u_{ij}&=\{(1-\alpha)\ \begin{array}{|c|c|c|}
@@ -297,7 +297,8 @@ $$
 \begin{align*}
 &u_t = a^2\Delta u,\ (x,y)\in\Omega=[0,1]^2\\
 &u(t,0,y)=\sin\pi y\cos t,\ u_x(t,1,y)=0\\
-&u(t,x,0)=u(t,x,1)=0
+&u(t,x,0)=u(t,x,1)=0\\
+&u(0,x,y)=\cos\pi x\sin\pi y\cos t
 \end{align*}
 \right.
 $$
@@ -308,9 +309,42 @@ We put a heat source at the left, and constrain the temperature on the top and b
 
 Hence naturally, we find discretizing the space and evolute along the time is a better choice. This gives:
 $$
-u_t=a^2(\dfrac{u_{i-1,j}+u_{i+1,j}+u_{i,j-1}+u_{i,j+1}-4u_{i,j}}{h^2})
+u_t=a^2(\dfrac{u_{i-1,j}+u_{i+1,j}+u_{i,j-1}+u_{i,j+1}-4u_{i,j}}{h^2})\label{ut}
 $$
- with boundary conditions
+ the boundary conditions gives 
+$$
+\begin{array}{llll}
+(x=0)& u_t=-\sin t\sin\pi y_i\\
+(x=1)& u_t=a^2(\dfrac{2u_{i,n-1}+u_{i-1,n}+u_{i+1,n}-4u_{i,n}}{h^2})\\
+(y=0,y=1)&u_t=0
+\end{array}
+$$
+Hence $\eqref{ut}$ can be written as an ODE $u_t=F(u,t)$, then we can apply some ODE solvers such as Runge-Kutta Method to get the state of the next time point. Moreover, we can double the steps to estimate the error of Runge-Kutta Method.
+
+```julia
+function RK4(f::Function, tspan, y0, h)
+    t = 0
+    ys = Array{typeof(y0)}
+    ts = Vector{typeof(h)}
+    push!(ys, y0)
+    push!(ts, t)
+    while t < tspan
+        k1 = f(t, ys[-1])
+        k2 = f(t + h / 2., ys[-1] + h * k1 / 2)
+        k3 = f(t + h / 2., ys[-1] + h * k2 / 2)
+        k4 = f(t + h, ys[-1] + h * k3)
+        
+        y_new = ys[-1] + (k1 + 2 * k2 + 2 * k3 + k4) * h / 6
+        t += h
+
+        push!(ys, y_new)
+        push!(ts, t)
+    end
+    return ys, ts
+end
+```
+
+
 
 ### Analysis
 

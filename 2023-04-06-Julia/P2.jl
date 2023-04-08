@@ -69,5 +69,3 @@ plot(
     surface(xs, ys, abs.(ana_sol - sol), fillalpha=0.7, title="Error"),
     size=(1600, 800)
 )
-
-1 + 1

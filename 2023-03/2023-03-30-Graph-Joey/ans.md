@@ -32,11 +32,52 @@ Hence claim proved. Therefore, there must be an injection either $A\to B$ or $B\
 
 >  There're other perspective to prove this, for example (just brief ideas, no proof attached)
 >
-> 1. cardinality. there're 3 occasions 
->    - $A$ is larger than $B$: $A$ has cardinality larger than $B$ $\to$ $A$ has a subset that has the same cardinality as $B$ $\to $ we can construct a bijection from $B$ to a subset of $A$.
->    - $B$ is larger than $A$: similarly.
->    - $A$ has the same cardinality as $B$: we can construct a bijection between $A$ and $B$.
-> 2. Use the axiom of choice together with ordinal number, just imitate the construction given 2 finite sets.
+>  1. cardinality. there're 3 occasions 
+>
+>       - $A$ is larger than $B$: $A$ has cardinality larger than $B$ $\to$ $A$ has a subset that has the same cardinality as $B$ $\to $ we can construct a bijection from $B$ to a subset of $A$.
+>
+>       - $B$ is larger than $A$: similarly.
+>
+>       - $A$ has the same cardinality as $B$: we can construct a bijection between $A$ and $B$.
+>
+>     ==Proof==:
+>
+>     Due to the Well-Ordering Theorem, for any given sets $A$, $B$, since they're well-orderable, there exist alephs $\aleph_a,\aleph_b$ with $|A|=\aleph_a$ and $|B|=\aleph_b$. i.e. there are bijections $f$ from $A$ to $\aleph_a$ and $g$ from $B$ to $\aleph_b$.
+>
+>     Since cardinalities are comparable, the cardinalities of $A$ and $B$ are comparable. More specifically, WLOG, 
+>
+>     - let $\aleph_a<\aleph_b$, then there's injection from $\aleph_a$ to $\aleph_b$, say $h$. Thus $g^{-1}\circ h\circ f$ is an injection from $A$ to $B$
+>     - let $\aleph_a=\aleph_b$, then $f\circ g^{-1}$ is a bijection (thus an injection) from $A$ to $B$.
+>     
+>     **More specifically:**
+>     
+>     Under the <u>Von Neumann's Definition</u>, the cardinality of a well-ordered set $X$ is the least ordinal number $x$ such that there is a bijection between $X$ and $x$. Hence given two sets $A$ and $B$, by the theorem of well-ordering, $A$, $B$ are well-orderable. Thus we can find an ordinal and cardinal $\lambda_A$, $\lambda_B$ for each of them. And there should be 2 bijections, between $A$ and $\lambda_A$, $B$ and $\lambda_B$ respectively. Denote the 2 bijections as $f_A,f_B$.
+>     
+>     Ordinals are well-ordered under inclusion, hence is comparable, hence either $\lambda_A<\lambda _B$ or $$\lambda_A=\lambda _B$$ or $$\lambda_A>\lambda _B$$ holds.
+>     
+>     WLOG, if $\lambda_A\leqslant\lambda_B$, since $\lambda_A< \lambda_B$ (i.e $\lambda_A\sub\lambda_B$), there's an injection (identical mapping) from $\lambda_A$ to $\lambda_B$. Denote it as $g$.
+>     
+>     Therefore $(f_B\circ g\circ f_A):A\to^{f_A} \lambda_A{\color{purple}\to^{g}}\lambda_B\to^{f_B^{-1}}B$ is an injection from $A$ to $B$. 
+>     
+>     For the case $\lambda_B<\lambda_A$, the debate is similar, and we can construct an injection from $B$ to $A$.
+>     
+>  2. Use the axiom of choice together with ordinal number, just imitate the construction given 2 finite sets.
+>
+>     ==Proof==:
+>
+>     If $A=\varnothing$ or $B=\varnothing$, the statements holds apparently, and if there exist an injection from $A$ to $B$, then nothing to prove. So we'd only consider the occasion that there's no injection from $A$ to $B$.
+>
+>     We are going to prove then there's an injection from $B$ to $A$ by direct constructing the injection $f$ from partial injections $f_i$ (seen as a subset of $B\times A$, the first term of it is denote by $D(f_i)$, i.e. the domain and the second term by $R(f_i)$, i.e. the range of the function). 
+>
+>     By the Axiom of Choice, there are 2 choice functions from $A$ and $B$, say $F_A$ and $F_B$. Then follow the steps below:
+>
+>     1. begin: $\alpha=0$, $f_\alpha=\varnothing$
+>     2. $f_{\alpha+1}=f_\alpha\cup\{(F_B(B-D(f_\alpha)),F_A(A-R(f_\alpha)))\}$, $\alpha\leftarrow \alpha+1$, this step ensure that if $f_\alpha$ is an injection, then so does $f_{\alpha+1}$
+>     3. For any limit ordinal $\Omega$, if $f_\alpha$ is defined for all $\alpha <\Omega$, then let $f_\Omega=\bigcup_{\alpha<\Omega}f_\alpha,\alpha\leftarrow \Omega$. By step 2 and the principle of induction, $f_\Omega$ is also injective. 
+>
+>     Let $f$ be the union of all defined $f_\alpha$ (indexed by $I$), i.e. $f=\bigcup_{i\in I} f_i$, if $f$ is injective, then we proved the statement. Otherwise, $D(f)\sub B$ and $f$ is surjective, or else the step 2 can be executed again. Let $f^{-1}$ be the function from an image of $f$ to one of the preimage of it, then $f^{-1}$ is an injection from $A$ to $B$, which contradicts to our assumption.
+>
+>     Therefore, if no injection exists from $A$ to $B$, we can construct an injection from $B$ to $A$. The statement is proved.  
 
 ## Q2
 
@@ -49,8 +90,8 @@ $$
 \hat f:\left\{
 \begin{array}{ll}
 i\mapsto b_i'& 0\leqslant i\leqslant a\\
-a+i+1\mapsto b_i &i>a,i\in\mathbb{N}\\
-f(i)& \omega\leqslant i<\Omega
+i\mapsto b_{i-a-1} &i>a,i\in\mathbb{N}\\
+i\mapsto f(i)& \omega\leqslant i<\Omega
 \end{array}
 \right.
 $$

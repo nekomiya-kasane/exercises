@@ -234,3 +234,25 @@ function GenerateCoeffMatrix5PointSec2(N::Int64, h::Float64, g::Function, alloca
 
     return sparse(ids_row, ids_col, values)
 end
+
+function RK4(f::Function, tspan, y0, h)
+    t = tspan[1]
+    ys = typeof(y0)[]
+    ts = typeof(h)[]
+    push!(ys, y0)
+    push!(ts, t)
+    while t < tspan[2]
+        k1 = f(t, ys[end])
+        k2 = f(t + h / 2., ys[end] + h * k1 / 2)
+        k3 = f(t + h / 2., ys[end] + h * k2 / 2)
+        k4 = f(t + h, ys[end] + h * k3)
+        
+        #y_new = ys[end] + f(t, ys[end]) * h;
+        y_new = ys[end] .+ (k1 .+ 2 .* k2 .+ 2 .* k3 .+ k4) .* h ./ 6
+        t += h
+
+        push!(ys, y_new)
+        push!(ts, t)
+    end
+    return ts, ys
+end

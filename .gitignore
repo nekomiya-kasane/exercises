@@ -350,3 +350,5 @@ MigrationBackup/
 
 # ipynb temp files
 .ipynb_checkpoints/
+
+*.asv
