@@ -2,16 +2,14 @@
 
 In this report, we focus on the implementation and analysis of various numerical methods for solving partial differential equations (PDEs), with the goal of gaining a comprehensive understanding of their performance. These methods find direct applications in multiple disciplines, including computational fluid dynamics, computational chemistry, and more. 
 
-As we are primarily interested in CFD, we have explored methods that are widely used to simulate fluid dynamics. Specifically, we have evaluated the performance of various PDE numerical methods, including finite difference, finite element, and spectral methods, and compared their accuracy and efficiency for solving fluid dynamics problems. 
-
-Additionally, we have investigated the Lattice Boltzmann Method, which provides a mesoscale perspective for modeling fluid mechanics. By the end of this report, we hope to have gained deeper insights into the underlying principles of these methods, as well as their practical applications in CFD and related fields.
+As we are primarily interested in CFD, we have explored methods that are widely used to simulate fluid dynamics. Specifically, we have evaluated the performance of various PDE numerical methods, including finite difference, finite element, and spectral methods, and compared their accuracy and efficiency for solving fluid dynamics problems. This short essay focuses on the first method - the finite difference method, implement it to solve boundary value problems, and analyze the error and efficiency for the easiest occasion.
 
 ### Description of the Problem
 
 For convenience, through out this report, we will use the Poisson Equation $-\Delta u=f$ and heat equation $u_t=a\Delta u +f$ to illustrate different methods, and the boundary is set to be smooth except at finite points. i.e.
 $$
--\Delta u=f\text{ on } \Omega,\quad \Gamma=\partial\Omega\quad (1)\\
-u_t=a\Delta u +f\text{ on } \Omega,\quad \Gamma=\partial\Omega\quad (2)
+-\Delta u=f\text{ on } \Omega,\quad \Gamma=\partial\Omega\quad \label{1}(1)\\
+u_t=a\Delta u +f\text{ on } \Omega,\quad \Gamma=\partial\Omega\quad (2) 
 $$
 Distinct boundary conditions (BC) will be applied, the following list shows the 3 most commonly used BCs:
 
@@ -67,15 +65,15 @@ $$
 $$
 Let $u_{ij}=u(x_i,y_j)$ and $f_{ij}=f(x_i,y_j)$, then we achieved our discretization schema (5-point stencil) for the $\Delta$ operator:
 $$
-\begin{align*}
+\begin{align}
 \Delta_h u_{ij}&=\dfrac{u_{i-1,j}-2u_{ij}+u_{i,j+1}}{h^2}+\dfrac{u_{i,j-1}-2u_{ij}+u_{i+1,j}}{h^2}\\
-&=\dfrac{u_{i-1,j}+u_{i+1,j}+u_{i,j-1}+u_{i,j+1}-4u_{ij}}{h^2}\\
+&=\dfrac{u_{i-1,j}+u_{i+1,j}+u_{i,j-1}+u_{i,j+1}-4u_{ij}}{h^2}\label{5pts}\\
 &=-f_{ij}
-\end{align*}
+\end{align}
 $$
 At the boundary points, $u_{ij}=g(x_i,y_j)$, $i=0\vee j=0\vee i=n\vee j=n$. By $\eqref{eq:fde}$, we have a estimated truncation bound: $\exist\ \xi\in(x_{i-1},x_{i+1}),\eta\in(y_{i-1},y_{i+1})$ such that 
 $$
-R_{ij}=f(x_i,y_j)+\Delta_h u(x_i,y_j)=-\Delta_h u(x_i,y_j)+(\Delta u)(x_i,y_j)=\dfrac{h^2}{12}(u^{(4,0)}(\xi,y_j)+u^{(0,4)}(x_i,\eta))
+R_{ij}=f(x_i,y_j)+\Delta_h u(x_i,y_j)=-\Delta_h u(x_i,y_j)+(\Delta u)(x_i,y_j)=\dfrac{h^2}{12}(u^{(4,0)}(\xi,y_j)+u^{(0,4)}(x_i,\eta))\label{err}
 $$
 To solve the discretized equations, we can use <u>sparse Matrix</u> to store all the coefficients.
 
@@ -344,7 +342,69 @@ function RK4(f::Function, tspan, y0, h)
 end
 ```
 
+The derivation is direct and explicit, thus is easy to implement and can simulate as long as we want. But I notice a cons for this: the ratio of time step and space step should be extremely small to ensure the convergency. In my experiment, the result keeps blowing up until I take $\Delta x=\Delta y=0.01$ and $\Delta t=5\times 10^{-4}$.
 
+```julia
+u0(x, y, t) = cos(pi * x) * sin(pi * y) * cos(t)
+
+include("Utils.jl")
+
+Nx = Ny = 100
+L = H = 1
+
+dx = L / (Nx - 1)
+dy = H / (Ny - 1)
+
+xs = 0:dx:L
+ys = 0:dy:H
+
+a = 1;
+
+u_init = u0.(xs', ys, 0);
+
+function f(t, y)
+    sz = size(y)
+    dy = zeros(Float64, sz);
+
+    for i = 1 : sz[1], j = 1 : sz[2]
+        if i != 1 && i != Ny
+            if j == 1 # left
+                dy[i, j] = -sin(t) * sin(pi * ys[i])
+            end
+            if j == Nx # right
+                dy[i, j] = a ^ 2 * (2 * y[i, j - 1] + y[i - 1, j] + y[i + 1, j] - 4 * y[i, j]) / dx ^ 2
+            end
+        end
+        if i == 1 || i == Ny
+            dy[i, j] = 0
+        end
+        if i != 1 && i != Ny && j != 1 && j != Nx
+            dy[i, j] = a ^ 2 * (y[i, j + 1] + y[i, j - 1] + y[i - 1, j] + y[i + 1, j] - 4 * y[i, j]) / dx ^ 2
+        end
+    end
+    return dy
+end
+
+tspan = [0, 2]
+Nt = 100000;
+dt = (tspan[2] - tspan[1]) / (Nt - 1);
+@elpased ts, us = RK4(f, tspan, u_init, dt);
+
+anim = @animate for i = 1:200:length(us)
+    surface(xs, ys, us[i], 
+    opacity=0.9, 
+    title=LaTeXString(sprintf1("T = %.5f", ts[i])),
+    xlabel=L"x", ylabel=L"y", zlabel=L"u(t;x,y)",
+    xlims=[0,1], ylims=[0,1], zlims=[-1,1]
+    )
+end
+
+gif(anim, "P3.gif", fps = 50)
+```
+
+==**Result:**==
+
+![P3](report.assets/P3.gif)
 
 ### Analysis
 
@@ -356,7 +416,98 @@ Moreover, since the discretization is performed on a grid, boundary-shape-orient
 
 #### Error
 
-From the calculation, ...., we're going to give a formal proof of the error of this method, taking 5-point stencil as an example.
+In this subsection, we're going to give a formal proof of the error of this method applied to the first problem (with zero Dirichlet boundary condition), taking 5-point stencil as an example.
 
+Firstly we need to prove the maximum theorem for Poisson equation.
 
+*Lemma 1* Let $u\in C^2(\Omega)\cap C(\bar\Omega)$ and satisfies $-\Delta u\leqslant 0$ on $\Omega$, then $\displaystyle\max_{\bar\Omega}\leqslant \max_{\bar\Gamma}$ .
 
+*Theorem 1* Let $u\in C^2(\bar\Omega)$, then $\exists\ C$ constant such that 
+$$
+\max_{\bar\Omega}|u|\leqslant \max_{\Gamma}|u|+C\max_{\bar\Omega}|\Delta u|
+$$
+**Proof: ** take an arbitrary function $f$ such that $f\geqslant 0$ and $\Delta f\geqslant 1$ on $\Omega$, define $v=u+f \max_{\bar\Omega}|\Delta u|$, then
+$$
+\Delta v=\Delta u+\max_{\bar\Omega}|\Delta u|\Delta f\geqslant 0\text{  on }\Omega
+$$
+hence $v$ achieve this maximum on the boundary, whence 
+$$
+u\leqslant v\leqslant\max_{\Gamma} v\leqslant \max_{\Gamma}|u|+\max_{\bar\Omega}|\Delta u|\max_{\Gamma} f
+$$
+Similarly,
+$$
+-u\leqslant\max_\Gamma |u|+\max_{\bar\Omega}|\Delta u|\max_{\Gamma}f 
+$$
+let $C=\max_\Gamma f$ then the proof is finished.
+
+👉 <u>Next, we shall extend this theorem to grids.</u>
+
+*Theorem 2* Let a grid function $e_{ij}$ satisfies $-\Delta_h e_{ij}\leqslant 0$, $\forall\ (x_i,y_j)\in \Omega$, then $\displaystyle\max_{\bar\Omega} e_{ij}\leqslant \max_{\Gamma}e_{ij}$.
+
+**Proof: **For internal nodes, apparently, 
+$$
+e_{ij}=\dfrac{e_{i-1,j}+e_{i+1,j}+e_{i,j-1}+e_{i,j+1}}{4}-\dfrac{h^2}{4}\Delta_h e_{ij}\leqslant \dfrac{e_{i-1,j}+e_{i+1,j}+e_{i,j-1}+e_{i,j+1}}{4}
+$$
+Suppose the maximum value of $e_{ij}$, $e_{\max}$ is achieved at some internal node $(x_{i_0},y_{i_0})$, Then it's 4 adjacent nodes  achieve maximum value as well (otherwise $e_{i_0,j_0}>\dfrac{e_{i-1,j}+e_{i+1,j}+e_{i,j-1}+e_{i,j+1}}{4}$, contradictory). Using a flood scheme, we can deduce that the maximum value is achieved at all internal nodes. i.e. $e_{ij}$ is constant.
+
+*Theorem 3* Let  $e_{ij}$ be an arbitrary grid function. Then there exists a constant $C$, such that
+$$
+\max_{\bar{\Omega}}|e_{ij}|\leqslant \max_{\Gamma}|e_{ij}|+C\max_{\Omega}|\Delta_h e_{ij}|
+$$
+**Proof: ** Adopting the same procedure as theorem 1. take an arbitrary function $f_{ij}$ such that $f_{ij}\geqslant 0$ and $\Delta f_{ij}\geqslant 1$ on $\Omega$, define $v_{ij}=u_{ij}+f_{ij} \max_{\bar\Omega}|\Delta_h e_{ij}|$, then
+$$
+\Delta_h v_{ij}=\Delta_h e_{ij}+\max_{\bar\Omega}|\Delta_h e_{ij}|\Delta_h f_{ij}\geqslant 0\text{  for all }(x_i,y_j)\in\Omega
+$$
+By theorem 2,
+$$
+e_{ij}\leqslant v_{ij}\leqslant\max_{\Gamma} v_{ij}\leqslant \max_{\Gamma}|e_{ij}|+\max_{\bar\Omega}|\Delta e_{ij}|\max_{\Gamma} f_{ij}
+$$
+Similarly,
+$$
+-e_{ij}\leqslant\max_\Gamma |u_{ij}|+\max_{\bar\Omega}|\Delta e_{ij}|\max_{\Gamma}f_{ij}
+$$
+let $C=\max_\Gamma f_{ij}$ then the proof is finished.
+
+*Corollary 1* Let $u$ be the solution to $\eqref{1}$, $u_{ij}$ be the solution to $\eqref{5pts}$, then 
+$$
+|u_{ij}-u(x_i,y_j)|\leqslant Ch^2|u|,\quad \forall\ (x_i,y_j)\in\bar\Omega
+$$
+**Proof: ** Let $e_{ij}=u_{ij}-u(x_i,y_j)$, then by the BC, $u_{ij}=0$ on $\Gamma$, by $\eqref{err}$, we have
+$$
+-\Delta_h e_{ij}=f_{ij}+\Delta_h u(x_i,y_j)=R_{ij}
+$$
+Thus refer to the theorems above, we can derive that
+$$
+|e_{ij}|\leqslant C\max_{\Omega}|R_{ij}|\leqslant Ch^2 |u|
+$$
+This gives an upper bound estimation of the bound.
+
+👉 <u>For other boundaries and boundary conditions, the basic idea is the same, but I haven't got time to prove further conclusions such as stability analysis.</u>
+
+## Future work
+
+There are some key points to deepen our work.
+
+- In our work, we take small enough step size but I's curious how small should we take the step size to ensure the convergency, a convergence analysis is required.
+- For curved boundary, will interpolation always works, and how to implement it beautifully?
+- When we applied the RK method on time, why it is easy to diverge?
+- The simulation region is gridded, hence its unsuitable for arbitrary mesh and BC, we need to investigate methods based on quadrangle meshes.
+- The Lattice Boltzmann Method is beautiful, but we haven't got time to learn. Maybe it's good idea to try it.
+
+### What I learned
+
+As for the programming language `Julia`, I've learned how to draw interactive beautiful diagrams and illustrative graphs using `PlotlyJS`. And I learned how to output animation and fluently use subscripts.
+
+As for the FDM (Finite Difference Method), I've learned the basic approaches & procedures to calculate and implement it, and roughly estimated the error and efficiency, and got a basic comprehension of the method. I've successfully apply the discretization stencil to a initial value (time) problem.
+
+In addition, in order to finish this report, I've search a lot (but 95% materials I read are not listed in the references since they're not practiced yet), and get to know the basic methods adopted in CFD and their pros and cons. Some of them are really interesting. Maybe in the future I'll try them by myself.
+
+## Reference
+
+1. [Finite difference coefficient - Wikipedia, https://en.wikipedia.org/wiki/Finite_difference_coefficient](https://en.wikipedia.org/wiki/Finite_difference_coefficient)
+
+2. Finite Difference Methods - https://www.colorado.edu/amath/sites/default/files/attached-files/wk10_finitedifferences.pdf
+
+3. Julia Documentation - [https://docs.julialang.org](https://docs.julialang.org/)
+
+   
