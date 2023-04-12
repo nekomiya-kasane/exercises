@@ -1,3 +1,5 @@
+# Report on a Numerical Method for PDE BVP Problems
+
 ## Preface
 
 In this report, we focus on the implementation and analysis of various numerical methods for solving partial differential equations (PDEs), with the goal of gaining a comprehensive understanding of their performance. These methods find direct applications in multiple disciplines, including computational fluid dynamics, computational chemistry, and more. 
