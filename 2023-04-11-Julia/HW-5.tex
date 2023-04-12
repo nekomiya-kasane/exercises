@@ -1,0 +1,1272 @@
+\documentclass[11pt]{article}
+
+    \usepackage[breakable]{tcolorbox}
+    \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
+    
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % Maintain compatibility with old templates. Remove in nbconvert 6.0
+    \let\Oldincludegraphics\includegraphics
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionFormat{nocaption}{}
+    \captionsetup{format=nocaption,aboveskip=0pt,belowskip=0pt}
+
+    \usepackage{float}
+    \floatplacement{figure}{H} % forces figures to be placed at the correct location
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+
+    \usepackage{iftex}
+    \ifPDFTeX
+        \usepackage[T1]{fontenc}
+        \IfFileExists{alphabeta.sty}{
+              \usepackage{alphabeta}
+          }{
+              \usepackage[mathletters]{ucs}
+              \usepackage[utf8x]{inputenc}
+          }
+    \else
+        \usepackage{fontspec}
+        \usepackage{unicode-math}
+    \fi
+
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics
+                         % to support a larger range
+    \makeatletter % fix for old versions of grffile with XeLaTeX
+    \@ifpackagelater{grffile}{2019/11/01}
+    {
+      % Do nothing on new versions
+    }
+    {
+      \def\Gread@@xetex#1{%
+        \IfFileExists{"\Gin@base".bb}%
+        {\Gread@eps{\Gin@base.bb}}%
+        {\Gread@@xetex@aux#1}%
+      }
+    }
+    \makeatother
+    \usepackage[Export]{adjustbox} % Used to constrain images to a maximum size
+    \adjustboxset{max size={0.9\linewidth}{0.9\paperheight}}
+
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    % The default LaTeX title has an obnoxious amount of whitespace. By default,
+    % titling removes some of it. It also provides customization options.
+    \usepackage{titling}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage{array}     % table support for pandoc >= 2.11.3
+    \usepackage{calc}      % table minipage width calculation for pandoc >= 2.11.1
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % common color for the border for error outputs.
+    \definecolor{outerrorbackground}{HTML}{FFDFDF}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+
+
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{HW-5}
+    
+    
+    
+    
+    
+% Pygments definitions
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\@namedef{PY@tok@w}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\@namedef{PY@tok@c}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cp}{\def\PY@tc##1{\textcolor[rgb]{0.61,0.40,0.00}{##1}}}
+\@namedef{PY@tok@k}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kt}{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\@namedef{PY@tok@o}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ow}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@nb}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nf}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@ne}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.80,0.25,0.22}{##1}}}
+\@namedef{PY@tok@nv}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@no}{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\@namedef{PY@tok@nl}{\def\PY@tc##1{\textcolor[rgb]{0.46,0.46,0.00}{##1}}}
+\@namedef{PY@tok@ni}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@na}{\def\PY@tc##1{\textcolor[rgb]{0.41,0.47,0.13}{##1}}}
+\@namedef{PY@tok@nt}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nd}{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@s}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sd}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@si}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@se}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.36,0.12}{##1}}}
+\@namedef{PY@tok@sr}{\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@ss}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sx}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@m}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@gh}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gu}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gd}{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\@namedef{PY@tok@gi}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.52,0.00}{##1}}}
+\@namedef{PY@tok@gr}{\def\PY@tc##1{\textcolor[rgb]{0.89,0.00,0.00}{##1}}}
+\@namedef{PY@tok@ge}{\let\PY@it=\textit}
+\@namedef{PY@tok@gs}{\let\PY@bf=\textbf}
+\@namedef{PY@tok@gp}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@go}{\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@gt}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\@namedef{PY@tok@err}{\def\PY@bc##1{{\setlength{\fboxsep}{\string -\fboxrule}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}}
+\@namedef{PY@tok@kc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kd}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kr}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@bp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@fm}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@vc}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vg}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vi}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vm}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sa}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sb}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sc}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@dl}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s2}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sh}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s1}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@mb}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mf}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mh}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mi}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@il}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mo}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ch}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cm}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cpf}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@c1}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cs}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % For linebreaks inside Verbatim environment from package fancyvrb.
+    \makeatletter
+        \newbox\Wrappedcontinuationbox
+        \newbox\Wrappedvisiblespacebox
+        \newcommand*\Wrappedvisiblespace {\textcolor{red}{\textvisiblespace}}
+        \newcommand*\Wrappedcontinuationsymbol {\textcolor{red}{\llap{\tiny$\m@th\hookrightarrow$}}}
+        \newcommand*\Wrappedcontinuationindent {3ex }
+        \newcommand*\Wrappedafterbreak {\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox}
+        % Take advantage of the already applied Pygments mark-up to insert
+        % potential linebreaks for TeX processing.
+        %        {, <, #, %, $, ' and ": go to next line.
+        %        _, }, ^, &, >, - and ~: stay at end of broken line.
+        % Use of \textquotesingle for straight quote.
+        \newcommand*\Wrappedbreaksatspecials {%
+            \def\PYGZus{\discretionary{\char`\_}{\Wrappedafterbreak}{\char`\_}}%
+            \def\PYGZob{\discretionary{}{\Wrappedafterbreak\char`\{}{\char`\{}}%
+            \def\PYGZcb{\discretionary{\char`\}}{\Wrappedafterbreak}{\char`\}}}%
+            \def\PYGZca{\discretionary{\char`\^}{\Wrappedafterbreak}{\char`\^}}%
+            \def\PYGZam{\discretionary{\char`\&}{\Wrappedafterbreak}{\char`\&}}%
+            \def\PYGZlt{\discretionary{}{\Wrappedafterbreak\char`\<}{\char`\<}}%
+            \def\PYGZgt{\discretionary{\char`\>}{\Wrappedafterbreak}{\char`\>}}%
+            \def\PYGZsh{\discretionary{}{\Wrappedafterbreak\char`\#}{\char`\#}}%
+            \def\PYGZpc{\discretionary{}{\Wrappedafterbreak\char`\%}{\char`\%}}%
+            \def\PYGZdl{\discretionary{}{\Wrappedafterbreak\char`\$}{\char`\$}}%
+            \def\PYGZhy{\discretionary{\char`\-}{\Wrappedafterbreak}{\char`\-}}%
+            \def\PYGZsq{\discretionary{}{\Wrappedafterbreak\textquotesingle}{\textquotesingle}}%
+            \def\PYGZdq{\discretionary{}{\Wrappedafterbreak\char`\"}{\char`\"}}%
+            \def\PYGZti{\discretionary{\char`\~}{\Wrappedafterbreak}{\char`\~}}%
+        }
+        % Some characters . , ; ? ! / are not pygmentized.
+        % This macro makes them "active" and they will insert potential linebreaks
+        \newcommand*\Wrappedbreaksatpunct {%
+            \lccode`\~`\.\lowercase{\def~}{\discretionary{\hbox{\char`\.}}{\Wrappedafterbreak}{\hbox{\char`\.}}}%
+            \lccode`\~`\,\lowercase{\def~}{\discretionary{\hbox{\char`\,}}{\Wrappedafterbreak}{\hbox{\char`\,}}}%
+            \lccode`\~`\;\lowercase{\def~}{\discretionary{\hbox{\char`\;}}{\Wrappedafterbreak}{\hbox{\char`\;}}}%
+            \lccode`\~`\:\lowercase{\def~}{\discretionary{\hbox{\char`\:}}{\Wrappedafterbreak}{\hbox{\char`\:}}}%
+            \lccode`\~`\?\lowercase{\def~}{\discretionary{\hbox{\char`\?}}{\Wrappedafterbreak}{\hbox{\char`\?}}}%
+            \lccode`\~`\!\lowercase{\def~}{\discretionary{\hbox{\char`\!}}{\Wrappedafterbreak}{\hbox{\char`\!}}}%
+            \lccode`\~`\/\lowercase{\def~}{\discretionary{\hbox{\char`\/}}{\Wrappedafterbreak}{\hbox{\char`\/}}}%
+            \catcode`\.\active
+            \catcode`\,\active
+            \catcode`\;\active
+            \catcode`\:\active
+            \catcode`\?\active
+            \catcode`\!\active
+            \catcode`\/\active
+            \lccode`\~`\~
+        }
+    \makeatother
+
+    \let\OriginalVerbatim=\Verbatim
+    \makeatletter
+    \renewcommand{\Verbatim}[1][1]{%
+        %\parskip\z@skip
+        \sbox\Wrappedcontinuationbox {\Wrappedcontinuationsymbol}%
+        \sbox\Wrappedvisiblespacebox {\FV@SetupFont\Wrappedvisiblespace}%
+        \def\FancyVerbFormatLine ##1{\hsize\linewidth
+            \vtop{\raggedright\hyphenpenalty\z@\exhyphenpenalty\z@
+                \doublehyphendemerits\z@\finalhyphendemerits\z@
+                \strut ##1\strut}%
+        }%
+        % If the linebreak is at a space, the latter will be displayed as visible
+        % space at end of first line, and a continuation symbol starts next line.
+        % Stretch/shrink are however usually zero for typewriter font.
+        \def\FV@Space {%
+            \nobreak\hskip\z@ plus\fontdimen3\font minus\fontdimen4\font
+            \discretionary{\copy\Wrappedvisiblespacebox}{\Wrappedafterbreak}
+            {\kern\fontdimen2\font}%
+        }%
+
+        % Allow breaks at special characters using \PYG... macros.
+        \Wrappedbreaksatspecials
+        % Breaks at punctuation characters . , ; ? ! and / need catcode=\active
+        \OriginalVerbatim[#1,codes*=\Wrappedbreaksatpunct]%
+    }
+    \makeatother
+
+    % Exact colors from NB
+    \definecolor{incolor}{HTML}{303F9F}
+    \definecolor{outcolor}{HTML}{D84315}
+    \definecolor{cellborder}{HTML}{CFCFCF}
+    \definecolor{cellbackground}{HTML}{F7F7F7}
+
+    % prompt
+    \makeatletter
+    \newcommand{\boxspacing}{\kern\kvtcb@left@rule\kern\kvtcb@boxsep}
+    \makeatother
+    \newcommand{\prompt}[4]{
+        {\ttfamily\llap{{\color{#2}[#3]:\hspace{3pt}#4}}\vspace{-\baselineskip}}
+    }
+    
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+\begin{document}
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{homework-5}{%
+\subsection{Homework 5}\label{homework-5}}
+
+\textbf{Your name}.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{using}\PY{+w}{ }\PY{n}{LinearAlgebra}\PY{p}{,}\PY{+w}{ }\PY{n}{Plots}
+\PY{k}{using}\PY{+w}{ }\PY{n}{LaTeXStrings}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{q-7.2.5}{%
+\subsection{Q 7.2.5}\label{q-7.2.5}}
+
+Let \(A\) be a 2x2 matrix defined below.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Find the eigenvalue decomposition of \(A\) using \texttt{eigen}. The
+  result is a data structure with two components, \texttt{.values} and
+  \texttt{.vectors}
+\item
+  Write a function \texttt{p\_matrix} that uses Eq. (7.2.7) to evaluate
+  \(p(A)\), where \(p(x) = (x - \pi)^4\). You can find a matrix inverse
+  using the function \texttt{inv} and you can construct a matrix from
+  its diagonal entries using \texttt{diagm}.
+\item
+  Write a function \texttt{cos\_matrix} that uses the function analog of
+  (7.2.7) to evaluate \(p(A) = \cos(A)\).
+\end{enumerate}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{A}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{p}{[}\PY{+w}{ }\PY{l+m+mi}{4}\PY{+w}{ }\PY{l+m+mi}{1}\PY{p}{;}\PY{+w}{ }\PY{l+m+mi}{4}\PY{+w}{ }\PY{l+m+mi}{4}\PY{p}{]}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n+nb}{pi}\PY{+w}{ }\PY{o}{/}\PY{+w}{ }\PY{l+m+mi}{6}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+2×2 Matrix\{Float64\}:
+ 2.0944  0.523599
+ 2.0944  2.0944
+    \end{Verbatim}
+
+    
+    Compare the numerical value of your solution to the ``long way'',
+computing the fourth power of \(A - \pi\) explicitly. Also compare to
+Julia's built-in algorithm for computing cosine of a matrix.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{p}{(}\PY{n}{A}\PY{+w}{ }\PY{o}{\PYZhy{}}\PY{+w}{ }\PY{n}{one}\PY{p}{(}\PY{n}{A}\PY{p}{)}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n+nb}{pi}\PY{p}{)}\PY{+w}{ }\PY{o}{\PYZca{}}\PY{+w}{ }\PY{l+m+mi}{4}\PY{+w}{ }\PY{c}{\PYZsh{} built\PYZhy{}in calculation \PYZhy{}\PYZhy{} the notation hides the algorithm}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+2×2 Matrix\{Float64\}:
+   9.62065  -4.81033
+ -19.2413    9.62065
+    \end{Verbatim}
+
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{cos}\PY{p}{(}\PY{n}{A}\PY{p}{)}\PY{+w}{ }\PY{c}{\PYZsh{} built\PYZhy{}in}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+2×2 Matrix\{Float64\}:
+ -0.25  -0.375
+ -1.5   -0.25
+    \end{Verbatim}
+
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{6}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{ev}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{eigen}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Eigen\{Float64, Float64, Matrix\{Float64\}, Vector\{Float64\}\}
+values:
+2-element Vector\{Float64\}:
+ 1.0471975511965976
+ 3.141592653589793
+vectors:
+2×2 Matrix\{Float64\}:
+ -0.447214  0.447214
+  0.894427  0.894427
+    \end{Verbatim}
+
+    
+    \emph{Solution}
+
+    \begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  The eigenvalue decomposition is
+\end{enumerate}
+
+\[
+    A = P\Lambda P^{-1},\quad 
+    \Lambda = \begin{bmatrix}
+        \lambda_1&0\\0&\lambda_2
+    \end{bmatrix} = \begin{bmatrix}
+        1.0472&0\\0&3.1416
+    \end{bmatrix},\quad P = \begin{bmatrix}
+        \mathbf{v_1}&\mathbf{v_2}
+    \end{bmatrix} = \begin{bmatrix}
+        -0.4472&0.4472\\0.8944&0.8944
+    \end{bmatrix}
+\]
+
+and
+\(p^{-1}=\begin{bmatrix}  -1.1180&0.5590\\1.1180&0.5590  \end{bmatrix}\),
+thus
+
+\[
+    A = \begin{bmatrix}
+        -0.4472&0.4472\\0.8944&0.8944
+    \end{bmatrix}\begin{bmatrix}
+        1.0472&0\\0&3.1416
+    \end{bmatrix}\begin{bmatrix}
+        -1.1180&0.5590\\1.1180&0.5590
+    \end{bmatrix}
+\]
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{7}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c}{\PYZsh{} (a)}
+\PY{n}{ev}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{eigen}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+\PY{n}{display}\PY{p}{(}\PY{n}{ev}\PY{p}{)}
+\PY{n}{display}\PY{p}{(}\PY{n}{inv}\PY{p}{(}\PY{n}{ev}\PY{o}{.}\PY{n}{vectors}\PY{p}{)}\PY{p}{)}
+\PY{n}{display}\PY{p}{(}\PY{n}{ev}\PY{o}{.}\PY{n}{vectors}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n}{diagm}\PY{p}{(}\PY{n}{ev}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n}{inv}\PY{p}{(}\PY{n}{ev}\PY{o}{.}\PY{n}{vectors}\PY{p}{)}\PY{p}{)}
+
+\PY{c}{\PYZsh{} verify}
+\PY{n}{ev}\PY{o}{.}\PY{n}{vectors}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n}{diagm}\PY{p}{(}\PY{n}{ev}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n}{inv}\PY{p}{(}\PY{n}{ev}\PY{o}{.}\PY{n}{vectors}\PY{p}{)}\PY{+w}{ }\PY{o}{\PYZhy{}}\PY{+w}{ }\PY{n}{A}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Eigen\{Float64, Float64, Matrix\{Float64\}, Vector\{Float64\}\}
+values:
+2-element Vector\{Float64\}:
+ 1.0471975511965976
+ 3.141592653589793
+vectors:
+2×2 Matrix\{Float64\}:
+ -0.447214  0.447214
+  0.894427  0.894427
+    \end{Verbatim}
+
+    
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+2×2 Matrix\{Float64\}:
+ -1.11803  0.559017
+  1.11803  0.559017
+    \end{Verbatim}
+
+    
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+2×2 Matrix\{Float64\}:
+ 2.0944  0.523599
+ 2.0944  2.0944
+    \end{Verbatim}
+
+    
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+2×2 Matrix\{Float64\}:
+ 0.0  1.11022e-16
+ 0.0  4.44089e-16
+    \end{Verbatim}
+
+    
+    \begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \(P^{-1}(A-\pi)^4P=(P^{-1}(A-\pi)P)^4=(\Lambda-\pi)^4\), hence
+  \((A-\pi)^4=P(\Lambda-\pi)^4P^{-1}\).
+\end{enumerate}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{8}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{p}{(}\PY{n}{ev}\PY{o}{.}\PY{n}{vectors}\PY{p}{)}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n}{diagm}\PY{p}{(}\PY{p}{(}\PY{n}{ev}\PY{o}{.}\PY{n}{values}\PY{+w}{ }\PY{o}{.\PYZhy{}}\PY{+w}{ }\PY{n+nb}{pi}\PY{p}{)}\PY{+w}{ }\PY{o}{.\PYZca{}}\PY{+w}{ }\PY{l+m+mi}{4}\PY{p}{)}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n}{inv}\PY{p}{(}\PY{n}{ev}\PY{o}{.}\PY{n}{vectors}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+2×2 Matrix\{Float64\}:
+   9.62065  -4.81033
+ -19.2413    9.62065
+    \end{Verbatim}
+
+    
+    \begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Let
+  \(p(x)=\cos x=1-\dfrac{x^2}{2!}+\dfrac{x^4}{4!}-\dfrac{x^6}{6!}+\cdots\),
+  then
+\end{enumerate}
+
+\[
+    \begin{align}
+        p(A)=\cos A &= I-\dfrac{A^2}{2!}+\dfrac{A^4}{4!}-\dfrac{A^6}{6!}+\cdots\\
+        & = V\text{diag}(p(\lambda_1), p(\lambda_2), \cdots, p(\lambda_n))V^{-1}\\
+        & = V\text{diag}(\cos(\lambda_1), \cos(\lambda_2), \cdots, \cos(\lambda_n))V^{-1}
+    \end{align}
+\]
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{9}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{ev}\PY{o}{.}\PY{n}{vectors}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n}{diagm}\PY{p}{(}\PY{n}{cos}\PY{o}{.}\PY{p}{(}\PY{n}{ev}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n}{inv}\PY{p}{(}\PY{n}{ev}\PY{o}{.}\PY{n}{vectors}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+2×2 Matrix\{Float64\}:
+ -0.25  -0.375
+ -1.5   -0.25
+    \end{Verbatim}
+
+    
+    \hypertarget{q-7.2.8}{%
+\subsection{Q 7.2.8}\label{q-7.2.8}}
+
+Eigenvalues of random matrices and their perturbations can be very
+interesting.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Let A=randn(60,60). Scatter plot its eigenvalues in the complex plane,
+  using aspect\_ratio=1 and red diamonds as markers.
+\item
+  Let \(E\) be another random \(60\times 60\) matrix, and on top of the
+  previous graph, plot the eigenvalues of \(A+0.05E\) as blue dots.
+  Repeat this for 100 different values of \(E\).
+\item
+  Let T=triu(A). On a new graph, scatter plot the eigenvalues of \(T\)
+  in the complex plane. (They all lie on the real axis.)
+\item
+  Repeat part (b) with \(T\) in place of \(A\).
+\end{enumerate}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{10}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c}{\PYZsh{} (a)}
+
+\PY{n}{A}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{60}\PY{p}{,}\PY{+w}{ }\PY{l+m+mi}{60}\PY{p}{)}\PY{p}{;}
+\PY{n}{ev}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{eigen}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+\PY{n}{scatter}\PY{p}{(}\PY{n}{ev}\PY{o}{.}\PY{n}{values}\PY{p}{,}\PY{+w}{ }\PY{n}{shape}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s+ss}{:diamond}\PY{p}{,}\PY{+w}{ }\PY{n}{color}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s+ss}{:red}\PY{p}{,}\PY{+w}{ }\PY{n}{label}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{+w}{ }\PY{n}{aspect\PYZus{}ratio}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW-5_files/HW-5_16_0.pdf}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{11}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c}{\PYZsh{} (b)}
+
+\PY{n}{E}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{60}\PY{p}{,}\PY{+w}{ }\PY{l+m+mi}{60}\PY{p}{)}\PY{p}{;}
+\PY{n}{ev2}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{eigen}\PY{p}{(}\PY{n}{A}\PY{+w}{ }\PY{o}{+}\PY{+w}{ }\PY{l+m+mf}{0.05}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n}{E}\PY{p}{)}
+\PY{n}{display}\PY{p}{(}\PY{n}{scatter!}\PY{p}{(}\PY{n}{ev2}\PY{o}{.}\PY{n}{values}\PY{p}{,}\PY{+w}{ }\PY{n}{shape}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s+ss}{:circle}\PY{p}{,}\PY{+w}{ }\PY{n}{color}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s+ss}{:blue}\PY{p}{,}\PY{+w}{ }\PY{n}{label}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW-5_files/HW-5_17_0.pdf}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{12}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c}{\PYZsh{} (c)}
+
+\PY{n}{T}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{triu}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+\PY{n}{ev3}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{eigen}\PY{p}{(}\PY{n}{T}\PY{p}{)}
+\PY{n}{scatter}\PY{p}{(}\PY{n}{real}\PY{p}{(}\PY{n}{ev3}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{,}\PY{+w}{ }\PY{n}{imag}\PY{p}{(}\PY{n}{ev3}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{,}\PY{+w}{ }\PY{n}{shape}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s+ss}{:diamond}\PY{p}{,}\PY{+w}{ }\PY{n}{color}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s+ss}{:orange}\PY{p}{,}\PY{+w}{ }\PY{n}{opacity}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mf}{0.4}\PY{p}{,}\PY{+w}{ }\PY{n}{label}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{+w}{ }\PY{n}{aspect\PYZus{}ratio}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW-5_files/HW-5_18_0.pdf}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{13}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c}{\PYZsh{} (d)}
+
+\PY{n}{ev4}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{eigen}\PY{p}{(}\PY{n}{T}\PY{+w}{ }\PY{o}{+}\PY{+w}{ }\PY{l+m+mf}{0.05}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n}{E}\PY{p}{)}
+\PY{n}{scatter!}\PY{p}{(}\PY{n}{real}\PY{p}{(}\PY{n}{ev3}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{,}\PY{+w}{ }\PY{n}{imag}\PY{p}{(}\PY{n}{ev3}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{,}\PY{+w}{ }\PY{n}{shape}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s+ss}{:circle}\PY{p}{,}\PY{+w}{ }\PY{n}{color}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s+ss}{:blue}\PY{p}{,}\PY{+w}{ }\PY{n}{opacity}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mf}{0.4}\PY{p}{,}\PY{+w}{ }\PY{n}{label}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\PY{n}{current}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW-5_files/HW-5_19_0.pdf}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{q-7.3.4}{%
+\subsection{Q 7.3.4}\label{q-7.3.4}}
+
+See Demo 7.1.7 for how to get the ``mandrill'' test image. Make a
+log-linear scatter plot of the singular values of the matrix of
+grayscale intensity values. (The shape of this graph is surprisingly
+similar across a wide range of images.)
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{14}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{using}\PY{+w}{ }\PY{n}{Images}\PY{p}{,}\PY{+w}{ }\PY{n}{TestImages}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \emph{Solution}:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{15}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{img}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{Gray}\PY{o}{.}\PY{p}{(}\PY{n}{testimage}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{mandrill}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW-5_files/HW-5_23_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{16}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{A}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{k+kt}{Float64}\PY{o}{.}\PY{p}{(}\PY{n}{Gray}\PY{o}{.}\PY{p}{(}\PY{n}{img}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+512×512 Matrix\{Float64\}:
+ 0.568627   0.219608   0.192157   0.34902   …  0.443137  0.6        0.694118
+ 0.454902   0.396078   0.156863   0.262745     0.509804  0.584314   0.490196
+ 0.301961   0.447059   0.180392   0.180392     0.392157  0.345098   0.317647
+ 0.278431   0.533333   0.372549   0.188235     0.286275  0.294118   0.27451
+ 0.341176   0.478431   0.517647   0.196078     0.231373  0.313725   0.337255
+ 0.321569   0.298039   0.623529   0.239216  …  0.333333  0.596078   0.713725
+ 0.168627   0.2        0.52549    0.509804     0.72549   0.776471   0.643137
+ 0.129412   0.2        0.435294   0.6          0.631373  0.470588   0.541176
+ 0.223529   0.188235   0.219608   0.458824     0.529412  0.611765   0.478431
+ 0.14902    0.12549    0.188235   0.25098      0.254902  0.317647   0.533333
+ ⋮                                          ⋱            ⋮          
+ 0.466667   0.501961   0.564706   0.556863     0.341176  0.321569   0.333333
+ 0.490196   0.490196   0.52549    0.568627     0.341176  0.301961   0.243137
+ 0.443137   0.470588   0.513725   0.537255  …  0.364706  0.32549    0.337255
+ 0.411765   0.435294   0.517647   0.568627     0.321569  0.32549    0.32549
+ 0.376471   0.447059   0.541176   0.596078     0.360784  0.360784   0.333333
+ 0.435294   0.52549    0.596078   0.541176     0.388235  0.352941   0.34902
+ 0.552941   0.568627   0.552941   0.572549     0.32549   0.34902    0.305882
+ 0.611765   0.552941   0.513725   0.466667  …  0.309804  0.313725   0.270588
+ 0.0431373  0.0431373  0.0509804  0.054902     0.027451  0.0156863  0.0156863
+    \end{Verbatim}
+
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{17}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{svals}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{svdvals}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+\PY{n}{scatter}\PY{p}{(}\PY{n}{svals}\PY{p}{,}\PY{n}{xaxis}\PY{o}{=}\PY{p}{(}\PY{l+s+sa}{L}\PY{l+s}{\PYZdq{}}\PY{l+s}{i}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{,}\PY{+w}{ }\PY{n}{yaxis}\PY{o}{=}\PY{p}{(}\PY{l+s+ss}{:log10}\PY{p}{,}\PY{l+s+sa}{L}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}}\PY{l+s}{sigma\PYZus{}i}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+\PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Singular values}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{+w}{ }\PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW-5_files/HW-5_25_0.pdf}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{q-7.4.4}{%
+\subsection{Q 7.4.4}\label{q-7.4.4}}
+
+The range of the function \(R_A(x)\) is a subset of the complex plane
+known as the field of values of the matrix \(A\). Use 500 random
+(possibly complex - you decide what is needed) vectors to plot points in
+the field of values of \(A\). Then compute its eigenvalues and guess
+what the exact field of values is.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{18}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{R}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{n}{x}\PY{p}{)}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{x}\PY{o}{\PYZsq{}}\PY{o}{*}\PY{n}{A}\PY{o}{*}\PY{n}{x}\PY{+w}{ }\PY{o}{/}\PY{+w}{ }\PY{p}{(}\PY{n}{x}\PY{o}{\PYZsq{}}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n}{x}\PY{p}{)}
+\PY{n}{A}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{p}{[}\PY{+w}{ }\PY{l+m+mi}{1}\PY{+w}{ }\PY{l+m+mi}{0}\PY{+w}{ }\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{+w}{ }\PY{p}{;}\PY{+w}{ }\PY{l+m+mi}{0}\PY{+w}{ }\PY{l+m+mi}{2}\PY{+w}{ }\PY{l+m+mi}{0}\PY{+w}{ }\PY{p}{;}\PY{+w}{ }\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{+w}{ }\PY{l+m+mi}{0}\PY{+w}{ }\PY{l+m+mi}{1}\PY{+w}{ }\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+3×3 Matrix\{Int64\}:
+  1  0  -2
+  0  2   0
+ -2  0   1
+    \end{Verbatim}
+
+    
+    \emph{Solution}:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{19}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{vals}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{k+kt}{ComplexF64}\PY{p}{[}\PY{p}{]}
+\PY{k}{for}\PY{+w}{ }\PY{n}{i}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{500}
+\PY{+w}{    }\PY{n}{push!}\PY{p}{(}\PY{n}{vals}\PY{p}{,}\PY{+w}{ }\PY{n}{R}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{+w}{ }\PY{n}{randn}\PY{p}{(}\PY{k+kt}{ComplexF64}\PY{p}{,}\PY{+w}{ }\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\PY{k}{end}
+
+\PY{n}{scatter}\PY{p}{(}\PY{n}{vals}\PY{p}{,}\PY{+w}{ }\PY{n}{label}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{+w}{ }\PY{n}{mark}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s+ss}{:x}\PY{p}{,}\PY{+w}{ }\PY{n}{ylim}\PY{o}{=}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mf}{1e\PYZhy{}15}\PY{p}{,}\PY{l+m+mf}{1e\PYZhy{}15}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW-5_files/HW-5_29_0.pdf}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{20}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{eigen}\PY{p}{(}\PY{n}{A}\PY{p}{)}\PY{o}{.}\PY{n}{values}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+3-element Vector\{Float64\}:
+ -0.9999999999999978
+  2.0
+  3.0
+    \end{Verbatim}
+
+    
+    The exact field of \(A\) should probably be \([-1,3]\).
+
+    \hypertarget{q-7.5.5}{%
+\subsection{Q 7.5.5}\label{q-7.5.5}}
+
+Following Demo 7.5.2 as a guide, load the ``mandrill'' test image and
+convert it to a matrix of floating-point pixel grayscale intensities.
+Using the SVD, display as images the best approximations of rank 5, 10,
+15, and 20.
+
+    \emph{Solution}:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{21}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{A}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{k+kt}{Float64}\PY{o}{.}\PY{p}{(}\PY{n}{Gray}\PY{o}{.}\PY{p}{(}\PY{n}{testimage}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{mandrill}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+512×512 Matrix\{Float64\}:
+ 0.568627   0.219608   0.192157   0.34902   …  0.443137  0.6        0.694118
+ 0.454902   0.396078   0.156863   0.262745     0.509804  0.584314   0.490196
+ 0.301961   0.447059   0.180392   0.180392     0.392157  0.345098   0.317647
+ 0.278431   0.533333   0.372549   0.188235     0.286275  0.294118   0.27451
+ 0.341176   0.478431   0.517647   0.196078     0.231373  0.313725   0.337255
+ 0.321569   0.298039   0.623529   0.239216  …  0.333333  0.596078   0.713725
+ 0.168627   0.2        0.52549    0.509804     0.72549   0.776471   0.643137
+ 0.129412   0.2        0.435294   0.6          0.631373  0.470588   0.541176
+ 0.223529   0.188235   0.219608   0.458824     0.529412  0.611765   0.478431
+ 0.14902    0.12549    0.188235   0.25098      0.254902  0.317647   0.533333
+ ⋮                                          ⋱            ⋮          
+ 0.466667   0.501961   0.564706   0.556863     0.341176  0.321569   0.333333
+ 0.490196   0.490196   0.52549    0.568627     0.341176  0.301961   0.243137
+ 0.443137   0.470588   0.513725   0.537255  …  0.364706  0.32549    0.337255
+ 0.411765   0.435294   0.517647   0.568627     0.321569  0.32549    0.32549
+ 0.376471   0.447059   0.541176   0.596078     0.360784  0.360784   0.333333
+ 0.435294   0.52549    0.596078   0.541176     0.388235  0.352941   0.34902
+ 0.552941   0.568627   0.552941   0.572549     0.32549   0.34902    0.305882
+ 0.611765   0.552941   0.513725   0.466667  …  0.309804  0.313725   0.270588
+ 0.0431373  0.0431373  0.0509804  0.054902     0.027451  0.0156863  0.0156863
+    \end{Verbatim}
+
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{22}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{U}\PY{p}{,}\PY{n}{σ}\PY{p}{,}\PY{n}{V}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{svd}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+\PY{n}{scatter}\PY{p}{(}\PY{n}{σ}\PY{p}{,}\PY{n}{xaxis}\PY{o}{=}\PY{p}{(}\PY{l+s+sa}{L}\PY{l+s}{\PYZdq{}}\PY{l+s}{i}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{,}\PY{+w}{ }\PY{n}{yaxis}\PY{o}{=}\PY{p}{(}\PY{l+s+ss}{:log10}\PY{p}{,}\PY{l+s+sa}{L}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}}\PY{l+s}{sigma\PYZus{}i}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+\PY{+w}{    }\PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Singular values}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{+w}{ }\PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW-5_files/HW-5_35_0.pdf}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{23}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{plt}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{plot}\PY{p}{(}\PY{n}{layout}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,}\PY{n}{frame}\PY{o}{=}\PY{l+s+ss}{:none}\PY{p}{,}\PY{n}{aspect\PYZus{}ratio}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{titlefontsize}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+\PY{k}{for}\PY{+w}{ }\PY{n}{i}\PY{+w}{ }\PY{k}{in}\PY{+w}{ }\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{4}
+\PY{+w}{    }\PY{n}{k}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mi}{5}\PY{n}{i}
+\PY{+w}{    }\PY{n}{Ak}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{U}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{n}{k}\PY{p}{]}\PY{o}{*}\PY{n}{diagm}\PY{p}{(}\PY{n}{σ}\PY{p}{[}\PY{l+m+mi}{1}\PY{o}{:}\PY{n}{k}\PY{p}{]}\PY{p}{)}\PY{o}{*}\PY{n}{V}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{n}{k}\PY{p}{]}\PY{o}{\PYZsq{}}
+\PY{+w}{    }\PY{n}{plot!}\PY{p}{(}\PY{n}{Gray}\PY{o}{.}\PY{p}{(}\PY{n}{Ak}\PY{p}{)}\PY{p}{,}\PY{n}{subplot}\PY{o}{=}\PY{n}{i}\PY{p}{,}\PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{rank = }\PY{l+s+si}{\PYZdl{}k}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\PY{k}{end}
+\PY{n}{plt}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW-5_files/HW-5_36_0.pdf}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{q-9.5.2}{%
+\subsection{Q 9.5.2}\label{q-9.5.2}}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Show that the functions \(\sin(r\pi x)\) and \(\sin(s\pi x)\) are
+  identical at all of the nodes given in (9.5.2) if for an integer
+  \(r-s=mN\). This important fact is called aliasing, and it implies
+  that only finitely many frequencies can be distinguished on a fixed
+  node set.
+\item
+  Demonstrate part (a) with a graph for the case \(N=11\), \(s=2\),
+  \(r=-9\). Specifically, plot the two functions on one graph, and plot
+  points to show that they intersect at all of the interpolation nodes.
+\end{enumerate}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{24}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{n}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mi}{5}
+\PY{n}{N}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{n}\PY{+w}{ }\PY{o}{+}\PY{+w}{ }\PY{l+m+mi}{1}
+\PY{n}{tk}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mi}{2}\PY{o}{/}\PY{n}{N}\PY{+w}{ }\PY{o}{.*}\PY{+w}{ }\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{n}\PY{o}{:}\PY{l+m+mi}{1}\PY{o}{:}\PY{n}{n}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \emph{Solution}:
+
+    \begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  at \(x=x_k=\dfrac{2k}{N}\), and \(r-s=mN\), we have
+\end{enumerate}
+
+\[
+    \sin(r\pi x)=\sin(\dfrac{2k(s+mN)\pi}{N})=\sin(\dfrac{2ks\pi}{N}+2km\pi)=\sin(\dfrac{2ks\pi}{N})=\sin(s\pi x)
+\]
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{25}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c}{\PYZsh{} (b)}
+
+\PY{n}{s}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mi}{2}\PY{p}{;}
+\PY{n}{r}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{o}{\PYZhy{}}\PY{l+m+mi}{9}\PY{p}{;}
+\PY{n}{N}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mi}{11}\PY{p}{;}
+
+\PY{n}{f1}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{sin}\PY{p}{(}\PY{n}{r}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n+nb}{pi}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n}{x}\PY{p}{)}\PY{p}{;}
+\PY{n}{f2}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{sin}\PY{p}{(}\PY{n}{s}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n+nb}{pi}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n}{x}\PY{p}{)}\PY{p}{;}
+
+\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{n}{f1}\PY{p}{,}\PY{+w}{ }\PY{n}{f2}\PY{p}{]}\PY{p}{,}\PY{+w}{ }\PY{n}{xlim}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{p}{[}\PY{n}{minimum}\PY{p}{(}\PY{n}{tk}\PY{p}{)}\PY{+w}{ }\PY{o}{\PYZhy{}}\PY{+w}{ }\PY{l+m+mf}{.1}\PY{p}{,}\PY{+w}{ }\PY{n}{maximum}\PY{p}{(}\PY{n}{tk}\PY{p}{)}\PY{+w}{ }\PY{o}{+}\PY{+w}{ }\PY{l+m+mf}{.1}\PY{p}{]}\PY{p}{,}\PY{+w}{ }\PY{n}{labels}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{p}{[}\PY{l+s+sa}{L}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}}\PY{l+s}{sin(r}\PY{l+s}{\PYZbs{}}\PY{l+s}{pi x)}\PY{l+s}{\PYZdq{}}\PY{+w}{ }\PY{l+s+sa}{L}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}}\PY{l+s}{sin(s}\PY{l+s}{\PYZbs{}}\PY{l+s}{pi x)}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+\PY{n}{scatter!}\PY{p}{(}\PY{n}{tk}\PY{p}{,}\PY{+w}{ }\PY{n}{f1}\PY{o}{.}\PY{p}{(}\PY{n}{tk}\PY{p}{)}\PY{p}{,}\PY{+w}{ }\PY{n}{label}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s+sa}{L}\PY{l+s}{\PYZdq{}}\PY{l+s}{t\PYZus{}k}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW-5_files/HW-5_41_0.pdf}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{26}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{df}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{+w}{ }\PY{o}{\PYZhy{}\PYZgt{}}\PY{+w}{ }\PY{n}{f1}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{+w}{ }\PY{o}{\PYZhy{}}\PY{+w}{ }\PY{n}{f2}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+\PY{n}{plot}\PY{p}{(}\PY{n}{df}\PY{p}{,}\PY{+w}{ }\PY{n}{xlim}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{p}{[}\PY{n}{minimum}\PY{p}{(}\PY{n}{tk}\PY{p}{)}\PY{+w}{ }\PY{o}{\PYZhy{}}\PY{+w}{ }\PY{l+m+mf}{.1}\PY{p}{,}\PY{+w}{ }\PY{n}{maximum}\PY{p}{(}\PY{n}{tk}\PY{p}{)}\PY{+w}{ }\PY{o}{+}\PY{+w}{ }\PY{l+m+mf}{.1}\PY{p}{]}\PY{p}{,}\PY{+w}{ }\PY{n}{label}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s+sa}{L}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}}\PY{l+s}{sin(r}\PY{l+s}{\PYZbs{}}\PY{l+s}{pi x) \PYZhy{} }\PY{l+s}{\PYZbs{}}\PY{l+s}{sin(s}\PY{l+s}{\PYZbs{}}\PY{l+s}{pi x)}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\PY{n}{scatter!}\PY{p}{(}\PY{n}{tk}\PY{p}{,}\PY{+w}{ }\PY{n}{df}\PY{o}{.}\PY{p}{(}\PY{n}{tk}\PY{p}{)}\PY{p}{,}\PY{+w}{ }\PY{n}{label}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s+sa}{L}\PY{l+s}{\PYZdq{}}\PY{l+s}{t\PYZus{}k}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW-5_files/HW-5_42_0.pdf}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{q-9.5.5}{%
+\subsection{Q 9.5.5}\label{q-9.5.5}}
+
+Spectral convergence is predicated on having infinitely many continuous
+derivatives. At the other extreme is a function with a jump
+discontinuity. Trigonometric interpolation across a jump leads to a lack
+of convergence altogether, a fact famously known as the Gibbs
+phenomenon.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Define \texttt{f(x)\ =\ sign(x+eps())}. This function jumps from \(0\)
+  to \(1\) at \(-\epsilon\). Plot the function over \([-0.05, 0.15]\).
+\item
+  Let \(n=30\) and \(N=2n+1\). Using Function 9.5.3, add a plot of the
+  trigonometric interpolant to \(f\) to the graph from part (a).
+\item
+  Repeat part (b) for \(n=80\) and \(n=180\).
+\item
+  You should see that the interpolants overshoot and oscillate near the
+  step. The widths of the overshoots decrease with but the heights
+  approach a limiting value. By zooming in to the graph, find the height
+  of the overshoot to two decimal places.
+\end{enumerate}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{27}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c}{\PYZsh{} Function 9.5.3}
+\PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{l+s}{    triginterp(t,y)}
+
+\PY{l+s}{Construct the trigonometric interpolant for the points defined by }
+\PY{l+s}{vectors `t` and `y`.}
+\PY{l+s}{\PYZdq{}\PYZdq{}\PYZdq{}}
+\PY{k}{function}\PY{+w}{ }\PY{n}{triginterp}\PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{n}{y}\PY{p}{)}
+\PY{+w}{    }\PY{n}{N}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{length}\PY{p}{(}\PY{n}{t}\PY{p}{)}
+
+\PY{+w}{    }\PY{k}{function}\PY{+w}{ }\PY{n}{τ}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+\PY{+w}{        }\PY{k}{if}\PY{+w}{ }\PY{n}{x}\PY{o}{==}\PY{l+m+mi}{0}
+\PY{+w}{            }\PY{k}{return}\PY{+w}{ }\PY{l+m+mf}{1.0}
+\PY{+w}{        }\PY{k}{else}
+\PY{+w}{            }\PY{n}{denom}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{isodd}\PY{p}{(}\PY{n}{N}\PY{p}{)}\PY{+w}{ }\PY{o}{?}\PY{+w}{ }\PY{n}{N}\PY{o}{*}\PY{n}{sin}\PY{p}{(}\PY{n+nb}{π}\PY{o}{*}\PY{n}{x}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{+w}{ }\PY{o}{:}\PY{+w}{ }\PY{n}{N}\PY{o}{*}\PY{n}{tan}\PY{p}{(}\PY{n+nb}{π}\PY{o}{*}\PY{n}{x}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{+w}{            }\PY{k}{return}\PY{+w}{ }\PY{n}{sin}\PY{p}{(}\PY{n}{N}\PY{o}{*}\PY{n+nb}{π}\PY{o}{*}\PY{n}{x}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{/}\PY{n}{denom}
+\PY{+w}{        }\PY{k}{end}
+\PY{+w}{    }\PY{k}{end}
+
+\PY{+w}{    }\PY{k}{return}\PY{+w}{ }\PY{k}{function}\PY{+w}{ }\PY{p}{(}\PY{n}{x}\PY{p}{)}
+\PY{+w}{        }\PY{n}{sum}\PY{p}{(}\PY{+w}{ }\PY{n}{y}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{o}{*}\PY{n}{τ}\PY{p}{(}\PY{n}{x}\PY{o}{\PYZhy{}}\PY{n}{t}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{p}{)}\PY{+w}{ }\PY{k}{for}\PY{+w}{ }\PY{n}{k}\PY{+w}{ }\PY{k}{in}\PY{+w}{ }\PY{n}{eachindex}\PY{p}{(}\PY{n}{y}\PY{p}{)}\PY{+w}{ }\PY{p}{)}
+\PY{+w}{    }\PY{k}{end}
+\PY{k}{end}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+triginterp
+    \end{Verbatim}
+
+    
+    \emph{Solution}:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{28}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{sign}\PY{p}{(}\PY{n}{x}\PY{o}{+}\PY{n}{eps}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{plot}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{+w}{ }\PY{n}{xlim}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mf}{0.05}\PY{p}{,}\PY{+w}{ }\PY{l+m+mf}{0.15}\PY{p}{]}\PY{p}{,}\PY{+w}{ }\PY{n}{label}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s+sa}{L}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZbs{}}\PY{l+s}{mathrm\PYZob{}sign\PYZcb{}(x+}\PY{l+s+se}{\PYZbs{}v}\PY{l+s}{arepsilon)}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW-5_files/HW-5_46_0.pdf}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{29}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{n}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mi}{30}\PY{p}{;}\PY{+w}{ }
+\PY{n}{N}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mi}{2}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n}{n}\PY{+w}{ }\PY{o}{+}\PY{+w}{ }\PY{l+m+mi}{1}\PY{p}{;}
+\PY{n}{ts}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mi}{2}\PY{o}{*}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{n}\PY{o}{:}\PY{n}{n}\PY{p}{)}\PY{o}{/}\PY{n}{N}
+\PY{n}{ys}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{f}\PY{o}{.}\PY{p}{(}\PY{n}{ts}\PY{p}{)}
+\PY{n}{fun}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{triginterp}\PY{p}{(}\PY{n}{ts}\PY{p}{,}\PY{+w}{ }\PY{n}{ys}\PY{p}{)}
+\PY{n}{plot!}\PY{p}{(}\PY{n}{fun}\PY{p}{,}\PY{+w}{ }\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{+w}{ }\PY{l+m+mi}{1}\PY{p}{,}\PY{+w}{ }\PY{n}{label}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s+sa}{raw}\PY{l+s}{\PYZdq{}}\PY{l+s}{Approx }\PY{l+s}{\PYZdq{}}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{l+s+sa}{raw}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZdl{}n = }\PY{l+s}{\PYZdq{}}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZob{}}\PY{l+s+si}{\PYZdl{}}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{l+s}{\PYZcb{}}\PY{l+s}{\PYZdq{}}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{l+s+sa}{raw}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZdl{}}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\PY{n}{scatter!}\PY{p}{(}\PY{n}{ts}\PY{p}{,}\PY{+w}{ }\PY{n}{ys}\PY{p}{,}\PY{+w}{ }\PY{n}{label}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s+sa}{raw}\PY{l+s}{\PYZdq{}}\PY{l+s}{Data }\PY{l+s}{\PYZdq{}}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{l+s+sa}{raw}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZdl{}n = }\PY{l+s}{\PYZdq{}}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZob{}}\PY{l+s+si}{\PYZdl{}}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{l+s}{\PYZcb{}}\PY{l+s}{\PYZdq{}}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{l+s+sa}{raw}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZdl{}}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{+w}{ }\PY{n}{opacity}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mf}{0.5}\PY{p}{)}
+\PY{n}{current}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW-5_files/HW-5_47_0.pdf}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{30}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{n}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mi}{80}\PY{p}{;}\PY{+w}{ }
+\PY{n}{N}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mi}{2}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n}{n}\PY{+w}{ }\PY{o}{+}\PY{+w}{ }\PY{l+m+mi}{1}\PY{p}{;}
+\PY{n}{ts}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mi}{2}\PY{o}{*}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{n}\PY{o}{:}\PY{n}{n}\PY{p}{)}\PY{o}{/}\PY{n}{N}
+\PY{n}{ys}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{f}\PY{o}{.}\PY{p}{(}\PY{n}{ts}\PY{p}{)}
+\PY{n}{fun}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{triginterp}\PY{p}{(}\PY{n}{ts}\PY{p}{,}\PY{+w}{ }\PY{n}{ys}\PY{p}{)}
+\PY{n}{plot!}\PY{p}{(}\PY{n}{fun}\PY{p}{,}\PY{+w}{ }\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{+w}{ }\PY{l+m+mi}{1}\PY{p}{,}\PY{+w}{ }\PY{n}{label}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s+sa}{raw}\PY{l+s}{\PYZdq{}}\PY{l+s}{Approx }\PY{l+s}{\PYZdq{}}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{l+s+sa}{raw}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZdl{}n = }\PY{l+s}{\PYZdq{}}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZob{}}\PY{l+s+si}{\PYZdl{}}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{l+s}{\PYZcb{}}\PY{l+s}{\PYZdq{}}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{l+s+sa}{raw}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZdl{}}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\PY{n}{scatter!}\PY{p}{(}\PY{n}{ts}\PY{p}{,}\PY{+w}{ }\PY{n}{ys}\PY{p}{,}\PY{+w}{ }\PY{n}{mark}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s+ss}{:o}\PY{p}{,}\PY{+w}{ }\PY{n}{label}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s+sa}{raw}\PY{l+s}{\PYZdq{}}\PY{l+s}{Data }\PY{l+s}{\PYZdq{}}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{l+s+sa}{raw}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZdl{}n = }\PY{l+s}{\PYZdq{}}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZob{}}\PY{l+s+si}{\PYZdl{}}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{l+s}{\PYZcb{}}\PY{l+s}{\PYZdq{}}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{l+s+sa}{raw}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZdl{}}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{+w}{ }\PY{n}{opacity}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mf}{0.5}\PY{p}{)}
+
+\PY{n}{n}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mi}{180}\PY{p}{;}\PY{+w}{ }
+\PY{n}{N}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mi}{2}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n}{n}\PY{+w}{ }\PY{o}{+}\PY{+w}{ }\PY{l+m+mi}{1}\PY{p}{;}
+\PY{n}{ts}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mi}{2}\PY{o}{*}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{n}\PY{o}{:}\PY{n}{n}\PY{p}{)}\PY{o}{/}\PY{n}{N}
+\PY{n}{ys}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{f}\PY{o}{.}\PY{p}{(}\PY{n}{ts}\PY{p}{)}
+\PY{n}{fun}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{triginterp}\PY{p}{(}\PY{n}{ts}\PY{p}{,}\PY{+w}{ }\PY{n}{ys}\PY{p}{)}
+\PY{n}{plot!}\PY{p}{(}\PY{n}{fun}\PY{p}{,}\PY{+w}{ }\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{+w}{ }\PY{l+m+mi}{1}\PY{p}{,}\PY{+w}{ }\PY{n}{label}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s+sa}{raw}\PY{l+s}{\PYZdq{}}\PY{l+s}{Approx }\PY{l+s}{\PYZdq{}}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{l+s+sa}{raw}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZdl{}n = }\PY{l+s}{\PYZdq{}}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZob{}}\PY{l+s+si}{\PYZdl{}}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{l+s}{\PYZcb{}}\PY{l+s}{\PYZdq{}}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{l+s+sa}{raw}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZdl{}}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\PY{n}{scatter!}\PY{p}{(}\PY{n}{ts}\PY{p}{,}\PY{+w}{ }\PY{n}{ys}\PY{p}{,}\PY{+w}{ }\PY{n}{mark}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s+ss}{:x}\PY{p}{,}\PY{+w}{ }\PY{n}{label}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+s+sa}{raw}\PY{l+s}{\PYZdq{}}\PY{l+s}{Data }\PY{l+s}{\PYZdq{}}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{l+s+sa}{raw}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZdl{}n = }\PY{l+s}{\PYZdq{}}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZob{}}\PY{l+s+si}{\PYZdl{}}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{l+s}{\PYZcb{}}\PY{l+s}{\PYZdq{}}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{l+s+sa}{raw}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZdl{}}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{+w}{ }\PY{n}{opacity}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mf}{0.5}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW-5_files/HW-5_48_0.pdf}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{q-9.7.3d}{%
+\subsection{Q 9.7.3d}\label{q-9.7.3d}}
+
+For integration on a semi-infinite interval such as \([0,\infty)\),
+another double exponential transformation is useful:
+\(x(t) = \exp(\sinh(t))\).
+
+Write a function \texttt{intsemi(f,tol)} by adapting Function 9.7.3 in
+the book for the semi-infinite integration problem. Test it on the
+integral
+
+\[\int_0^\infty \frac{e^{-x}}{\sqrt{x}} = \sqrt{\pi}.\]
+
+Compare with the result using \texttt{quadgk} from the QuadGK package.
+
+    You'll need \texttt{intadapt} from Chapter 5, so I've copied it here.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{31}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{function}\PY{+w}{ }\PY{n}{intadapt}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{n}{tol}\PY{p}{,}\PY{n}{fa}\PY{o}{=}\PY{n}{f}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{,}\PY{n}{fb}\PY{o}{=}\PY{n}{f}\PY{p}{(}\PY{n}{b}\PY{p}{)}\PY{p}{,}\PY{n}{m}\PY{o}{=}\PY{p}{(}\PY{n}{a}\PY{o}{+}\PY{n}{b}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{fm}\PY{o}{=}\PY{n}{f}\PY{p}{(}\PY{n}{m}\PY{p}{)}\PY{p}{)}
+\PY{+w}{    }\PY{c}{\PYZsh{} Use error estimation and recursive bisection.}
+\PY{+w}{    }\PY{c}{\PYZsh{} These are the two new nodes and their f\PYZhy{}values.}
+\PY{+w}{    }\PY{n}{xl}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{p}{(}\PY{n}{a}\PY{o}{+}\PY{n}{m}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{;}\PY{+w}{  }\PY{n}{fl}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{f}\PY{p}{(}\PY{n}{xl}\PY{p}{)}\PY{p}{;}
+\PY{+w}{    }\PY{n}{xr}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{p}{(}\PY{n}{m}\PY{o}{+}\PY{n}{b}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{;}\PY{+w}{  }\PY{n}{fr}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{f}\PY{p}{(}\PY{n}{xr}\PY{p}{)}\PY{p}{;}
+\PY{+w}{    }
+\PY{+w}{    }\PY{c}{\PYZsh{} Compute the trapezoid values iteratively.}
+\PY{+w}{    }\PY{n}{h}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{p}{(}\PY{n}{b}\PY{o}{\PYZhy{}}\PY{n}{a}\PY{p}{)}
+\PY{+w}{    }\PY{n}{T}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{p}{[}\PY{l+m+mf}{0.}\PY{p}{,}\PY{l+m+mf}{0.}\PY{p}{,}\PY{l+m+mf}{0.}\PY{p}{]}
+\PY{+w}{    }\PY{n}{T}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{h}\PY{o}{*}\PY{p}{(}\PY{n}{fa}\PY{o}{+}\PY{n}{fb}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+\PY{+w}{    }\PY{n}{T}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{T}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{/}\PY{l+m+mi}{2}\PY{+w}{ }\PY{o}{+}\PY{+w}{ }\PY{p}{(}\PY{n}{h}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{n}{fm}
+\PY{+w}{    }\PY{n}{T}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{T}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{/}\PY{l+m+mi}{2}\PY{+w}{ }\PY{o}{+}\PY{+w}{ }\PY{p}{(}\PY{n}{h}\PY{o}{/}\PY{l+m+mi}{4}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{fl}\PY{o}{+}\PY{n}{fr}\PY{p}{)}
+\PY{+w}{    }
+\PY{+w}{    }\PY{n}{S}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{p}{(}\PY{l+m+mi}{4}\PY{n}{T}\PY{p}{[}\PY{l+m+mi}{2}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{T}\PY{p}{[}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}\PY{+w}{ }\PY{o}{/}\PY{+w}{ }\PY{l+m+mi}{3}\PY{+w}{      }\PY{c}{\PYZsh{} Simpson values}
+\PY{+w}{    }\PY{n}{E}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{p}{(}\PY{n}{S}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{S}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{+w}{ }\PY{o}{/}\PY{+w}{ }\PY{l+m+mi}{15}\PY{+w}{           }\PY{c}{\PYZsh{} error estimate}
+\PY{+w}{    }
+\PY{+w}{    }\PY{k}{if}\PY{+w}{ }\PY{n}{abs}\PY{p}{(}\PY{n}{E}\PY{p}{)}\PY{+w}{ }\PY{o}{\PYZlt{}}\PY{+w}{ }\PY{n}{tol}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{+}\PY{n}{abs}\PY{p}{(}\PY{n}{S}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{+w}{  }\PY{c}{\PYZsh{} acceptable error?}
+\PY{+w}{        }\PY{n}{Q}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{S}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{+w}{                   }\PY{c}{\PYZsh{} yes\PYZhy{}\PYZhy{}done}
+\PY{+w}{        }\PY{n}{nodes}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{p}{[}\PY{n}{a}\PY{p}{,}\PY{n}{xl}\PY{p}{,}\PY{n}{m}\PY{p}{,}\PY{n}{xr}\PY{p}{,}\PY{n}{b}\PY{p}{]}\PY{+w}{      }\PY{c}{\PYZsh{} all nodes at this level}
+\PY{+w}{    }\PY{k}{else}
+\PY{+w}{        }\PY{c}{\PYZsh{} Error is too large\PYZhy{}\PYZhy{}bisect and recurse.}
+\PY{+w}{        }\PY{n}{QL}\PY{p}{,}\PY{n}{tL}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{intadapt}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{a}\PY{p}{,}\PY{n}{m}\PY{p}{,}\PY{n}{tol}\PY{p}{,}\PY{n}{fa}\PY{p}{,}\PY{n}{fm}\PY{p}{,}\PY{n}{xl}\PY{p}{,}\PY{n}{fl}\PY{p}{)}
+\PY{+w}{        }\PY{n}{QR}\PY{p}{,}\PY{n}{tR}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{intadapt}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{m}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{n}{tol}\PY{p}{,}\PY{n}{fm}\PY{p}{,}\PY{n}{fb}\PY{p}{,}\PY{n}{xr}\PY{p}{,}\PY{n}{fr}\PY{p}{)}
+\PY{+w}{        }\PY{n}{Q}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{QL}\PY{+w}{ }\PY{o}{+}\PY{+w}{ }\PY{n}{QR}
+\PY{+w}{        }\PY{n}{nodes}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{p}{[}\PY{n}{tL}\PY{p}{;}\PY{n}{tR}\PY{p}{[}\PY{l+m+mi}{2}\PY{o}{:}\PY{k}{end}\PY{p}{]}\PY{p}{]}\PY{+w}{   }\PY{c}{\PYZsh{} merge the nodes w/o duplicate}
+\PY{+w}{    }\PY{k}{end}
+\PY{+w}{    }\PY{k}{return}\PY{+w}{ }\PY{n}{Q}\PY{p}{,}\PY{n}{nodes}
+\PY{k}{end}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+intadapt (generic function with 5 methods)
+    \end{Verbatim}
+
+    
+    \emph{Solution}:
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{32}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{function}\PY{+w}{ }\PY{n}{intsemi}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{tol}\PY{p}{)}\PY{+w}{   }
+\PY{+w}{    }\PY{n}{x}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{t}\PY{+w}{ }\PY{o}{\PYZhy{}\PYZgt{}}\PY{+w}{ }\PY{n}{exp}\PY{p}{(}\PY{n}{sinh}\PY{p}{(}\PY{n}{t}\PY{p}{)}\PY{p}{)}
+\PY{+w}{    }\PY{n}{dx\PYZus{}dt}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{t}\PY{+w}{ }\PY{o}{\PYZhy{}\PYZgt{}}\PY{+w}{ }\PY{n}{cosh}\PY{p}{(}\PY{n}{t}\PY{p}{)}\PY{o}{*}\PY{n}{exp}\PY{p}{(}\PY{n}{sinh}\PY{p}{(}\PY{n}{t}\PY{p}{)}\PY{p}{)}
+\PY{+w}{    }\PY{n}{g}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{t}\PY{+w}{ }\PY{o}{\PYZhy{}\PYZgt{}}\PY{+w}{ }\PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{(}\PY{n}{t}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{n}{dx\PYZus{}dt}\PY{p}{(}\PY{n}{t}\PY{p}{)}
+
+\PY{+w}{    }\PY{c}{\PYZsh{} Find where to truncate the integration interval.}
+\PY{+w}{    }\PY{n}{M}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{l+m+mi}{3}
+\PY{+w}{    }\PY{k}{while}\PY{+w}{ }\PY{p}{(}\PY{n}{abs}\PY{p}{(}\PY{n}{g}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{M}\PY{p}{)}\PY{p}{)}\PY{+w}{ }\PY{o}{\PYZgt{}}\PY{+w}{ }\PY{n}{tol}\PY{o}{/}\PY{l+m+mi}{100}\PY{p}{)}\PY{+w}{ }\PY{o}{||}\PY{+w}{ }\PY{p}{(}\PY{n}{abs}\PY{p}{(}\PY{n}{g}\PY{p}{(}\PY{n}{M}\PY{p}{)}\PY{p}{)}\PY{+w}{ }\PY{o}{\PYZgt{}}\PY{+w}{ }\PY{n}{tol}\PY{o}{/}\PY{l+m+mi}{100}\PY{p}{)}
+\PY{+w}{        }\PY{n}{M}\PY{+w}{ }\PY{o}{+=}\PY{+w}{ }\PY{l+m+mf}{0.5}
+\PY{+w}{        }\PY{k}{if}\PY{+w}{ }\PY{n}{isinf}\PY{p}{(}\PY{n}{x}\PY{p}{(}\PY{n}{M}\PY{p}{)}\PY{p}{)}\PY{+w}{ }
+\PY{+w}{            }\PY{n+nd}{@warn}\PY{+w}{ }\PY{l+s}{\PYZdq{}}\PY{l+s}{Function may not decay fast enough.}\PY{l+s}{\PYZdq{}}
+\PY{+w}{            }\PY{n}{M}\PY{+w}{ }\PY{o}{\PYZhy{}=}\PY{+w}{ }\PY{l+m+mf}{0.5}
+\PY{+w}{            }\PY{k}{break}
+\PY{+w}{        }\PY{k}{end}
+\PY{+w}{    }\PY{k}{end}
+
+\PY{+w}{    }\PY{n}{I}\PY{p}{,}\PY{n}{t}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{intadapt}\PY{p}{(}\PY{n}{g}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{n}{M}\PY{p}{,}\PY{n}{M}\PY{p}{,}\PY{n}{tol}\PY{p}{)}
+\PY{+w}{	}\PY{k}{return}\PY{+w}{ }\PY{n}{I}\PY{p}{,}\PY{n}{x}\PY{o}{.}\PY{p}{(}\PY{n}{t}\PY{p}{)}
+\PY{k}{end}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+intsemi (generic function with 1 method)
+    \end{Verbatim}
+
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{33}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{res}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{intsemi}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{+w}{ }\PY{o}{\PYZhy{}\PYZgt{}}\PY{+w}{ }\PY{n}{exp}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{)}\PY{+w}{ }\PY{o}{/}\PY{+w}{ }\PY{n}{sqrt}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,}\PY{+w}{ }\PY{l+m+mf}{1e\PYZhy{}6}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+(1.772455041233968, [2.853912066288294e-20, 1.047305076987121e-17, 1.7716071483390152e-15, 1.529189428251244e-13, 7.357070993478746e-12, 4.1997533690540406e-11, 2.130199545856566e-10, 9.677925382088462e-10, 3.96790228465493e-9, 1.4783835383662816e-8  …  11.24834714080576, 13.605631155782989, 20.712703825724148, 33.48319690621568, 58.02575654373648, 108.9804279373336, 4006.68761532299, 2.180430367273218e6, 1.3592365778261388e11, 3.5039621991597236e19])
+    \end{Verbatim}
+
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{34}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{sqrt}\PY{p}{(}\PY{n+nb}{pi}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+1.7724538509055159
+    \end{Verbatim}
+
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{35}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c}{\PYZsh{} verify}
+\PY{n}{res}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{+w}{ }\PY{o}{\PYZhy{}}\PY{+w}{ }\PY{n}{sqrt}\PY{p}{(}\PY{n+nb}{pi}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+1.1903284520276003e-6
+    \end{Verbatim}
+
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+\end{document}
