@@ -512,4 +512,86 @@ In addition, in order to finish this report, I've search a lot (but 95% material
 
 3. Julia Documentation - [https://docs.julialang.org](https://docs.julialang.org/)
 
+   **Answer** Differentiate both time and space, we have
+   $$
+   \dfrac{T_i^{n+1}-T_i^n}{\Delta t} = \dfrac{1}{2}\left(D\dfrac{T_{i+1}^n-2T_i^n+T_{i-1}^n}{\Delta x^2}+D\dfrac{T_{i+1}^{n+1}-2T_i^{n+1}+T_{i-1}^{n+1}}{\Delta x^2}\right)
+   $$
+   Separating terms, we have
+   $$
+   2(1+\sigma)T_i^{n+1}-\sigma T_{i+1}^{n+1}-\sigma T_{i-1}^{n+1}= \sigma T_{i+1}^n+2(1-\sigma)T_i^n+\sigma T_{i-1}^n,\quad \sigma=\dfrac{D\Delta t}{\Delta x^2}
+   $$
+    hence we have
+   $$
+   \begin{align}
+   &&&\begin{bmatrix}
+   2(1+\sigma)&-\sigma&0&0&\cdots&0&-\sigma\\
+   -\sigma&2(1+\sigma)&-\sigma&0&\cdots&0&0\\
+   0&-\sigma&2(1+\sigma)&-\sigma&\cdots&0&0\\
+   0&0&-\sigma&2(1+\sigma)&\cdots&0&0\\
+   \vdots&\vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+   0&0&0&0&\cdots&2(1+\sigma)&-\sigma\\
+   -\sigma&0&0&0&\cdots&-\sigma&2(1+\sigma)
+   \end{bmatrix}
+   \begin{bmatrix}
+   T_1^{n+1}\\T_2^{n+1}\\T_3^{n+1}\\T_4^{n+1}\\\vdots\\T_{N-1}^{n+1}\\T_N^{n+1}
+   \end{bmatrix}\\&=&&
+   \begin{bmatrix}
+   2(1-\sigma)&\sigma&0&0&\cdots&0&\sigma\\
+   \sigma&2(1-\sigma)&\sigma&0&\cdots&0&0\\
+   0&\sigma&2(1-\sigma)&\sigma&\cdots&0&0\\
+   0&0&\sigma&2(1-\sigma)&\cdots&0&0\\
+   \vdots&\vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+   0&0&0&0&\cdots&2(1-\sigma)&\sigma\\
+   \sigma&0&0&0&\cdots&\sigma&2(1-\sigma)
+   \end{bmatrix}
+   \begin{bmatrix}
+   T_1^{n}\\T_2^{n}\\T_3^{n}\\T_4^{n}\\\vdots\\T_{N-1}^{n}\\T_N^{n}
+   \end{bmatrix}\\
+   &\Leftrightarrow&& LT^{n+1}=RT^{n}
+   \end{align}
+   $$
+   Use 2 dimensional expansion to compute the local truncation error:
    
+   In space, we have
+   $$
+     *\**begin*{align}
+   
+     &U_{j+1}^n = U_j^n + (U_x)_j^n\Delta x + *\**dfrac*{1}{2}(U_{xx})_j^n\Delta x^2 + *\**dfrac*{1}{6}(U_{xxx})_j^n\Delta x^3 + *\**dfrac*{1}{24}(U_{xxxx})_\xi^n\Delta x^4, \quad \xi\in[x_j, x_{j+1}]\\
+   
+     &U_{j-1}^n = U_j^n - (U_x)_j^n\Delta x + *\**dfrac*{1}{2}(U_{xx})_j^n\Delta x^2 - *\**dfrac*{1}{6}(U_{xxx})_j^n\Delta x^3 + *\**dfrac*{1}{24}(U_{xxxx})_\xi^n\Delta x^4, \quad \xi\in[x_j, x_{j+1}]
+   
+     *\**end*{align}
+   $$
+   
+   
+   
+   
+   $$
+   
+   Hence,
+   
+   $$ 
+   
+     *\**begin*{align}
+   
+     &U_{j-1}^n-2U_j^n+U_{j+1}^n=(U_{xx})_j^n\Delta x^2 + *\**dfrac*{1}{24}(U_{xxxx})_\eta^n\Delta x^4, \quad \eta\in[x_j, x_{j+1}] \\
+   
+     &U_{j-1}^{n+1}-2U_j^{n+1}+U_{j+1}^{n+1}=(U_{xx})_j^{n+1}\Delta x^2 + *\**dfrac*{1}{24}(U_{xxxx})_\eta^{n+1}\Delta x^4, \quad \eta\in[x_j, x_{j+1}]
+   
+     *\**end*{align}
+   
+   $$
+   
+   Similarly, in time
+   
+   $$
+   
+     U_j^{n+1} = U_j^n + (U_t)_j^n\Delta t + (U_tt)_\zeta^n\Delta t^2,\quad \zeta\in[t_j,t_{j+1}]
+   
+   $$
+   
+   Thus the original formula can be written as
+   
+   $$
+   
+     (U_t)_j^n + (U_tt)_\zeta^n\Delta t = *\**dfrac*{1}{2}((U_{xx})_j^n+(U_{xx})_j^{n+1}+O(\Delta x^2))
