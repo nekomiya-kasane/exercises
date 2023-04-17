@@ -1,0 +1,57 @@
+Torus := [(5 + 2*cos(u))*cos(v), (5 + 2*cos(u))*sin(v), 2*sin(u)]
+eodesicsEquation := geoeq(Torus)
+plotgeo(Torus, 0, 2*Pi, 0, 2*Pi, Pi/2, 0, 0, 1, [0, 100, 15], [30, 30], 0, 60, [800, 600]);
+plotgeo(Torus, 0, 2*Pi, 0, 2*Pi, Pi/2, 0, 1, 0, [0, 100, 15], [30, 30], 0, 60, [800, 600]);
+plotgeo(Torus, 0, 2*Pi, 0, 2*Pi, 0, Pi/2, 0, 1, [0, 100, 15], [30, 30], 0, 60, [800, 600])；
+
+
+
+Sphere := [cos(v)*cos(u), sin(v)*cos(u), sin(u)]
+GeodesicsEquation := geoeq(Sphere)
+plotgeo(Sphere, 0, 2*Pi, 0, 2*Pi, Pi/12, 0, 1, 1, [0, 120, 15], [40, 40], 0, 60, [800, 600])
+
+
+
+Ellipsoid := [4*cos(v)*cos(u), 3*sin(v)*cos(u), 6*sin(u)]
+GeodesicsEquation := geoeq(Ellipsoid)
+plotgeo(Ellipsoid, 0, 2*Pi, 0, 2*Pi, Pi/12, 0, 1, 1, [0, 60, 15], [40, 40], 0, 60, [800, 600])
+
+
+
+Conical := [0.25*v*cos(u), 0.25*v*sin(u), v]
+GeodesicsEquation := geoeq(Conical)
+plotgeo(Conical, 0, 2*Pi, 0, 2*Pi, 0, 3, 1, -0.75, [0, 100, 15], [40, 40], 0, 60, [800, 600])
+plotgeo(Conical, 0, 2*Pi, 0, 2*Pi, 0, 2, 0, 1, [0, 60, 15], [40, 40], 0, 60, [800, 600])
+
+
+
+Paraboloid := [v*cos(u), v*sin(u), 0.2*v^2]
+GeodesicsEquation := geoeq(Paraboloid)
+plotgeo(Paraboloid, 0, 2*Pi, 0, 2*Pi, 0, 2, 1, -1, [0, 60, 15], [40, 40], 0, 60, [800, 600])
+plotgeo(Paraboloid, 0, 2*Pi, 0, 2*Pi, 0, 2, 0, 1, [0, 100, 15], [40, 40], 0, 60, [800, 600])
+
+
+
+Hyperboloid := [3*cosh(u)*cos(v), 3*cosh(u)*sin(v), 3*sinh(u)]
+GeodesicsEquation := geoeq(Hyperboloid)
+plotgeo(Hyperboloid, -2, 2, 0, 2*Pi, 0, 2, 0, 1, [0, 100, 15], [40, 40], 0, 60, [800, 600])
+plotgeo(Hyperboloid, -2, 2, 0, 2*Pi, 0, 2, 1, 1, [-50, 50, 15], [40, 40], 0, 60, [800, 600])
+plotgeo(Hyperboloid, -2, 2, 0, 2*Pi, 0, 2, 1, 2, [-50, 50, 15], [40, 40], 0, 60, [800, 600])
+
+
+
+Cylinder := [cos(u), sin(u), v]
+GeodesicsEquation := geoeq(Cylinder)
+plotgeo(Cylinder, -2*Pi, 0, 0, 2, 0, 2, 1, 1, [-30, 0, 15], [40, 40], 0, 60, [800, 600])
+plotgeo(Cylinder, -2*Pi, 0, 0, 2, 0, 2, 0, 1, [-30, 0, 15], [40, 40], 0, 60, [800, 600])
+plotgeo(Cylinder, -2*Pi, 0, 0, 2, 0, 1, 1, 0, [-30, 200, 15], [40, 40], 0, 60, [800, 600])
+
+
+
+WaveSurface := [u, v, sin(0.1*u*v)]
+GeodesicsEquation := geoeq(WaveSurface)
+plotgeo(WaveSurface, -4*Pi, 4*Pi, -2*Pi, 4*Pi, 0, 2, 1, 2, [-50, 60, 15], [40, 40], 0, 60, [800, 600])
+
+
+
+
