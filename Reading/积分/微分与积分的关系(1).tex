@@ -1,0 +1,373 @@
+% !TEX program = xelatex
+\documentclass[a4paper,12pt]{article}
+\usepackage{ctex}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{indentfirst}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks,allcolors=black]{hyperref}
+\usepackage{listings}
+\usepackage{titling}
+\usepackage{float}
+\usepackage{mdwlist}
+\usepackage{bbding}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{abstract}
+\usepackage{cite}
+\usepackage{hyperref}
+\usepackage{makecell}
+\NewDocumentCommand{\dint}{t\limits e{_^}}{%
+	\mathop{
+		\displaystyle\int
+		\IfBooleanT{#1}{\limits}
+		\IfValueT{#2}{_{#2}}
+		\IfValueT{#3}{^{#3}}
+	}%
+}
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{remark}{注}
+
+\newtheorem{proposition}[theorem]{性质}
+
+    \title{\heiti{微分与积分的关系\\\large{\qquad\qquad\qquad——在不同积分论背景下}}}
+    %\author{XXX}
+    \date{}
+    \begin{document}
+    {
+        \maketitle
+        \paragraph{摘要}在经典分析学中，我们最终的一个目标就是给出对应的微分与积分的关系
+        具体表述为以下两个公式:
+        \begin{equation}
+            \dint\limits_a^bf'(x)\mathrm{d}x=f(b)-f(a)\tag{a}
+        \end{equation}
+        \begin{equation}
+            \dfrac{\mathrm{d}}{\mathrm{d}x}\dint\limits_a^xf(t)\mathrm{d}t=f(x)\tag{b}
+        \end{equation}
+        但是在黎曼积分理论中,公式(a)需要$f'(x)$黎曼可积才可以成立,公式(b)需要假设$f$在闭区间上连续才可以成立,
+        对于勒贝格积分理论我们则需要假设$f$在闭区间上绝对连续才可以保证以上公式才能成立,但是这两种积分都需要对函
+        数附加额外的条件.本文在通过给出黎曼积分理论,勒贝格积分理论
+        的微积分基本定理,并且通过构造反例分析出它们的缺陷的前提下,
+        通过分析导数、原函数等概念,给出佩龙积分的定义并且
+        给出佩龙积分理论的微积分基本定理（这个定理的条件会比较宽松）,
+        最后给出佩龙积分和勒贝格积分的一些联系.
+
+        \paragraph{关键词}微分,黎曼积分,勒贝格积分,佩龙积分,微积分基本定理
+
+        \newpage
+        \tableofcontents
+
+        \newpage
+
+        \section*{一些基本假设和记号}
+        \begin{enumerate}
+            \item 本文讨论的函数一般是定义在一维或者高维欧氏空间的子集上的实函数.
+            \item\subitem $\mu$代表一维或者高维空间上的勒贝格测度;
+            \subitem $\mu^*$代表一维或者高维空间上的勒贝格外测度;
+            \subitem $\dint_If(x)\mathrm{d}x$代表$f$在$I$上的黎曼积分;
+            \subitem $\dint_If(x)\mathrm{d}\mu$代表$f$在$I$上的勒贝格积分;
+            \subitem $\dint_If(x)\mathrm{d}P$代表$f$在$I$上的佩龙积分.
+            \item 其他有关符号规定会在相应命题处指出.
+        \end{enumerate}
+        \newpage
+        \section{黎曼积分理论}
+            首先,我们给出黎曼积分的定义.
+            \begin{definition}{\emph{(}黎曼积分\emph{)}}
+                设函数$f(x)$在闭区间$[a,b]$上有定义,并且我们记任意$[a,b]$的一个划分$P:a_0=a<a_1<a_2<\cdots<a_n=b$,
+                记$\tau_k\in[a_{k-1},a_k],k=1,2,\cdots,n$,记$f$对应的黎曼和为
+                $$S(f,P,\tau)=\sum_{k=1}^nf(\tau_k)(a_k-a_{k-1}),\tau=\{\tau_k\}_{k=1}^n,$$
+                并记$\tau$的分割参数为$\|P\|=\max_{1\leqslant k\leqslant n}(a_k-a_{k-1})$.
+
+                设$J$为实数,如果对任意的$\varepsilon>0$,存在$\delta>0$,满足当$\|P\|<\delta$时,对任意的$\tau$有$|S(f,P,\tau)-J|<\varepsilon$,
+                则称$f$在$[a,b]$上黎曼可积,并且称$J$为$f$在$[a,b]$上的黎曼积分,记作
+                $$\dint_a^bf(x)\mathrm{d}x=J.$$
+            \end{definition}
+            下面给出黎曼积分的微积分基本定理.
+            \begin{theorem}
+                设$f$在$[a,b]$上可导,并且导数在$[a,b]$上黎曼可积,则有
+                $$\dint\limits_a^bf'(x)\mathrm{d}x=f(b)-f(a).$$
+            \end{theorem}
+            \begin{proof}
+                考虑划分$P:a_0=a_1<a_2<\cdots<a_n=b$,则有$$f(b)-f(a)=\sum_{k=1}^n[f(a_k)-f(a_{k-1})].$$
+                因为$f$在$[a,b]$上可导,由拉格朗日中值定理知,存在$\xi_k\in[a_{k-1},a_k]$,满足$$f(a_k)-f(a_{k-1})=f'(\xi_k)(a_k-a_{k-1}),$$
+                从而有$$f(b)-f(a)=\sum_{k=1}^nf'(\xi_k)(a_k-a_{k-1})=S(f,P,\xi),$$
+                其中$\xi=\{\xi_k\}_{k=1}^n$.由于$f'$在$[a,b]$上黎曼可积,所以对于任意的$\varepsilon>0$,存在$\delta>0$,使得
+                当$\|P\|<\delta$时,对任意的$\tau$都有$$\left|S(f,P,\tau)-\dint_a^bf'(x)\mathrm{d}x\right|<\varepsilon.$$
+                所以当$\|P\|<\delta$时,$$\left|S(f,P,\xi)-\dint_a^bf'(x)\mathrm{d}x\right|<\varepsilon,$$
+                即$$\dint_a^bf'(x)\mathrm{d}x=S(f,P,\xi)=f(b)-f(a).$$
+            \end{proof}
+            \begin{theorem}
+                如果函数$f(x)$在$[a,b]$上连续,则对于任意的$x\in[a,b]$,有
+                $$\dfrac{\mathrm{d}}{\mathrm{d}x}\dint_a^xf(t)\mathrm{d}t=f(x).$$
+            \end{theorem}
+            \begin{proof}
+                记$F(x)=\dint_a^xf(t)\mathrm{d}t$.令$x\in(a,b)$,端点处只需考虑单侧导数.取$U(x,\delta)\subset[a,b]$.
+                对于任意的$x+h\in U(x,\delta)$有$$\dfrac{F(x+h)-F(x)}{h}=\dfrac{1}{h}\dint_x^{x+h}f(t)\mathrm{d}t,$$
+                从而$$\left|\dfrac{F(x+h)-F(x)}{h}-f(x)\right|=\dfrac{1}{h}\left|\dint_x^{x+h}[f(t)-f(x)]\mathrm{d}t\right|$$
+                因为$f$在$[a,b]$上连续,所以对任意的$\varepsilon>0$,存在$0<\delta_1<\delta$满足对任意的$y\in U(x,\delta_1)$有$|f(x)-f(y)|<\varepsilon$.
+                所以对于任意的$|h|<\delta_1$,由积分第一中值定理知,存在$\xi\in U(x,\delta_1)$,满足
+                $$\dint_x^{x+h}[f(t)-f(x)]\mathrm{d}t=[f(\xi)-f(x)]h,$$从而 
+                $$\left|\dfrac{F(x+h)-F(x)}{h}-f(x)\right|=|f(\xi)-f(x)|<\varepsilon,$$
+                即$$\dfrac{\mathrm{d}}{\mathrm{d}x}\dint_a^xf(t)\mathrm{d}t=\lim_{h\to 0}\dfrac{F(x+h)-F(x)}{h}=f(x).$$
+            \end{proof}
+
+        \section{黎曼积分微积分基本定理的缺陷}
+            黎曼积分理论虽然可以建立起上述两个公式,但是定理的使用条件却要求太严格：牛顿-莱布尼茨公式不仅需要导数处处存在并且还要求导数黎曼可积，变上限求导公式需要函数连续.
+            下面我们将说明即使在导数处处存在并且有界的情况下牛顿-莱布尼茨公式可以不成立.为了说明这一点我们作以下四方面准备工作.
+            \subsection{基本引理}
+                \begin{definition}
+                    设$A\subset\mathbb{R}^n$,$f$为定义在$A$上的函数,定义$$\omega(f,A)=\sup_{x_1,x_2\in A}|f(x_1)-f(x_2)|,$$
+                    对于任意的$x\in A$,定义$$\omega(f,x)=\inf_{\delta>0}\omega(f,U_\delta^A(x)),$$
+                    其中$U_\delta^A(x)=B(x,\delta)\cap A$.
+                \end{definition}
+                下面我们要用到一个重要的函数,这个函数对于构造沃尔泰拉函数起到了关键性的作用.
+
+                设$$f(x)=\begin{cases}
+                    x^2\sin\dfrac{1}{x} &x\not=0,\\
+                    0 &x=0,
+                \end{cases}$$
+                则$$f'(x)=\begin{cases}
+                    2x\sin\dfrac{1}{x}-\cos\dfrac{1}{x} &x\not=0,\\
+                    0 &x=0.
+                \end{cases}$$
+                考虑方程$f'(x)=0$.当$x\not=0$时,必有$\cos\dfrac{1}{x}\not=0$,否则$\sin\dfrac{1}{x}=\pm 1$,从而$f'(x)\not=0$.所以有$\tan\dfrac{1}{x}=\dfrac{1}{2x}$.
+
+                令$$g(x)=2\tan x-x,x\in(k\pi,(k+1)\pi),k\in\mathbb{Z},$$则$g'(x)=2\sec^2(x)-1>0$.又因为$g(x)\to -\infty(x\to k\pi^{+})$,$g(x)\to +\infty(x\to (k+1)\pi^{-})$,
+                所以$g(x)$有且只有一个零点.
+
+                由$f'$和$g$的关系知,$f'(x)=0$的根为一个正数序列和负数序列,并且都趋于0.由于$f'\left(\dfrac{1}{k\pi}\right)=\dfrac{2}{k\pi}+(-1)^k$且$\dfrac{1}{k\pi}\to 0(k\to\infty)$,所以$\omega(f',0)=2$.
+                \begin{lemma}{\emph{(Cantor)}}
+                    设$K\subset\mathbb{R}^n$为紧集,并且$f$为定义在$K$上的函数,满足：存在$\varepsilon>0$,使得对于任意的$x\in K$,
+                    $\omega(f,x)\leqslant\varepsilon$,则对于任意$\eta>\varepsilon$,存在$\delta>0$,使得对任意$x\in K$,$\omega(f,U_\delta^K(x))\leqslant\eta.$
+                \end{lemma}
+                \begin{proof}
+                    因为对于任意的$x\in K,\omega(f,x)\leqslant\varepsilon$,由上确界的定义
+                    对任意$\eta>\varepsilon$,存在$\delta_x>0$,使得$\omega(f,U_{\delta_x}^K(x))<\eta$.
+                    设$H=\left\{\left.U_{\dfrac{1}{2}\delta_x}\right|x\in K\right\}$,则$H$是$K$的一个幵覆盖.
+                    因为$K$是紧集,所以存在$x_1,x_2,\cdots,x_m\in K$,使得
+                    $$\bigcup_{j=1}^mU_{\dfrac{1}{2}\delta_{x_j}}(x_j)\supset K.$$
+                    记$\delta=\dfrac{1}{2}\min\left\{\dfrac{1}{2}\delta_{x_1},\dfrac{1}{2}\delta_{x_2},\cdots,\dfrac{1}{2}\delta_{x_m}\right\}$,
+                    对于任意的$x\in K,x_{i_1},x_{i_2}\in U_{\delta}^K(x)$,存在$p\in\{1,2,\cdots,m\}$,使$x_{i_1}\in U_{\dfrac{1}{2}\delta_{x_p}}^K(x_p)$,所以
+                    $$d(x_{i_2},x_p)\leqslant d(x_{i_2},x)+d(x,x_{i_1})+d(x_{i_1},x_p)<2\delta+\dfrac{1}{2}\delta_{x_p}\leqslant\delta_{x_p}.$$
+                    这里$d$表示标准欧氏度量.所以$x_{i_1},x_{i_2}\in U_{\delta_{x_p}}^K(x_p)$,进而$|f(x_{i_1})-f(x_{i_2})|<\eta$,因此对任意$x\in K$,$\omega(f,U_\delta^K(x))\leqslant\eta.$
+                \end{proof}
+
+                \begin{lemma}
+                    设$K\subset\mathbb{R}^n$为紧集,$f$为定义在$K$上的函数,对任意$\varepsilon>0$,定义$E_\varepsilon=\{x\in K|\omega(f,x)\geqslant\varepsilon\}$,则$E_\varepsilon$为紧集.
+                \end{lemma}
+
+                \begin{proof}
+                    由Heine-Borel定理仅需证明$E_\varepsilon$为一个闭集即可.
+
+                    对任意$x\in\overline{E_\varepsilon}\subset K$,存在$\{x_n\}_{n=1}^\infty\subset E_\varepsilon,x_n\to x(n\to\infty)$.
+                    所以对任意$\delta>0$,存在$N>0$,使得$x_N\in U_\delta^K(x)$.由$\omega(f,x_N)\geqslant\varepsilon$知,
+                    对任意$\eta<\varepsilon$,存在$\delta_1>0$,使$U_{\delta_1}^K(x_N)\subset U_\delta^K(x),\omega(f,U_{\delta_1}^K(x_N))\geqslant\eta$,
+                    所以$\omega(f,U_\delta^K(x))\geqslant\eta$.由$\delta$的任意性,$\omega(f,x)\geqslant\eta$.
+                    再由$\eta$的任意性知$\omega(f,x)\geqslant\varepsilon$,所以$x\in E_\varepsilon$.因此$E_\varepsilon$是闭集从而是紧集.
+                \end{proof}
+
+                下面我们引入黎曼积分的柯西收敛准则.
+                \begin{theorem}
+                    设$I$为$\mathbb{R}^n$中的闭方体,$f$为定义在$I$上的函数,则$f$在$I$上
+                    黎曼可积当且仅当对任意$\varepsilon>0$,存在$\lambda>0$,使得对$I$的任意两个
+                    划分$P_1,P_2$,$\xi_1,\xi_2$分别为$P_1,P_2$的代表点集,如果有$\|P_1\|,\|P_2\|<\lambda$,就有
+                    $$\left|S(f,P,\xi_1)-S(f,P_2,\xi-2)\right|<\varepsilon.$$
+                \end{theorem}
+                \begin{proof}
+                    先证充分性.如果$f$在$I$上黎曼可积,则对任意$\varepsilon>0$,存在$\lambda>0$,使得
+                    对$I$的任意划分$P$,代表点$\{\xi_P\}$,如果$\|P\|<\lambda$,则
+                    $$\left|S(f,P,\xi_P)-\dint_If(x)\mathrm{d}x\right|<\dfrac{\varepsilon}{2}.$$
+                    考虑$I$的划分$P_1,P_2$,代表点集分别为$\{\xi_{P_1}\},\{\xi_{P_2}\}$,如果$\|P_1\|,\|P_2\|<\lambda$,则
+                    $$\left|S(f,P,\xi_{P_1})-\dint_If(x)\mathrm{d}x\right|<\dfrac{\varepsilon}{2},\left|S(f,P,\xi_{P_2})-\dint_If(x)\mathrm{d}x\right|<\dfrac{\varepsilon}{2},$$
+                    由三角不等式,$$|S(f,P,\xi_{P_1})-S(f,P,\xi_{P_2})|<\varepsilon.$$
+
+                    再证必要性.取$\varepsilon_1=1$,存在$\lambda_1\in(0,1)$,对任意的划分$P_1,P_2$和代表点$\xi_{P_1},\xi_{P_2}$,
+                    如果$\|P_1\|,\|P_2\|<\lambda_1$,有$$|S(f,P,\xi_{P_1})-S(f,P,\xi_{P_2})|<\varepsilon_1.$$
+                    记$\tau_1=S(f,T_1,\xi_{T_1})$,其中$T_1$是$I$的划分,代表点为$\xi_{T_1}$,$\|T_1\|<\lambda_1$.
+                    取$\varepsilon_2=\dfrac{1}{2}$,存在$\lambda_2\in\left(0,\dfrac{1}{2}\right)$,对任意的划分$P_1,P_2$和代表点$\xi_{P_1},\xi_{P_2}$,
+                    如果$\|P_1\|,\|P_2\|<\lambda_2$,有$$|S(f,P,\xi_{P_1})-S(f,P,\xi_{P_2})|<\varepsilon_2.$$
+                    记$\tau_2=S(f,T_2,\xi_{T_2})$,其中$T_2$是$I$的划分,代表点为$\xi_{T_2}$,$\|T_1\|<\lambda_2$.\\
+                    ⋯⋯\\
+                    取$\varepsilon_k=\dfrac{1}{k}$,存在$\lambda_k\in\left(0,\dfrac{1}{k}\right)$,对任意的划分$P_1,P_2$和代表点$\xi_{P_1},\xi_{P_2}$,
+                    如果$\|P_1\|,\|P_2\|<\lambda_k$,有$$|S(f,P,\xi_{P_1})-S(f,P,\xi_{P_2})|<\varepsilon_k.$$
+                    记$\tau_k=S(f,T_k,\xi_{T_k})$,其中$T_k$是$I$的划分,代表点为$\xi_{T_k}$,$\|T_k\|<\lambda_k$.\\
+                    ⋯⋯\\
+                    从而我们得到一𡠭实数列$\{\tau_n\}_{n=1}^\infty$,满足当$n>m$时$$|\tau_n-\tau_m|<\dfrac{1}{m},$$
+                    从而$\{\tau_n\}_{n=1}^\infty$是柯西列,由$\mathbb{R}$上的柯西收敛准则,存在$J\in\mathbb{R},t_n\to J(n\to\infty)$.
+                    所以对任意$\varepsilon>0$,存在$N>0$,有$|\tau_N-J|<\dfrac{\varepsilon}{2},\dfrac{1}{N}<\dfrac{\varepsilon}{2}$成立.
+                    考虑$I$的任意划分$Q$及其代点$\xi_Q$.如果$\|Q\|<\lambda_N$,则
+                    $$|S(f,Q,\xi_Q)-J|\leqslant|S(f,Q,\xi_Q)-\tau_N|+|\tau_N-J|<\dfrac{1}{N}+\dfrac{\varepsilon}{2}<\varepsilon.$$
+                    所以$f$在$I$上黎曼可积.
+                \end{proof}
+            \subsection{黎曼-勒贝格准则}
+            为了给出反例函数的构造我们需要两个重要工具.第一个为黎曼-勒贝格准则.这里我们给出$\mathbb{R}^n$上的黎曼-勒贝格准则,并加以证明.
+            \begin{theorem}{\emph{(Riemann-Lebesgue)}}
+                设$I$为$\mathbb{R}^n$中的闭方体,$f$为$I$上的有界函数,则$f$在$I$上黎曼可积当且仅当$f$的不连续点集是零测集.
+            \end{theorem}
+            \begin{proof}
+                先证充分性.设$E$为$f$的不连续点集.令$$E_{\dfrac{1}{n}}=\left\{x\in I|\omega(f,x)\geqslant\dfrac{1}{n}\right\},$$
+                则$$E=\bigcup_{n=1}^\infty E_{\dfrac{1}{n}}.$$
+                如果定理不成立,则有$\mu^*(E)>0$.因而存在$n_0>0,\mu^*(E_{\dfrac{1}{n_0}})>0$.
+                考虑$I$的一个划分$P=\{I_j\}$.对任意的$x\in E_{}\dfrac{1}{n_0}$,若$x\in \mathrm{Int}\; I_j$,则$\omega(f,I_j)\geqslant\dfrac{1}{3n_0}$.
+                如果$x\in\partial I_j$,记$M=\{I_j\in P|x\in\partial I_j\}$.下面证明存在$I_k\in M,\omega(f,I_k)\geqslant\dfrac{1}{3n_0}$.若不然,考虑充分小的$\delta>0$,
+                任取$x_1,x_2\in U_\delta^K(x)$,则存在$I_{i_1},I_{i_2}\in M,x_1\in I_{i_1},x_2\in I_{i_2}$,从而
+                $$|f(x_1)-f(x_2)|\leqslant|f(x_1)-f(x)|+|f(x)-f(x_2)|\leqslant\omega(f,I_{i_1})+\omega(f,I_{i_2})\leqslant\dfrac{2}{3n_0},$$
+                因而$\omega(f,x)\leqslant\omega(f,U_\delta^K(x))\leqslant\dfrac{2}{3n_0}<\dfrac{1}{n_0}$,矛盾!由此,我们将$P$中的闭方体分成两类:
+                $$A=\left\{I_j\in P|I_j\cap E_{\dfrac{1}{n_0}}\not=\varnothing,\omega(f,I_j)\geqslant\dfrac{1}{3n_0}\right\},\quad B=P\setminus A.$$
+                选取如下两组代表点:$$\xi_P^1=\{\xi_{P_I}^1\}_{I\in A}\cup\{\xi_{P_I}^2\}_{I\in B},\quad \xi_P^2=\{\xi_{P_I}^2\}_{I\in A}\cup\{\xi_{P_I}^1\}_{I\in B},$$
+                其中$\xi_{P_I}^1,\xi_{P_I}^2$满足$f(\xi_{P_I}^1)-f(\xi_{P_I}^2)\geqslant\dfrac{1}{4n_0}$.所以
+                $$|S(f,P,\xi_P^1)-S(f,P,\xi_P^2)|=\sum_{I\in A}[f(\xi_{P_I}^1)-f(\xi_{P_I}^2)]\mu(I),$$
+                由于$E_{\dfrac{1}{n_0}}\subset\bigcup_{I\in A}A$,
+                $$\sum_{I\in A}[f(\xi_{P_I}^1)-f(\xi_{P_I}^2)]\mu(I)\geqslant\dfrac{1}{4n_0}\sum_{I\in A}\mu(I)\geqslant \dfrac{1}{4n_0}\mu^*(E_{\dfrac{1}{n_0}})>0.$$
+                即$|S(f,P,\xi_P^1)-S(f,P,\xi_P^2)|\geqslant\dfrac{1}{4n_0}\mu^*(E_{\dfrac{1}{n_0}})>0$.由定理2.4知,$f$黎曼不可积,矛盾!故$\mu(E)=0$.
+
+                再证必要性.如果$\mu(E)=0$,则对任意的$\varepsilon>0,\mu(E_\varepsilon)>0$.由测度和外测度的定义以及$E_\varepsilon$是紧集(引理2.3),存在
+                方体列$\{I_k\subset I\}_{k=1}^m$,满足$$E_\varepsilon\subset\bigcup_{k=1}^mI_k,\quad \sum_{k=1}^m\mu(I_k)<\varepsilon.$$
+                考虑$Q_2=\bigcup_{k=1}^mI_k^2,Q_3=\bigcup_{k=1}^mI_k^3$,其中$I_k^j$表示以$I_k$的几何中心为中心,伸缩$j$倍形成的闭方体.
+                于是有$E_\varepsilon\subset Q_2\subset Q_3$.由于$\partial Q_2\cap\partial Q_3=\varnothing$且$\partial Q_2,\partial Q_3$为紧集,
+                所以$d=d(\partial Q_2,\partial Q_3)>0$.令$K=I-\mathrm{Int}\; Q_2$,任取闭方体$I_0\subset I$,当$I_0\cap Q_2\not=\varnothing$时,
+                如果$I_0\cap Q_3^c\not=\varnothing$,则取$x\in I_0\cap Q_2,y\in I_0\cap Q_3^c$,从而
+                $$d(\partial Q_2,\partial Q_3)\leqslant d(x,y)\leqslant \mathrm{diam}\; I_0<d,$$
+                矛盾!所以此时$I_0\subset Q_3$.如果$I_0\cap Q_2=\varnothing$,则$I_0\subset K$.对任意的$x\in K\subset E_\varepsilon^c$,则$\omega(f,x)<\varepsilon$.
+                由$K$是紧集和引理2.2,存在$\delta>0$,使得对任意$x_1,x_2\in K,d(x_1,x_2)<\varepsilon$,有$|f(x_1)-f(x_2)|<2\varepsilon$.
+                由于$f$是有界函数,记$$M=\sup_{x\in I}|f(x)|<\infty,\quad \lambda=\min\{d,\delta\},$$
+                考虑$I$的任意划分$P_1,P_2$及代表点$\xi_{P_1},\xi_{P_2}$,其中$\|P_1\|,\|P_2\|<\lambda$.
+                于是$P=P_1\cup P_2$也是$I$的一个划分,$\xi_P$为其代表点,且$\|P\|\leqslant\|P_1\|<\lambda$.
+                于是
+                \begin{align*}
+                    |S(f,P,\xi_P)-S(f,P_1,\xi_{P_1})|&=\left|\sum_{I_0\in P_1\atop I_0\subset Q_3}f(\xi_{P_{1_{I_0}}})\mu(I_0)+\sum_{I_0\in P_1\atop I_0\in K}f(\xi_{P_{1_{I_0}}})\mu(I_0)\right.\\
+                    &~~ \left.-\sum_{I_0\in P\atop I_0\subset Q_3}f(\xi_{P_{1_{I_0}}})\mu(I_0)-\sum_{I_0\in P\atop I_0\in K}f(\xi_{P_{1_{I_0}}})\mu(I_0)\right|\\
+                    &\leqslant\sum_{{{I_j\subset I_0\atop I_0\in P_1}\atop I_j\in P}\atop I\subset Q_3}\left|f(\xi_{P_{1_{I_0}}})-f(\xi_{P_{I_j}})\right|\mu(I_j)\\
+                    &~~ +\sum_{{{I_j\subset I_0\atop I_0\in P_1}\atop I_j\in P}\atop I\in K}\left|f(\xi_{P_{1_{I_0}}})-f(\xi_{P_{I_j}})\right|\mu(I_j)\\
+                \end{align*}
+                这里我们有$$I_0=\bigcup_{{{I_j\subset I_0}\atop I_0\in P_1}\atop I_j\in P}I_j,\quad \mu(I_0)=\sum_{{{I_j\subset I_0}\atop I_0\in P_1}\atop I_j\in P}\mu(I_j),$$
+                因此$$|S(f,P,\xi_P)-S(f,P_1,\xi_{P_1})|\leqslant 2M\mu(Q_3)+2\varepsilon\mu(I).$$
+                又因为$\mu(Q_3)\leqslant\sum_{k=1}^m\mu(I_k^3)=3^n\sum_{k=1}^m\mu(I_k)<3^n\varepsilon$,所以
+                $$|S(f,P,\xi_P)-S(f,P_1,\xi_{P_1})|\leqslant 2\cdot 3^nM\varepsilon+2\varepsilon\mu(I).$$
+                同理,$$|S(f,P,\xi_P)-S(f,P_1,\xi_{P_2})|\leqslant 2\cdot 3^nM\varepsilon+2\varepsilon\mu(I).$$
+                所以\begin{align*}
+                    |S(f,P,\xi_{P_1})-S(f,P_1,\xi_{P_2})|&\leqslant|S(f,P,\xi_P)-S(f,P_1,\xi_{P_1})|\\
+                    &~~+|S(f,P,\xi_P)-S(f,P_1,\xi_{P_2})|\\
+                    &<4\cdot 3^nM\varepsilon+4\varepsilon\mu(I).
+                \end{align*}
+                由定理2.4,$f$在$I$上黎曼可积.
+            \end{proof}
+
+        \subsection{广义康托集及其性质}
+            考虑闭区间$[0,1]$,
+            
+            \begin{enumerate*}
+                \item[第1步]去掉以$\dfrac{1}{2}$为中心,长度为$\dfrac{1}{4}$的开区间$I_1$;
+                \item[第2步]在剩下的2个闭区间中,分别去掉以它们中心为中心,长度为 $\left(\dfrac{1}{4}\right)^2$的开区间,记其并集为$I_2$;
+            \end{enumerate*}
+            \dots\dots
+            \begin{enumerate*}
+                \item[第$k$步]在剩下的$2^{k-1}$个闭区间中,分别去掉以它们中心为中心,长度为 $\left(\dfrac{1}{4}\right)^k$的开区间,记其并集为$I_k$;
+            \end{enumerate*}
+            \dots\dots
+
+            这样我们得到了$\{I_k\}_{k=1}^\infty$.并且
+            $$\mu\left(\bigcup_{k=1}^\infty I_k\right)=\sum_{k=1}^\infty\mu(I_k)=\sum_{k=1}^\infty2^{k-1}\left(\dfrac{1}{4}\right)^{k}=\dfrac{1}{2}.$$
+            记$F=[0,1]\setminus\bigcup_{k=1}^\infty I_k$,称$F$为比例为$\dfrac{1}{4}$的广义康托集,且$\mu(F)=1-\mu\left(\bigcup_{k=1}^nI_k\right)=\dfrac{1}{2}$.
+
+            对于广义康托集,我们有如下性质:
+            \begin{proposition}
+                对任意的$x\in F$,存在数列$\{x_n\}_{n=1}^\infty,x_n\in I_n$,并且$x_n$是$I_n$中某个开区间的端点,$x_n\to x(n\to\infty)$.
+            \end{proposition}
+            \begin{proof}
+                考虑第一步剩下的两个闭区间$K_1^1,K_2^1$,不妨设$x\in K_1^1$(左边的闭区间).令$x_1$为$I_1$的左端点,则$|x-x_1|<\dfrac{3}{8}$.
+
+                考虑$K_1^1$第二步剩下的两个闭区间$K_1^2,K_2^2$,不妨设$x\in K_1^2$(左边的闭区间).令$x_2$为$I_2$最左边的区间的左端点,则$|x-x_2|<\left(\dfrac{3}{8}\right)^2$.
+
+                \dots\dots
+
+                考虑$K_1^{s-1}$第$s$步剩下的两个闭区间$K_1^s,K_2^s$,不妨设$x\in K_1^s$(左边的闭区间).令$x_s$为$I_s$最左边的区间的左端点,则$|x-x_s|<\left(\dfrac{3}{8}\right)^s$.
+
+                \dots\dots
+
+                由此我们得到了一个数列$\{x_n\}_{n=1}^\infty$,满足$x_n\in I_n$是$I_n$中某个区间的端点,$|x_n-x|<\left(\dfrac{3}{8}\right)^n$,从而$x_n\to x(n\to\infty)$.
+            \end{proof}
+
+        \subsection{沃尔泰拉函数}
+            经过前期的准备,在本节中我们正式给出沃尔泰拉函数.
+            
+            定义函数$f:[0,1]\to\mathbb{R}$.如果$x\in F$,则$f(x)=0$;如果$x\not\in F$,则存在$(a,b)$为康托集构造时被挖掉的开区间.
+            定义$$f_a(x)=\begin{cases}
+                (x-a)^2\sin\dfrac{1}{x-a} &x\not=a,\\
+                0 &x=a
+            \end{cases},\quad f_b(x)=\begin{cases}
+                (x-b)^2\sin\dfrac{1}{x-b} &x\not=b,\\
+                0 &x=b.
+            \end{cases}$$
+            显然$f_a(a+b-x)+f_b(x)=0$,故$f_a,f_b$关于$\left(\dfrac{a+b}{2},0\right)$对称.
+
+            由前面对极值点的讨论,我们设$a_1$为$f_a$最靠近$\dfrac{a+b}{2}$左侧的极值点,$b_1$为$f_b$最靠近$\dfrac{a+b}{2}$右侧的极值点,其中$a_1,b_1\in(a,b)$.
+
+            下面我们定义$f$在$(a,b)$上的取值.(注意$a,b\in F$)
+
+            $$f(x)=\begin{cases}
+                f_a(x)& a\leqslant x\leqslant a_1,\\
+                f_a(a_1)=f_b(b_1) & a_1\leqslant x\leqslant b_1,\\
+                f_b(x) & b_1\leqslant x\leqslant b.
+            \end{cases}$$
+            函数$f$称为沃尔泰拉函数.
+            \begin{theorem}
+                $f$在$[0,1]$上处处可导,导数有界,而导数不可积.
+            \end{theorem}
+            \begin{proof}
+                首先证明$f$在$[0,1]$上处处可导且导数有界.
+
+                根据构造,$f$在$[0,1]\setminus F$上可导.任取$x\in F,y\in[0,1],y>x$,若$y\in F$,则$|f(x)-f(y)|=0<|x-y|^2$;
+                若$y\not\in F$,则存在构造$F$时被挖去的开区间$(\alpha,\beta)$,且$y\in(\alpha,\beta)$,于是
+                $$|f(x)-f(y)|=|f(y)|=\left|(y-\alpha)^2\sin\dfrac{1}{y-\alpha}\right|\leqslant|y-\alpha|^2\leqslant|x-y|^2,$$
+                综上,$|f(x)-f(y)|\leqslant |x-y|^2$.所以$f_+'(x)=0$.同理$f_-'(x)=0$.从而$f'(x)=0$.因此$f$在$[0,1]$上处处可导且导数有界.
+
+                以下证明$f'(x)$在$[0,1]$上不可积.由广义康托集的性质,对任意$x\in F,\delta>0$,存在挖去的开区间的端点$y$,满足$y\in U_\delta(x)$.
+                由于$\omega(f',x)=2$(前面叙述函数性质的时候已经说明),所以$\omega(f',U_\delta^K(x))\geqslant 2$.从而$f'$在$x$处不连续.因为$\mu(F)=\dfrac{1}{2}$,
+                所以$f'$的不连续点集不是零测集,从而由定理2.5知,$f'$在$[0,1]$上不可积.
+            \end{proof}
+
+            沃尔泰拉函数说明了黎曼积分的牛顿-莱布尼茨公式中导数可积的假设不能轻易放宽.这说明了黎曼积分在处理微分与积分的关系中是有缺陷的.
+
+    \section{勒贝格积分}
+        接下来我们讨论勒贝格积分理论中对微分和积分关系的刻画.首先引入勒贝格积分的定义.
+        \begin{definition}{\emph{(}简单函数的勒贝格积分\emph{)}}
+            设$\{E_k\}_{k=1}^n$为$\mathbb{R}^n$中一列两两不交的可测集,且$\mu(E_k)<\infty,k=1,2,\cdots,n$.
+            设$f=\sum_{k=1}^n\lambda_k\chi_{E_k}$为一个简单函数.定义$f$的勒贝格积分为
+            $$\dint f(x)\mathrm{d}\mu=\sum_{k=1}^n\lambda_k\mu(E_k).$$
+        \end{definition}
+        \begin{definition}{\emph{(}支集是有限可测集的有界可测函数的勒贝格积分\emph{)}}
+            设$f$为$\mathbb{R}^n$上的有界可测函数,且$\mu(\mathrm{supp}\; f)<\infty$.定义$f$的勒贝格积分为
+            $$\dint f(x)\mathrm{d}\mu=\lim_{n\to\infty}\dint\varphi_n(x)\mathrm{d}\mu.$$
+            其中$\{\varphi_n(x)\}_{n=1}^\infty$为一个简单函数列,满足$\varphi_n(x)\to f(x)(n\to\infty)$.
+        \end{definition}
+        \begin{definition}{\emph{(}非负可测函数的勒贝格积分\emph{)}}
+            设$f$为$\mathbb{R}^n$上的非负可测函数,定义$f$的勒贝格积分为
+            $$\dint f(x)\mathrm{d}\mu=\sup\left.\left\{\dint g(x)\mathrm{d}\mu\right|0\leqslant g\leqslant f,g\text{是支集是有限可测集的有界可测函数}\right\}.$$
+            如果$\dint f(x)\mathrm{d}\mu<\infty$,我们称$f$可积.
+        \end{definition}
+        \begin{definition}{\emph{(}一般可测函数的勒贝格积分\emph{)}}
+            设$f$为$\mathbb{R}^n$上的可测函数,并且$\dint|f(x)|\mathrm{d}\mu<\infty$,则称$f$可积.
+            并定义$\dint f(x)\mathrm{d}\mu=\dint f^+(x)\mathrm{d}\mu-\dint f^-(x)\mathrm{d}\mu$.
+        \end{definition}
+        \begin{remark}
+            如果$E$是$\mathbb{R}^n$的一个可测子集,那么$f$在$E$上的积分定义为
+            $$\dint_Ef(x)\mathrm{d}\mu=\dint f(x)\chi_E\mathrm{d}\mu.$$
+        \end{remark}
+
+
+
+                
+
+    \end{document}
