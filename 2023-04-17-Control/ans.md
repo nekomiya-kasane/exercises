@@ -57,7 +57,7 @@ xlabel("Time (s)")
 ylabel("Amplitude")
 ```
 
-Q2
+## Q2
 
 1. The cost function is fully determined by the input signal and we don't need to consider the output $x(t)$. Hence to minimize $\displaystyle \sum_{k=0}^Nu(k)^2$, we only need to make the input zero. That is,
    $$
@@ -69,7 +69,18 @@ Q2
    $$
    u(k)=0,\quad \forall k\geqslant 0
    $$
-   to make the minimal cost be $0$.
+   to make the minimal cost be $0$. 
+
+   Note this makes the system unstable, if we only consider stabilizing controllers, then by the Riccati equation, $Q=0,R=1,N=0,A=4,B=1,$
+   $$
+   A^TSA-S-(A^TSB+N)(B^TSB+R)^{-1}(B^TSA+N^T)+Q=0\\
+   K=(B^TSB+R)^{-1}(B^TSA+N^T)
+   $$
+   we get $K=15/4$, hence the control law is $u(t)=-\dfrac{15}{4}x(t)$, Thus $u(t)=-\dfrac{15}{2\cdot 4^t}$, the minimal cost is
+   $$
+   J=\sum_{k=0}^{\infty}\dfrac{225}{4\cdot 16^t}=60
+   $$
+   Also, for the last subproblem, the result will be the same if we only consider stabilizing controllers.
 
 3. The cost function in this subproblem
    $$
@@ -83,7 +94,9 @@ Q2
    $$
    And the minimal cost would be $J=x(0)^2=64$.
 
-Q3
+   Moreover, if we only consider stabilizing controllers, then the Riccati equation gives $K=4$ since  $Q=1,R=0,N=0,A=4,B=1.$​ Hence the control law is $u(t)=-4x(t)$, we reached the same conclusion.
+
+## Q3
 
 The transfer function can be written as 
 $$
