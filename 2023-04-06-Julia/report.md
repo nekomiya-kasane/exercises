@@ -567,10 +567,8 @@ In addition, in order to finish this report, I've search a lot (but 95% material
    
    
    $$
-   
    Hence,
-   
-   $$ 
+   $$
    
      *\**begin*{align}
    
@@ -581,17 +579,13 @@ In addition, in order to finish this report, I've search a lot (but 95% material
      *\**end*{align}
    
    $$
-   
    Similarly, in time
-   
    $$
    
      U_j^{n+1} = U_j^n + (U_t)_j^n\Delta t + (U_tt)_\zeta^n\Delta t^2,\quad \zeta\in[t_j,t_{j+1}]
    
    $$
-   
    Thus the original formula can be written as
-   
    $$
    
      (U_t)_j^n + (U_tt)_\zeta^n\Delta t = *\**dfrac*{1}{2}((U_{xx})_j^n+(U_{xx})_j^{n+1}+O(\Delta x^2))
