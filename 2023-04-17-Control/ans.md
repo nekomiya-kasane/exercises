@@ -57,8 +57,11 @@ xlabel("Time (s)")
 ylabel("Amplitude")
 ```
 
+<<<<<<< HEAD
 <img src="ans.assets/image-20230420221952810.png" alt="image-20230420221952810" style="zoom:80%;" />
 
+=======
+>>>>>>> dab71bcd04a3a903991f990f01cb3b1914331445
 ## Q2
 
 1. The cost function is fully determined by the input signal and we don't need to consider the output $x(t)$. Hence to minimize $\displaystyle \sum_{k=0}^Nu(k)^2$, we only need to make the input zero. That is,
@@ -73,6 +76,7 @@ ylabel("Amplitude")
    $$
    to make the minimal cost be $0$. 
 
+<<<<<<< HEAD
    Note this makes the system unstable, if we only consider stabilizing controllers, then by the Riccati equation<sup><a href="#ref1">[1]</a></sup>, $\Phi=4,\Gamma=1,Q=0,R=2$, $S$ satisfies 
    $$
    S=\Phi^T[S-S\Gamma(\Gamma^TS\Gamma+R)^{-1}\Gamma^T S]\Phi+Q
@@ -93,6 +97,18 @@ ylabel("Amplitude")
    $$
    J=\sum_{k=0}^{N}\dfrac{225}{4\cdot 16^t}=60-\dfrac{15}{4^{2N+1}}
    $$
+=======
+   Note this makes the system unstable, if we only consider stabilizing controllers, then by the Riccati equation, $Q=0,R=1,N=0,A=4,B=1,$
+   $$
+   A^TSA-S-(A^TSB+N)(B^TSB+R)^{-1}(B^TSA+N^T)+Q=0\\
+   K=(B^TSB+R)^{-1}(B^TSA+N^T)
+   $$
+   we get $K=15/4$, hence the control law is $u(t)=-\dfrac{15}{4}x(t)$, Thus $u(t)=-\dfrac{15}{2\cdot 4^t}$, the minimal cost is
+   $$
+   J=\sum_{k=0}^{\infty}\dfrac{225}{4\cdot 16^t}=60
+   $$
+   Also, for the last subproblem, the result will be the same if we only consider stabilizing controllers.
+>>>>>>> dab71bcd04a3a903991f990f01cb3b1914331445
 
 3. The cost function in this subproblem
    $$
@@ -106,6 +122,7 @@ ylabel("Amplitude")
    $$
    And the minimal cost would be $J=x(0)^2=64$.
 
+<<<<<<< HEAD
    Moreover, if we only consider stabilizing controllers, then in the Riccati equation, we have $Q=2,R=0,\Phi=4,\Gamma=1$,  $S$ satisfies 
    $$
    S=\Phi^T[S-S\Gamma(\Gamma^TS\Gamma+R)^{-1}\Gamma^T S]\Phi+Q
@@ -122,6 +139,9 @@ ylabel("Amplitude")
    $$
    J=\sum_{k=0}^Nx(k)^2=x(0)^2=4
    $$
+=======
+   Moreover, if we only consider stabilizing controllers, then the Riccati equation gives $K=4$ since  $Q=1,R=0,N=0,A=4,B=1.$​ Hence the control law is $u(t)=-4x(t)$, we reached the same conclusion.
+>>>>>>> dab71bcd04a3a903991f990f01cb3b1914331445
 
 ## Q3
 
