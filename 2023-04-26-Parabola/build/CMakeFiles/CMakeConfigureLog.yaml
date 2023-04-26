@@ -1,0 +1,244 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeDetermineSystem.cmake:204 (message)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      The system is: Windows - 6.2.9200 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/x64/bin/clang-cl.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      MSBuild version 17.5.1+f6fdcf537 for .NET Framework
+      2023/04/26 16:33:44 にビルドを開始しました。
+      Included response file: C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.rsp
+      
+      ノード 1 上のプロジェクト "E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\3.26.3\\CompilerIdC\\CompilerIdC.vcxproj" (既定のターゲット)。
+      PrepareForBuild:
+        ディレクトリ "Debug\\" を作成しています。
+        ディレクトリ "Debug\\CompilerIdC.tlog\\" を作成しています。
+      InitializeBuildStatus:
+        "AlwaysCreate" が指定されたため "Debug\\CompilerIdC.tlog\\unsuccessfulbuild" を作成しています。
+      VcpkgTripletSelection:
+        Using triplet "x64-windows" from "D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\"
+        Using normalized configuration "Release"
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\Llvm\\x64\\bin\\clang-cl.exe /c /I"D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\include" /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /EHsc /MDd /GS /fp:precise /Fo"Debug\\\\" /Gd /TC -m64  CMakeCCompilerId.c
+      Link:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\Llvm\\x64\\bin\\lld-link.exe /OUT:".\\CompilerIdC.exe" /INCREMENTAL:NO /LIBPATH:"D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\lib" /LIBPATH:"D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdC.lib"  Debug\\CMakeCCompilerId.obj
+      lld-link : error : could not open 'D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\lib\\*.lib': invalid argument [E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\3.26.3\\CompilerIdC\\CompilerIdC.vcxproj]
+      プロジェクト "E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\3.26.3\\CompilerIdC\\CompilerIdC.vcxproj" (既定のターゲット) のビルドが終了しました -- 失敗。
+      
+      ビルドに失敗しました。
+      
+      "E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\3.26.3\\CompilerIdC\\CompilerIdC.vcxproj" (既定のターゲット) (1) ->
+      (Link ターゲット) -> 
+        lld-link : error : could not open 'D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\lib\\*.lib': invalid argument [E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\3.26.3\\CompilerIdC\\CompilerIdC.vcxproj]
+      
+          0 個の警告
+          1 エラー
+      
+      経過時間 00:00:00.32
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/x64/bin/clang-cl.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      MSBuild version 17.5.1+f6fdcf537 for .NET Framework
+      2023/04/26 16:33:44 にビルドを開始しました。
+      Included response file: C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.rsp
+      
+      ノード 1 上のプロジェクト "E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\3.26.3\\CompilerIdC\\CompilerIdC.vcxproj" (既定のターゲット)。
+      PrepareForBuild:
+        ディレクトリ "Debug\\" を作成しています。
+        ディレクトリ "Debug\\CompilerIdC.tlog\\" を作成しています。
+      InitializeBuildStatus:
+        "AlwaysCreate" が指定されたため "Debug\\CompilerIdC.tlog\\unsuccessfulbuild" を作成しています。
+      VcpkgTripletSelection:
+        Using triplet "x64-windows" from "D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\"
+        Using normalized configuration "Release"
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\Llvm\\x64\\bin\\clang-cl.exe /c /I"D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\include" /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /EHsc /MDd /GS /fp:precise /Fo"Debug\\\\" /Gd /TC -m64  CMakeCCompilerId.c
+      Link:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\Llvm\\x64\\bin\\lld-link.exe /OUT:".\\CompilerIdC.exe" /INCREMENTAL:NO /LIBPATH:"D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\lib" /LIBPATH:"D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdC.lib"  Debug\\CMakeCCompilerId.obj
+      lld-link : error : could not open 'D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\lib\\*.lib': invalid argument [E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\3.26.3\\CompilerIdC\\CompilerIdC.vcxproj]
+      プロジェクト "E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\3.26.3\\CompilerIdC\\CompilerIdC.vcxproj" (既定のターゲット) のビルドが終了しました -- 失敗。
+      
+      ビルドに失敗しました。
+      
+      "E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\3.26.3\\CompilerIdC\\CompilerIdC.vcxproj" (既定のターゲット) (1) ->
+      (Link ターゲット) -> 
+        lld-link : error : could not open 'D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\lib\\*.lib': invalid argument [E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\3.26.3\\CompilerIdC\\CompilerIdC.vcxproj]
+      
+          0 個の警告
+          1 エラー
+      
+      経過時間 00:00:00.30
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:1115 (message)"
+      - "D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+      clang-cl: error: no input files
+  -
+    kind: "message-v1"
+    backtrace:
+      - "D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:1115 (message)"
+      - "D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+      clang-cl: error: no input files
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "E:/assignments/2023-04-26-Parabola/build/CMakeFiles/CMakeScratch/TryCompile-sw71qb"
+      binary: "E:/assignments/2023-04-26-Parabola/build/CMakeFiles/CMakeScratch/TryCompile-sw71qb"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: E:/assignments/2023-04-26-Parabola/build/CMakeFiles/CMakeScratch/TryCompile-sw71qb
+        
+        Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_8d7be.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n && MSBuild version 17.5.1+f6fdcf537 for .NET Framework
+        2023/04/26 16:33:45 にビルドを開始しました。
+        Included response file: C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.rsp
+        
+        ノード 1 上のプロジェクト "E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\CMakeScratch\\TryCompile-sw71qb\\cmTC_8d7be.vcxproj" (既定のターゲット)。
+        PrepareForBuild:
+          ディレクトリ "cmTC_8d7be.dir\\Debug\\" を作成しています。
+          ディレクトリ "E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\CMakeScratch\\TryCompile-sw71qb\\Debug\\" を作成しています。
+          ディレクトリ "cmTC_8d7be.dir\\Debug\\cmTC_8d7be.tlog\\" を作成しています。
+        InitializeBuildStatus:
+          "AlwaysCreate" が指定されたため "cmTC_8d7be.dir\\Debug\\cmTC_8d7be.tlog\\unsuccessfulbuild" を作成しています。
+        VcpkgTripletSelection:
+          Using triplet "x64-windows" from "D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\"
+          Using normalized configuration "Release"
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\Llvm\\x64\\bin\\clang-cl.exe /c /I"D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\include" /W1 /WX- /diagnostics:column /O2 /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /MD /GS /fp:precise /Fo"cmTC_8d7be.dir\\Debug\\\\" /Gd /TC -m64  "D:\\scoop_global\\apps\\mingw-winlibs\\12.2.0-16.0.0-10.0.0-r5\\share\\cmake-3.26\\Modules\\CMakeCCompilerABI.c"
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\Llvm\\x64\\bin\\lld-link.exe /OUT:"E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\CMakeScratch\\TryCompile-sw71qb\\Debug\\cmTC_8d7be.exe" /INCREMENTAL /LIBPATH:"D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\lib" /LIBPATH:"D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\lib\\manual-link" "D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"E:/assignments/2023-04-26-Parabola/build/CMakeFiles/CMakeScratch/TryCompile-sw71qb/Debug/cmTC_8d7be.pdb" /SUBSYSTEM:CONSOLE /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:/assignments/2023-04-26-Parabola/build/CMakeFiles/CMakeScratch/TryCompile-sw71qb/Debug/cmTC_8d7be.lib"  cmTC_8d7be.dir\\Debug\\CMakeCCompilerABI.obj
+        lld-link : warning : ignoring '/incremental' because REF is enabled; use '/opt:noref' to disable [E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\CMakeScratch\\TryCompile-sw71qb\\cmTC_8d7be.vcxproj]
+        lld-link : error : could not open 'D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\lib\\*.lib': invalid argument [E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\CMakeScratch\\TryCompile-sw71qb\\cmTC_8d7be.vcxproj]
+        プロジェクト "E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\CMakeScratch\\TryCompile-sw71qb\\cmTC_8d7be.vcxproj" (既定のターゲット) のビルドが終了しました -- 失敗。
+        
+        ビルドに失敗しました。
+        
+        "E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\CMakeScratch\\TryCompile-sw71qb\\cmTC_8d7be.vcxproj" (既定のターゲット) (1) ->
+        (Link ターゲット) -> 
+          lld-link : warning : ignoring '/incremental' because REF is enabled; use '/opt:noref' to disable [E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\CMakeScratch\\TryCompile-sw71qb\\cmTC_8d7be.vcxproj]
+        
+        
+        "E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\CMakeScratch\\TryCompile-sw71qb\\cmTC_8d7be.vcxproj" (既定のターゲット) (1) ->
+        (Link ターゲット) -> 
+          lld-link : error : could not open 'D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\lib\\*.lib': invalid argument [E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\CMakeScratch\\TryCompile-sw71qb\\cmTC_8d7be.vcxproj]
+        
+            1 個の警告
+            1 エラー
+        
+        経過時間 00:00:00.32
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt:3 (project)"
+    checks:
+      - "Check for working C compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/x64/bin/clang-cl.exe"
+    directories:
+      source: "E:/assignments/2023-04-26-Parabola/build/CMakeFiles/CMakeScratch/TryCompile-8fx1cx"
+      binary: "E:/assignments/2023-04-26-Parabola/build/CMakeFiles/CMakeScratch/TryCompile-8fx1cx"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: E:/assignments/2023-04-26-Parabola/build/CMakeFiles/CMakeScratch/TryCompile-8fx1cx
+        
+        Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_a1a4d.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n && MSBuild version 17.5.1+f6fdcf537 for .NET Framework
+        2023/04/26 16:33:45 にビルドを開始しました。
+        Included response file: C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\MSBuild.rsp
+        
+        ノード 1 上のプロジェクト "E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\CMakeScratch\\TryCompile-8fx1cx\\cmTC_a1a4d.vcxproj" (既定のターゲット)。
+        PrepareForBuild:
+          ディレクトリ "cmTC_a1a4d.dir\\Debug\\" を作成しています。
+          ディレクトリ "E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\CMakeScratch\\TryCompile-8fx1cx\\Debug\\" を作成しています。
+          ディレクトリ "cmTC_a1a4d.dir\\Debug\\cmTC_a1a4d.tlog\\" を作成しています。
+        InitializeBuildStatus:
+          "AlwaysCreate" が指定されたため "cmTC_a1a4d.dir\\Debug\\cmTC_a1a4d.tlog\\unsuccessfulbuild" を作成しています。
+        VcpkgTripletSelection:
+          Using triplet "x64-windows" from "D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\"
+          Using normalized configuration "Release"
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\Llvm\\x64\\bin\\clang-cl.exe /c /I"D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\include" /W1 /WX- /diagnostics:column /O2 /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /MD /GS /fp:precise /Fo"cmTC_a1a4d.dir\\Debug\\\\" /Gd /TC -m64  "E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\CMakeScratch\\TryCompile-8fx1cx\\testCCompiler.c"
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\Llvm\\x64\\bin\\lld-link.exe /OUT:"E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\CMakeScratch\\TryCompile-8fx1cx\\Debug\\cmTC_a1a4d.exe" /INCREMENTAL /LIBPATH:"D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\lib" /LIBPATH:"D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\lib\\manual-link" "D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"E:/assignments/2023-04-26-Parabola/build/CMakeFiles/CMakeScratch/TryCompile-8fx1cx/Debug/cmTC_a1a4d.pdb" /SUBSYSTEM:CONSOLE /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:/assignments/2023-04-26-Parabola/build/CMakeFiles/CMakeScratch/TryCompile-8fx1cx/Debug/cmTC_a1a4d.lib"  cmTC_a1a4d.dir\\Debug\\testCCompiler.obj
+        lld-link : warning : ignoring '/incremental' because REF is enabled; use '/opt:noref' to disable [E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\CMakeScratch\\TryCompile-8fx1cx\\cmTC_a1a4d.vcxproj]
+        lld-link : error : could not open 'D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\lib\\*.lib': invalid argument [E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\CMakeScratch\\TryCompile-8fx1cx\\cmTC_a1a4d.vcxproj]
+        プロジェクト "E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\CMakeScratch\\TryCompile-8fx1cx\\cmTC_a1a4d.vcxproj" (既定のターゲット) のビルドが終了しました -- 失敗。
+        
+        ビルドに失敗しました。
+        
+        "E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\CMakeScratch\\TryCompile-8fx1cx\\cmTC_a1a4d.vcxproj" (既定のターゲット) (1) ->
+        (Link ターゲット) -> 
+          lld-link : warning : ignoring '/incremental' because REF is enabled; use '/opt:noref' to disable [E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\CMakeScratch\\TryCompile-8fx1cx\\cmTC_a1a4d.vcxproj]
+        
+        
+        "E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\CMakeScratch\\TryCompile-8fx1cx\\cmTC_a1a4d.vcxproj" (既定のターゲット) (1) ->
+        (Link ターゲット) -> 
+          lld-link : error : could not open 'D:\\scoop_global\\apps\\vcpkg\\current\\installed\\x64-windows\\lib\\*.lib': invalid argument [E:\\assignments\\2023-04-26-Parabola\\build\\CMakeFiles\\CMakeScratch\\TryCompile-8fx1cx\\cmTC_a1a4d.vcxproj]
+        
+            1 個の警告
+            1 エラー
+        
+        経過時間 00:00:00.32
+        
+      exitCode: 1
+...
