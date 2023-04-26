@@ -1,4 +1,4 @@
-from diff import *
+from diff3 import *
 
 # DiffCommands('wrong_1.txt')
 # DiffCommands('wrong_2.txt')

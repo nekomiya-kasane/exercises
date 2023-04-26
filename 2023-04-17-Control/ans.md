@@ -26,11 +26,11 @@ $$
 Hence let $K_a=2$, we'd have $K_i=\dfrac{5K_a}{3}=\dfrac{10}{3}\approx3.33$. Let $\omega_c>2.8$ be the bandwidth, $\varphi=\dfrac{\pi}{4}$ be the phase margin, then 
 $$
 \begin{align}
-|G(j\omega_c)G_c(j\omega_c)|&=\left|\dfrac{-3K_d \omega_c^2+3j\omega_c s+3K_i}{-\omega_c^2(-\omega_c^2+j\omega_c+5)}\right|=1\\
+|G(j\omega_c)G_c(j\omega_c)|&=\left|\dfrac{-3K_d \omega_c^2+3j\omega_c s+3K_i}{-\omega_c^2(-\omega_c^2+4j\omega_c+5)}\right|=1\\
 \angle G(j\omega_c)G_c(j\omega_c)&=-\pi+\varphi=-\dfrac{3\pi}{4}
 \end{align}
 $$
-Take $\omega_c=3$, we can solve out that $K_p\approx 5.66,K_d\approx 4.14$. Therefore the PID controller could have the transmit function
+Take $\omega_c=3$, we can solve out numerically that $K_p\approx 5.66,K_d\approx 4.14$. Therefore the PID controller could have the transmit function
 $$
 G_c(s)=5.66+\dfrac{3.33}{s}+4.14 s
 $$
@@ -44,24 +44,60 @@ Ki = 3.33;
 Kp = 5.66;
 Kd = 4.14;
 
-F = tf(1, [1, 1])
+F = tf(0.804, [1, 1.37, 0.8])
 G = tf(3, [1, 4, 5, 0])
 Gc = tf([Kd, Kp, Ki], [1, 0])
 
-T = F * feedback(G * Gc, 1)
+GH = feedback(G * Gc, 1)
 
-step(T, feedback(G * Gc, 1))
-legend(["With pre-filter", "Without pre-filter"])
+T = F * GH
+
+bode(GH)
+bode(T)
+
+step(feedback(G, 1), GH, T)
+legend(["Only plant", "Without pre-filter", "With pre-filter"])
 title("Step Response")
 xlabel("Time (s)")
 ylabel("Amplitude")
 ```
 
-<<<<<<< HEAD
-<img src="ans.assets/image-20230420221952810.png" alt="image-20230420221952810" style="zoom:80%;" />
+Bode diagram before adding prefilter
 
-=======
->>>>>>> dab71bcd04a3a903991f990f01cb3b1914331445
+<img src="ans.assets/image-20230425233212566.png" alt="image-20230425233212566" style="zoom:67%;" />
+
+Bode diagram after adding prefilter
+
+<img src="ans.assets/image-20230425233222665.png" alt="image-20230425233222665" style="zoom:67%;" />
+
+Step response
+
+<img src="ans.assets/image-20230425233742727.png" alt="image-20230425233742727" style="zoom:80%;" />
+
+
+
+And the final transfer function is 
+$$
+T(s)=\dfrac{12.42(s^2+1.37s+0.80)}{s^5+5s^4+21.42s^3+34.4s^2+26.97s+9.99}
+$$
+We select a prefilter to obtain the optimum ITAE transfer function, which requires
+$$
+G_p(s)=\dfrac{0.804}{s^2+1.37s+0.80}
+$$
+Then the prefiltered transfer function would be 
+$$
+T'(s)=T(s)G_p(s)=\dfrac{9.99}{s^5+5s^4+21.42s^3+34.4s^2+26.97s+9.99}
+$$
+Here is the table to compare these 2 situations obtained from `stepinfo`
+
+|                           | PID without prefilter | PID with prefilter |
+| -------------------  | --------------------- | ------------------ |
+| Overshoot percent         | 28.68%                | 7.52%              |
+| Settling time (sec)       | 4.31                  | 7.17               |
+| Peak | 1.29 | 1.08 |
+
+This proves our prefilter works.
+
 ## Q2
 
 1. The cost function is fully determined by the input signal and we don't need to consider the output $x(t)$. Hence to minimize $\displaystyle \sum_{k=0}^Nu(k)^2$, we only need to make the input zero. That is,
@@ -76,40 +112,37 @@ ylabel("Amplitude")
    $$
    to make the minimal cost be $0$. 
 
-<<<<<<< HEAD
-   Note this makes the system unstable, if we only consider stabilizing controllers, then by the Riccati equation<sup><a href="#ref1">[1]</a></sup>, $\Phi=4,\Gamma=1,Q=0,R=2$, $S$ satisfies 
-   $$
-   S=\Phi^T[S-S\Gamma(\Gamma^TS\Gamma+R)^{-1}\Gamma^T S]\Phi+Q
-   $$
-   Thus
-   $$
-   S=4[S-S(S+2)^{-1}S]4+0\Rightarrow S=30
-   $$
-   Hence
-   $$
-   L=(\Gamma^TS\Gamma+R)^{-1}\Gamma^TS\Phi=\dfrac{15}{4}
-   $$
-   we get $L=15/4$, hence the control law is $u(t)=-\dfrac{15}{4}x(t)$, Thus $u(t)=-\dfrac{15}{2\cdot 4^t}$, the minimal cost is
-   $$
-   J=\sum_{k=0}^{\infty}\dfrac{225}{4\cdot 16^t}=60
-   $$
-   Also, for the last subproblem (1.), the result (control law) will be the same if we only consider stabilizing controllers, which makes the minimal cost
-   $$
-   J=\sum_{k=0}^{N}\dfrac{225}{4\cdot 16^t}=60-\dfrac{15}{4^{2N+1}}
-   $$
-=======
-   Note this makes the system unstable, if we only consider stabilizing controllers, then by the Riccati equation, $Q=0,R=1,N=0,A=4,B=1,$
-   $$
-   A^TSA-S-(A^TSB+N)(B^TSB+R)^{-1}(B^TSA+N^T)+Q=0\\
-   K=(B^TSB+R)^{-1}(B^TSA+N^T)
-   $$
-   we get $K=15/4$, hence the control law is $u(t)=-\dfrac{15}{4}x(t)$, Thus $u(t)=-\dfrac{15}{2\cdot 4^t}$, the minimal cost is
-   $$
-   J=\sum_{k=0}^{\infty}\dfrac{225}{4\cdot 16^t}=60
-   $$
-   Also, for the last subproblem, the result will be the same if we only consider stabilizing controllers.
->>>>>>> dab71bcd04a3a903991f990f01cb3b1914331445
-
+	Note this makes the system unstable, if we only consider stabilizing controllers, then by the Riccati equation<sup><a href="#ref1">[1]</a></sup>, $\Phi=4,\Gamma=1,Q=0,R=2$, $S$ satisfies 
+	$$
+	   S=\Phi^T[S-S\Gamma(\Gamma^TS\Gamma+R)^{-1}\Gamma^T S]\Phi+Q
+	$$
+	Thus
+	$$
+	   S=4[S-S(S+2)^{-1}S]4+0\Rightarrow S=30
+	$$
+	Hence
+	$$
+	   L=(\Gamma^TS\Gamma+R)^{-1}\Gamma^TS\Phi=\dfrac{15}{4}
+	$$
+	we get $L=15/4$, hence the control law is $u(t)=-\dfrac{15}{4}x(t)$, Thus $u(t)=-\dfrac{15}{2\cdot 4^t}$, the minimal cost is
+	$$
+	   J=\sum_{k=0}^{\infty}\dfrac{225}{4\cdot 16^t}=60
+	$$
+	Also, for the last subproblem (1.), the result (control law) will be the same if we only consider stabilizing controllers, which makes the minimal cost
+	$$
+	   J=\sum_{k=0}^{N}\dfrac{225}{4\cdot 16^t}=60-\dfrac{15}{4^{2N+1}}
+	$$
+	
+	Note this makes the system unstable, if we only consider stabilizing controllers, then by the Riccati equation, $Q=0,R=1,N=0,A=4,B=1,$
+	$$
+	   A^TSA-S-(A^TSB+N)(B^TSB+R)^{-1}(B^TSA+N^T)+Q=0\\
+	   K=(B^TSB+R)^{-1}(B^TSA+N^T)
+	$$
+	we get $K=15/4$, hence the control law is $u(t)=-\dfrac{15}{4}x(t)$, Thus $u(t)=-\dfrac{15}{2\cdot 4^t}$, the minimal cost is
+	$$
+	J=\sum_{k=0}^{\infty}\dfrac{225}{4\cdot 16^t}=60
+	$$
+	
 3. The cost function in this subproblem
    $$
    J=\sum_{k=0}^Nx(k)^2
@@ -122,26 +155,24 @@ ylabel("Amplitude")
    $$
    And the minimal cost would be $J=x(0)^2=64$.
 
-<<<<<<< HEAD
    Moreover, if we only consider stabilizing controllers, then in the Riccati equation, we have $Q=2,R=0,\Phi=4,\Gamma=1$,  $S$ satisfies 
    $$
-   S=\Phi^T[S-S\Gamma(\Gamma^TS\Gamma+R)^{-1}\Gamma^T S]\Phi+Q
+       S=\Phi^T[S-S\Gamma(\Gamma^TS\Gamma+R)^{-1}\Gamma^T S]\Phi+Q
    $$
    Thus
    $$
-   S=4[S-S(S+0)^{-1}S]4+2\Rightarrow S=2
+       S=4[S-S(S+0)^{-1}S]4+2\Rightarrow S=2
    $$
    Hence
    $$
-   L=(\Gamma^TS\Gamma+R)^{-1}\Gamma^TS\Phi=4
+       L=(\Gamma^TS\Gamma+R)^{-1}\Gamma^TS\Phi=4
    $$
    we get $L=4$, hence the optimal control law $u(k)=-Lx(k)=-4x(k)$ is got again, thus $x(0)=2,x(k)=0\ (k\geqslant 1)$. The corresponding minimal cost is
    $$
-   J=\sum_{k=0}^Nx(k)^2=x(0)^2=4
+       J=\sum_{k=0}^Nx(k)^2=x(0)^2=4
    $$
-=======
+
    Moreover, if we only consider stabilizing controllers, then the Riccati equation gives $K=4$ since  $Q=1,R=0,N=0,A=4,B=1.$​ Hence the control law is $u(t)=-4x(t)$, we reached the same conclusion.
->>>>>>> dab71bcd04a3a903991f990f01cb3b1914331445
 
 ## Q3
 

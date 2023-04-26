@@ -56,20 +56,18 @@ class OriginalNewFiles:
         self.file2 = file2
         if not file1 or not file2:
             return
-        self.contents1 = []
-        self.contents2 = []
+        self.leftLines = []
+        self.rightLines = []
         with open(file1) as file:
             for line in file:
-                self.contents1.append(line)
+                self.leftLines.append(line)
         with open(file2) as file:
             for line in file:
-                self.contents2.append(line)
+                self.rightLines.append(line)
 
     def is_a_possible_diff(self, diffs):
         solutions = self.get_all_diff_commands()
         L = [solutions[i].diffcommands for i in range(len(solutions))]
-        print(diffs.diffcommands)
-        print(L)
         if diffs.diffcommands in [solutions[i].diffcommands for i in range(len(solutions))]:
             return True
         return False
@@ -80,51 +78,51 @@ class OriginalNewFiles:
             print(diffs.diffcommands[i - 1], end = '')
             if diffs.action[i] == 'a':
                 for j in range(diffs.right[i][0] - 1, diffs.right[i][-1]):
-                    print('> ' + self.contents2[j], end = '')
+                    print('> ' + self.rightLines[j], end = '')
             elif diffs.action[i] == 'c':
                 for j in range(diffs.left[i][0] - 1, diffs.left[i][-1]):
-                    print('< ' + self.contents1[j], end = '')
+                    print('< ' + self.leftLines[j], end = '')
                 print('---')
                 for j in range(diffs.right[i][0] - 1, diffs.right[i][-1]):
-                    print('> ' + self.contents2[j], end = '')
+                    print('> ' + self.rightLines[j], end = '')
             elif diffs.action[i] == 'd':
                 for j in range(diffs.left[i][0] - 1, diffs.left[i][-1]):
-                    print('< ' + self.contents1[j], end = '')
+                    print('< ' + self.leftLines[j], end = '')
         return
                 
     def output_unmodified_from_original(self, diffs):
         if not self.is_a_possible_diff(diffs):
             return
-        output_contents1 = []
-        for line in self.contents1:
-            output_contents1.append('...')
+        output_leftLines = []
+        for line in self.leftLines:
+            output_leftLines.append('...')
 
         for i in range(1, len(diffs.action)):
             if diffs.action[i] == 'a':
-               output_contents1[diffs.left[i - 1][-1] : diffs.left[i][0]] = self.contents1[diffs.left[i - 1][-1] : diffs.left[i][0]]
+               output_leftLines[diffs.left[i - 1][-1] : diffs.left[i][0]] = self.leftLines[diffs.left[i - 1][-1] : diffs.left[i][0]]
             elif diffs.action[i] == 'c':
-               output_contents1[diffs.left[i - 1][-1] : diffs.left[i][0] - 1] = self.contents1[diffs.left[i - 1][-1] : diffs.left[i][0] - 1]                
+               output_leftLines[diffs.left[i - 1][-1] : diffs.left[i][0] - 1] = self.leftLines[diffs.left[i - 1][-1] : diffs.left[i][0] - 1]                
             elif diffs.action[i] == 'd':
-               output_contents1[diffs.left[i - 1][-1] : diffs.left[i][0] - 1] = self.contents1[diffs.left[i - 1][-1] : diffs.left[i][0] - 1]
+               output_leftLines[diffs.left[i - 1][-1] : diffs.left[i][0] - 1] = self.leftLines[diffs.left[i - 1][-1] : diffs.left[i][0] - 1]
 
-        if len(self.contents1) > diffs.left[-1][-1]:
-            for i in range(diffs.left[-1][-1], len(self.contents1)):
-                output_contents1[i] = self.contents1[i]
-        output_contents1.insert(0, '*')
-        print(output_contents1)
-        for i in range(1, len(output_contents1)):
-            if output_contents1[i] == '...' and output_contents1[i - 1] != '...':
+        if len(self.leftLines) > diffs.left[-1][-1]:
+            for i in range(diffs.left[-1][-1], len(self.leftLines)):
+                output_leftLines[i] = self.leftLines[i]
+        output_leftLines.insert(0, '*')
+        print(output_leftLines)
+        for i in range(1, len(output_leftLines)):
+            if output_leftLines[i] == '...' and output_leftLines[i - 1] != '...':
                 print('...')
-            elif output_contents1[i] != '...':
-                print(output_contents1[i], end = '')
+            elif output_leftLines[i] != '...':
+                print(output_leftLines[i], end = '')
         return 
     def output_unmodified_from_new(self, diffs):
         if not self.is_a_possible_diff(diffs):
             return
         
-        output_contents2 = []
-        for line in self.contents2:
-            output_contents2.append(line)
+        output_rightLines = []
+        for line in self.rightLines:
+            output_rightLines.append(line)
             
         for i in range(1, len(diffs.action)):
             if diffs.action[i] == 'a':
@@ -136,31 +134,31 @@ class OriginalNewFiles:
             else:
                 continue
             if start == end:
-                output_contents2[start] = '...'
+                output_rightLines[start] = '...'
             else:
-                output_contents2[start : end] = ['...'] * (end - start)
+                output_rightLines[start : end] = ['...'] * (end - start)
             
-        output_contents2.insert(0, '*')
-        print(output_contents2)
-        for i in range(1, len(output_contents2)):
-            if output_contents2[i] == '...' and output_contents2[i - 1] != '...':
+        output_rightLines.insert(0, '*')
+        print(output_rightLines)
+        for i in range(1, len(output_rightLines)):
+            if output_rightLines[i] == '...' and output_rightLines[i - 1] != '...':
                 print('...')
-            elif output_contents2[i] != '...':
-                print(output_contents2[i], end = '')
+            elif output_rightLines[i] != '...':
+                print(output_rightLines[i], end = '')
         return
     
     def get_all_diff_commands(self):
-        if self.contents1 == self.contents2:
+        if self.leftLines == self.rightLines:
             return [DiffCommands()]
         lcs_table = []
-        for i in range(len(self.contents1) + 1):
-            lcs_table.append([0 for _ in range(len(self.contents2) + 1)])
+        for i in range(len(self.leftLines) + 1):
+            lcs_table.append([0 for _ in range(len(self.rightLines) + 1)])
 
         
         same_commands = []
         for i in range(1, len(lcs_table)):
             for j in range(1, len(lcs_table[i])):
-                if self.contents1[i - 1] == self.contents2[j - 1]:
+                if self.leftLines[i - 1] == self.rightLines[j - 1]:
                     lcs_table[i][j]  = lcs_table[i - 1][j - 1] + 1
                     same_commands.append([i, j, lcs_table[i][j]])
                 else:
@@ -185,8 +183,8 @@ class OriginalNewFiles:
         solutions = []
         for diff in diffs:
             solution = DiffCommands()
-            diff_left = [0] + [diff[i][0] for i in range(len(diff))] + [len(self.contents1) + 1]
-            diff_right = [0] + [diff[i][1] for i in range(len(diff))] + [len(self.contents2) + 1]
+            diff_left = [0] + [diff[i][0] for i in range(len(diff))] + [len(self.leftLines) + 1]
+            diff_right = [0] + [diff[i][1] for i in range(len(diff))] + [len(self.rightLines) + 1]
             for i in range(1, len(diff_left)):
                 if diff_left[i] > diff_left[i - 1] + 1 and diff_right[i] == diff_right[i - 1] + 1:
                     if diff_left[i] - diff_left[i - 1] > 2:

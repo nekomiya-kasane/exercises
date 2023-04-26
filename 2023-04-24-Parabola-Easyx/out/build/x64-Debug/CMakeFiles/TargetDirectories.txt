@@ -1,0 +1,2 @@
+D:/assignments/2023-04-24-Parabola-Easyx/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+D:/assignments/2023-04-24-Parabola-Easyx/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
