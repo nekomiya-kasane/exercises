@@ -22,9 +22,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7DBEE2BB-24E8-393C-A8CE-75424516F315}</ProjectGuid>
+    <ProjectGuid>{24FC8482-2682-3AE3-8C08-6B77ECC30ECD}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
     <Platform>x64</Platform>
     <ProjectName>PikaPika</ProjectName>
     <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
@@ -59,25 +60,25 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\assignments\2023-04-26-Parabola\build\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">L:\exercises\2023-04-26-Parabola\build\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PikaPika.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PikaPika</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\assignments\2023-04-26-Parabola\build\Release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">L:\exercises\2023-04-26-Parabola\build\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PikaPika.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PikaPika</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">E:\assignments\2023-04-26-Parabola\build\MinSizeRel\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">L:\exercises\2023-04-26-Parabola\build\MinSizeRel\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">PikaPika.dir\MinSizeRel\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">PikaPika</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">E:\assignments\2023-04-26-Parabola\build\RelWithDebInfo\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">L:\exercises\2023-04-26-Parabola\build\RelWithDebInfo\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">PikaPika.dir\RelWithDebInfo\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">PikaPika</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
@@ -86,16 +87,16 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>E:\assignments\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>L:\exercises\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <ExceptionHandling>
-      </ExceptionHandling>
+      <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <Optimization>Disabled</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
@@ -103,10 +104,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>E:\assignments\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>L:\exercises\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>E:\assignments\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>L:\exercises\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -114,13 +115,13 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>E:\assignments\2023-04-26-Parabola\easyx\lib\VC2015\x64\EasyXw.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>..\easyx\lib\VC2015\x64\EasyXw.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>E:/assignments/2023-04-26-Parabola/build/Debug/PikaPika.lib</ImportLibrary>
-      <ProgramDataBaseFile>E:/assignments/2023-04-26-Parabola/build/Debug/PikaPika.pdb</ProgramDataBaseFile>
+      <ImportLibrary>L:/exercises/2023-04-26-Parabola/build/Debug/PikaPika.lib</ImportLibrary>
+      <ProgramDataBaseFile>L:/exercises/2023-04-26-Parabola/build/Debug/PikaPika.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -129,14 +130,14 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>E:\assignments\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>L:\exercises\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
-      <ExceptionHandling>
-      </ExceptionHandling>
+      <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
@@ -146,10 +147,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>E:\assignments\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>L:\exercises\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>E:\assignments\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>L:\exercises\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -157,13 +158,13 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>E:\assignments\2023-04-26-Parabola\easyx\lib\VC2015\x64\EasyXw.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>..\easyx\lib\VC2015\x64\EasyXw.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>E:/assignments/2023-04-26-Parabola/build/Release/PikaPika.lib</ImportLibrary>
-      <ProgramDataBaseFile>E:/assignments/2023-04-26-Parabola/build/Release/PikaPika.pdb</ProgramDataBaseFile>
+      <ImportLibrary>L:/exercises/2023-04-26-Parabola/build/Release/PikaPika.lib</ImportLibrary>
+      <ProgramDataBaseFile>L:/exercises/2023-04-26-Parabola/build/Release/PikaPika.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -172,14 +173,14 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>E:\assignments\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>L:\exercises\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
-      <ExceptionHandling>
-      </ExceptionHandling>
+      <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <Optimization>MinSpace</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
@@ -189,10 +190,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>E:\assignments\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>L:\exercises\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>E:\assignments\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>L:\exercises\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -200,13 +201,13 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>E:\assignments\2023-04-26-Parabola\easyx\lib\VC2015\x64\EasyXw.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>..\easyx\lib\VC2015\x64\EasyXw.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>E:/assignments/2023-04-26-Parabola/build/MinSizeRel/PikaPika.lib</ImportLibrary>
-      <ProgramDataBaseFile>E:/assignments/2023-04-26-Parabola/build/MinSizeRel/PikaPika.pdb</ProgramDataBaseFile>
+      <ImportLibrary>L:/exercises/2023-04-26-Parabola/build/MinSizeRel/PikaPika.lib</ImportLibrary>
+      <ProgramDataBaseFile>L:/exercises/2023-04-26-Parabola/build/MinSizeRel/PikaPika.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -215,15 +216,15 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>E:\assignments\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>L:\exercises\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <ExceptionHandling>
-      </ExceptionHandling>
+      <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
@@ -231,10 +232,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>E:\assignments\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>L:\exercises\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>E:\assignments\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>L:\exercises\2023-04-26-Parabola\easyx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -242,13 +243,13 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>E:\assignments\2023-04-26-Parabola\easyx\lib\VC2015\x64\EasyXw.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>..\easyx\lib\VC2015\x64\EasyXw.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>E:/assignments/2023-04-26-Parabola/build/RelWithDebInfo/PikaPika.lib</ImportLibrary>
-      <ProgramDataBaseFile>E:/assignments/2023-04-26-Parabola/build/RelWithDebInfo/PikaPika.pdb</ProgramDataBaseFile>
+      <ImportLibrary>L:/exercises/2023-04-26-Parabola/build/RelWithDebInfo/PikaPika.lib</ImportLibrary>
+      <ProgramDataBaseFile>L:/exercises/2023-04-26-Parabola/build/RelWithDebInfo/PikaPika.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -256,11 +257,11 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="E:\assignments\2023-04-26-Parabola\CMakeLists.txt">
+    <CustomBuild Include="L:\exercises\2023-04-26-Parabola\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule E:/assignments/2023-04-26-Parabola/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule L:/exercises/2023-04-26-Parabola/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\bin\cmake.exe -SE:/assignments/2023-04-26-Parabola -BE:/assignments/2023-04-26-Parabola/build --check-stamp-file E:/assignments/2023-04-26-Parabola/build/CMakeFiles/generate.stamp
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SL:/exercises/2023-04-26-Parabola -BL:/exercises/2023-04-26-Parabola/build --check-stamp-file L:/exercises/2023-04-26-Parabola/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -268,12 +269,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeCInformation.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeCommonLanguageInclude.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeGenericSystem.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeInitializeConfigs.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeLanguageInformation.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeRCInformation.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeSystemSpecificInformation.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeSystemSpecificInitialize.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Compiler\MSVC-C.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Compiler\MSVC.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Platform\Windows-MSVC-C.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Platform\Windows-MSVC.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Platform\Windows.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Platform\WindowsPaths.cmake;E:\assignments\2023-04-26-Parabola\build\CMakeFiles\3.26.3\CMakeCCompiler.cmake;E:\assignments\2023-04-26-Parabola\build\CMakeFiles\3.26.3\CMakeRCCompiler.cmake;E:\assignments\2023-04-26-Parabola\build\CMakeFiles\3.26.3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\assignments\2023-04-26-Parabola\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCXXInformation.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeGenericSystem.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeLanguageInformation.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeRCInformation.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\WindowsPaths.cmake;L:\exercises\2023-04-26-Parabola\build\CMakeFiles\3.22.22040401-MSVC_2\CMakeCXXCompiler.cmake;L:\exercises\2023-04-26-Parabola\build\CMakeFiles\3.22.22040401-MSVC_2\CMakeRCCompiler.cmake;L:\exercises\2023-04-26-Parabola\build\CMakeFiles\3.22.22040401-MSVC_2\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">L:\exercises\2023-04-26-Parabola\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule E:/assignments/2023-04-26-Parabola/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule L:/exercises/2023-04-26-Parabola/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\bin\cmake.exe -SE:/assignments/2023-04-26-Parabola -BE:/assignments/2023-04-26-Parabola/build --check-stamp-file E:/assignments/2023-04-26-Parabola/build/CMakeFiles/generate.stamp
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SL:/exercises/2023-04-26-Parabola -BL:/exercises/2023-04-26-Parabola/build --check-stamp-file L:/exercises/2023-04-26-Parabola/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -281,12 +282,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeCInformation.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeCommonLanguageInclude.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeGenericSystem.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeInitializeConfigs.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeLanguageInformation.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeRCInformation.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeSystemSpecificInformation.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeSystemSpecificInitialize.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Compiler\MSVC-C.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Compiler\MSVC.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Platform\Windows-MSVC-C.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Platform\Windows-MSVC.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Platform\Windows.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Platform\WindowsPaths.cmake;E:\assignments\2023-04-26-Parabola\build\CMakeFiles\3.26.3\CMakeCCompiler.cmake;E:\assignments\2023-04-26-Parabola\build\CMakeFiles\3.26.3\CMakeRCCompiler.cmake;E:\assignments\2023-04-26-Parabola\build\CMakeFiles\3.26.3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\assignments\2023-04-26-Parabola\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCXXInformation.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeGenericSystem.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeLanguageInformation.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeRCInformation.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\WindowsPaths.cmake;L:\exercises\2023-04-26-Parabola\build\CMakeFiles\3.22.22040401-MSVC_2\CMakeCXXCompiler.cmake;L:\exercises\2023-04-26-Parabola\build\CMakeFiles\3.22.22040401-MSVC_2\CMakeRCCompiler.cmake;L:\exercises\2023-04-26-Parabola\build\CMakeFiles\3.22.22040401-MSVC_2\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">L:\exercises\2023-04-26-Parabola\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule E:/assignments/2023-04-26-Parabola/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule L:/exercises/2023-04-26-Parabola/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\bin\cmake.exe -SE:/assignments/2023-04-26-Parabola -BE:/assignments/2023-04-26-Parabola/build --check-stamp-file E:/assignments/2023-04-26-Parabola/build/CMakeFiles/generate.stamp
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SL:/exercises/2023-04-26-Parabola -BL:/exercises/2023-04-26-Parabola/build --check-stamp-file L:/exercises/2023-04-26-Parabola/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -294,12 +295,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeCInformation.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeCommonLanguageInclude.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeGenericSystem.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeInitializeConfigs.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeLanguageInformation.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeRCInformation.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeSystemSpecificInformation.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeSystemSpecificInitialize.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Compiler\MSVC-C.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Compiler\MSVC.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Platform\Windows-MSVC-C.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Platform\Windows-MSVC.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Platform\Windows.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Platform\WindowsPaths.cmake;E:\assignments\2023-04-26-Parabola\build\CMakeFiles\3.26.3\CMakeCCompiler.cmake;E:\assignments\2023-04-26-Parabola\build\CMakeFiles\3.26.3\CMakeRCCompiler.cmake;E:\assignments\2023-04-26-Parabola\build\CMakeFiles\3.26.3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">E:\assignments\2023-04-26-Parabola\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCXXInformation.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeGenericSystem.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeLanguageInformation.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeRCInformation.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\WindowsPaths.cmake;L:\exercises\2023-04-26-Parabola\build\CMakeFiles\3.22.22040401-MSVC_2\CMakeCXXCompiler.cmake;L:\exercises\2023-04-26-Parabola\build\CMakeFiles\3.22.22040401-MSVC_2\CMakeRCCompiler.cmake;L:\exercises\2023-04-26-Parabola\build\CMakeFiles\3.22.22040401-MSVC_2\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">L:\exercises\2023-04-26-Parabola\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule E:/assignments/2023-04-26-Parabola/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule L:/exercises/2023-04-26-Parabola/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\bin\cmake.exe -SE:/assignments/2023-04-26-Parabola -BE:/assignments/2023-04-26-Parabola/build --check-stamp-file E:/assignments/2023-04-26-Parabola/build/CMakeFiles/generate.stamp
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SL:/exercises/2023-04-26-Parabola -BL:/exercises/2023-04-26-Parabola/build --check-stamp-file L:/exercises/2023-04-26-Parabola/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -307,17 +308,21 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeCInformation.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeCommonLanguageInclude.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeGenericSystem.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeInitializeConfigs.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeLanguageInformation.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeRCInformation.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeSystemSpecificInformation.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\CMakeSystemSpecificInitialize.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Compiler\MSVC-C.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Compiler\MSVC.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Platform\Windows-MSVC-C.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Platform\Windows-MSVC.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Platform\Windows.cmake;D:\scoop_global\apps\mingw-winlibs\12.2.0-16.0.0-10.0.0-r5\share\cmake-3.26\Modules\Platform\WindowsPaths.cmake;E:\assignments\2023-04-26-Parabola\build\CMakeFiles\3.26.3\CMakeCCompiler.cmake;E:\assignments\2023-04-26-Parabola\build\CMakeFiles\3.26.3\CMakeRCCompiler.cmake;E:\assignments\2023-04-26-Parabola\build\CMakeFiles\3.26.3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">E:\assignments\2023-04-26-Parabola\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCXXInformation.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeGenericSystem.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeLanguageInformation.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeRCInformation.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\Windows.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.22\Modules\Platform\WindowsPaths.cmake;L:\exercises\2023-04-26-Parabola\build\CMakeFiles\3.22.22040401-MSVC_2\CMakeCXXCompiler.cmake;L:\exercises\2023-04-26-Parabola\build\CMakeFiles\3.22.22040401-MSVC_2\CMakeRCCompiler.cmake;L:\exercises\2023-04-26-Parabola\build\CMakeFiles\3.22.22040401-MSVC_2\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">L:\exercises\2023-04-26-Parabola\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="E:\assignments\2023-04-26-Parabola\PikaPika.c" />
+    <ClInclude Include="L:\exercises\2023-04-26-Parabola\common.h" />
+    <ClCompile Include="L:\exercises\2023-04-26-Parabola\parabola.cpp" />
+    <ClInclude Include="L:\exercises\2023-04-26-Parabola\parabola.h" />
+    <ClInclude Include="L:\exercises\2023-04-26-Parabola\point.h" />
+    <ClInclude Include="L:\exercises\2023-04-26-Parabola\vector.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="E:\assignments\2023-04-26-Parabola\build\ZERO_CHECK.vcxproj">
-      <Project>{47D57F1A-08A8-3620-B5AD-9DA65BB20E47}</Project>
+    <ProjectReference Include="L:\exercises\2023-04-26-Parabola\build\ZERO_CHECK.vcxproj">
+      <Project>{2C31D096-18D1-31E9-9B64-06EBDED16378}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

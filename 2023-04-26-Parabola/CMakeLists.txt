@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 3.12)
 
-project(PikaPika C)
+project(PikaPika CXX)
 
-set(C_STANDARD_REQUIRED 11)
+set(CXX_STANDARD_REQUIRED 11)
 
-file(GLOB PROJSRC "*.h" "*.c")
+# collect sources
+file(GLOB PROJSRC "*.h" "*.cpp")
 
 add_executable(${PROJECT_NAME})
 
@@ -21,6 +22,7 @@ target_sources(${PROJECT_NAME} PRIVATE ${PROJSRC})
 
 set(EASYX_DIR ${CMAKE_SOURCE_DIR}/easyx)
 
+# link easyx
 target_include_directories(${PROJECT_NAME} PUBLIC ${EASYX_DIR}/include)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC ${EASYX_DIR}/lib/VC2015/${ARCH})

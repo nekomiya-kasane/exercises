@@ -1,4 +1,4 @@
-typedef int boolean;
+#include <iostream>
+#include <vector>
 
-#define TRUE 1
-#define FALSE 0
+#define TRACE(X) printf(X);

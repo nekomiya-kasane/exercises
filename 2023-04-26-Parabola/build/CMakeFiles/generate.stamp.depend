@@ -1,20 +1,19 @@
 # CMake generation dependency list for this directory.
-D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeCInformation.cmake
-D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake
-D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeGenericSystem.cmake
-D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake
-D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake
-D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeRCInformation.cmake
-D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake
-D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake
-D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake
-D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/Compiler/MSVC-C.cmake
-D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/Compiler/MSVC.cmake
-D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/Platform/Windows-MSVC-C.cmake
-D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/Platform/Windows-MSVC.cmake
-D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/Platform/Windows.cmake
-D:/scoop_global/apps/mingw-winlibs/12.2.0-16.0.0-10.0.0-r5/share/cmake-3.26/Modules/Platform/WindowsPaths.cmake
-E:/assignments/2023-04-26-Parabola/CMakeLists.txt
-E:/assignments/2023-04-26-Parabola/build/CMakeFiles/3.26.3/CMakeCCompiler.cmake
-E:/assignments/2023-04-26-Parabola/build/CMakeFiles/3.26.3/CMakeRCCompiler.cmake
-E:/assignments/2023-04-26-Parabola/build/CMakeFiles/3.26.3/CMakeSystem.cmake
+C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.22/Modules/CMakeCXXInformation.cmake
+C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake
+C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.22/Modules/CMakeGenericSystem.cmake
+C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake
+C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake
+C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.22/Modules/CMakeRCInformation.cmake
+C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake
+C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake
+C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake
+C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.22/Modules/Compiler/MSVC-CXX.cmake
+C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.22/Modules/Platform/Windows-MSVC-CXX.cmake
+C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.22/Modules/Platform/Windows-MSVC.cmake
+C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.22/Modules/Platform/Windows.cmake
+C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.22/Modules/Platform/WindowsPaths.cmake
+L:/exercises/2023-04-26-Parabola/CMakeLists.txt
+L:/exercises/2023-04-26-Parabola/build/CMakeFiles/3.22.22040401-MSVC_2/CMakeCXXCompiler.cmake
+L:/exercises/2023-04-26-Parabola/build/CMakeFiles/3.22.22040401-MSVC_2/CMakeRCCompiler.cmake
+L:/exercises/2023-04-26-Parabola/build/CMakeFiles/3.22.22040401-MSVC_2/CMakeSystem.cmake

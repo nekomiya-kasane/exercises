@@ -1,16 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="E:\assignments\2023-04-26-Parabola\PikaPika.c">
+    <ClCompile Include="L:\exercises\2023-04-26-Parabola\parabola.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="E:\assignments\2023-04-26-Parabola\CMakeLists.txt" />
+    <ClInclude Include="L:\exercises\2023-04-26-Parabola\common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="L:\exercises\2023-04-26-Parabola\parabola.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="L:\exercises\2023-04-26-Parabola\point.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="L:\exercises\2023-04-26-Parabola\vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <CustomBuild Include="L:\exercises\2023-04-26-Parabola\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{FB21C694-358A-39CC-9437-0C74C167741F}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{3B84CEC4-8F3E-3AB8-8144-4DE7A43E63B6}</UniqueIdentifier>
+      <UniqueIdentifier>{524C9F24-4C54-30EF-B588-4B02692AAC48}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -9,7 +9,7 @@ extern Point origin;
 
 typedef Point* PointVec;
 
-PointVec create_points(long count, boolean init = TRUE, Point refPoint = origin);
+PointVec create_points(long count, boolean, Point refPoint);
 
 void free_points(PointVec* pointVec);
 

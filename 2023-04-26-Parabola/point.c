@@ -4,7 +4,7 @@
 
 static Point origin = {0, 0};
 
-PointVec create_points(long count, boolean init, point refPoint) {
+PointVec create_points(long count, boolean init, Point refPoint) {
     PointVec points = (PointVec)malloc(sizeof(Point) * count);
     if (!init)
         return points;
