@@ -1,3 +1,0 @@
-E:/assignments/2023-04-26-Parabola/build/CMakeFiles/PikaPika.dir
-E:/assignments/2023-04-26-Parabola/build/CMakeFiles/ALL_BUILD.dir
-E:/assignments/2023-04-26-Parabola/build/CMakeFiles/ZERO_CHECK.dir
