@@ -1,8 +1,8 @@
 ﻿#ifndef PARABOLA_H
 #define PARABOLA_H
 
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 #include "common.h"
 
@@ -65,6 +65,7 @@ class Parabola
         points[3] = pt3;
     }
 
+    // 计算单支曲线某点值
     inline Point evaluate(double t)
     {
 #ifdef _DEBUG
@@ -73,11 +74,13 @@ class Parabola
             TRACE("Param out of domain.");
         }
 #endif
-        auto res = (-1 + 4 * (1 - t) * t) * points[0] + (1 + t * t * (-10 + 12 * t)) * points[1] +
+        auto res = t * (-1 + 4 * (1 - t) * t) * points[0] +
+                   (1 + t * t * (-10 + 12 * t)) * points[1] +
                    (t * (1 + (8 - 12 * t) * t)) * points[2] + (t * t * (-2 + 4 * t)) * points[3];
         return res;
     }
 
+    // 计算单支曲线某点导数
     inline Point evaluate_deriv(double t)
     {
 #ifdef _DEBUG
@@ -86,7 +89,7 @@ class Parabola
             TRACE("Param out of domain.");
         }
 #endif
-        auto res = (4 * (1 - 2 * t)) * points[0] + (t * (-20 + 36 * t)) * points[1] +
+        auto res = (-1 + 4 * (2 - 3 * t) * t) * points[0] + (t * (-20 + 36 * t)) * points[1] +
                    ((1 + (16 - 36 * t) * t)) * points[2] + (t * (-4 + 12 * t)) * points[3];
         return res;
     }
@@ -108,6 +111,7 @@ class ParabolaIntCurve
 
     Interval domain;
 
+    // 构造及补充边界条件
     ParabolaIntCurve(const PointVector &points,
                      Type itype       = Type::FREE,
                      Point leftDeriv  = Point::origin,
@@ -137,6 +141,7 @@ class ParabolaIntCurve
         regenerate(_points);
     }
 
+    // 重设插值点
     inline void regenerate(const PointVector &points)
     {
         domain.left  = 0;
@@ -154,7 +159,7 @@ class ParabolaIntCurve
     inline Point evaluate(double t)
     {
         auto index = (size_t)(t / 0.5);
-        index = index >= _curves.size() ? _curves.size() - 1 : index;
+        index      = index >= _curves.size() ? _curves.size() - 1 : index;
         return _curves[index].evaluate(t - index * 0.5);
     }
 
@@ -162,38 +167,47 @@ class ParabolaIntCurve
     inline Point evaluate_deriv(double t)
     {
         auto index = (size_t)(t / 0.5);
-        index = index >= _curves.size() ? _curves.size() - 1 : index;
+        index      = index >= _curves.size() ? _curves.size() - 1 : index;
         return _curves[index].evaluate_deriv(t - index * 0.5);
     }
 };
 
-inline void normalize(std::vector<PointVector> &data, double x, double y)
+inline std::pair<Point, Point> normalize(std::vector<PointVector> &data, double x, double y)
 {
+
     // 获取包围盒
     Point mi = {HUGE_VAL, HUGE_VAL};
     Point mx = {-HUGE_VAL, -HUGE_VAL};
+
     for (size_t i = 0; i < data.size(); ++i)
     {
         for (size_t j = 0; j < data[i].size(); ++j)
         {
+#if 0
             const auto &pt = data[i][j];
             mi.x           = data[i][j].x > mi.x ? mi.x : data[i][j].x;
             mi.y           = data[i][j].y > mi.y ? mi.y : data[i][j].y;
             mx.x           = data[i][j].x < mx.x ? mx.x : data[i][j].x;
             mx.y           = data[i][j].y < mx.y ? mx.y : data[i][j].y;
+#else
+            data[i][j].y = y - data[i][j].y;
+#endif
         }
     }
-
-    // 正规化样点
+#if 0
+    // 正规化样点: 图片像素位置映射到画布像素位置
     for (size_t i = 0; i < data.size(); ++i)
     {
         for (size_t j = 0; j < data[i].size(); ++j)
         {
             auto &pt = data[i][j];
             pt.x     = (pt.x - mi.x) / (mx.x - mi.x) * x;
-            pt.y     = (pt.y - mi.y) / (mx.y - mi.y) * y;
+            pt.y     = (mx.y - pt.y) / (mx.y - mi.y) * y;
         }
     }
+#endif
+
+    return {mi, mx};
 }
 
 #endif
