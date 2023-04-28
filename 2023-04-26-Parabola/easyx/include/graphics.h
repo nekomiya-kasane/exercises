@@ -9,6 +9,9 @@
 
 #pragma once
 
+#ifndef WWWWWWWWWWWWWWW
+#define WWWWWWWWWWWWWWW
+
 #include <easyx.h>
 
 
@@ -151,3 +154,5 @@ typedef ExMessage EASYXMSG;	// Old message structure
 #define EM_KEY		2
 #define EM_CHAR		4
 #define EM_WINDOW	8
+
+#endif //WWWWWWWWWWWWWWW
