@@ -13,6 +13,8 @@ int main(int argc, char** argv)
     settextcolor(RGB(163, 73, 164));
     outtextxy(5, 5, TEXT("Press backspace to exit."));
 
+    int i = 0;
+    std::cin >> i;
     closegraph();
     return 0;
 }

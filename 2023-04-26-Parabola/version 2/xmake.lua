@@ -1,6 +1,15 @@
+set_project("DaijinTheNeko")
+
 add_rules("mode.debug", "mode.release")
 
 set_languages("c99", "c++17")
+
+if is_plat("windows") then
+    add_cxflags("-MT")
+    add_defines("_CRT_SECURE_NO_WARNINGS")
+    add_shflags("-nodefaultlib:msvcrt.lib")
+    add_links("kernel32", "user32", "gdi32", "advapi32", "shell32")
+end
 
 -- EasyX
 package("easyx")
@@ -21,9 +30,7 @@ package_end()
 
 -- Main Project: DaijinTheNeko
 target("DaijinTheNeko")
-    add_rules("win.sdk.mfc.static_app")
     set_kind("binary")
-    add_includedirs("src")
     add_files("src/*.cpp")
 
     add_packages("easyx")
