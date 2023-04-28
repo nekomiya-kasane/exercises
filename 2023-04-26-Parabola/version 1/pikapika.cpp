@@ -7,7 +7,7 @@
 int main(int argc, char *argv[])
 {
     // 读入数据文件
-    std::string file = "..\\resources\\data_1.txt";
+    std::string file = ".\\resources\\data_1.txt";
     if (argc > 1)
     {
         file = std::string(argv[1]);

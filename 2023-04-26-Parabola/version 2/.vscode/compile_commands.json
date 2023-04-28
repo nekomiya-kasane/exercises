@@ -1,0 +1,6 @@
+[
+{
+  "directory": "e:\\assignments\\2023-04-26-Parabola\\version 2",
+  "arguments": ["C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.35.32215\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/O2", "/fp:fast", "/std:c++17", "/Isrc", "/EHsc", "/MT", "/DNDEBUG", "/Fobuild\\.objs\\DaijinTheNeko\\windows\\x64\\release\\src\\main.cpp.obj", "src\\main.cpp"],
+  "file": "src\\main.cpp"
+}]
