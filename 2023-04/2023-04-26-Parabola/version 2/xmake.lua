@@ -34,8 +34,17 @@ target("DaijinTheNeko")
     add_files("src/*.cpp")
 
     add_packages("easyx")
+    add_includedirs("easyx/include")
     add_linkdirs("easyx/lib") -- ??
     -- add_ldflags("/MDd")
+
+    set_targetdir("bin")
+
+    after_build(function (target)
+        dataDir = path.join(target:targetdir(), "/data/")
+        os.mkdir(dataDir)
+        os.cp("$(projectdir)/img/*.jpg", dataDir)
+        os.cp("$(projectdir)/img/*.png", dataDir)
+        os.cp("$(projectdir)/img/*.txt", dataDir)
+    end)
 target_end()
-
-

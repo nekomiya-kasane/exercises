@@ -131,8 +131,8 @@ class ParabolaIntCurve
                 break;
             case Type::PERIDOIC:
                 _points.insert(_points.cbegin(), _points.back());
-                _points.push_back(_points[0]);
                 _points.push_back(_points[1]);
+                _points.push_back(_points[2]);
                 break;
             default:
                 TRACE("Wrong type.");
