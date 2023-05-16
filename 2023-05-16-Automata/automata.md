@@ -2,7 +2,7 @@
 
 Apparently, $\forall\ w=\underbrace{(a\Sigma^*b)^*}_{\in A^*}=a(\Sigma^*ba\Sigma^*\cdots \Sigma^*)b{\color{purple}\text{ or }\lambda}\in A\cup \{\lambda\}$, hence $A^*\sub A\cup \{\lambda\}$.
 
-Also $A\sub A^*,\{\lambda\}\sub A^*$ corresponding $0$ or $1$ reptations of $a\Sigma^*b$ respectively. Therefore $A^*=A\sub \{\lambda\}$
+Also $A\sub A^*,\{\lambda\}\sub A^*$ corresponding $0$ or $1$ reptations of $a\Sigma^*b$ respectively. Therefore $A^*=A\cup \{\lambda\}$
 
 ## Question 2
 
@@ -44,7 +44,7 @@ Therefore $L$ can not be accepted by any DFA.
 
 A language can be accepted by a DFA if and only if it is regular. By Pumping Lemma, for $L=\{s\mid s\text{ contains same count of $a$ and $b$}\}$, also, we consider the subset of it $S=\{a^nb^n\mid n\geqslant 0\}$.
 
-Consider $xyz=a^nb^n\in L,|xy|\leqslant n$, hence $y$ can only contain $a$'s, $y\neq\varepsilon$, hence $y$ must contains at least one $a$. let $y=a$, then $xy^2z\not\in L$. By the Pumping Lemma, $L$ could not be regular, hence there's no DFA accepts it.
+Consider $xyz=a^nb^n\in L,|xy|\leqslant n$, hence $y$ can only contain $a$'s, $y\neq\lambda$, hence $y$ must contains at least one $a$. let $y=a$, then $xy^2z\not\in L$. By the Pumping Lemma, $L$ could not be regular, hence there's no DFA accepts it.
 
 ## Question 4
 
@@ -90,34 +90,55 @@ $e$ for $\varepsilon/\lambda$.
 
 2. If the original NFA decides $L$, then the modified NFA defines $L'=\{s\in w\mid w\in L\}$, where $s\in w$ means $s=\lambda$ or $s$ is a substring of $w$.
 
-## Question 6 _No material_
+## Question 6
 
+(1)
 
+- If there is a path from the starting state $s$ to the final states $\Iota$, then following the path, we can find a string accepted by the NFA. $L(N)\neq \varnothing$
+- If $L(N)\neq\varnothing$, suppose there's no path from the starting from the starting state to the final state. Thus $\forall\ w\in L(N),n\in \N$, the transition function $\delta^n(s,w)\not\in \Iota$. $w$ is not accepted by the machine. Contradictory.
 
-## Question 7  _No material_
+Thus $L(N)\neq\varnothing $ if and only if there's no path from the starting state to the final states.
 
-==Basic idea:== we define the following states:
+(2)
 
-1. `q0` initial state with excess 0, eat R to stay `q0`, eat L to go to `q1`
-2. `q1` excess 1, eat R to return to `q0`, eat L to go to `q2`
-3. `q2` excess 2, eat R to return to `q0`, eat L to go to `q3`
-4. `q3` excess 3, eat R to return to `q0`, eat L to go to `q4`
-5. `q4` excess 4 or more, accepting state, eat R/L to stay `q4`
+==IF== If there's a path from $s$ to $\iota$, for any $R$ as a regex expression and not a single letter, then it can be decomposed into $LT$ or $L+T$ or $L^*$, by the description, 
 
-Note that this is already a DFA.
+- If decomposed into $LT$, we can find a DFA such that the final state of $L$, say $\zeta$ is the start state of $T$, hence there is path from $s$ to $\zeta$ and from $\zeta$ to $\iota$. Then run our algorithm on $L$ and $T$.
+- If decomposed into $L+T$, we can find an NFA such that the start and final state of $L,T$ are the same. hence there's a path along $L$ **or** along $R$. Then run our algorithm on L and $T$.
+- If decomposed into $L^*$, return `false` by the description.
+- If $R$ is a letter, return `false`
 
-<img src="automata.assets/image-20230516074513971.png" alt="image-20230516074513971" style="zoom:67%;" />
+Running the algorithm recursively, we can conclude that that it must return `false` on the assumption above.
 
-Try minimizing:
+==ONLY IF== If the algorithm returns `false`, then the NFA can decide nested expressions composed by the 4 occasions above. Thus there must be a path from $s$ to $\iota$.
 
-1. Split $S_1=\{q_0,q_1,q_2,q_3\},S_2=\{q_4\}$
-2. Since $q_3\to^L q_4\in S_2,q_0,q_1,q_2\to^{R,L} S_1 $, divide $S_1=S_3\cup S_4$, $S_3=\{q_0,q_1,q_2\},S_4=\{q_3\}$
-3. Since $q_2\to ^L q_3\in S_4,q_0,q_1\to^{L/R} S_3$, divide $S_3=S_5\cup S_6$, $S_5=\{q_0,q_1\},S_6=\{q_2\}$
-4. Since $q_1\to^L q_2\in S_6,q_0\to^{L/R} S_5 $, divide $S_5=S_7\cup S_8$, $S_7=\{q_0\},S_8=\{q_1}¹$
+## Question 7 
+
+We can design a non-final dead state $d$ representing the state that $L$ is exceeding $R$ in count by at least $4$. Other states:
+
+- $q_0$: Initial and final state. Exceeds by 0.  Move to $q_1$ if $L$ eaten, move to $d$ if $R$ eaten (parathesis not paired).
+- $q_1$: Final state. Exceeds by 1. Move to $q_2$ if $L$ eaten, move to $q_0$ if $L$ eaten.
+- $q_2$: Final state. Exceeds by 2. Move to $q_3$ if $L$ eaten, move to $q_1$ if $R$ eaten.
+- $q_3$: Final state. Exceeds by 3. Move to $d$ if $L$ eaten (exceeds over 4), move to $q_2$ if $R$ eaten.
+- $d$: Exceeds by at least 4 or the parathesis are not paired. Move to $d$ for all inputs.
+
+<img src="./automata.assets/image-20230516103306330.png" alt="image-20230516103306330" style="zoom:50%;" />
+
+Try to minimize:
+
+- $S=\{d\}, T=\{q_0,q_1,q_2,q_3\}$
+
+- $q_0$ eats $R$ and move to $d$, eats $L$ and move to $T$. $q_3$ eats $L$ and move to $d$, eats $R$ and move to $T$.
+
+  hence we'd divide $T=\{q_0\}\cup\{q_1,q_2\}\cup \{q_3\}$
+
+- Consider $\{q_1,q_2\}$. $q_1$ eats $R$ and move to $q_0$, $q_3$ eats $R$ and move to $\{q_1,q_2\}$.
+
+- Thus we should divide $T=\{q_0\}\cup\{q_1\}\cup\{q_2\}\cup \{q_3\}$
 
 Now we get exactly the same DFA as the previous one. Hence this DFA is already minimized.
 
-Regex: `(L|R)*(LLL)(L|R)*`
+Regex: `(LR)*L(LR)*L(LR)*L(LR)*R(LR)*R(LR)*R(LR)*`
 
 ## Question 8
 

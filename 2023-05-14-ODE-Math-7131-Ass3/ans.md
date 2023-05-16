@@ -1,3 +1,9 @@
+
+
+# Assignment 3
+
+Zeyuan Wei 46484354
+
 ## Problem 1
 
 The given equation is  $\def\re{\mathrm{Re}\ }\def\im{\mathrm{Im}\ }$
@@ -21,8 +27,6 @@ $$
 \dfrac{d\bar v}{dt}=\bar v^2+\alpha\bar v-\bar u+\delta\qquad \dfrac{d\bar u}{dt}=\beta\bar v-\bar u
 $$
 which is desired. Note that $V,U,\beta,\delta$ are none-zero since $C,I,v_r,v_t,k,b$ are non-zero. But $\alpha$ may be zero. 
-
-![image-20230515143007495](./ans.assets/image-20230515143007495.png)
 
 ## Problem 2
 
