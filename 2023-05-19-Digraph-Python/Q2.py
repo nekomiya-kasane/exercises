@@ -1,3 +1,4 @@
+import sys
 class Graph:
     def __init__(self, lst):
         self.time = 0
@@ -47,22 +48,25 @@ class Graph:
  
  
 if __name__ == "__main__":
-    n = int(input())
-    lst = [[] * n for _ in range(n)]
-
-    i = 0
+    out = []
     while True:
-        s = input().strip()
-        tars = list(map(int, s.split(' '))) if s != '' else []
-        if i < n:
+        head = input()
+        if head.strip() == '' or head.strip() == '0':
+            break
+        n = int(head)
+        lst = [[] * n for _ in range(n)]
+
+        for i in range(n):
+            s = input().strip()
+            tars = list(map(int, s.split(' '))) if s != '' else []
             tars.sort()
             lst[i] = tars
-        if len(tars) == 1 and tars[0] == 0:
-            break
-        i += 1
 
-    G = Graph(lst)
-    # G.print_graph_list()
-    G.dfs()
+        G = Graph(lst)
+        # G.print_graph_list()
+        G.dfs()
 
-    print("{} {}".format(G.countBack, G.countCross))
+        out.append("{} {}".format(G.countBack, G.countCross))
+
+    for o in out:
+        print(o)

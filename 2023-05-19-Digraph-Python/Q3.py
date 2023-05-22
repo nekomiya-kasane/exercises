@@ -24,23 +24,25 @@ class Graph:
         return dist - 1, max([k for k, v in dists.items() if v == dist - 1])
  
 if __name__ == "__main__":
-    n = int(input())
-    lst = [[] * n for _ in range(n)]
-
-    i = 0
+    out = []
     while True:
-        s = input().strip()
-        tars = list(map(int, s.split(' '))) if s != '' else []
-        if i < n:
+        head = input()
+        if head.strip() == '' or head.strip() == '0':
+            break
+        n = int(head)
+        lst = [[] * n for _ in range(n)]
+
+        for i in range(n):
+            s = input().strip()
+            tars = list(map(int, s.split(' '))) if s != '' else []
             tars.sort()
             lst[i] = tars
-        if len(tars) == 1 and tars[0] == 0:
-            break
-        i += 1
 
-    G = Graph(lst)
-    # G.print_graph_list()
-    a, b = G.bfs(1)
+        G = Graph(lst)
+            # G.print_graph_list()
+        a, b = G.bfs(1)
 
-    #print("{} {}".format(G.countBack, G.countCross))
-    print("{} {}".format(a, b))
+        out.append("{} {}".format(a,b))
+
+    for o in out:
+        print(o)
