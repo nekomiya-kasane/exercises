@@ -264,9 +264,49 @@ $$
 M(x)=2-3x=2+3-6\sum_{n=1}^\infty\dfrac{a_n}{3^n}=5-6\sum_{n=1}^\infty\dfrac{a_n}{3^n}=5-2\sum_{n=1}^\infty\dfrac{a_n}{3^{n-1}}
 $$
 
+Here we used the given representation of x to find the symbolic dynamics for the map $M(x)$.
 
+First, we should find out how our map $M(x)$ acts on the interval $[−1,1]$. If we have $𝑥≤0$, then $𝑀(𝑥)=−2−3𝑥$. If $−1≤𝑥≤0$, the transformed $𝑀(𝑥)$ will be between -5 and -2, which is outside our interval. Similarly, if  $𝑥>0$, $𝑀(𝑥)=2−3𝑥$, and for $ 0<𝑥≤1$, the transformed $𝑀(𝑥)$ will be between -1 and 2, again, partially outside our interval.
+
+To use symbolic dynamics, we want to find a way to map $𝑀(𝑥)$  back to our original interval $[−1,1]$. To this end, we use the transformation $𝑇(𝑥)= \dfrac{x+2}{3}$  after applying $𝑀(𝑥)$ . Now, for $𝑥≤0$, $𝑇(𝑀(𝑥) )=\dfrac{−2−3𝑥+2}{3}=−𝑥$, which maps to $[0,1]$. For $𝑥>0$, $𝑇(𝑀{(𝑥)} )=\dfrac{2−3𝑥+2}{3}=\dfrac{4}{3−𝑥}$, which maps to $[\dfrac{−1}{3},1]$.
+
+ We can now symbolize this map by dividing $[−1,1]$ into three regions:
+
+$[-1,\dfrac{-1}{3}]$: We assign the symbol "0" to this region. If 𝑥 is in this region, applying $𝑀(𝑥)$  and then $𝑇(𝑥)$ will map it into $[0,1]$.
+
+ $[\dfrac{−1}{3},\dfrac{1}{3}]$: We assign the symbol "1" to this region. If 𝑥 is in this region, applying $𝑀(𝑥)$  and then $𝑇(𝑥)$ will map it into $[\dfrac{−1}{3},1]$.
+
+$ [\dfrac{1}{3},1]$: We assign the symbol "2" to this region. If 𝑥 is in this region, applying $𝑀(𝑥)$  and then $𝑇(𝑥)$ will map it into $[\dfrac{−1}{3},1]$. 
+
+We can now describe the action of the map on $𝑥=−1+2\sum_{𝑛=1}^\infty \ \dfrac{𝑎_𝑛}{3^𝑛}$ in terms of the symbols $𝑎_𝑛$. If we start with a sequence of symbols $𝑎_𝑛$ corresponding to 𝑥, then $𝑀_(𝑥)$  followed by $𝑇(𝑥)$ will map it to a sequence starting with either "0", "1", or "2" depending on the region 𝑥 is in, followed by the original sequence $𝑎_𝑛$ shifted by one.
+
+ In other words, if $𝑠(𝑥)=[𝑎_0,𝑎_1,𝑎_2,𝑎_3,...]$, then $𝑠(𝑇(𝑀_(𝑥) ))=[𝑎_0^′,𝑎_0,𝑎_1,𝑎_2,...]$ where $𝑎_0^′\in (0,1,2)$ is the symbol corresponding to the region 𝑥 is in.
+
+The map exhibits sensitivity to initial conditions since small changes in the initial 𝑥 (or the initial sequence of 𝑎𝑛) can cause the symbol sequence to diverge, because the initial symbol after applying $𝑇(𝑀(𝑥) )$ can be "0", "1", or "2" depending on the exact value of 𝑥. This can also be seen from the nature of the map $𝑀(𝑥)$ : since it scales 𝑥 by a factor of 3, even very small differences in initial conditions will be amplified in subsequent iterations.
+
+Furthermore, the sensitivity to initial conditions can be quantified. Suppose we have two points 𝑥 and 𝑦 in $[−1,1]$ with symbolic representations $𝑠(𝑥)=[𝑎_0,𝑎_1,𝑎_2,𝑎_3,...]$ and $𝑠(𝑦)=[𝑏_0,𝑏_1,𝑏_2,𝑏_3,...]$. If $𝑎_0 ≠ 𝑏_0$, i.e., the two points fall in different regions, then $|𝑀(𝑥) −𝑀(𝑦)|≥\dfrac{1}{3} $ because the size of each region is at least $\dfrac{1}{3}$ . Thus, if two points have different first symbols, the map will separate them by at least $\dfrac{1}{3}$ in one step.
+
+So, the symbolic dynamics demonstrates sensitivity to initial conditions in this case because small changes in the initial symbolic representation (or equivalently, the initial condition) can lead to significant differences in future behavior under the map.
 
 ## Problem 6
+
+The fix point of 𝑇 is $\dfrac{5}{16}$ 𝑎𝑛𝑑 0, and of S is $\dfrac{3}{5}$ 𝑎𝑛𝑑 0.
+
+For any 𝑥 ∈ [0,1], the 𝑛th term of the symbolic sequence of 𝑥 is 𝑖 , where
+$$
+i =\begin{cases} 0，\text{if} \ T^n(x) \in [0,\frac{1}{4}]  \\ 1， \text{if} \  T^n(x) \in [\frac{1}{4},\frac{1}{2}] \\ 2， \text{if} \  T^n(x) \in[\frac{1}{2},1] \end{cases}
+$$
+We cannot create an arbitrary periodic symbolic sequence of period k,since for any point $ x \in [0,\dfrac{5}{16}]$,the symbolic sequences will never contain the symbol 2. And for any point $𝑥\in (\dfrac{5}{16},1]$, the symbolic sequences will never contain the symbol 0. Therefore 𝑇 does not have periodic points of all periods.
+
+On the other hand, if we look at the map 𝑆, we can also use the alphabet 0,1,2,3 for the symbolic dynamics. For any $𝑥\in[0,1]$, the 𝑛th term of the symbolic sequence of 𝑥 is 𝑖 , where
+$$
+i =\begin{cases} \  0，\text{if} \ S^n(x) \in [0,\frac{1}{4}]  \\  1， \text{if} \  S^n(x) \in [\frac{1}{4},\frac{1}{2}] \\ 2， \text{if} \  S^n(x) \in[\frac{1}{2},1] \\ \ 3, \ \text{if} \  S^n(x) \in[\frac{3}{4},1]\end{cases}
+$$
+We see that for any point that has symbol 0 and $𝑥 ≠ 0$ , it will goes to symbol 0,1,2,3. And also for any point that has symbol 1,2,3 and $𝑥 ≠ \dfrac{3}{5}$, it will goes to symbol 0,1,2,3. This means that we can create an arbitrary periodic symbolic sequence of period 𝑘, and therefore 𝑆 have periodic points of all periods.
+
+I also used numerical method to prove the results. The MATLAB codes are the file $Q6_1.m, Q6_2.m, Q6_3.m$
+
+==Method 2==
 
 ==$T(x)$==.Let $\displaystyle x=\sum_{n=1}^{+\infty}\dfrac{a_n}{2^n}$, where $a_n\in\{0,1\}$, then 
 
@@ -311,8 +351,3 @@ The fixed points of $T(x)$ are $x=\bar{0}$ and $x=\dfrac{5}{16}=0101$ and $x=1=0
    $$
 
 The fixed points of $S(x)$ are $x_0=\bar 0$, $x_1=\dfrac{3}{5}={0.1\overline{0011}}$. 2 period point $x_2=\overline{10}$.
-
-If $n\geqslant 3$, consider $x=\overline{\underbrace{0000\cdots 0}_{n-2\ \text{   0's}}1}$, note that
-$$
-x\overset{S^{n-4}}{\longrightarrow}
-$$
