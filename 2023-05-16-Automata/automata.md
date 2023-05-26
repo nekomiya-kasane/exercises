@@ -2,7 +2,7 @@
 
 Apparently, $\forall\ w=\underbrace{(a\Sigma^*b)^*}_{\in A^*}=a(\Sigma^*ba\Sigma^*\cdots \Sigma^*)b{\color{purple}\text{ or }\lambda}\in A\cup \{\lambda\}$, hence $A^*\sub A\cup \{\lambda\}$.
 
-Also $A\sub A^*,\{\lambda\}\sub A^*$ corresponding $0$ or $1$ reptations of $a\Sigma^*b$ respectively. Therefore $A^*=A\cup \{\lambda\}$
+Also $A\sub A^*,\{\lambda\}\sub A^*$ corresponding $1$ or $0$ reptations of $a\Sigma^*b$ respectively. Therefore $A^*=A\cup \{\lambda\}$
 
 ## Question 2
 
@@ -117,28 +117,24 @@ Running the algorithm recursively, we can conclude that that it must return `fal
 We can design a non-final dead state $d$ representing the state that $L$ is exceeding $R$ in count by at least $4$. Other states:
 
 - $q_0$: Initial and final state. Exceeds by 0.  Move to $q_1$ if $L$ eaten, move to $d$ if $R$ eaten (parathesis not paired).
-- $q_1$: Final state. Exceeds by 1. Move to $q_2$ if $L$ eaten, move to $q_0$ if $L$ eaten.
-- $q_2$: Final state. Exceeds by 2. Move to $q_3$ if $L$ eaten, move to $q_1$ if $R$ eaten.
-- $q_3$: Final state. Exceeds by 3. Move to $d$ if $L$ eaten (exceeds over 4), move to $q_2$ if $R$ eaten.
+- $q_1$: Exceeds by 1. Move to $q_2$ if $L$ eaten, move to $q_0$ if $L$ eaten.
+- $q_2$: Exceeds by 2. Move to $q_3$ if $L$ eaten, move to $q_1$ if $R$ eaten.
+- $q_3$: Exceeds by 3. Move to $d$ if $L$ eaten (exceeds over 4), move to $q_2$ if $R$ eaten.
 - $d$: Exceeds by at least 4 or the parathesis are not paired. Move to $d$ for all inputs.
 
-<img src="./automata.assets/image-20230516103306330.png" alt="image-20230516103306330" style="zoom:50%;" />
+<img src="automata.assets/image-20230516203645917.png" alt="image-20230516203645917" style="zoom:50%;" />
 
 Try to minimize:
 
-- $S=\{d\}, T=\{q_0,q_1,q_2,q_3\}$
-
-- $q_0$ eats $R$ and move to $d$, eats $L$ and move to $T$. $q_3$ eats $L$ and move to $d$, eats $R$ and move to $T$.
-
-  hence we'd divide $T=\{q_0\}\cup\{q_1,q_2\}\cup \{q_3\}$
-
-- Consider $\{q_1,q_2\}$. $q_1$ eats $R$ and move to $q_0$, $q_3$ eats $R$ and move to $\{q_1,q_2\}$.
-
-- Thus we should divide $T=\{q_0\}\cup\{q_1\}\cup\{q_2\}\cup \{q_3\}$
+- $S=\{d,q_1,q_2,q_3\}, T=\{q_0\}$
+- $q_1$ eats $R$ and move to $T$, $q_2,q_3,d$ eats $R$ and stay in $S$​, hence we'd divide $S=\{q_1\}\cup\{q_2,q_3,d\}$
+- $q_2$ eats $R$ and move to $\{q_1\}$, $q_3,d$ eats $R$ and stay in $\{q_2,q_3,d\}$,  hence we'd divide $S=\{q_1\}\cup\{q_2\}\cup\{q_3,d\}$
+- $q_3$ eats $R$ and move to $\{q_2\}$, eats $L$ and stay in $\{q_3,d\}$, 
+- Thus we should divide $S=\{q_0\}\cup\{q_1\}\cup\{q_2\}\cup \{q_3\}$
 
 Now we get exactly the same DFA as the previous one. Hence this DFA is already minimized.
 
-Regex: `(LR)*L(LR)*L(LR)*L(LR)*R(LR)*R(LR)*R(LR)*`
+Regex: `((LR)*L(LR)*L(LR)*L(LR)*R(LR)*R(LR)*R(LR)*)|((LR)*L(LR)*L(LR)*R(LR)*R(LR)*)|((LR)*L(LR)*R(LR)*)|(LR)*`
 
 ## Question 8
 
