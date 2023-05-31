@@ -2,9 +2,9 @@ from collections import defaultdict
 from sys import stdin
 
 def eval(tree, nodes, root):
-    val = nodes[root]
+    val = nodes[root].strip()
     if val not in '*+':
-        return int(nodes[root])
+        return int(val)
 
     res = 0 if val == "+" else 1
     op = (lambda a, b: a + b) if val == "+" else (lambda a, b: a * b)
