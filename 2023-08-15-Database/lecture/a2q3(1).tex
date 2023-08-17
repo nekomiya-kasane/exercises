@@ -1,0 +1,130 @@
+\documentclass{article}
+
+\usepackage[printqrbox=false,printhint=true,printanswer=true,printmarkingguide=false]{unswalgos}
+
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shapes,fit}
+\usepackage{tkz-fct}
+\usepackage{wrapfig}
+\usepackage{subfig}
+
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{booktabs,multicol,multirow}
+\usepackage{wasysym}
+\usepackage{tcolorbox}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\NAND}{NAND}
+\DeclareMathOperator{\AND}{AND}
+\DeclareMathOperator{\OR}{OR}
+\DeclareMathOperator{\NOT}{NOT}
+
+\usepackage{xspace}
+
+\fancyfoot[L]{\leftmark}
+\fancyfoot[R]{\rightmark}
+
+% This enables new paragraphs without indentation
+\usepackage[parfill]{parskip}
+
+\newcommand{\sem}{23T2}
+\newcommand{\semester}{Term 2, 2023}
+\SubjectNo{COMP3121/9101}
+\newcommand{\taskname}{Assignment 2, Question 3}
+\Institution{Algo Rhythm, z1234567} % Replace this with your name and zID
+
+
+\begin{document}
+
+\setcounter{question}{2}
+
+\begin{Question}
+
+\begin{Subquestion}
+\textbf{[10 marks]} 
+Santa's assistant has been laid off and it is now your job to ensure that as many \textbf{wrapped} presents get delivered to shopping centres as possible.
+
+Santa has an infinite supply of \textbf{unwrapped} presents at the North Pole, and can distribute them to $k$ workshops across the globe. At each workshop $i$, a maximum of $a_i$ presents can be wrapped, and the North Pole can distribute to it at most $d_i$ presents.
+
+The workshops wrap the presents, and then deliver these to $m$ shopping centres. Each shopping centre $j$ can hold up to $b_j$ packages, however, due to some legacy contractual agreements, each shopping centre can only receive presents from certain workshops. You are given the contractual agreements as a two dimensional array $C$, where $C[i][j]$ denotes that workshop $i$ has an agreement with shopping centre $j$.
+
+Design an algorithm that runs in $O((k+m)k^{2}m^{2})$ time which finds the maximum number of wrapped presents that can be delivered to shopping centres.
+\end{Subquestion}
+
+\begin{answer}
+Create a flow network as below:
+\begin{itemize}
+    \item A source $s$ and a sink $t$.
+    \item A vertex $w_i$ for the $i$ th workshop.
+    \item A vertex $sh_i$ for the $i$ th shopping center.
+    \item An edge from $s$ to the each $w_i$ of capacity $\min{a_i, d_i}$.
+    \item For every pair of workshops and shopping centers, if the $i$ th workshop and the $j$ th shopping center has an agreement, link an edge from $w_i$ to $sh_j$ with infinity capacity.
+    \item An edge from each $sh_i$ to $t$ with capacity  $b_j$.
+\end{itemize}
+Run the Edmonds-Karp algorithm from to find the maximum flow $f$ from $s$ to $t$. $f$'s value is the number of wrapped presents that can be delivered to shopping centers.
+
+The algorithm is correct since our flow network can well represent the delivery process of the presents and the constraints. the source $s$ is the north pole, 
+the edge from the north pole to the workshops is with the capacity $\min{a_i, d_i}$, represent that we can only distribute to the workshop $d_i$ presents and the workshop can wrap at most $a_i$ of them.
+The edge from the workshops to the shopping centers follows the agreements, and from the shopping center to the sink, the capacity is to ensure that only $b_i$ present can be stored in the shopping center.
+Thus the maximum flow from $s$ to $t$ is the maximum present that can be delivered to shopping centers.
+
+In the flow network, we have $2 + k+m = O(k+m)$ vertices and at most $k\times m + k + m =O(km)$ edges. Thus the runtime of the Edmonds-Karp Algorithm is $O(VE^2) = O((k+m)k^2m^2)$.  
+\end{answer}
+
+\begin{Subquestion}
+\textbf{[6 marks]} 
+On Christmas Eve, you realise that you should ensure that each of the $n$ children on Santa's nice list receive at least one present. Children are willing to travel at most $D$ distance to a shopping centre to receive a present. You are given the location of all children and shopping centres.
+
+Design an algorithm that runs in $O(nm(k+n))$ time which finds the maximum number of children on the nice list who can receive at least one present. 
+\end{Subquestion}
+
+\begin{answer}
+Create a flow network as below:
+\begin{itemize}
+    \item A source $s$ and a sink $t$.
+    \item A vertex $w_i$ for the $i$ th workshop.
+    \item Two vertex $sh1_i$ and $sh2_i$ for the $i$ th shopping center.
+    \item A vertex $c_i$ for the $i$ the child.
+    \item An edge from $s$ to the each $w_i$ of capacity $\min{a_i, d_i}$.
+    \item For every pair of workshops and shopping centers, if the $i$ th workshop and the $j$ th shopping center has an agreement, link an edge from $w_i$ to $sh1_j$ with infinity capacity.
+    \item An edge from $sh1_j$ to $sh2_j$ with capacity $b_j$.
+    \item For ever child-shopping center pair, if the distance between child $i$ and shopping center $j$ is less than $D$, link $sh2_j$ and $c_i$ with an edge of capacity $1$.
+    \item An edge from each $c_i$ to $t$ with capacity  $1$.
+\end{itemize}
+Run the Ford-Fulkson algorithm from to find the maximum flow $f$ from $s$ to $t$. $f$'s value is the number of child who can receive at least 1 present.
+
+The algorithm is correct since our flow network can well represent the delivery process of the presents and the constraints. The network is almost the same as the one 
+in 3.1, but we use the edge between $sh1_i$ and $sh2_i$ to represent the number of presents can be stored in the shopping center.
+And we use the edges between children with shopping centers to represent the purchase relations.
+Thus the maximum flow from $s$ to $t$ is the maximum number of children who can receive presents.
+
+In the flow network, we have at most $k\times m + k + m + n + m \times n =O(m(k+n))$ edges. And the maximum value of the max flow is $n$, thus the runtime of the Edmonds-Karp Algorithm is $O(\mid E\mid f) = O(nm(k+n))$.  
+
+\end{answer}
+
+\begin{Subquestion}
+\textbf{[4 marks]} 
+Let the farthest distance from any child to a shopping centre be $F$.
+
+Design an algorithm that runs in $O(nm(k+n)\log{F})$ time which finds the minimum value of $D$ such that all $n$ children on the nice list receive at least one present, or returns that no such $D$ is possible.
+
+\begin{answer}
+We use a binary search to solve the problem here. Let the minimum value of $D$ be $D_{min}$, $left = 0, right = F$. We do binary search in the range $[0,F]$ to search for $D_{min}$. 
+Every time we search a value $mid$, we let $D=mid$ and use 3.2's algorithm to find the maximum number of children who 
+can receive a present. If the number equal to $n$, we let $right = mid$, else we let $left = mid$. When $right - left \le 1$, the value of right 
+is $D_{min}$ we need to find.
+
+The algorithm is true since it's clear that if a $D$ can satisfy the problem's requirement, any other $D' >D$ can satisfy too, and if $D$ is unsatisfiable, any other $D' < D$ is also unsatisfiable. Thus we can use binary search to search $D_{min}$.
+And in 3.2 we have already proved our algorithm to check whether a $D$ is satisfiable is correct, thus the whole algorithm can give the correct answer.
+
+The time complexity is $O(nm(k+n)\log F)$ since each check algorithm runs in $O(nm(k+n))$ time, and in binary search, we need to do the check for $O(\log F)$ times.
+\end{answer}
+
+\end{Subquestion}
+
+\end{Question}
+
+\end{document}
