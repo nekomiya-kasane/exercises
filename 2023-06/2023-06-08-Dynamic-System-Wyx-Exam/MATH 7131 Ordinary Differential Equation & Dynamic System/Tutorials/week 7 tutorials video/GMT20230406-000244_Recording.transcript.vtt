@@ -1,0 +1,1990 @@
+WEBVTT
+
+1
+00:00:01.820 --> 00:00:02.870
+Joshua Peters: Oh, right.
+
+2
+00:00:03.200 --> 00:00:07.960
+Joshua Peters: so we might just get started.
+
+3
+00:00:08.090 --> 00:00:11.110
+Joshua Peters: So we've got a lot of people on zoom this week, which is good.
+
+4
+00:00:11.480 --> 00:00:21.770
+Joshua Peters: And so yeah, this week we're basically just going to be talking about some of the assignment, not the assignment questions, but the tutorial questions.
+
+5
+00:00:21.990 --> 00:00:28.340
+Joshua Peters: And yeah, hopefully, there'll be some time, maybe towards the end. If anyone has any assignment questions they can ask.
+
+6
+00:00:28.480 --> 00:00:32.740
+Joshua Peters: Because, yeah, the questions this week probably won't. Take that long.
+
+7
+00:00:35.080 --> 00:00:45.050
+Joshua Peters: So okay, just to just letting everyone know that this tutorial is going to be recorded. So if you don't want to be.
+
+8
+00:00:45.260 --> 00:00:50.310
+Joshua Peters: if you don't want to be appearing in the recording. Just feel free to message in the chat, and I can
+
+9
+00:00:50.510 --> 00:00:52.170
+Joshua Peters: can respond to you guys there.
+
+10
+00:00:54.190 --> 00:00:58.420
+Joshua Peters: here. I'll just share my whiteboard here.
+
+11
+00:01:01.450 --> 00:01:04.440
+Joshua Peters: Okay, just confirming. Can you guys see this on Zoom?
+
+12
+00:01:10.030 --> 00:01:11.260
+Joshua Peters: Awesome? Okay.
+
+13
+00:01:12.200 --> 00:01:12.890
+Joshua Peters: right?
+
+14
+00:01:12.920 --> 00:01:27.740
+Joshua Peters: So what are the 3 questions we're going to be focusing on this week? Well, first one is going to be about Oncario v Dixon, which we did one last week on this one will be. It's a little bit nicer than the ones that we did last week.
+
+15
+00:01:28.020 --> 00:01:35.930
+Joshua Peters: The second question is going to be on these things called conservative systems, which are ways of disproving existence of periodic orbits.
+
+16
+00:01:36.020 --> 00:01:43.880
+Joshua Peters: And then the last question is going to be on vification. So this is something new that you guys have covered this week. Okay?
+
+17
+00:01:44.260 --> 00:01:50.410
+Joshua Peters: So I might go through the first 2 questions we might have a little bit of a break. I might show you guys a
+
+18
+00:01:50.720 --> 00:01:58.130
+Joshua Peters: something from the tutorial summaries that might hop at this byification stuff, and then I will do those questions.
+
+19
+00:02:00.130 --> 00:02:03.170
+Joshua Peters: So question one
+
+20
+00:02:03.410 --> 00:02:06.450
+Joshua Peters: basically we're considering a system given by
+
+21
+00:02:08.220 --> 00:02:16.650
+Joshua Peters: x.is equal to 3 x plus 4 y and then minus 2 x times
+
+22
+00:02:16.870 --> 00:02:22.250
+Joshua Peters: x squared plus y squared. and we've got y.is equal to
+
+23
+00:02:22.390 --> 00:02:25.710
+Joshua Peters: negative 4 x plus 3 y
+
+24
+00:02:25.720 --> 00:02:30.490
+Joshua Peters: minus y times 4 x squared plus y squared.
+
+25
+00:02:31.080 --> 00:02:38.420
+And so the first question, which is part a asks us to basically show that the linearized system around the origin is a normal form.
+
+26
+00:02:38.540 --> 00:02:39.330
+Joshua Peters: Okay.
+
+27
+00:02:40.470 --> 00:02:46.520
+Joshua Peters: So how I how might we do that? Well, Basically, we want to compute the linearized system around the origin. Okay.
+
+28
+00:02:46.840 --> 00:02:47.890
+Joshua Peters: So
+
+29
+00:02:48.170 --> 00:02:59.500
+Joshua Peters: i'll leave the computation to you guys, basically, but because this is a 2 by 2 sis, this is just a two-dimensional system. The linearized system is going to be a 2 by 2 matrix.
+
+30
+00:02:59.810 --> 00:03:16.190
+Joshua Peters: And there's a little trick that you can do, which I've spoken about before, when you're linearizing around the origin. The only terms that survive in your linearized system are the linear terms of your nonlinear system. So basically we can read off
+
+31
+00:03:16.190 --> 00:03:20.090
+Joshua Peters: from our nonlinear system the linear terms which are these for here.
+
+32
+00:03:20.650 --> 00:03:24.360
+And they're basically going to be the numbers that are going to fill out our matrix.
+
+33
+00:03:24.630 --> 00:03:29.640
+Joshua Peters: So we're gonna just have 3, 4 negative, 4 and 3 here.
+
+34
+00:03:30.390 --> 00:03:48.310
+Joshua Peters: Okay. And is this a normal form? Well, yes, it is okay. There's 2 different types of normal forms which you guys should be worried about. One of them is basically if you have a diagonal matrix, and then the other possibilities. When you have a matrix looking like this, where you have the same entries here and here.
+
+35
+00:03:48.400 --> 00:03:53.530
+Joshua Peters: and then the same entries here in here. But they just opposite sign, which is exactly what we've got.
+
+36
+00:03:54.620 --> 00:03:56.640
+Joshua Peters: So here we have normal phone
+
+37
+00:03:59.490 --> 00:04:00.170
+Joshua Peters: cool.
+
+38
+00:04:01.910 --> 00:04:05.670
+Joshua Peters: Okay, so that one's pretty quick.
+
+39
+00:04:06.350 --> 00:04:09.210
+Joshua Peters: Now, let's look at Question B:
+
+40
+00:04:09.330 --> 00:04:17.980
+Joshua Peters: This one basically just asks us to turn our system in Cartesian coordinates into polar coordinates.
+
+41
+00:04:18.070 --> 00:04:18.779
+Joshua Peters: Okay.
+
+42
+00:04:19.300 --> 00:04:21.370
+Joshua Peters: So how do we do this? Well.
+
+43
+00:04:21.480 --> 00:04:28.230
+Joshua Peters: we're going to let X equal our coast Theta. and y equal assign, theta
+
+44
+00:04:29.650 --> 00:04:36.910
+Joshua Peters: and then we're going to use the equations that are. our.is equal to x x dot plus y.
+
+45
+00:04:37.390 --> 00:04:42.880
+Joshua Peters: and the other equation r squared theta.is equal to
+
+46
+00:04:43.260 --> 00:04:45.410
+Joshua Peters: X y dot minus
+
+47
+00:04:45.700 --> 00:04:47.480
+Joshua Peters: x dot Y:
+
+48
+00:04:47.880 --> 00:04:48.530
+Joshua Peters: Okay.
+
+49
+00:04:48.640 --> 00:04:56.070
+Joshua Peters: So these 2 equations basically tell us how we can convert our Cartesian system into a system in polar coordinates
+
+50
+00:04:56.150 --> 00:05:06.450
+Joshua Peters: just by basically substituting out x dot y into these equations here and then changing everything from X's to our and Peter.
+
+51
+00:05:07.740 --> 00:05:11.990
+Joshua Peters: So again, i'm not going to go through this calculation with you guys. I've done it
+
+52
+00:05:12.000 --> 00:05:18.130
+Joshua Peters: last week. If you do have any questions, feel free to ask on the Discussion Board. But
+
+53
+00:05:18.160 --> 00:05:22.440
+Joshua Peters: after a bit of work you should get our.is it? The Times
+
+54
+00:05:22.580 --> 00:05:28.010
+Joshua Peters: 3 minus all squared times, 2 minus signs of the 4 here.
+
+55
+00:05:29.510 --> 00:05:33.080
+Joshua Peters: and our theed of equation will be for
+
+56
+00:05:34.150 --> 00:05:39.460
+Joshua Peters: times one minus r squared times. Sign cubed
+
+57
+00:05:41.330 --> 00:05:42.710
+Joshua Peters: Cause: Theta
+
+58
+00:05:44.170 --> 00:05:51.790
+Joshua Peters: Okay. So this requires a little bit of work to get to. But yeah, hopefully, that's okay. After a little bit of work.
+
+59
+00:05:53.550 --> 00:06:00.290
+Joshua Peters: Okay. So then, question, c. Then asks us to basically use Poncari and Dixon
+
+60
+00:06:00.370 --> 00:06:04.030
+Joshua Peters: to show that there exists a periodic orbit for the system.
+
+61
+00:06:04.330 --> 00:06:12.080
+Joshua Peters: Right? So how do we do that? Well, by the conditions of Poncar appendix? And what we need to do is find a trapping region.
+
+62
+00:06:12.170 --> 00:06:18.100
+Joshua Peters: and once we found the trapping region, we just need to make sure there's no critical points within that region.
+
+63
+00:06:18.450 --> 00:06:35.690
+Matthew Huang: and then by Poncari Bendix, and that will tell us that there is a periodical. But inside of that concerned about I 1, 2. I thought it was in this room, but I I feel like he's. He's just doing it online, because if he's in the other room he could have, he has to use the projector.
+
+64
+00:06:35.730 --> 00:06:37.270
+Matthew Huang: We can't write on the board.
+
+65
+00:06:37.660 --> 00:06:41.380
+Matthew Huang: so I think it's just an online series of coming into this room
+
+66
+00:06:42.750 --> 00:06:46.160
+Joshua Peters: out with another. True as well.
+
+67
+00:06:46.720 --> 00:06:49.660
+Matthew Huang: Ken, can you?
+
+68
+00:06:52.470 --> 00:06:53.910
+Joshua Peters: Can you guys hear me on? Zoom?
+
+69
+00:06:54.720 --> 00:06:55.290
+Matthew Huang: Yeah.
+
+70
+00:06:57.460 --> 00:06:58.160
+Matthew Huang: Sorry.
+
+71
+00:06:59.490 --> 00:07:08.600
+Matthew Huang: So you guys can hear me on zoom this isn't an online to you can actually come into the room. If you want, we're in the normal room where our tutorial is.
+
+72
+00:07:10.160 --> 00:07:14.240
+Joshua Peters: Yeah, but it will. I will be doing this online. It's being recorded as well.
+
+73
+00:07:14.440 --> 00:07:16.180
+Joshua Peters: so you can make it the same problem.
+
+74
+00:07:22.590 --> 00:07:26.810
+Joshua Peters: Right? So all right, let's go to pot, c. Then
+
+75
+00:07:30.560 --> 00:07:35.000
+Joshua Peters: so part c. We're interested in periodic orbits.
+
+76
+00:07:37.530 --> 00:07:43.160
+Joshua Peters: Oh, so, Matthew! Which building is it? It's the I think it is actually 39. A it's. Colin: Clock.
+
+77
+00:07:46.780 --> 00:07:49.850
+Joshua Peters: Okay. So to find.
+
+78
+00:07:49.940 --> 00:07:53.090
+Joshua Peters: Okay, it's 39. Then yeah, I'm: not too sure.
+
+79
+00:07:54.480 --> 00:07:56.240
+Joshua Peters: Okay. So right.
+
+80
+00:07:56.690 --> 00:08:01.620
+Joshua Peters: let's use pon card. Bend Dixon to show that there's a periodical for the system. So
+
+81
+00:08:01.760 --> 00:08:20.700
+Joshua Peters: basically to find a bounding region. The only thing that really matters is this: our dot equation. Essentially, we want to bound it between 2 values which are only dependent on our. So we want to somehow remove this data dependence, using some sort of like, upper bound and lower bound for this are done equation.
+
+82
+00:08:20.770 --> 00:08:29.510
+Joshua Peters: So how can we do that well signs of the for theater is actually just between negative one and 0 and one.
+
+83
+00:08:31.220 --> 00:08:40.530
+Joshua Peters: Okay. So because of this. this means that if we just. if we Basically.
+
+84
+00:08:40.659 --> 00:08:47.980
+Joshua Peters: multiply the entire inequality by minus one and add 2 to both sides, we're going to have that. One
+
+85
+00:08:48.690 --> 00:08:51.200
+Joshua Peters: is less than or equal to
+
+86
+00:08:52.330 --> 00:08:55.950
+Joshua Peters: 2 minus signed to the 4
+
+87
+00:08:56.480 --> 00:08:58.880
+Joshua Peters: feta is less than or equal to 2.
+
+88
+00:08:59.950 --> 00:09:00.620
+Joshua Peters: Okay.
+
+89
+00:09:00.720 --> 00:09:07.840
+Joshua Peters: So all I've done here is multiply everything by minus one, which flips all the inequalities. And then I've added 2 to everything.
+
+90
+00:09:07.910 --> 00:09:15.720
+Joshua Peters: And why do I want to bound on this thing? Well. this exact expression appears in our our dot equation. Okay.
+
+91
+00:09:17.220 --> 00:09:19.410
+Joshua Peters: So
+
+92
+00:09:20.240 --> 00:09:21.500
+Joshua Peters: what does this mean?
+
+93
+00:09:23.740 --> 00:09:24.700
+Joshua Peters: Well.
+
+94
+00:09:26.080 --> 00:09:32.690
+Joshua Peters: from from this inequality here? This means that because 2 mine assigned to the 4 theaters between one and 2
+
+95
+00:09:32.710 --> 00:09:34.400
+Joshua Peters: which are constant values.
+
+96
+00:09:35.230 --> 00:09:39.340
+Joshua Peters: We can actually just say that our dot
+
+97
+00:09:41.860 --> 00:09:43.910
+Joshua Peters: is going to be bounded between
+
+98
+00:09:44.900 --> 00:09:48.090
+Joshua Peters: all times 3 minus a square.
+
+99
+00:09:48.830 --> 00:10:09.290
+Joshua Peters: and then it's lower bound is our times 3 minus 2 r squared. Okay, that's because basically when we take this 2 minus signs of the 4, the it to be its maximum value, which is 2. Then this negative adds a negative contribution to this expression, which gives it this lower bound.
+
+100
+00:10:09.950 --> 00:10:10.640
+Joshua Peters: Okay.
+
+101
+00:10:12.930 --> 00:10:20.640
+Joshua Peters: So after we've done this, basically what we want to do is find a value of R, for which this lower bound is going to be positive
+
+102
+00:10:20.810 --> 00:10:31.910
+Joshua Peters: and find a value of off for which this upper bound is going to be negative, because what will that mean? Well, it means that we will have found some annulus where trajectories will be going inwards here
+
+103
+00:10:32.380 --> 00:10:34.000
+Joshua Peters: and outwards here.
+
+104
+00:10:34.240 --> 00:10:37.510
+Joshua Peters: which will basically say that we found a trapping region.
+
+105
+00:10:39.920 --> 00:10:45.600
+Joshua Peters: Okay, so i'm just gonna go on to the next next next next page.
+
+106
+00:10:48.530 --> 00:10:52.020
+Joshua Peters: So what were we looking at? Well, we had us
+
+107
+00:10:52.140 --> 00:10:54.910
+Joshua Peters: times 3 minus 2 off squared
+
+108
+00:10:57.660 --> 00:10:59.700
+Joshua Peters: is less than equal to R. Dot.
+
+109
+00:10:59.730 --> 00:11:03.930
+Joshua Peters: It is less than equal to R. Times 3 minus r squared.
+
+110
+00:11:04.060 --> 00:11:08.960
+Joshua Peters: Okay. And so when is this, we'll call this one and the side 2
+
+111
+00:11:10.070 --> 00:11:13.320
+Joshua Peters: for one. This is greater than 0
+
+112
+00:11:14.910 --> 00:11:21.410
+Joshua Peters: when 3 minus 2 r squared is greater than 0. Okay, because R. Is always positive.
+
+113
+00:11:22.970 --> 00:11:28.010
+Joshua Peters: And what does this mean? Well, this means that all squared. it must be less than
+
+114
+00:11:28.150 --> 00:11:30.110
+Joshua Peters: 3 on 2.
+
+115
+00:11:31.580 --> 00:11:34.520
+Joshua Peters: Okay. how about for 2?
+
+116
+00:11:34.700 --> 00:11:39.220
+Joshua Peters: Well, this we are interested in values of off which this is less than 0.
+
+117
+00:11:39.430 --> 00:11:40.940
+Joshua Peters: And this happens.
+
+118
+00:11:43.640 --> 00:11:45.800
+Joshua Peters: this happens when all squared
+
+119
+00:11:46.620 --> 00:11:48.700
+Joshua Peters: is greater than
+
+120
+00:11:50.080 --> 00:11:56.160
+Joshua Peters: greater than 3. Okay, again, because this our value here is always positive.
+
+121
+00:11:58.150 --> 00:12:09.150
+Joshua Peters: Okay, so basically these 2 inequalities allow us to define our trapping region. Okay, in particular, we can let our trapping region be the set of all X and Y such that
+
+122
+00:12:09.640 --> 00:12:21.400
+Joshua Peters: the square root of 3 on 2 is less than or equal to R is less than or equal to the square root of 3, hey? Just by square rooting these 2 inequalities here.
+
+123
+00:12:23.370 --> 00:12:27.550
+Joshua Peters: And so we've found our chopping region.
+
+124
+00:12:28.160 --> 00:12:36.970
+Joshua Peters: So basically all that we need to do now in order to apply upon Car Ofendixon is to basically verify that there are no critical points within this region for our system.
+
+125
+00:12:37.870 --> 00:12:42.550
+Joshua Peters: Okay. So if we recall critical points will occur
+
+126
+00:12:42.760 --> 00:12:49.340
+Joshua Peters: when basically in our our dominant equation we have our.is equal to theta.is equal to 0.
+
+127
+00:12:49.920 --> 00:12:50.640
+Joshua Peters: Okay.
+
+128
+00:12:51.970 --> 00:12:55.550
+Joshua Peters: So basically, by our our dot equation.
+
+129
+00:12:55.850 --> 00:13:00.840
+Joshua Peters: this means that either R is equal to 0.
+
+130
+00:13:02.620 --> 00:13:08.070
+Joshua Peters: So by our job equation. either R is equal to 0 or
+
+131
+00:13:08.540 --> 00:13:13.810
+Joshua Peters: 3 times 3 minus r squared times, 2 minus
+
+132
+00:13:13.940 --> 00:13:18.310
+Joshua Peters: sign to the 4 Theta. is equal to 0. Okay.
+
+133
+00:13:18.940 --> 00:13:23.080
+Joshua Peters: So when R is equal to 0, this is already a critical point.
+
+134
+00:13:23.140 --> 00:13:26.400
+Joshua Peters: Okay, because R is equal to 0 is basically, just
+
+135
+00:13:26.620 --> 00:13:30.490
+Joshua Peters: the origin. And so we don't really care about what
+
+136
+00:13:30.740 --> 00:13:34.060
+Joshua Peters: value theta takes, because you're always going to be stuck at the origin.
+
+137
+00:13:34.800 --> 00:13:39.060
+Joshua Peters: but the only other one that we have to be worried about is this possibility here?
+
+138
+00:13:39.510 --> 00:13:47.990
+Joshua Peters: So if this quantity is 0 and outdated, that equation is 0, then we could have a critical point which could actually lie inside of our region.
+
+139
+00:13:49.550 --> 00:13:50.240
+Joshua Peters: Okay.
+
+140
+00:13:50.290 --> 00:13:59.140
+Joshua Peters: so how do we basically check whether whether or not this, this quantity here could correspond to a critical point. Well, rearranging we have
+
+141
+00:13:59.400 --> 00:14:05.820
+Joshua Peters: all squared is just equal to 3 over 2 minus sign to the 4 theater.
+
+142
+00:14:08.620 --> 00:14:14.100
+Joshua Peters: And then basically we're going to look at updated of equation and like substitute this value into it.
+
+143
+00:14:16.050 --> 00:14:20.190
+Joshua Peters: So basically. if all
+
+144
+00:14:20.790 --> 00:14:24.480
+Joshua Peters: our squared is equal to this quantity, so 3 over.
+
+145
+00:14:24.530 --> 00:14:27.030
+Joshua Peters: 2 minus sign to the 4. Theta
+
+146
+00:14:28.080 --> 00:14:30.530
+Joshua Peters: Then what does this make our theta dot equation?
+
+147
+00:14:30.950 --> 00:14:38.200
+Joshua Peters: Well, this makes it equal to 4 times one minus, and then some very gross trig term.
+
+148
+00:14:38.660 --> 00:14:43.570
+Joshua Peters: 3 times signed times, cos Theta
+
+149
+00:14:45.020 --> 00:14:46.440
+Joshua Peters: divided by
+
+150
+00:14:46.900 --> 00:14:50.050
+Joshua Peters: 2 minus sign to the 4. Theta
+
+151
+00:14:51.110 --> 00:14:51.890
+Joshua Peters: Okay.
+
+152
+00:14:52.390 --> 00:15:02.840
+Joshua Peters: And yeah, you. You can simplify this if you really want to like, use some trig identities that you only get like cause terms of pairing and stuff.
+
+153
+00:15:03.090 --> 00:15:13.250
+Joshua Peters: But yeah, this is basically never going to be 0. You can use like a computer or something to check this. And that comes from the fact that this trig term is never going to be equal to one.
+
+154
+00:15:14.500 --> 00:15:21.850
+Joshua Peters: And so because of that fact, basically it's impossible for this value of R squared.
+
+155
+00:15:22.220 --> 00:15:31.220
+Joshua Peters: which is the only other critical point that we have to worry about. It's impossible for it to actually even be a critical point, because the the dot will never be 0 as well.
+
+156
+00:15:34.070 --> 00:15:36.420
+Joshua Peters: Okay, so basically because of that.
+
+157
+00:15:37.420 --> 00:15:41.470
+Joshua Peters: I'll only critical point is the origin.
+
+158
+00:15:42.710 --> 00:15:46.810
+Joshua Peters: And so Pb: which is Poncho ben Dixon
+
+159
+00:15:47.370 --> 00:15:52.340
+Joshua Peters: implies that there exists a periodic that
+
+160
+00:15:56.450 --> 00:16:00.120
+Joshua Peters: in inside out region. D:
+
+161
+00:16:02.820 --> 00:16:08.240
+Joshua Peters: Yeah, sorry. Got cut off at the bottom there. But yeah, it just says there is this a periodic or but inside the
+
+162
+00:16:12.430 --> 00:16:20.070
+Joshua Peters: Okay. So for the very last part of this question, it basically asks you to do some like computer analysis.
+
+163
+00:16:23.050 --> 00:16:27.830
+Joshua Peters: Now, basically all that it asks is basically to consider now
+
+164
+00:16:28.140 --> 00:16:30.130
+Joshua Peters: a different system.
+
+165
+00:16:34.550 --> 00:16:45.650
+Joshua Peters: basically, what? Where you replace like some of one of the coefficients with like an a, I think it might be like the 3 that was in the original system. I'm not gonna go through it with you guys.
+
+166
+00:16:45.670 --> 00:16:48.980
+Joshua Peters: but basically it's similar to the one last week
+
+167
+00:16:49.270 --> 00:16:58.090
+Joshua Peters: where basically you're replacing a one of the fixed numbers with a parameter which you vary. And then you just see what goes wrong.
+
+168
+00:16:58.110 --> 00:17:07.310
+Joshua Peters: Okay. And basically when you include this a parameter basically critical points of your system actually end up within your
+
+169
+00:17:07.440 --> 00:17:12.359
+Joshua Peters: trapping region, and you run into problems. So you kind of pipe on Car Ben Dixon
+
+170
+00:17:12.410 --> 00:17:16.190
+Joshua Peters: just like probably in the just like we did then.
+
+171
+00:17:19.970 --> 00:17:22.150
+Joshua Peters: Are there any questions at all?
+
+172
+00:17:25.369 --> 00:17:28.270
+Joshua Peters: All good. any questions on zoom
+
+173
+00:17:34.150 --> 00:17:34.960
+Joshua Peters: good.
+
+174
+00:17:36.420 --> 00:17:41.130
+Joshua Peters: So wait. Did Did the backward announcement Say, 39 a. Did it?
+
+175
+00:17:41.760 --> 00:17:44.340
+Joshua Peters: I is it? Mentally, I heard. But I didn't get it wrong.
+
+176
+00:17:47.510 --> 00:17:51.720
+Joshua Peters: Yeah. it sounds really good. Okay, yeah.
+
+177
+00:17:57.930 --> 00:18:00.480
+Joshua Peters: Yeah, right? Okay, yeah.
+
+178
+00:18:01.630 --> 00:18:06.030
+Joshua Peters: Hmm. Right? Yeah. I'm: not too sure what's going on there.
+
+179
+00:18:08.360 --> 00:18:09.090
+Joshua Peters: All right.
+
+180
+00:18:09.120 --> 00:18:13.110
+Joshua Peters: So let's move on to question 2. This one's a very quick
+
+181
+00:18:14.220 --> 00:18:20.040
+Joshua Peters: basically we're considering a system. Well, by my writing highlighter.
+
+182
+00:18:21.540 --> 00:18:26.910
+Joshua Peters: we're considering a system x dot is equal to y plus 2 x y
+
+183
+00:18:27.230 --> 00:18:29.640
+Joshua Peters: and y.is equal to
+
+184
+00:18:29.650 --> 00:18:33.020
+Joshua Peters: x plus x squared minus y squared.
+
+185
+00:18:33.160 --> 00:18:34.910
+Joshua Peters: Okay, and question a
+
+186
+00:18:36.440 --> 00:18:43.360
+Joshua Peters: asks us to find a function V of x Y. Such that
+
+187
+00:18:44.620 --> 00:18:49.130
+Joshua Peters: x.5.is equal to the negative gradient of V.
+
+188
+00:18:49.150 --> 00:18:56.470
+Joshua Peters: Okay, so what's this? Well, this is basically a gradient system. Okay, if we can find such a V, for which this equality is true.
+
+189
+00:18:56.580 --> 00:19:00.300
+Joshua Peters: then that means that our system is a gradient system.
+
+190
+00:19:02.230 --> 00:19:04.470
+Joshua Peters: And so, finding this function to be
+
+191
+00:19:04.610 --> 00:19:09.900
+Joshua Peters: just, comes down to basically refer to your
+
+192
+00:19:10.240 --> 00:19:22.760
+Joshua Peters: basically you, you set X dot and y equal to this grading here and you like, Solve for one of them. And like you like, integrate, so collect that integrating constant. And then, like you get your
+
+193
+00:19:22.770 --> 00:19:33.750
+Joshua Peters: on potential function from that. So basically I'm: i'm going through this one in detail, you guys, but basically you can follow a similar process
+
+194
+00:19:35.280 --> 00:19:37.840
+Joshua Peters: to math 2,001.
+
+195
+00:19:39.820 --> 00:19:42.090
+Joshua Peters: This is like potential functions.
+
+196
+00:19:43.550 --> 00:19:45.350
+Joshua Peters: Do you guys remember covering this at all?
+
+197
+00:19:48.930 --> 00:19:54.540
+Joshua Peters: Not yeah. Have you done that? 2,001? Yeah.
+
+198
+00:19:56.380 --> 00:19:59.620
+Joshua Peters: So yeah, basically, the process.
+
+199
+00:19:59.750 --> 00:20:07.930
+Joshua Peters: the process is basically set. because the gradient, the gradient of V is actually just equal to
+
+200
+00:20:10.200 --> 00:20:11.740
+Joshua Peters: It's basically just
+
+201
+00:20:12.050 --> 00:20:16.700
+Joshua Peters: partial. V. Partial X. Partial V.
+
+202
+00:20:16.890 --> 00:20:22.590
+Joshua Peters: Part of why. and you'll have the negatives here. So basically what you need to do
+
+203
+00:20:22.810 --> 00:20:32.730
+Joshua Peters: is a set x.to be equal to negative partial V partial y and y.to be equal to negative. Oh, sorry. No, I got this around the wrong way.
+
+204
+00:20:34.920 --> 00:20:41.510
+Joshua Peters: This is meant to be partial. V. Partial X. And this is going to be possible to be possible. Why.
+
+205
+00:20:41.930 --> 00:20:52.390
+Joshua Peters: and then you know what your external y dot equations are. This external equation is y plus 2 x y and your y dot equation is x plus x squared minus y squared.
+
+206
+00:20:52.930 --> 00:21:08.540
+Joshua Peters: And so basically you want to find the the the whole goal of this is to try and find a function B, which satisfies these are 2 equations. So yeah, the way that you do that is basically you integrate both sides of equation, one, for example, with respect to X:
+
+207
+00:21:13.460 --> 00:21:14.410
+Okay?
+
+208
+00:21:14.990 --> 00:21:17.980
+Joshua Peters: And then basically what will happen is like.
+
+209
+00:21:18.140 --> 00:21:24.150
+Joshua Peters: because you're because you're integrating partially with respect to X, what will happen with equation one
+
+210
+00:21:25.320 --> 00:21:32.900
+Joshua Peters: is that on the left hand side. You just integrate with respect to x, so you'll have y times x plus x squared y
+
+211
+00:21:34.110 --> 00:21:43.750
+Joshua Peters: plus an arbitrary function of y is equal to negative. V: Okay. So you get this G. Of Y. Here
+
+212
+00:21:43.890 --> 00:21:48.120
+Joshua Peters: because you're integrating partially with respect to a variable.
+
+213
+00:21:48.760 --> 00:21:52.030
+Joshua Peters: And so, since you've got this relationship with V.
+
+214
+00:21:52.510 --> 00:22:01.690
+Joshua Peters: Since you know V is of this form, basically all that you need to do is try and figure out a way how to determine what g of y is in the way that you do. That
+
+215
+00:22:01.700 --> 00:22:05.620
+Joshua Peters: is that you substitute this B into equation 2.
+
+216
+00:22:05.630 --> 00:22:06.750
+Joshua Peters: So you saw
+
+217
+00:22:07.810 --> 00:22:10.750
+Joshua Peters: the and 2 2
+
+218
+00:22:11.410 --> 00:22:12.850
+to find
+
+219
+00:22:13.230 --> 00:22:15.240
+Joshua Peters: G of Y.
+
+220
+00:22:15.510 --> 00:22:17.650
+Joshua Peters: And this is like your equation to here.
+
+221
+00:22:19.030 --> 00:22:25.120
+Joshua Peters: and when you do that you can rearrange your G of y, and then this will be your potential function here. So
+
+222
+00:22:25.280 --> 00:22:31.990
+Joshua Peters: basically from doing this, you'll find that V of X y will be equal to
+
+223
+00:22:32.100 --> 00:22:36.230
+Joshua Peters: negative of x y plus x squared y
+
+224
+00:22:38.210 --> 00:22:41.000
+Joshua Peters: minus y cubed on 3,
+
+225
+00:22:41.060 --> 00:22:47.700
+Joshua Peters: so you can kind of see here that see how we've got the xy term here and here
+
+226
+00:22:47.830 --> 00:22:50.270
+Joshua Peters: and x squared y term here. And here.
+
+227
+00:22:51.080 --> 00:22:58.240
+Joshua Peters: basically if you were to go through this process, you'll find that G. Of x G. Of y is actually given by, like y cubed on 3.
+
+228
+00:22:58.670 --> 00:22:59.280
+Joshua Peters: Okay.
+
+229
+00:23:00.620 --> 00:23:11.830
+Joshua Peters: So we found this potential function, which means that we're actually looking at a gradient system here. Now, can someone tell me what a property of gradient system is with periodic orbits, maybe.
+
+230
+00:23:13.440 --> 00:23:16.640
+Joshua Peters: Yeah, that's exactly right. So if you have a gradient system.
+
+231
+00:23:16.930 --> 00:23:27.810
+Joshua Peters: then yeah, you don't have any periodical bits. Okay. So this is a way of disproving existence of periodic orbits by showing that your system that you're looking at is a gradient system.
+
+232
+00:23:28.470 --> 00:23:29.280
+Joshua Peters: Okay.
+
+233
+00:23:30.900 --> 00:23:37.050
+Joshua Peters: So this is all that we have to do with Part a. Now for part B.
+
+234
+00:23:38.120 --> 00:23:46.900
+Joshua Peters: This is kind of like a bit of a proof type of question it asks us to show. Oh, I'm. Using fancy routing now
+
+235
+00:23:48.690 --> 00:23:53.080
+Joshua Peters: show that the existence
+
+236
+00:23:56.990 --> 00:24:01.720
+Joshua Peters: of V, which is our potential function. implies
+
+237
+00:24:03.740 --> 00:24:05.320
+Joshua Peters: that partial F.
+
+238
+00:24:05.650 --> 00:24:09.180
+Joshua Peters: Partial X is equal to partial G
+
+239
+00:24:09.260 --> 00:24:10.220
+Joshua Peters: partial.
+
+240
+00:24:11.330 --> 00:24:13.660
+Joshua Peters: This. This is meant to be a while on the bottom. Another.
+
+241
+00:24:16.380 --> 00:24:29.340
+Joshua Peters: Okay. So what is this saying? Well, Basically, if you have a potential function. V. Then this means that these 2 quantities are the same. So what is F and G. Well, this is F. And G. Are going to be
+
+242
+00:24:30.960 --> 00:24:34.070
+Joshua Peters: our out. It's going to be our original system.
+
+243
+00:24:34.080 --> 00:24:34.790
+Joshua Peters: Okay.
+
+244
+00:24:35.020 --> 00:24:42.870
+Joshua Peters: at least for the previous question. But we're wanting to try and show this for basically any arbitrary system that we're looking at. Okay.
+
+245
+00:24:44.310 --> 00:24:46.310
+Joshua Peters: sir.
+
+246
+00:24:46.660 --> 00:24:48.550
+Joshua Peters: how do we do this? Well.
+
+247
+00:24:49.550 --> 00:24:53.760
+Joshua Peters: basically, let's let's first define what F. And G. Are. So
+
+248
+00:24:54.010 --> 00:25:06.860
+Joshua Peters: we have a system x.is equal to F of X y. and we have y.is equal to G of x, Y. So F. And G are basically just our right hand side of our two-dimensional system.
+
+249
+00:25:08.060 --> 00:25:12.710
+Joshua Peters: And suppose that we have these and that they satisfy
+
+250
+00:25:14.240 --> 00:25:16.130
+Joshua Peters: our gradient. System.
+
+251
+00:25:16.350 --> 00:25:22.240
+Joshua Peters: Okay, because we have the existence of this potential function, which means that our system is a gradient system.
+
+252
+00:25:23.240 --> 00:25:29.310
+Joshua Peters: So if it's a gradient system. then that means that we can say that x dot y dot.
+
+253
+00:25:29.430 --> 00:25:36.010
+Joshua Peters: which is actually just equal to F. G. Is equal to negative gradient of V.
+
+254
+00:25:37.260 --> 00:25:41.490
+Joshua Peters: Okay. So what's the negative gradient of V. Well.
+
+255
+00:25:41.570 --> 00:25:46.110
+Joshua Peters: this is just negative of the partial V Partial X
+
+256
+00:25:46.340 --> 00:25:51.270
+Joshua Peters: Partial. The Oops I'll show why.
+
+257
+00:25:54.420 --> 00:25:58.180
+Joshua Peters: And so then basically what we can do
+
+258
+00:25:58.400 --> 00:26:08.740
+Joshua Peters: is we can differentiate. We can differentiate the first element of this vector F. Because this is equal to
+
+259
+00:26:10.170 --> 00:26:22.180
+Joshua Peters: partial V. Partial X. So basically from this, from the system here we have that F is equal to negative partial. V. Partial X. And we have that G is equal to
+
+260
+00:26:22.380 --> 00:26:25.350
+Joshua Peters: negative partial. V. Partial Y.
+
+261
+00:26:25.580 --> 00:26:28.220
+Joshua Peters: So since we're interested in. Whether
+
+262
+00:26:28.570 --> 00:26:32.500
+Joshua Peters: the existence of this V implies that this is true.
+
+263
+00:26:32.570 --> 00:26:39.180
+Joshua Peters: Well, what we can do is just differentiate both sides of this first equation. With respect to why.
+
+264
+00:26:39.250 --> 00:26:43.490
+Joshua Peters: and then differentiate the second equation with respect to X.
+
+265
+00:26:44.080 --> 00:26:50.950
+Joshua Peters: So what do we have? Well, when we differentiate with respect to why we have partial f. Partial Y is just equal to negative
+
+266
+00:26:51.100 --> 00:26:54.250
+Joshua Peters: partial V. Partial, squared V
+
+267
+00:26:54.510 --> 00:26:57.030
+Joshua Peters: and partial X partial y.
+
+268
+00:26:57.390 --> 00:26:59.670
+Joshua Peters: And for the second equation we're going to have
+
+269
+00:27:00.060 --> 00:27:02.940
+Joshua Peters: partial G. Partial X
+
+270
+00:27:03.000 --> 00:27:07.460
+Joshua Peters: is equal to negative partial V. Partial squared B:
+
+271
+00:27:07.960 --> 00:27:10.650
+Joshua Peters: partial Y: Partial X:
+
+272
+00:27:11.210 --> 00:27:11.910
+Joshua Peters: Okay.
+
+273
+00:27:13.060 --> 00:27:19.480
+Joshua Peters: So basically, what we can do now is take the difference between partial F.
+
+274
+00:27:20.210 --> 00:27:25.390
+Joshua Peters: Partial Y and partial G. Partial x. And what do we get?
+
+275
+00:27:26.230 --> 00:27:32.040
+Joshua Peters: We just get negative, partial, squared B partial X partial y
+
+276
+00:27:32.310 --> 00:27:35.090
+Joshua Peters: plus partial squared B:
+
+277
+00:27:35.790 --> 00:27:38.180
+Joshua Peters: partial Y: Posture X.
+
+278
+00:27:38.200 --> 00:27:39.160
+Now.
+
+279
+00:27:39.190 --> 00:27:41.670
+Joshua Peters: basically what I can say
+
+280
+00:27:41.970 --> 00:27:52.260
+Joshua Peters: this is equal to 0. Okay, now, technically, you can't always do this, but we're just going to assume that basically this is like you can differentiate V as many times as you want. Okay.
+
+281
+00:27:52.630 --> 00:27:59.300
+Joshua Peters: this is like a something called like Clara's theorem, or something like that. You guys may have seen something like this before, where you can
+
+282
+00:27:59.340 --> 00:28:05.340
+Joshua Peters: change the order of a differentiation when you're differentiating with respect to 2 different variables.
+
+283
+00:28:05.520 --> 00:28:08.250
+Joshua Peters: And so, because of this, this is equal to 0.
+
+284
+00:28:08.380 --> 00:28:15.620
+Joshua Peters: This means that these 2 are equal to each other. You can just bring one to the other side. You're done.
+
+285
+00:28:19.600 --> 00:28:22.190
+Joshua Peters: And there any questions with Part B at all?
+
+286
+00:28:26.890 --> 00:28:28.940
+Joshua Peters: Well, good. Okay. So
+
+287
+00:28:28.950 --> 00:28:44.120
+Joshua Peters: the reason why we do part B is. Actually, it's a it's a nice way to basically show that your system that you're looking at is a gradient system or not. And you guys will have covered this result in math 2,001, which basically says.
+
+288
+00:28:44.150 --> 00:28:48.120
+Joshua Peters: if your system, which is like.
+
+289
+00:28:48.540 --> 00:28:53.840
+Joshua Peters: has it's curl is 0. So the curl of F,
+
+290
+00:28:54.560 --> 00:28:55.830
+Joshua Peters: just to by
+
+291
+00:28:55.960 --> 00:28:58.750
+the the the gradient times.
+
+292
+00:28:59.010 --> 00:29:09.330
+Joshua Peters: your your your system. then, Basically. if this is equal to 0, then that means that your system is going to be a gradient system.
+
+293
+00:29:09.880 --> 00:29:13.630
+Joshua Peters: Okay? And the reverse implication actually also holds.
+
+294
+00:29:13.680 --> 00:29:21.780
+Joshua Peters: Okay. So if your system is a gradient system, then the divergence is or not the divergence. The curl of it is 0.
+
+295
+00:29:22.090 --> 00:29:22.780
+Joshua Peters: Okay?
+
+296
+00:29:23.190 --> 00:29:34.840
+Joshua Peters: And basically what we can say from this is basically the the reverse implication of this statement that we've just shown, actually also holds. So this is basically
+
+297
+00:29:35.610 --> 00:29:44.430
+Joshua Peters: this is another way up here of saying that that the call of our system is 0, at least for 2 dimensional systems.
+
+298
+00:29:44.530 --> 00:29:54.600
+Joshua Peters: It's just written in a different way. Okay. So for the next part of the question, it basically asks us to show whether there exists a potential function
+
+299
+00:29:55.300 --> 00:30:03.380
+Joshua Peters: for for a different system. And so the way that we can do that is actually just by simply checking whether this condition
+
+300
+00:30:04.020 --> 00:30:05.110
+Joshua Peters: holds here.
+
+301
+00:30:06.510 --> 00:30:17.050
+Joshua Peters: So that's exactly what we're going to do here. So for part, c. By considering a different system where x is equal to y plus 2 x y.
+
+302
+00:30:17.380 --> 00:30:20.670
+Joshua Peters: and y.is only slightly different.
+
+303
+00:30:21.000 --> 00:30:23.360
+Joshua Peters: It's equal to x plus
+
+304
+00:30:23.370 --> 00:30:27.090
+Joshua Peters: x squared, minus y to the 3.
+
+305
+00:30:29.160 --> 00:30:33.330
+Joshua Peters: So we'll call this first equation F, and this second equation, G.
+
+306
+00:30:33.770 --> 00:30:41.360
+Joshua Peters: And basically we're going to apply the result. Is there a potential function? Well, let's compute partial F, the partial Y:
+
+307
+00:30:42.730 --> 00:30:47.110
+Joshua Peters: Well, when we do this, we're just gonna get one plus 2 x.
+
+308
+00:30:47.540 --> 00:30:53.020
+Joshua Peters: And then when we compute partial G partial X. This is just equal to
+
+309
+00:30:53.250 --> 00:30:56.030
+Joshua Peters: one plus 2 X again.
+
+310
+00:30:56.510 --> 00:30:57.310
+Joshua Peters: Okay.
+
+311
+00:30:57.820 --> 00:31:05.650
+Joshua Peters: So therefore, we have that partial F partial Y minus partial G. Partial X is equal to 0,
+
+312
+00:31:06.340 --> 00:31:11.050
+Joshua Peters: because these 2 are just identical. which means
+
+313
+00:31:12.100 --> 00:31:15.200
+Joshua Peters: there exists a potential function.
+
+314
+00:31:20.160 --> 00:31:22.850
+Joshua Peters: V of X. Y. Okay.
+
+315
+00:31:24.000 --> 00:31:28.910
+Joshua Peters: So here I've just used the converse of the statement that we showed and be, which is also true.
+
+316
+00:31:30.260 --> 00:31:31.020
+Joshua Peters: Okay.
+
+317
+00:31:33.370 --> 00:31:34.760
+Joshua Peters: Any questions at all.
+
+318
+00:31:36.890 --> 00:31:46.820
+Joshua Peters: Well, good, correct. So I might just go over now to I'll stop the share of this of this slide, and i'll
+
+319
+00:31:47.200 --> 00:31:49.160
+Joshua Peters: share my screen.
+
+320
+00:31:57.670 --> 00:31:58.250
+Joshua Peters: Cool.
+
+321
+00:32:00.490 --> 00:32:01.210
+Joshua Peters: Google.
+
+322
+00:32:03.130 --> 00:32:14.710
+Joshua Peters: Okay. So I'm just going to go over to this summaries document here. So for this week's tutorial summaries, I've included some stuff which might actually help you guys with the project.
+
+323
+00:32:14.860 --> 00:32:29.170
+Joshua Peters: It's all about like basically using mathematica. As to the the project, and like, do some visualizations, which is what I was talking about last week. So you guys can go over this in your own time, if you like.
+
+324
+00:32:29.240 --> 00:32:39.370
+Joshua Peters: I've basically just given you some sample code which might tell you like how to like you stream what, how you might be able to put your critical points on your system that you're looking at.
+
+325
+00:32:39.590 --> 00:32:45.450
+Joshua Peters: And yeah, different ways of like, okay, maybe you might want to put a solution. Yeah, you can
+
+326
+00:32:45.840 --> 00:32:52.320
+Joshua Peters: read through this as well. I've also included some links as well, which take you to
+
+327
+00:32:52.600 --> 00:33:04.690
+Joshua Peters: particular like websites. And I think some like math Stock Exchange posts which basically you can just copy and paste that code and re replace. Why, Don't, I stop with like your own equations and stuff.
+
+328
+00:33:06.830 --> 00:33:17.080
+Joshua Peters: Alright, so yeah, we guys, we were talking about bifurcation diagrams this week, and i'll go through, probably just one example after I go through this with you guys.
+
+329
+00:33:17.270 --> 00:33:20.460
+Joshua Peters: So what's bifurcation so essentially
+
+330
+00:33:20.530 --> 00:33:25.820
+Joshua Peters: thus far in this course we've only considered equations of just
+
+331
+00:33:25.830 --> 00:33:43.050
+Joshua Peters: like X and Y. Okay. And so what byifications are it's Basically, okay, let's not consider just our system as a function of X and Y. Let's consider as a function of like X, Y and some other parameter like Mu or a. Okay.
+
+332
+00:33:43.050 --> 00:33:49.490
+Joshua Peters: these the thing that these are things that you guys have actually already done like last week in the
+
+333
+00:33:49.690 --> 00:33:52.970
+Joshua Peters: last week in the oncarbon Dixon question.
+
+334
+00:33:53.080 --> 00:34:00.750
+Joshua Peters: you have that parameter a which you can vary. Well, you can kind of visual. You can kind of interpret that as like some sort of like clarification
+
+335
+00:34:00.850 --> 00:34:03.810
+Joshua Peters: type of system where you've got this parameter.
+
+336
+00:34:04.150 --> 00:34:11.860
+Joshua Peters: And so essentially what we're interested in when discussing byifications is like as we varied this parameter mute.
+
+337
+00:34:11.960 --> 00:34:16.120
+Joshua Peters: How will our how will our system vary? Okay.
+
+338
+00:34:16.270 --> 00:34:31.800
+Joshua Peters: So sometimes, when you vary your parameter, you might have like one critical point. But then, as you vary it more and more suddenly, more critical points of here. Okay, this is exactly what happens in like the punk card and bendix and questions.
+
+339
+00:34:31.920 --> 00:34:43.929
+Joshua Peters: So when those critical points up here we say that a bifurcation occurs okay. So when there is like qualitative change in your system, that is, when a bifurcation occurs. And
+
+340
+00:34:43.989 --> 00:34:47.800
+Joshua Peters: so there's these 3 main types, which
+
+341
+00:34:47.969 --> 00:34:51.429
+Joshua Peters: 3 main batification types which we'll be talking about this week.
+
+342
+00:34:51.590 --> 00:34:55.010
+Joshua Peters: Subtle node, Trans. Critical and pitch fork. Okay.
+
+343
+00:34:55.030 --> 00:35:04.420
+Joshua Peters: there's one more which you guys are going to copper. I think maybe like next week, or the week after, called off byifications, and they applied to 2 dimensional systems. So
+
+344
+00:35:04.460 --> 00:35:11.520
+Joshua Peters: this all these byification types which you will be covering here they only apply for like one-dimensional systems. Okay.
+
+345
+00:35:12.150 --> 00:35:14.220
+Joshua Peters: So basically.
+
+346
+00:35:14.820 --> 00:35:20.180
+Joshua Peters: the other thing to know is like bifurcations only occur when you're
+
+347
+00:35:20.450 --> 00:35:28.360
+Joshua Peters: critical point is non hyperbolic. Okay. So when the derivative with respect to X of your
+
+348
+00:35:28.650 --> 00:35:39.750
+Joshua Peters: of your function evaluated at the critical point of 0, and that's exactly why. If you look at all these byification type classifications. The first condition is that right?
+
+349
+00:35:39.780 --> 00:35:48.650
+Joshua Peters: So basically. the main idea of these bifurcations is basically you want to determine, like some mu, bar, and X bar.
+
+350
+00:35:49.070 --> 00:36:02.830
+Joshua Peters: for which your critical point is non hyperbolic. Because then, using these different types of byification and classification criteria. you can then determine what? Exactly. That type of B application is.
+
+351
+00:36:03.450 --> 00:36:04.130
+Joshua Peters: Okay.
+
+352
+00:36:05.090 --> 00:36:15.050
+Joshua Peters: So this was just a really quick summary. I've also got a little section on how you can draw butification diagrams. But we'll just go through an example of it. Now, with you guys.
+
+353
+00:36:19.390 --> 00:36:20.670
+Joshua Peters: I don't want to share that.
+
+354
+00:36:32.410 --> 00:36:33.650
+Joshua Peters: Okay.
+
+355
+00:36:39.670 --> 00:36:41.730
+Joshua Peters: Okay. So we might go through.
+
+356
+00:36:45.450 --> 00:36:47.260
+Joshua Peters: So this is question 4,
+
+357
+00:36:49.260 --> 00:36:56.130
+Joshua Peters: and we'll look at C. A and B. You guys will have actually done in class. So I thought there was no point of actually doing them again.
+
+358
+00:36:57.630 --> 00:37:02.710
+Joshua Peters: So basically what this question asks is to find critical points
+
+359
+00:37:03.420 --> 00:37:08.550
+Joshua Peters: for our system. determine the stability.
+
+360
+00:37:11.150 --> 00:37:20.120
+Joshua Peters: And basically, once you've actually done these 2 things you can actually already draw a bifurcation diagram, which is what we also have to do.
+
+361
+00:37:27.870 --> 00:37:31.690
+Joshua Peters: And then we need to classify byification types.
+
+362
+00:37:37.160 --> 00:37:44.100
+Joshua Peters: Okay, so these are. This is like standard Exam: type question where you'd have to do something similar to this.
+
+363
+00:37:45.130 --> 00:37:49.590
+Joshua Peters: So okay, full question, c. The system that we're looking at
+
+364
+00:37:49.600 --> 00:37:52.980
+Joshua Peters: is x.is equal to mu
+
+365
+00:37:53.550 --> 00:38:02.680
+Joshua Peters: plus x minus x squared. Okay, and what do we notice? Well, this is actually just a one dimensional system with a parameter mute. Okay.
+
+366
+00:38:03.270 --> 00:38:14.720
+Joshua Peters: And so this mute can take any value at once, and depending on what value we give it, You have like a different critical point. That critical point could have different types of stability and stuff like that.
+
+367
+00:38:16.270 --> 00:38:19.550
+Joshua Peters: So let's first find the critical points.
+
+368
+00:38:24.810 --> 00:38:27.830
+Joshua Peters: so they occur when x.is equal to 0,
+
+369
+00:38:28.630 --> 00:38:39.840
+Joshua Peters: which is equal to mu plus x minus X squared.
+
+370
+00:38:39.950 --> 00:38:45.240
+Joshua Peters: Okay. So we can find that by basically just using the quadratic formula.
+
+371
+00:38:46.370 --> 00:38:47.810
+Joshua Peters: we have X.
+
+372
+00:38:49.330 --> 00:38:51.580
+Joshua Peters: What do I call it? X star
+
+373
+00:38:51.700 --> 00:38:58.230
+Joshua Peters: plus minus of mute. This is equal to a half plus or minus
+
+374
+00:38:58.390 --> 00:39:00.700
+Joshua Peters: the square root of mute
+
+375
+00:39:01.040 --> 00:39:02.690
+Joshua Peters: plus month for.
+
+376
+00:39:03.640 --> 00:39:14.040
+Joshua Peters: Okay. So what do we notice? Well, if the square root is whatever is inside is negative, then we actually don't have any critical points. Okay, because for those values of new.
+
+377
+00:39:14.050 --> 00:39:18.900
+Joshua Peters: our critical point, text and imaginary value, and we don't really care about those.
+
+378
+00:39:19.120 --> 00:39:25.170
+Joshua Peters: So what what we'll actually see is like as we vary this parameter Mu, what's happening is
+
+379
+00:39:26.370 --> 00:39:27.380
+Joshua Peters: for like.
+
+380
+00:39:29.360 --> 00:39:41.770
+Joshua Peters: but when that squared is negative, we have no, we have no critical points. But then, when the square root is positive, we have 2 critical points, right and then given by X stop plus the next on minus.
+
+381
+00:39:42.060 --> 00:39:47.950
+Joshua Peters: So this can kind of give us an idea already what our bifurcation diagram might look like.
+
+382
+00:39:49.300 --> 00:39:51.720
+Joshua Peters: So we note
+
+383
+00:39:53.570 --> 00:39:55.610
+Joshua Peters: this only exists
+
+384
+00:39:58.700 --> 00:40:00.520
+Joshua Peters: for new.
+
+385
+00:40:01.020 --> 00:40:10.040
+Joshua Peters: greater than a equal to minus one on 4. Okay, because for values less than that, we're going to have an imaginary square root which is not good.
+
+386
+00:40:10.480 --> 00:40:11.220
+Joshua Peters: Okay.
+
+387
+00:40:11.360 --> 00:40:14.900
+Joshua Peters: So we've already found our critical point. So now it's just classified.
+
+388
+00:40:19.440 --> 00:40:22.090
+So for stability, what we want to do
+
+389
+00:40:22.190 --> 00:40:30.910
+Joshua Peters: is, look at the Jacobian matrix. Okay, but what's the Jacobian matrix for just the one-dimensional system. Well, it's just going to be the partial derivative
+
+390
+00:40:30.940 --> 00:40:33.060
+Joshua Peters: of X. With respect to X.
+
+391
+00:40:34.460 --> 00:40:38.770
+Joshua Peters: So if we compute partial F. Partial X.
+
+392
+00:40:39.040 --> 00:40:43.850
+Joshua Peters: This is just going to be equal to one minus 2. X:
+
+393
+00:40:44.310 --> 00:40:45.030
+Joshua Peters: Okay.
+
+394
+00:40:45.770 --> 00:40:53.790
+Joshua Peters: And so now we just need to plug in our critical points and just determine when our critical point is going to be stable and unstable.
+
+395
+00:40:55.170 --> 00:40:55.940
+Joshua Peters: Okay.
+
+396
+00:40:57.230 --> 00:40:59.410
+Joshua Peters: So for
+
+397
+00:41:00.430 --> 00:41:02.620
+Joshua Peters: it, when we substitute
+
+398
+00:41:05.140 --> 00:41:08.050
+Joshua Peters: when we substitute our critical point in
+
+399
+00:41:08.430 --> 00:41:17.770
+Joshua Peters: X star we can do them both at once. You can do them one at a time if you want, but because we've got this symmetry with the possible minus. We can just do them both at the same time.
+
+400
+00:41:18.310 --> 00:41:27.240
+Joshua Peters: We're going to get one minus 2 times a half. plus or minus square root of mu plus one and 4,
+
+401
+00:41:28.630 --> 00:41:33.760
+Joshua Peters: and then doing some simplification. We're going to get one minus one
+
+402
+00:41:33.820 --> 00:41:37.190
+Joshua Peters: minus plus. So this plus minus flips
+
+403
+00:41:37.540 --> 00:41:40.250
+Joshua Peters: the square root of m plus one on 4,
+
+404
+00:41:40.940 --> 00:41:43.770
+and then this is just equal to minus, plus
+
+405
+00:41:43.840 --> 00:41:47.110
+Joshua Peters: the square root of the mu. plus one on 4.
+
+406
+00:41:48.280 --> 00:41:48.940
+Joshua Peters: Okay.
+
+407
+00:41:50.470 --> 00:41:54.740
+Joshua Peters: So basically stability for these types of
+
+408
+00:41:55.000 --> 00:42:09.440
+Joshua Peters: stability for this type of system, how do we classify? Well, if this derivative is positive, then it's unstable; and if it's negative, it is stable; and if it's equal to 0, then it's non hyperbolic.
+
+409
+00:42:09.920 --> 00:42:16.450
+Joshua Peters: Okay, so, as I said, byifications occur when this critical point, all these critical points are non hyperbolic.
+
+410
+00:42:16.670 --> 00:42:25.490
+Joshua Peters: and basically, we can actually tell exactly when our critical point is going to be non hyperbolic by looking at when this quantity here is equal to 0.
+
+411
+00:42:25.910 --> 00:42:29.080
+Joshua Peters: Okay. So it's going to the next page.
+
+412
+00:42:29.970 --> 00:42:33.800
+Joshua Peters: So what do we have? We had partial X F.
+
+413
+00:42:34.490 --> 00:42:41.660
+Joshua Peters: Of X star plus, or minus mute me. and we found this was equal to
+
+414
+00:42:45.510 --> 00:42:47.840
+Joshua Peters: minus plus
+
+415
+00:42:48.500 --> 00:42:52.050
+Joshua Peters: the square root of mu plus one on the 4.
+
+416
+00:42:52.360 --> 00:42:54.080
+Joshua Peters: Okay. So we've got this expression.
+
+417
+00:42:54.230 --> 00:42:57.680
+Joshua Peters: Now let's just look at one critical point at a time.
+
+418
+00:42:57.930 --> 00:43:00.560
+Joshua Peters: Okay. So
+
+419
+00:43:01.420 --> 00:43:05.320
+Joshua Peters: if we look at X plus star mu.
+
+420
+00:43:06.650 --> 00:43:12.890
+Joshua Peters: then we have That's partial. X of F.
+
+421
+00:43:13.960 --> 00:43:16.690
+Joshua Peters: X star plus
+
+422
+00:43:16.970 --> 00:43:23.690
+Joshua Peters: mute. Can you hear me? Is equal to negative square root of M plus one on 4.
+
+423
+00:43:24.690 --> 00:43:27.380
+Joshua Peters: Okay. Now, this square root
+
+424
+00:43:27.430 --> 00:43:35.800
+Joshua Peters: is always positive. Okay. But we've got this negative on the outside, which means that this quantity is always going to be less than or equal to 0.
+
+425
+00:43:36.250 --> 00:43:41.660
+Joshua Peters: Okay, and because of that, it means that this critical point is always going to be stable
+
+426
+00:43:41.950 --> 00:43:46.720
+Joshua Peters: except for when it is equal to 0, because that's when it is non hyperbolic.
+
+427
+00:43:48.890 --> 00:43:50.300
+Joshua Peters: So, therefore.
+
+428
+00:43:51.280 --> 00:43:54.540
+Joshua Peters: x star plus is stable
+
+429
+00:43:56.100 --> 00:43:57.610
+Joshua Peters: for all me
+
+430
+00:44:00.380 --> 00:44:01.540
+Joshua Peters: except
+
+431
+00:44:03.740 --> 00:44:04.510
+Joshua Peters: goodness.
+
+432
+00:44:05.660 --> 00:44:06.440
+Joshua Peters: except
+
+433
+00:44:09.200 --> 00:44:12.500
+Joshua Peters: when Mu is equal to minus one on 4.
+
+434
+00:44:12.510 --> 00:44:15.750
+Joshua Peters: Okay. Because what happens when music with minus 1 4,
+
+435
+00:44:19.730 --> 00:44:22.390
+Joshua Peters: because it is hyper non hyperbolic here.
+
+436
+00:44:25.990 --> 00:44:26.650
+Okay.
+
+437
+00:44:28.350 --> 00:44:34.250
+Joshua Peters: So we've already classified that critical point for all values of me. So now let's just do the other one.
+
+438
+00:44:35.860 --> 00:44:38.500
+Joshua Peters: And this should be a my sorry.
+
+439
+00:44:40.950 --> 00:44:45.950
+Joshua Peters: Here we have partial X F. Of X minus star. Mu
+
+440
+00:44:46.320 --> 00:44:47.090
+Joshua Peters: you me!
+
+441
+00:44:47.780 --> 00:44:51.560
+This is just equal to the square root of m, plus one on 4.
+
+442
+00:44:52.400 --> 00:44:56.480
+Joshua Peters: And the only difference here is that this is actually always greater than it equals 0.
+
+443
+00:44:56.720 --> 00:44:59.100
+Joshua Peters: Okay, because we don't have that minus out the front.
+
+444
+00:45:00.280 --> 00:45:03.450
+So therefore, this means that X star
+
+445
+00:45:03.560 --> 00:45:06.460
+Joshua Peters: minus is unstable.
+
+446
+00:45:09.650 --> 00:45:11.480
+Joshua Peters: for all me.
+
+447
+00:45:13.070 --> 00:45:14.140
+Joshua Peters: except
+
+448
+00:45:15.860 --> 00:45:22.060
+Joshua Peters: at mute, is equal to minus one; for again, because it is going to be non hyperbolic there.
+
+449
+00:45:24.200 --> 00:45:29.030
+Joshua Peters: Okay. So we're basically we're nearly done. I think
+
+450
+00:45:31.940 --> 00:45:32.750
+Joshua Peters: I will.
+
+451
+00:45:46.710 --> 00:45:47.510
+Okay.
+
+452
+00:45:51.250 --> 00:45:57.710
+Joshua Peters: Okay, yeah, Cool. Okay. So we found the value of M. For which our critical point is non hyperbolic.
+
+453
+00:45:57.970 --> 00:46:10.680
+Joshua Peters: but corresponding to that value of M. We also need to find the value X star for which it is non hyperbolic as well. Okay, because when we're doing our bifurcation classification, we need to evaluate
+
+454
+00:46:10.850 --> 00:46:18.580
+Joshua Peters: our partial derivatives at the value X bar and New bar, but to find mute to find a X bar.
+
+455
+00:46:20.600 --> 00:46:25.140
+Joshua Peters: This is just going to be X. This is just going to be.
+
+456
+00:46:31.770 --> 00:46:37.690
+Joshua Peters: Basically we can. We can determine X bar by looking at our partial F,
+
+457
+00:46:38.940 --> 00:46:44.370
+Joshua Peters: our our partial derivative up here, which we found to be originally equal to
+
+458
+00:46:44.520 --> 00:46:48.070
+Joshua Peters: one minus 2, X. Okay.
+
+459
+00:46:48.420 --> 00:46:53.070
+Joshua Peters: And so When we set this equal to 0, we find that basically
+
+460
+00:46:53.120 --> 00:47:08.030
+Joshua Peters: out. irrespective of what X. You give this. this quantity is going to be equal to 0 when X is equal to i'm a hoff. Okay. So here, what we have now is that a bifurcation?
+
+461
+00:47:11.340 --> 00:47:12.390
+Joshua Peters: Because
+
+462
+00:47:13.900 --> 00:47:16.390
+Joshua Peters: at New Bar X bar
+
+463
+00:47:16.650 --> 00:47:19.570
+Joshua Peters: is equal to minus one on 4.
+
+464
+00:47:20.900 --> 00:47:22.010
+Joshua Peters: Okay, because
+
+465
+00:47:22.050 --> 00:47:29.780
+Joshua Peters: when our derivative here is 0, this means that our X, corresponding to it is going to be non hyperbolic.
+
+466
+00:47:30.140 --> 00:47:37.580
+Joshua Peters: And so that means that this is going to be our point at which we want to evaluate our derivatives at when we're classifying.
+
+467
+00:47:38.560 --> 00:47:47.870
+Joshua Peters: Okay. So how do we classify? Well, we can refer to our classification criteria. Essentially, what you have to do is compute a bunch of partial derivatives
+
+468
+00:47:48.250 --> 00:47:53.000
+Joshua Peters: and evaluate at that critical point that we looked up so evaluating
+
+469
+00:47:55.550 --> 00:47:58.030
+Joshua Peters: at X Bar
+
+470
+00:47:58.240 --> 00:48:08.330
+Joshua Peters: mu bar, I may. I think I had it the other way around before we have partial X. F. Is equal to one minus 2 times a half.
+
+471
+00:48:09.540 --> 00:48:15.420
+Joshua Peters: Okay, this will be equal to 0 again. We're evaluating at the X for New bar I just had on the previous slide.
+
+472
+00:48:17.200 --> 00:48:22.290
+Joshua Peters: We need to evaluate our partial derivative. With respect to Mu, we find that this is equal to one
+
+473
+00:48:23.300 --> 00:48:33.230
+Joshua Peters: which is obviously not equal to 0, and then the other one that we need to calculate is partial. Xx. Of F, which we find equal to minus 2
+
+474
+00:48:39.020 --> 00:48:41.720
+Joshua Peters: for bifurcations that can occur.
+
+475
+00:48:41.870 --> 00:48:43.600
+Joshua Peters: We have a saddle node.
+
+476
+00:48:49.470 --> 00:48:50.230
+Joshua Peters: Okay.
+
+477
+00:48:52.340 --> 00:48:57.890
+Joshua Peters: And so basically, after we've done this, we just need to draw the butification diagram. This is very
+
+478
+00:48:57.940 --> 00:48:58.710
+Joshua Peters: quick.
+
+479
+00:49:00.170 --> 00:49:09.390
+Joshua Peters: basically a bifurcation diagram. We we write it in X and Mu space where we use our bifurcation parameter, and we basically just plot out critical points.
+
+480
+00:49:09.720 --> 00:49:10.380
+Joshua Peters: Okay.
+
+481
+00:49:10.630 --> 00:49:18.260
+Joshua Peters: So we know that a bifurcation occurs at X Bar and Mu bar, which we already determine, which is like around here.
+
+482
+00:49:20.060 --> 00:49:21.950
+Joshua Peters: This is like newbot export.
+
+483
+00:49:22.890 --> 00:49:29.460
+Joshua Peters: and then our critical point to just like some square root things. So they look a little bit like like this.
+
+484
+00:49:29.710 --> 00:49:31.250
+Joshua Peters: where the top one
+
+485
+00:49:31.510 --> 00:49:37.840
+Joshua Peters: is x star plus, which we is always stable, so we identify with the solid line.
+
+486
+00:49:37.940 --> 00:49:50.540
+Joshua Peters: and then the other one is always unstable. So we identify with the with the dollar line. So this is X star minus. And at this point here
+
+487
+00:49:50.810 --> 00:49:54.130
+Joshua Peters: this is where the butification occurs. This is the saddle node
+
+488
+00:49:56.010 --> 00:49:57.030
+Joshua Peters: application.
+
+489
+00:50:01.370 --> 00:50:02.010
+Joshua Peters: Right?
+
+490
+00:50:03.120 --> 00:50:17.370
+Joshua Peters: So yeah, sorry if that was a little bit quick. We're going to go through a lot more examples in the coming weeks. You'll cover this with continuous time systems like we are at the moment, and then we'll move on to discrete time systems and byification. As for those as well.
+
+491
+00:50:17.940 --> 00:50:21.940
+Joshua Peters: So yeah, if you have any questions about assignments at all feel free to also be sticking around by
+
+492
+00:50:33.680 --> 00:50:36.210
+Joshua Peters: otherwise. Yeah, have a good with some break guys.
+
+493
+00:50:40.200 --> 00:50:42.120
+Joshua Peters: You no worries.
+
+494
+00:50:46.490 --> 00:50:50.150
+Joshua Peters: hey? I'm, i'm just gonna with all the questions. So
+
+495
+00:50:50.410 --> 00:50:51.970
+Joshua Peters: yeah, sure
+
+496
+00:50:53.340 --> 00:50:54.420
+Joshua Peters: question. One day
+
+497
+00:50:56.900 --> 00:51:00.620
+Joshua Peters: go to the weird. We basically have this valuation.
+

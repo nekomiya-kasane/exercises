@@ -1,0 +1,136 @@
+\documentclass{article}
+
+\usepackage[printqrbox=false,printhint=true,printanswer=true,printmarkingguide=false]{unswalgos}
+
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shapes,fit}
+\usepackage{tkz-fct}
+\usepackage{wrapfig}
+\usepackage{subfig}
+
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{booktabs,multicol,multirow}
+\usepackage{wasysym}
+\usepackage{tcolorbox}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\NAND}{NAND}
+\DeclareMathOperator{\AND}{AND}
+\DeclareMathOperator{\OR}{OR}
+\DeclareMathOperator{\NOT}{NOT}
+
+\usepackage{xspace}
+
+\fancyfoot[L]{\leftmark}
+\fancyfoot[R]{\rightmark}
+
+% This enables new paragraphs without indentation
+\usepackage[parfill]{parskip}
+
+\newcommand{\sem}{23T2}
+\newcommand{\semester}{Term 2, 2023}
+\SubjectNo{COMP3121/9101}
+\newcommand{\taskname}{Assignment 2, Question 1}
+\Institution{Algo Rhythm, z1234567} % Replace this with your name and zID
+
+
+\begin{document}
+
+\setcounter{question}{0}
+
+
+\begin{Question}
+
+\begin{Subquestion} \textbf{[12 marks]} 
+You are preparing to cross the Grand Canyon on a tightrope, and are building your balance pole out of steel rods. Naturally, you want to do this as cheaply as possible.
+
+You have made a trip to Bunnings, and picked up $n$ rods, the $i$th of which has length $\ell_i$. You need to weld these all together to create your balance pole. Welding rods $x$ and $y$ costs $\ell_x + \ell_y$ dollars, and results in a new rod with length $\ell_x + \ell_y$.
+
+For example, if we have rods with lengths $[2, 1, 3]$:
+\begin{itemize}
+    \item After welding rods 2 and 3, costing \$4, we have rods with lengths $[2, 4]$
+    \item We weld the remaining two rods, costing \$6
+    \item The total cost to create the pole is \$11
+\end{itemize}
+Note that this is not necessarily the optimal sequence for these lengths.
+
+Design an $O(n \log n)$ algorithm which finds the order you should weld the rods to minimize the total cost of welding.
+
+\begin{answer}
+We can apply a greedy algorithm to solve the problem. First we add all the rods'
+length into a min heap. Each time we pick up the two rods $x$ and $y$ with the minimal lengths
+ in the heap, remove them in the heap and weld them together, after that we insert 
+the new rod with the length of $l_x + l_y$ into the heap. Continuous doing this until 
+the heap size is equal to $1$, which means we have welded all the rods together. The order 
+we weld the rods gives the minimum total cost.
+
+The algorithm is same to the algorithm to find the Huffman Code, let rod $x$ be a symbol In
+the problem Huffman Code, and $l_x$ be the frequency of the symbol $x$, the goal of this problem
+is same to the goal of the Huffman Code problem, thus the correctness goes the same as the same of 
+the Huffman Code algorithm, which have discussed in the textbook.
+
+The algorithm runs in $O(n \log n)$ times since we need to insert into the heap $n\times 2-1$ elements in total,
+and remove them from the heap. Each insertion and removal operation takes $O(\log n)$ time. Thus the 
+total runtime of the algorithm is $O(n \log n)$.
+
+
+\end{answer}
+
+\end{Subquestion}
+
+\begin{Subquestion} \textbf{[8 marks]} 
+Just before you step onto the wire, your pole snaps in half, and you realise going for the cheapest option might not have been the best idea. Fortunately, you brought spare rods and a welding device to the canyon.
+
+As in part 1, you have $n$ rods, the $i$th of which has length $\ell_i$. It is given that $n$ is odd.
+
+Each rod in the pole contributes an \emph{instability}, which is the product of the rod's length and the number of rods it is away from the middle. The order in which the welds are performed does not matter, only the order of the rods in the final pole. 
+
+That is, if you weld the $n$ rods to create a pole $r_1, r_2, \dots, r_n$, then the instability of the pole is given by 
+\begin{equation}
+    \sum_{i=1}^n r_i \times \abs*{ i - \frac{n+1}{2} }.
+\end{equation}
+
+For example, if we create a pole $[2, 4, 6, 5, 2]$, then it has instability
+\begin{align*}
+&= (2 \times |1 - 3|) + (4 \times |2 - 3|) + (6 \times |3 - 3|) + (5 \times |4 - 3|) + (2 \times |5 - 3|) \\
+&= (2 \times 2) + (4 \times 1) + (6 \times 0) + (5 \times 1) + (2 \times 2) \\
+&= 4 + 4 + 0 + 5 + 4 \\
+&= 17.
+\end{align*}
+Design an $O(n \log n)$ algorithm which finds the order of rods in the pole with minimal instability.
+For example, if we create a pole $[2, 4, 6, 5, 2]$, then it has instability
+
+
+
+Design an $O(n \log n)$ algorithm which finds the order of rods in the pole with minimal instability.
+\begin{answer}
+We can use greedy to solve the problem. We first sort the rods by length in ascending order, then we 
+arrange the rods in the order from the two sides to middle : Let the first rod(the rod with the minimum length)
+ be in the first position, the second rod be in the $n$ th position, the third rod be in the second position,
+ the fourth rod be in the $n-1$ th position $\cdots$, and the last rod(the rod with the maximum length) be in the 
+ middle position($\lceil \frac{n}{2}\rceil$ th position).
+
+We now prove the correctness of the algorithm. Suppose there's an solution that gives a 
+smaller cost than our solution. Let the new solution be $O:\{o_1, o_2, \cdots, o_n\}$ and our 
+solution be $S:\{s_1, s_2, \cdots, s_n\}$. We compare the two solutions from the two size to middle (first $o_1$ and 
+$s_1$, then $o_n$ and $s_n$, after that $o_2$ and $s_2$ $\cdots$), find the first position $O$ differs from 
+$S$, let $mid = (n + 1)/2$ be the middle position, and the position that $O$ and $S$ differ be $p$.
+We have that $s_p \le o_p$ according to our greedy algorithm, and we try to find $s_p$ in $O$. suppose we 
+found $o_q = s_p$. If $\abs*{p-mid}=\abs*{q-mid}$, we can exchange $o_p$ and $o_q$ to make it's same to $S$,
+which makes no change to the cost. And if $\abs*{p-mid}\ne\abs*{q-mid}$, we know $\abs*{p-mid}>\abs*{q-mid}$
+ must hold according to our algorithm to construct $S$ and the fact that in our previous comparison $O$ is same to $S$.
+Having $\abs*{p-mid}\ne\abs*{q-mid}$, if we exchange $o_p$ and $o_q$, the cost of $O$ can be decreased.
+We continuous do this exchange until $O$ is same to $S$, $O$'s cost must decreased, thus the $O$'s initial cost
+ must be greater to $S$'s, which contradict our assumption. Thus $S$ is the optimal solution.
+
+ The algorithm runs in $O(n\log n)$ time since we only need to sort the rods by lengths, when we apply 
+ the merge sort, the time complexity is $O(n\log n)$.
+\end{answer}
+\end{Subquestion}
+
+\end{Question}
+
+\end{document}

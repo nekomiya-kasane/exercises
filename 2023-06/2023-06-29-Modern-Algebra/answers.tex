@@ -1,0 +1,336 @@
+\documentclass[11pt]{homework}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage[utf8x]{inputenc}
+\usepackage{amssymb,amsmath,latexsym,amsfonts,amsthm,cleveref}
+\usepackage{mnsymbol, wasysym}
+
+% TODO: replace these with your information
+\newcommand{\hwname}{Name here}
+\newcommand{\hwemail}{Email here}
+\newcommand{\hwtype}{Homework}
+\newcommand{\hwnum}{0}
+\newcommand{\hwclass}{12-345}
+\newcommand{\hwlecture}{0}
+\newcommand{\hwsection}{Z}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\est}{\exists\ }
+\newcommand{\fal}{\forall\ }
+\newcommand{\st}{\text{ s.t. }}
+\newcommand{\ie}{\text{ i.e. }}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\tand}{\text{ and }}
+\newcommand{\ord}{\mathrm{ord}}
+
+\begin{document}
+\maketitle
+
+\setcounter{questionCounter}{1}
+
+%% Q2
+\question
+\begin{alphaparts}
+
+    \questionpart note that for any integer within $\{\dots, -19, -15,\dots, 17, 21, \dots\}$, if we add $3$ to it, it will be a multiple of 4. Thus the notation is
+    \[\{n\in \Z\mid\est m \in \Z ,\st n+3=4m\}\quad\tor\quad \{n\in \Z\mid 4 \mid n+3\}\]
+
+    \questionpart for any 2-digit positive integers ended with 3.it has the form $\bar{a3}$ where $1\leq a \leq 9$ is a digit.thus the notation is
+    \[\{n\in \Z\mid \est 1 \leqslant m\leqslant 9, m\in \Z, \st n=10m+3\}\]
+
+\end{alphaparts}
+
+%% Q3
+\question
+\begin{alphaparts}
+    \questionpart See the table:\\
+    \begin{center}
+        \begin{tabular}{ccc}
+            \toprule
+            m & n  & $\dfrac{m}{n}$ \\[4pt]
+            \hline
+            1 & 1  & 1              \\
+            1 & -1 & -1             \\
+            0 & 2  & 0              \\
+            1 & 3  & $\dfrac{1}{3}$ \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+    therefore $1,-1,0,\dfrac{1}{3}\in \Q$
+
+    \questionpart yes,the sum is in $\Q$. \par
+    \textbf{Proof:} $\fal \dfrac{m_1}{n_1},\dfrac{m_2}{n_2}\in \Q$ where $m_1,m_2,n_1,n_2\in \Z,\ n_1,n_2 \neq 0. $	we have
+    \[\dfrac{m_1}{n_1}+\dfrac{m_2}{n_2}=\dfrac{m_1 n_2+n_1 m_2}{n_1 n_2}\in \Q\] since $m_1 n_2+n_1m_2\in \Z, n_1,n_2\in \Z, n_1 n_2 \neq 0$. \par
+    For example, (1) $\dfrac{2}{3},\dfrac{4}{5}\in \Q$ as $2,4,3,5\in \Z,\ 3,5\neq 0$. (2) $\dfrac{1}{2},\dfrac{2}{9}\in \Q$ as $1,2,9\in \Z,\ 2,9\neq 0$, and
+    \[\dfrac{2}{3}+\dfrac{4}{5}=\dfrac{2\cdot5+3\cdot4}{15}=\dfrac{22}{15}\in \Q,\quad\dfrac{1}{2}+\dfrac{2}{9}=\dfrac{9+4}{18}=\dfrac{13}{18}\in \Q\]
+
+    \questionpart We have proved in (b) that $\fal a,b\in \Q, \est,m_1,m_2,n_1,n_2\in \Z,n_1,n_2\neq 0$ by the definition, then
+    \[a=\dfrac{m_1}{n_1},\ b=\dfrac{m_2}{n_2},\ a+b \in \Q\]
+    Thus $\Q$ is closed under addition.
+\end{alphaparts}
+
+%% Q4
+\question
+\begin{alphaparts}
+    \questionpart $U(7)$ may contain $\bar{1},\bar{2},\cdots,\bar{6}$. we check them one by one.
+    \begin{enumerate}[label=\protect\textcircled{\tiny\arabic*}]
+        \item $\fal k\in\N. 1^k=1, \ie 1^{-1}=1$
+        \item $\bar{2}^1=\bar{2},2^2=\bar{4},\bar{2}^3=\bar{8}=\bar{1} $, thus $2^{-1}=4$
+        \item $\bar{3}^1=\bar{3},\bar{3}^2=\bar{9}=\bar{2},\bar{3}^3=\bar{6},\bar{3}^4=\bar{4},\bar{3}^5=\bar{3}, \bar{3}^6=\bar{1}$, thus $\bar{3}^{-1}=3^5=5$
+        \item $4^1=4,4^2=2,4^3=1$, thus $\bar{4}^{-1}=4^2=2$
+        \item $5^1=5,5^2=4,5^3=6,5^4=2,5^5=3,5^6=1$ thus $5^{-1}=5^5=3$
+        \item $6^1=6,6^2=1$ thus $6^1=6$
+    \end{enumerate}
+    by the debate above, $U(7)=\{1,2,3,4,5,6\}$.
+
+    \questionpart we have calculate this in (a) $2^1=2,2^2=4,2^3=1$, thus $\ord(2)=3$.
+
+    \questionpart by (a), $\ord(1)=1,\ord(2)=3,\ord(3)=6,\ord(4)=3,\ord(5)=6,\ord(6)=1$
+
+    \questionpart $U(10)$ may contain $1,2,3,\cdots,9,10$.
+    \begin{enumerate}[label=\protect\textcircled{\tiny\arabic*}]
+        \item $1^1=1 \Rightarrow \ord(1)=1$
+        \item $2^1=2,2^2=4,2^3=8,2^4=6,2^5=2 \Rightarrow 2 \notin U(10) $
+        \item $3^1=3,3^2=9,3^3=7,3^4=1 \Rightarrow \ord(3)=4$
+        \item $4^1=4,4^2=6,4^3=4 \Rightarrow 4 \notin U(10)$
+        \item $5^1=5,5^2=5 \Rightarrow 5 \notin U(10)$
+        \item $6^1=6,6^2=6 \Rightarrow 6 \notin U(10)$
+        \item $7^1=7,7^2=9,7^3=3,7^4=1 \Rightarrow \ord(7)=4$
+        \item $8^1=8,8^2=4,8^3=2,8^4=6,8^5=8 \Rightarrow 8\notin U(10)$
+        \item $9^1=9,9^2=1 \Rightarrow \ord(9)=2$
+    \end{enumerate}
+    thus $U(10)=\{1,3,7,9\}$ with orders $(1,4,4,2)$ respectively.
+
+    \questionpart $U(15)$ may contain $1,2,\cdots,14$.
+    \begin{enumerate}[label=\protect\textcircled{\tiny\arabic*}]
+        \item $1^1=1 \Rightarrow \ord(1)=1$
+        \item $2^1=2,2^2=4,2^3=8,2^4=1 \Rightarrow \ord(2)=4$
+        \item $3^1=3,3^2=9,3^3=12,3^4=6,3^5=3 \Rightarrow 3\notin U(15)$
+        \item $4^1=4,4^2=1 \Rightarrow \ord(4)=2 $
+        \item $5^1=5,5^2=10,5^3=5 \Rightarrow 5 \notin U(15)$
+        \item $6^1=6,6^2=6 \Rightarrow 6 \notin U(15)$
+        \item $7^1=7,7^2=4,7^3=13,7^4=1 \Rightarrow \ord(7)=4$
+        \item $8^1=8,8^2=4,8^3=2,8^4=1 \Rightarrow \ord(8)=4$
+        \item $9^1=9,9^2=6,9^3=9 \Rightarrow 9 \notin U(15)$
+        \item $10^1=10,10^2=10 \Rightarrow 10 \notin U(15)$
+        \item $11^1=11,11^2=1 \Rightarrow \ord(11)=2$
+        \item $12^1=12,12^2=9,12^3=3,12^4=6,12^5=12 \Rightarrow 12 \notin U(15)$
+        \item $13^1=13,13^2=4,13^3=7,13^4=1 \Rightarrow \ord(13)=4$
+        \item $14^1=14,14^2=1 \Rightarrow \ord(14)=2$
+    \end{enumerate}
+    thus $U(15)=\{1,2,4,7,8,11,13,14\}$ with orders $(1,4,2,4,4,2,4,1)$ respectively.
+
+    \questionpart $|U(7)|=6,|U(10)|=4,|U(15)|=8$, I have 4 observations:
+    \begin{itemize}
+        \item if $n$ prime, then $U(n)=\{1,2,\cdots,n\}$
+        \item if $n$ not prime, then $\fal m \in U(n)$, $\gcd(m,n)=1$ coprime
+        \item if $m \in U(n)$ then $\ord(m)\mid|U(n)|$
+        \item $m \in U(n)$, then $\est k \in U(n),\st\ord(m)\ord(k)=|U(n)|$
+    \end{itemize}
+\end{alphaparts}
+
+%% Q5
+\question
+\begin{alphaparts}
+    \questionpart If $m \in U(n) k \in U(n)$, then $\gcd(m,n)=\gcd(k,n)=1$. By the fundamental pinciple of arthimetics,
+    \begin{itemize}
+        \item $m={a_1}^{p_1}{a_2}^{p_2}\cdots{a_s}^{p_s}$ where $a_i\ (1\leqslant i \leqslant s)$ are positive primes
+        \item $k={b_1}^{q_1}{b_2}^{q_2}\cdots{b_t}^{q_t}$ where $b_i\ (1\leqslant i \leqslant t)$ are positive primes
+    \end{itemize}
+    since $m,k$ coprime with $n$. then $\fal a_i,b_i$, we know $a_i\nmid n,b_i\nmid n$, thus
+    \[mk={a_1}^{p_1}{a_2}^{p_2}\cdots{a_s}^{p_s}{b_1}^{q_1}\cdots{b_t}^{q_t}\nmid n\]
+    by the uniquences of prime factoring. Therefore $mk\in U(n),U(n)$ is closed under multiplication.
+
+    \questionpart Note that $\fal n\geqslant 2, \gcd(n,1)=1$, thus $\forall n , 1 \in U(n)$, it satisfies $\fal m \in U(n) \gcd(m,n)=1$, we have $1\cdot m=m\cdot 1=m$. i.e. $U(n)$ always has identity $1$.
+
+    \questionpart $\fal m\in U(n),\gcd(m,n)=1$. By the Bezont's identity,
+    \[\est a,b\in \Z ,\st am+bn=1\]
+    thus $am=1-bn,am\equiv 1-bn\equiv 1\mod n$. Since $\gcd(a,n)\mid\gcd(am,n)=1$, we have
+    \[a\in U(n)\tand a=m^{-1},\ie \fal m \in U(n),\est m^{-1} \in U(n)\]
+
+    \questionpart Yes, it's associative. Example:
+    \[3\cdot 7\cdot 9\in U(10),3\cdot 7=1,1\cdot 9=9,7\cdot 9=3,3\cdot 3=9\]
+    thus $3(7\cdot 9)=(3\cdot 7)9 \in U(10)$.
+
+    \questionpart $U(n)$ is a group since it's
+    \begin{itemize}
+        \item closed under multiplication
+        \item has identity
+        \item multiplication is associative
+        \item every element has incerse
+    \end{itemize}
+\end{alphaparts}
+
+%% Q6
+\question
+\begin{alphaparts}
+    \questionpart $\varepsilon = (1)(2)(3)$, $r_{120}=(123)$, $r_{240}=(132)$, $r_v=(1)(23)$, $d=(2)(13)$, $d'=(3)(12)$, thus
+    \begin{align*}
+         & r_{120}\cdot r_{120}=(123)(123)=(132)=r_{240}         \\
+         & r_{120}\cdot r_{240}=(123)(132)=(1)(2)(3)=\varepsilon \\
+         & r_{120}\cdot v=(123)(1)(23)=(12)(3)=d'                \\
+         & r_{120}\cdot d=(123)(2)(13)=(23)(1)=v                 \\
+         & r_{120}\cdot d'=(123)(3)(12)=(13)(2)=d                \\
+         & r_{240}\cdot r_{120}={r_{120}}^3=\varepsilon          \\
+         & r_{240}\cdot r_{240}={r_{120}}^4=r_{120}              \\
+         & r_{240}\cdot v=r_{120}\cdot d'=d                      \\
+         & r_{240}\cdot d=r_{120}\cdot v=d'                      \\
+         & r_{240}\cdot d'=r_{120}\cdot d=v                      \\
+         & d\cdot v=(2)(13)(1)(23)=r_{240}                       \\
+         & d\cdot d'=r_{120}                                     \\
+         & v\cdot r_{120}=(1)(23)(123)=(2)(13)=d                 \\
+         & v\cdot r_{240}=d\cdot r_{120}=(2)(13)(123)=(21)(3)=d' \\
+         & v\cdot v=(1)(23)(1)(23)=\varepsilon                   \\
+         & v\cdot d=(1)(23)(2)(13)=(312)=r_{120}                 \\
+         & v\cdot d'=(1)(23)(3)(12)=(132)=r_{240}                \\
+         & d'\cdot d=(3)(12)(2)(13)=(213)=r_{240}                \\
+         & d\cdot r_{240}=v\cdot r_{120} \cdot r_{240}=v         \\
+         & d'\cdot r_{120}=(3)(12)(123)=(1)(23)=v                \\
+         & d'\cdot v=(3)(12)(1)(23)=(231)=r_{120}                \\
+         & d'\cdot r_{240}=d                                     \\
+    \end{align*}
+    The composition table is
+    \begin{center}
+        \begin{tabular}{c|cccccc}
+            \toprule
+            $D_3$         & $\varepsilon$ & $r_{120}$     & $r_{240}$     & $v $          & $d $          & $d'$          \\
+            \midrule
+            $\varepsilon$ & $\varepsilon$ & $r_{120}$     & $r_{240}$     & $v $          & $d $          & $d'$          \\
+            $r_{120}$     & $r_{120}$     & $r_{240}$     & $\varepsilon$ & $d'$          & $v$           & $d $          \\
+            $r_{240}$     & $r_{240}$     & $\varepsilon$ & $r_{120}$     & $d $          & $d'$          & $v $          \\
+            $v$           & $v$           & $d$           & $d'$          & $\varepsilon$ & $r_{120}$     & $r_{240}$     \\
+            $d$           & $d$           & $d'$          & $v$           & $r_{240}$     & $\varepsilon$ & $r_{120}$     \\
+            $d$'          & $d'$          & $v$           & $d$           & $r_{120}$     & $r_{240}$     & $\varepsilon$ \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+
+    \questionpart $D_3$ satisfies
+    \begin{itemize}
+        \item $\fal a,b\in D_3,a\cdot b\in D_3$, the multiplication is closed
+        \item every row/column in the composition table contains an $\varepsilon$ and $\fal a\in D_3$
+    \end{itemize}
+    note that $a\cdot\varepsilon=\varepsilon\cdot a=a$, thus $D_3$ contain an identity $\varepsilon$, and every element in $D_3$ has its inverse.
+
+    \questionpart The multiplication is associative, for example $v\cdot d\cdot d'$ satisfies, $v\cdot d=r_{120}, r_{120}\cdot d'=d$, $d\cdot d'=r_{120},v\cdot r_{120}=d$. Thus $(v\cdot d)\cdot d'=v\cdot (d\cdot d')$. Therefore $(D_3,\cdot)$ is a group. Note that $ v\cdot r_{120}=d\neq d'=r_120\cdot v$, $D_3$ is not commutative.
+
+    \questionpart
+    \begin{enumerate}
+        \item if $n$ is even, then it has $n$ symmetry axes and its exterior angle is $\dfrac{2\pi}{n} , \fal a\in D_n$,  $a$ is either
+              \begin{itemize}
+                  \item a mirror transform about a symmetry axis
+                  \item or a rotation of $\dfrac{2k\pi}{n} (0\leqslant k\leqslant n)$ radian
+              \end{itemize}
+              the symmerty axis is either
+              \begin{itemize}
+                  \item through the midpoivets of a pair of edges
+                  \item or through a pair of vertices
+              \end{itemize}
+              thus there're $n$ elements of kind 1 and $n$ of kind 2, $|D_n|=2n$
+        \item if $n$ is odd then it has $n$ symmetry axes, each goes through a ventex and a midpoint of an edge. $\fal a\in D_n$, it's either
+              \begin{itemize}
+                  \item a mirror transform about a symmetry axis ($n$ such element)
+                  \item or a rotation of $\dfrac{2k\pi}{n} (0\leqslant k\leqslant n)$ radian ($n$ such element)
+              \end{itemize}
+              thus $|D_n|=2n$.
+    \end{enumerate}
+\end{alphaparts}
+
+%% Q7
+\question
+$\alpha\circ\beta=\begin{pmatrix}1&2&3&4\\3&4&2&1\end{pmatrix}=(1324)$,
+$\beta\circ\alpha=\begin{pmatrix}1&2&3&4\\2&3&1&4\end{pmatrix}=(4)(123)$, $\beta(3)=1$ hence
+\begin{align*}
+     & (\alpha\circ\beta)(3)=2=\alpha(\beta(3))=\alpha(1)       \\
+     & (\beta\circ\alpha)(1)=\beta(\alpha(1))=\beta(2)=2        \\
+     & (\alpha\circ\beta)(2)=\alpha(\beta(2))=\alpha(2)=4       \\
+     & (\beta\circ\alpha)(2)=\beta(\alpha(2))=\beta(4)=3        \\
+     & (\alpha\circ\beta)(4)=\alpha(\beta(4))=\alpha(3)=1       \\
+     & (\beta\circ\alpha)(3)=\beta(\alpha(3))=\beta(1)=1        \\
+     & (\alpha\circ\beta)(1)=\alpha(\beta(1))=\alpha(1)=2\neq 3 \\
+\end{align*}
+Contradictory, therefore there's no such $\alpha,\beta$.
+
+%% Q8
+\question
+$S_3=\{\varepsilon,(12),(13),(23),(123),(132)\}$
+$\sigma=\begin{pmatrix}1&2&3\\3&1&2\end{pmatrix}=(132)$, 
+$\gamma=\begin{pmatrix}1&2&3\\2&3&1\end{pmatrix}=(123)$,
+$H=\{\varepsilon,\sigma,\gamma\}$, $C(H)=\{\tau\ \epsilon\ S_3\ :\ \tau h=h\tau,\forall\ h\ \in\ H\}$
+\begin{alphaparts}
+    \questionpart appanently $\varepsilon h=h \varepsilon, \ \fal h\in H\Rightarrow\varepsilon\in C(H)$. 
+    \[\begin{array}{cc}(12)(132)=(13)(2)\\(132)(12)=(1)(23)\end{array}\Rightarrow(12)\notin H\]
+    Similarly $(13),(23)\notin H$.
+    \[\begin{array}{cc}\sigma\ \gamma=(132)(123)=(1)(2)(3)\\\gamma\ \sigma=(123)(132)=(1)(3)(2)\end{array}\Rightarrow\gamma,\sigma\in C(H)\]
+    thus $C(H)=H$.
+
+    \questionpart Since $C(H)=H$, note that \
+    \[\fal h\in H, \varepsilon\ h=h\varepsilon=h,\sigma\gamma=\gamma\sigma=\varepsilon, \gamma\gamma=\gamma^2=\sigma,\sigma.\sigma=\sigma^2=\gamma\]
+    $H$ is closed under muHiplication. As $H \subset S_3=G$ and $\varepsilon\in H$ is the identity and $\sigma^{-1}=\gamma,\gamma^{-1}=\sigma,\varepsilon^{-1}=\varepsilon$, $C(H)\lhd S_3=G$
+\end{alphaparts}
+
+%% Q9
+\question
+For example, let $\sigma=(12),\tau=(23),\mu=(31)\in S_3$, then 
+\[
+    \begin{array}{cc}
+        \sigma\circ\tau=(12)(23)=(123)\\
+        \mu\circ\sigma=(31)(12)=(123)
+    \end{array}\Rightarrow\begin{array}{cc}
+        \sigma\circ\tau=\mu\circ\sigma
+        \\\text{but }\tau\neq \mu
+    \end{array}
+\]
+
+%% Q10
+\question
+\begin{alphaparts}
+    \questionpart $D_8$
+
+    \questionpart Yes. 
+    \begin{enumerate}
+        \item every row/coolumn has an identity, which means all elements are invertible and it contains an identity.
+        \item the multiplication is closed.
+        \item the multiplication is associative. For example,
+        \[a\cdot a_2=a_3, a_3\cdot d=a_{3d}, a_2\cdot d=a_{2d}, a\cdot a_{2d}=a_{3d}\]
+        thus $(a\cdot a_2)d=a\cdot(a_2\cdot d)$
+    \end{enumerate}
+
+    \questionpart yes note that the multiplication between head and grey back ground elements we can find a subgroup.it's indeed a subgroup since 
+    \begin{enumerate}
+        \item it contains idectity $e$
+        \item its multiplioation is closed.
+        \item associationity inrerited from $D_8$
+        \item every element has an inverse as each Subrow/subcolumn has exactly $1$ $e$. For example $a_3^{-1}=a_5$
+    \end{enumerate}
+
+    \questionpart Commatativity. $H$ has such property since by the table $a_i a_{7-i}=a_{7-i} a_i$ holds generally.
+\end{alphaparts}
+
+\setcounter{questionCounter}{11}
+
+%% Q12
+\question 
+I used the following learning targets:
+\begin{enumerate}
+    \item Groups and Subgroups
+	\item Write valid proof
+	\item Perform algebraic compotations
+	\item Write headable proof and use notations properly
+\end{enumerate}
+
+%% Q13
+\question $\smiley$
+
+%% Q14
+\question No one. Just the textbook, wikipedia and mathematica
+
+%% Q15
+\question 
+Question 7. I found no solution for $\alpha, \beta$	
+
+\end{document}
