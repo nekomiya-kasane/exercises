@@ -13,7 +13,7 @@ library(boot)
 library(leaps)
 library(hrbrthemes)
 
-movies <- read.csv("https://raw.githubusercontent.com/idc9/stor390/master/data/movies.csv")
+movies <- read.csv("C:\\Users\\taken\\Downloads\\movies.csv")
 summary(movies)
 head(movies)
 colnames(movies)

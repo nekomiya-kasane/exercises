@@ -10,7 +10,7 @@ We're going to use the ISLR2's `Auto` dataset. First the `pair` plot:
 
 We can see good linear relation between `displacement`, `weight`, `horsepower`, and clear relation between `mpg` and the 3 features.
 
-### Validation Set
+### Validation Set 
 
 It's quite a straight method, just divide the dataset into a training set and a validation set, use the former one to train the model and use the latter one to test the model, and select out the best one by comparing MSEs.
 
@@ -103,7 +103,7 @@ In this section, we'll use the IRIS data set. The following graph shows the pair
 
 **Image 1: **Sepal data points
 
-<img src="report.assets/iris_2.svg" alt="Petal" style="zoom:33%;" />
+<img src="./iris_2.svg" alt="Petal" style="zoom:33%;" />
 
 **Image 2: **Petal data points
 
