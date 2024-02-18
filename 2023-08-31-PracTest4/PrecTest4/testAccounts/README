@@ -1,0 +1,25 @@
+## Synopsis
+
+Practical 4 of Fundamentals of Programming COMP1005/5005
+
+LIU Boxu
+ID: 21728930
+
+## Contents
+README - readme file for Practical 4
+PracTest4Q1 - answers for Q1
+PracTest4Q2 - answers for Q2
+PracTest4Q3 - answers for Q3
+PracTest4Q4 - answers for Q4
+
+each contains 
+accounts.py - definition of account-related classes
+testAccounts.py - main executable 
+
+## Dependencies
+none
+
+## Info
+
+In `accounts.py`, I implemented 2 get methods, and added error raising under withdraw.
+In `testAccounts.py`, I added the required call for functions, and added error handling codes.
